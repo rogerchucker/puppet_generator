@@ -4,15 +4,18 @@ require 'puppet_generator'
 require 'thor'
 
 class Default < Thor
+
   desc 'package', 'generate package definitions'
   method_option :input_file , type: :string, default: 'input.txt'
   method_option :output_directory , type: :string, default: 'out/'
+  method_option :module , type: :string, default: 'Default'
   def package
-    input_file = PuppetGenerator::InputFile.new( options[:input_file] )
-    converter = PuppetGenerator::PackageDefinitionsConverter.new(input_file.entries)
+    task = PuppetGenerator::Task.new
+    task.meta[:module] = options[:module]
+    task.meta[:input] = options[:input_file] 
+    task.meta[:output] = options[:output_directory]
 
-    output_file = PuppetGenerator::OutputFile.new(options[:output_directory], converter.run)
-    output_file.write
+    generate_package_definition_to_single_file(task)
   end
 end
 

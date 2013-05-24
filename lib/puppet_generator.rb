@@ -1,4 +1,5 @@
 require 'erb'
+require 'middleware'
 
 require 'puppet_generator/version'
 require 'puppet_generator/input_file'
