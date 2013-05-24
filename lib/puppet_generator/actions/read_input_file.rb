@@ -5,7 +5,7 @@ module PuppetGenerator
     end
 
     def call(task)
-      task.body[:input] = PuppetGenerator::InputFile.new( task.meta[:input_file_name] )
+      task.body[:input] = PuppetGenerator::InputFile.new( task.meta[:source] )
 
       @app.call(task)
     end

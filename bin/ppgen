@@ -12,10 +12,11 @@ class Default < Thor
   def package
     task = PuppetGenerator::Task.new
     task.meta[:module] = options[:module]
-    task.meta[:input] = options[:input_file] 
-    task.meta[:output] = options[:output_directory]
+    task.meta[:source] = options[:input_file] 
+    task.meta[:destination] = options[:output_directory]
 
-    generate_package_definition_to_single_file(task)
+    api = PuppetGenerator::Api.new  
+    api.generate_package_definition_to_single_file(task)
   end
 end
 

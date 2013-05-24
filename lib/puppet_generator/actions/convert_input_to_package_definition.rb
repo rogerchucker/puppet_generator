@@ -5,7 +5,8 @@ module PuppetGenerator
     end
 
     def call(task)
-      task.body[:definitions] = PuppetGenerator::PackageDefinitionsConverter.new( task.body[:input].entries )
+      converter = PuppetGenerator::PackageDefinitionsConverter.new( task.body[:input].entries )
+      task.body[:definitions] = converter.run
 
       @app.call(task)
     end
