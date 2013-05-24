@@ -20,11 +20,6 @@ module PuppetGenerator
     end
 
     def write
-      #output = @definitions.inject( [] ) { |strings, definition| strings << definition.to_s }
-      #File.open(@filename, "w") do |f|
-      # f.puts output.join("\n")
-      #end
-
       create_output_directory
       create_output_files
     end
