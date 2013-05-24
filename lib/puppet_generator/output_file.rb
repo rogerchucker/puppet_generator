@@ -1,15 +1,15 @@
 module PuppetGenerator
   class OutputFile
-    def initialize(filename, definitions)
+    def initialize(filename, definitions, template_class, template_package)
       @filename = filename
       @definitions = definitions || []
+      @template_class = template_class
+      @template_package = template_package
     end
 
     def write
-      output = @definitions.inject( [] ) { |strings, definition| strings << definition.to_s }
-
       File.open(@filename, "w") do |f|
-       f.puts output.join("\n")
+       f.puts @template_class.render(@definitions, @template_package)
       end
     end
 

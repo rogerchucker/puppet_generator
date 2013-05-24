@@ -142,7 +142,7 @@ Feature: Generate package definitions
     asdf
     test123
     """
-    When I successfully run `ppgen package --output_channel file --single_definition --class test`
+    When I successfully run `ppgen package --output_channel file --template_class single --template_package plain --class test`
     Then the file "out" should contain:
     """
     class mymodule::test {

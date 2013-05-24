@@ -11,6 +11,8 @@ class Default < Thor
   method_option :module , type: :string, default: 'mymodule'
   method_option :class , type: :string, default: 'myclass'
   method_option :output_channel , type: :string, default: 'directory'
+  method_option :template_class , type: :string, default: 'plain'
+  method_option :template_package , type: :string, default: 'package'
   def package
     task = PuppetGenerator::Task.new
     task.meta[:source] = options[:source] 
@@ -18,6 +20,8 @@ class Default < Thor
     task.meta[:module] = options[:module]
     task.meta[:class] = options[:class]
     task.meta[:output_channel] = options[:output_channel]
+    task.meta[:template_class] = options[:template_class]
+    task.meta[:template_package] = options[:template_package]
 
     api = PuppetGenerator::Api.new  
     api.generate_package_definition(task)
