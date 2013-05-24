@@ -1,5 +1,5 @@
 module PuppetGenerator
-  class OutputFile
+  class OutputDirectory
     def initialize(directory, definitions)
       @directory = directory
       @definitions = definitions || []
