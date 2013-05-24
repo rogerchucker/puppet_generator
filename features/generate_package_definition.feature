@@ -117,3 +117,21 @@ Feature: Generate package definitions
     }
 
     """
+
+  Scenario: Output to stdout
+    Given a file named "input.txt" with:
+    """
+    asdf
+    """
+    When I successfully run `ppgen package --output_channel stdout`
+    Then the output should contain:
+    """
+    class default::asdf {
+
+      package {'asdf':
+        ensure => latest,
+      }
+
+    }
+
+    """

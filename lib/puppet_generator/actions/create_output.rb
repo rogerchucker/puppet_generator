@@ -10,8 +10,8 @@ module PuppetGenerator
         PuppetGenerator::OutputFile.new( task.meta[:destination], task.body[:packages] )
       when 'directory'
         PuppetGenerator::OutputDirectory.new( task.meta[:destination], task.body[:packages] )
-      #when 'stdout'
-      #  PuppetGenerator::OutputStdOut.new( task.meta[:destination], task.body[:packages] )
+      when 'stdout'
+        PuppetGenerator::OutputStdOut.new( task.body[:packages] )
       else
         raise PuppetGenerator::Exceptions::InvalidOutputChannel
       end
