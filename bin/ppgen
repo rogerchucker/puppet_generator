@@ -16,7 +16,7 @@ class Default < Thor
     task.meta[:destination] = options[:output_directory]
 
     api = PuppetGenerator::Api.new  
-    api.generate_package_definition_to_single_file(task)
+    api.generate_package_definition(task)
   end
 end
 
