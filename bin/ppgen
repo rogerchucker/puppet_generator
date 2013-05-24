@@ -6,14 +6,14 @@ require 'thor'
 class Default < Thor
 
   desc 'package', 'generate package definitions'
-  method_option :input_file , type: :string, default: 'input.txt'
-  method_option :output_directory , type: :string, default: 'out/'
+  method_option :source , type: :string, default: 'input.txt'
+  method_option :destination , type: :string, default: 'out/'
   method_option :module , type: :string, default: 'Default'
   def package
     task = PuppetGenerator::Task.new
     task.meta[:module] = options[:module]
-    task.meta[:source] = options[:input_file] 
-    task.meta[:destination] = options[:output_directory]
+    task.meta[:source] = options[:source] 
+    task.meta[:destination] = options[:destination]
 
     api = PuppetGenerator::Api.new  
     api.generate_package_definition(task)

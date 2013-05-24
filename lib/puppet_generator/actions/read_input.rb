@@ -5,15 +5,16 @@ module PuppetGenerator
     end
 
     def call(task)
-      if is_directory? task.meta[:source]
-        task.body[:input] = PuppetGenerator::InputDirectory.new( task.meta[:source] )
+      #if is_directory? task.meta[:source]
+      #  task.body[:input] = PuppetGenerator::InputDirectory.new( task.meta[:source] )
+      if is_stdin? task.meta[:source]
+        task.body[:input] = PuppetGenerator::InputStdIn.new
       elsif is_file? task.meta[:source]
         task.body[:input] = PuppetGenerator::InputFile.new( task.meta[:source] )
       else
         raise PuppetGenerator::Exceptions::InvalidSource
       end
 
-      binding.pry
 
       @app.call(task)
     end
@@ -26,6 +27,10 @@ module PuppetGenerator
 
     def is_file?(item)
       FileTest.file? item
+    end
+    
+    def is_stdin?(item)
+      item == 'stdin'
     end
 
   end

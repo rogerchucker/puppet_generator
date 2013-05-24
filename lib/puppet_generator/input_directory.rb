@@ -3,7 +3,8 @@ module PuppetGenerator
     attr_reader :entries
 
     def initialize(directory)
-      @entries = Find.find(directory) { |path| FileTest.file? path }
+      @entries = []
+      Find.find(directory) { |path| @entries << Pathname.new( path ) }
     end
 
   end
