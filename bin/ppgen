@@ -15,6 +15,7 @@ class Default < Thor
     task.meta[:module] = options[:module]
     task.meta[:source] = options[:source] 
     task.meta[:destination] = options[:destination]
+    task.meta[:output_channel] = options[:output_channel]
 
     api = PuppetGenerator::Api.new  
     api.generate_package_definition(task)
