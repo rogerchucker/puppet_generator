@@ -12,7 +12,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen package`
     Then the file "out/asdf.pp" should contain:
     """
-    class default::asdf {
+    class mymodule::asdf {
 
       package {'asdf':
         ensure => latest,
@@ -33,7 +33,7 @@ Feature: Generate package definitions
     And I close the stdin stream
     Then the file "out/asdf.pp" should contain:
     """
-    class default::asdf {
+    class mymodule::asdf {
 
       package {'asdf':
         ensure => latest,
@@ -52,7 +52,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen package`
     Then the file "out/asdf.pp" should contain:
     """
-    class default::asdf {
+    class mymodule::asdf {
 
       package {'asdf':
         ensure => latest,
@@ -63,7 +63,7 @@ Feature: Generate package definitions
     """
     And the file "out/test123.pp" should contain:
     """
-    class default::test123 {
+    class mymodule::test123 {
 
       package {'test123':
         ensure => latest,
@@ -100,7 +100,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen package --output_channel file`
     Then the file "out" should contain:
     """
-    class default::asdf {
+    class mymodule::asdf {
 
       package {'asdf':
         ensure => latest,
@@ -108,7 +108,7 @@ Feature: Generate package definitions
 
     }
 
-    class default::test123 {
+    class mymodule::test123 {
 
       package {'test123':
         ensure => latest,
@@ -126,9 +126,34 @@ Feature: Generate package definitions
     When I successfully run `ppgen package --output_channel stdout`
     Then the output should contain:
     """
-    class default::asdf {
+    class mymodule::asdf {
 
       package {'asdf':
+        ensure => latest,
+      }
+
+    }
+
+    """
+
+  Scenario: Multiple lines in input file with one output file and one module definition
+    Given a file named "input.txt" with:
+    """
+    asdf
+    test123
+    """
+    When I successfully run `ppgen package --output_channel file --single_definition --class test`
+    Then the file "out" should contain:
+    """
+    class mymodule::test {
+
+      package {'asdf':
+        ensure => latest,
+      }
+
+    }
+
+      package {'test123':
         ensure => latest,
       }
 
