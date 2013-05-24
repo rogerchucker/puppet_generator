@@ -3,7 +3,7 @@ require 'middleware'
 require 'find'
 require 'logger'
 require 'pathname'
-
+require 'ansi'
 
 require 'puppet_generator/version'
 require 'puppet_generator/input_file'
