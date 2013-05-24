@@ -2,7 +2,7 @@ module PuppetGenerator
   class HandleErrors
     def initialize(app)
       @app = app
-      @logger = Logger.new($stdout)
+      @logger = Logger.new($stderr)
     end
 
     def call(task)
