@@ -8,10 +8,10 @@ class Default < Thor
   method_option :input_file , type: string, default: 'input.txt'
   method_option :output_directory , type: string, default: 'out/'
   def package
-    input_file = InputFile.new(options[:input_file)
-    converter = PackageDefinitionsConverter.new(input_file.entries)
+    input_file = PuppetGenerator::InputFile.new( options[:input_file] )
+    converter = PuppetGenerator::PackageDefinitionsConverter.new(input_file.entries)
 
-    output_file = OutputFile.new(options[:output_directory, converter.run)
+    output_file = PuppetGenerator::OutputFile.new(options[:output_directory], converter.run)
     output_file.write
   end
 end

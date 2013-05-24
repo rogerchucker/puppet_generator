@@ -8,8 +8,12 @@ Gem::Specification.new do |spec|
   spec.version       = PuppetGenerator::VERSION
   spec.authors       = ["Max Meyer"]
   spec.email         = ["dev@fedux.org"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.summary       = %q{Generate puppet manifests}
+  spec.description   = <<-DESC
+  If you need to build more than one puppet manifests it is quite boring to 
+  redo the same steps every time. This gem helps you to generate puppet manifests
+  for packages and files/directories.
+  DESC
   spec.homepage      = ""
   spec.license       = "MIT"
 
