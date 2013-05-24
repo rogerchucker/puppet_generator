@@ -1,9 +1,9 @@
 module PuppetGenerator
-  class PackageTemplate                                                                                                                                       
-                                                                                                                                                              
-    def initialize(package)                                                                                                                                   
-      @package = package                                                                                                                                      
-                                                                                                                                                              
+  class PackageTemplate
+
+    def initialize(package)
+      @package = package
+
       @template = <<-EOF
 class <%= package.module_name %>::<%= package.name %> {
 
@@ -14,18 +14,18 @@ class <%= package.module_name %>::<%= package.name %> {
 }
       EOF
     end
-                                                                 
-    def to_s                                                     
-      ERB.new(@template).result(context)                          
-    end                                                            
-                                                                 
-    private                                                       
-                                                                   
-    attr_reader :package                                          
-                                                                                                                                                              
-    def context                                                                 
-      binding                                                  
-    end                                                            
-                                                                 
-  end                                                                     
+
+    def to_s
+      ERB.new(@template).result(context)
+    end
+
+    private
+
+    attr_reader :package
+
+    def context
+      binding
+    end
+
+  end
 end

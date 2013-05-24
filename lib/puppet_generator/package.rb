@@ -7,8 +7,8 @@ module PuppetGenerator
       @module_name = module_name.strip
     end
 
-    def to_s
-      PackageTemplate.new(self).to_s
+    def to_s(template=PackageTemplate)
+      template.new(self).to_s
     end
 
   end

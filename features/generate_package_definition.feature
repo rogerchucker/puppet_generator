@@ -90,3 +90,30 @@ Feature: Generate package definitions
     }
 
     """
+
+  Scenario: Multiple lines in input file with one output file
+    Given a file named "input.txt" with:
+    """
+    asdf
+    test123
+    """
+    When I successfully run `ppgen package --output_channel file`
+    Then the file "out" should contain:
+    """
+    class default::asdf {
+
+      package {'asdf':
+        ensure => latest,
+      }
+
+    }
+
+    class default::test123 {
+
+      package {'test123':
+        ensure => latest,
+      }
+
+    }
+
+    """

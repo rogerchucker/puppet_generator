@@ -7,7 +7,7 @@ class Default < Thor
 
   desc 'package', 'generate package definitions'
   method_option :source , type: :string, default: 'input.txt'
-  method_option :destination , type: :string, default: 'out/'
+  method_option :destination , type: :string, default: 'out'
   method_option :module , type: :string, default: 'default'
   method_option :output_channel , type: :string, default: 'directory'
   def package
