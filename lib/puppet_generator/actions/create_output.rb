@@ -1,11 +1,11 @@
 module PuppetGenerator
-  class CreateSingleOutputFile
+  class CreateOutput
     def initialize(app)
       @app = app
     end
 
     def call(task)
-    output_file = PuppetGenerator::OutputFile.new( task.meta[:destination], task.body[:packages] )
+    output_file = PuppetGenerator::OutputDirectory.new( task.meta[:destination], task.body[:packages] )
     output_file.write
 
     @app.call(task)
