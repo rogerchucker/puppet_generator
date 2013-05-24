@@ -8,7 +8,7 @@ module PuppetGenerator
 
       output = case task.meta[:output_channel] 
       when 'file'
-        template = TemplatePuppetClass.new( task.body[:class], task.body[:packages] )
+        template = Templates::ClassPackage.new( task.body[:packages] )
         PuppetGenerator::OutputFile.new( task.meta[:destination], template )
       when 'directory'
         PuppetGenerator::OutputDirectory.new( task.meta[:destination], task.body[:packages] )
