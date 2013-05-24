@@ -7,5 +7,9 @@ require 'puppet_generator/output_file'
 require 'puppet_generator/package_definition_converter'
 require 'puppet_generator/puppet_package_definition'
 
+require 'puppet_generator/actions/convert_input_to_package_definition'
+require 'puppet_generator/actions/create_single_output_file'
+require 'puppet_generator/actions/read_input_file'
+
 module PuppetGenerator
 end
