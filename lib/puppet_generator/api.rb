@@ -2,7 +2,6 @@ module PuppetGenerator
   class Api
 
     def generate_package_definition_to_single_file(task)
-
       stack = Middleware::Builder.new do
         use ReadInputFile
         use ConvertInputToPackageDefinition
@@ -10,7 +9,6 @@ module PuppetGenerator
       end
 
       stack.call(task)
-
     end
 
   end
