@@ -15,10 +15,9 @@ module PuppetGenerator
       else
         raise PuppetGenerator::Exceptions::InvalidOutputChannel
       end
-
       output.write
 
-    @app.call(task)
+      @app.call(task)
     end
   end
 end
