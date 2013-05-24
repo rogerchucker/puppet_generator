@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
-require 'puppet_converter'
+require 'puppet_generator'
 require 'thor'
 
 class Default < Thor
   desc 'package', 'generate package definitions'
-  method_option :input_file , type: string, default: 'input.txt'
-  method_option :output_directory , type: string, default: 'out/'
+  method_option :input_file , type: :string, default: 'input.txt'
+  method_option :output_directory , type: :string, default: 'out/'
   def package
     input_file = PuppetGenerator::InputFile.new( options[:input_file] )
     converter = PuppetGenerator::PackageDefinitionsConverter.new(input_file.entries)
@@ -15,3 +15,5 @@ class Default < Thor
     output_file.write
   end
 end
+
+Default.start
