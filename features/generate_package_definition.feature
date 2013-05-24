@@ -12,7 +12,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen package`
     Then the file "out/asdf.pp" should contain:
     """
-    class development::apps::asdf {
+    class default::asdf {
 
       package {'asdf':
         ensure => latest,
@@ -33,7 +33,7 @@ Feature: Generate package definitions
     And I close the stdin stream
     Then the file "out/asdf.pp" should contain:
     """
-    class development::apps::asdf {
+    class default::asdf {
 
       package {'asdf':
         ensure => latest,
@@ -52,7 +52,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen package`
     Then the file "out/asdf.pp" should contain:
     """
-    class development::apps::asdf {
+    class default::asdf {
 
       package {'asdf':
         ensure => latest,
@@ -63,7 +63,7 @@ Feature: Generate package definitions
     """
     And the file "out/test123.pp" should contain:
     """
-    class development::apps::test123 {
+    class default::test123 {
 
       package {'test123':
         ensure => latest,
@@ -78,7 +78,7 @@ Feature: Generate package definitions
     """
     asdf
     """
-    When I successfully run `ppgen package --class string1::string2`
+    When I successfully run `ppgen package --module string1::string2`
     Then the file "out/asdf.pp" should contain:
     """
     class string1::string2::asdf {

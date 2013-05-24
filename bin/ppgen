@@ -8,12 +8,10 @@ class Default < Thor
   desc 'package', 'generate package definitions'
   method_option :source , type: :string, default: 'input.txt'
   method_option :destination , type: :string, default: 'out/'
-  method_option :module , type: :string, default: 'Default'
-  method_option :class , type: :string, default: 'Default'
+  method_option :module , type: :string, default: 'default'
   def package
     task = PuppetGenerator::Task.new
     task.meta[:module] = options[:module]
-    task.meta[:class] = options[:class]
     task.meta[:source] = options[:source] 
     task.meta[:destination] = options[:destination]
 

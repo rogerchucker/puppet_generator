@@ -6,7 +6,7 @@ module PuppetGenerator
         use HandleErrors
         use ReadInput
         use EntryToPackage
-        use CreateSingleOutputFile
+        use CreateOutput
       end
 
       stack.call(task)
