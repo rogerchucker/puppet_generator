@@ -73,7 +73,7 @@ Feature: Generate package definitions
 
     """
 
-  Scenario: Class name given
+  Scenario: Module name given
     Given a file named "input.txt" with:
     """
     asdf
