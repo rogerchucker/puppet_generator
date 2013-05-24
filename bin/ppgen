@@ -9,6 +9,7 @@ class Default < Thor
   method_option :source , type: :string, default: 'input.txt'
   method_option :destination , type: :string, default: 'out/'
   method_option :module , type: :string, default: 'default'
+  method_option :output_channel , type: :string, default: 'directory'
   def package
     task = PuppetGenerator::Task.new
     task.meta[:module] = options[:module]

@@ -11,6 +11,7 @@ require 'puppet_generator/input_directory'
 require 'puppet_generator/input_stdin'
 require 'puppet_generator/exceptions'
 require 'puppet_generator/output_directory'
+require 'puppet_generator/output_file'
 
 require 'puppet_generator/package'
 require 'puppet_generator/package_template'
