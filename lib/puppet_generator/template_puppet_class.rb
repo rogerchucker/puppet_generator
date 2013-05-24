@@ -1,13 +1,17 @@
 module PuppetGenerator
   class TemplatePuppetClass
 
-    def initialize(objects, subtemplate)
-      @objects = objects
-      @subtemplate = subtemplate
+    def initialize(puppet_class, puppet_packages)
+      @puppet_class = puppet_class
+      @puppet_packages = puppet_packages
 
       @string = <<-EOF
-class <%= module_name %>::<%= class_name %> {
-<%= partial @objects, @subtemplate %>
+class <%= @puppet_class.module_name %>::<%= @puppet_class.name %> {
+<% @puppet_packages.each do |o| %>
+  package {'<%= o.name %>':
+    ensure => latest,
+  }
+<% end %>
 }
       EOF
     end
@@ -16,13 +20,10 @@ class <%= module_name %>::<%= class_name %> {
       ERB.new(@string).result(context)
     end
 
+    private
+
     def context
       binding
-    end
-
-    def partial(objects, subtemplate)
-      out = objects.collect { |o| subtemplate.new(o).render }
-      out.join("\n")
     end
 
   end
