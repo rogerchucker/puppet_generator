@@ -42,3 +42,51 @@ Feature: Generate package definitions
     }
 
     """
+
+  Scenario: Multiple lines in input file
+    Given a file named "input.txt" with:
+    """
+    asdf
+    test123
+    """
+    When I successfully run `ppgen package`
+    Then the file "out/asdf.pp" should contain:
+    """
+    class development::apps::asdf {
+
+      package {'asdf':
+        ensure => latest,
+      }
+
+    }
+
+    """
+    And the file "out/test123.pp" should contain:
+    """
+    class development::apps::test123 {
+
+      package {'test123':
+        ensure => latest,
+      }
+
+    }
+
+    """
+
+  Scenario: Class name given
+    Given a file named "input.txt" with:
+    """
+    asdf
+    """
+    When I successfully run `ppgen package --class string1::string2`
+    Then the file "out/asdf.pp" should contain:
+    """
+    class string1::string2::asdf {
+
+      package {'asdf':
+        ensure => latest,
+      }
+
+    }
+
+    """

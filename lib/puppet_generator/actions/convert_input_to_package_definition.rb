@@ -1,11 +1,11 @@
 module PuppetGenerator
-  class ConvertInputToPackageDefinition
+  class GeneratePackageDefinition
     def initialize(app)
       @app = app
     end
 
     def call(task)
-      converter = PuppetGenerator::PackageDefinitionsConverter.new( task.body[:input].entries )
+      converter = PuppetGenerator::PackageDefinitionsGenerator.new( task.body[:packages] )
       task.body[:definitions] = converter.run
 
       @app.call(task)

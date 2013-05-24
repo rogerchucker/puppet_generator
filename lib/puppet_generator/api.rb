@@ -5,7 +5,7 @@ module PuppetGenerator
       stack = Middleware::Builder.new do
         use HandleErrors
         use ReadInput
-        use ConvertInputToPackageDefinition
+        use EntryToPackage
         use CreateSingleOutputFile
       end
 

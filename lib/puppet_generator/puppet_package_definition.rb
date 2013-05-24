@@ -1,14 +1,13 @@
 module PuppetGenerator
-  class PuppetPackageDefinition
+  class PackageTemplate
 
-    attr_reader :name
+    def initialize(package)
+      @package = package
 
-    def initialize(name)
-      @name = name.strip
       @template = <<-EOF
-class development::apps::<%= name %> {
+class <%= package.module %>::<%= package.name %> {
 
-  package {'<%= name %>':
+  package {'<%= package.name %>':
     ensure => latest,
   }
 
@@ -21,6 +20,8 @@ class development::apps::<%= name %> {
     end
 
     private
+
+    attr_reader :package
 
     def context
       binding
