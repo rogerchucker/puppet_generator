@@ -9,8 +9,17 @@ module PuppetGenerator
         @template = Erubis::Eruby.new( 
         <<-EOF
 class <%= @file.module_name %>::<%= @file.name %> {
-  package {'<%= @file.name %>':
-    ensure => latest,
+  file {'<%= @file.name %>':
+    ensure => file,
+    <% if @file.source %>
+    source => <%= @file.source %>,
+    <% end %>
+    <% if @file.owner %>
+    owner  => <%= @file.owner %>,
+    <% end %>
+    <% if @file.mode %>
+    mode   => <%= @file.mode %>,
+    <% end %>
   }
 }
         EOF
@@ -19,7 +28,7 @@ class <%= @file.module_name %>::<%= @file.name %> {
 
       def render
         files.collect { |f| 
-          Definition.new(p.name, @template.evaluate( file: f ) ) 
+          Definition.new(f.name, @template.evaluate( file: f ) ) 
         }
       end
     end
