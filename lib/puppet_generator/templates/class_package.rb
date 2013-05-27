@@ -8,8 +8,8 @@ module PuppetGenerator
         @packages = packages
         @template = Erubis::Eruby.new(
         <<-EOF
-class <%= packages.first.module_name %>::<%= packages.first.class_name %> {
-<% packages.each do |p| %>
+class <%= @packages.first.module_name %>::<%= @packages.first.class_name %> {
+<% @packages.each do |p| %>
   package {'<%= p.name %>':
     ensure => latest,
   }
