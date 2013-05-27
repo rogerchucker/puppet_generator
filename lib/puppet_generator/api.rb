@@ -4,7 +4,7 @@ module PuppetGenerator
     def generate_package_definition(task)
       stack = Middleware::Builder.new do
         use HandleErrors
-        use ReadInput
+        use ReadInputPackages
         use CheckForEmptySource
         use EntryToPackage
         use DetermineTemplates
@@ -17,7 +17,7 @@ module PuppetGenerator
     def generate_file_definition(task)
       stack = Middleware::Builder.new do
         use HandleErrors
-        use ReadInput
+        use ReadInputFiles
         use CheckForEmptySource
         use EntryToFile
         use DetermineTemplates
