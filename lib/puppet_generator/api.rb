@@ -1,7 +1,10 @@
 module PuppetGenerator
   class Api
 
-    def generate_package_definition(task)
+    def generate_package_definition(options)
+
+      task = Task.new(options, :package)
+
       stack = Middleware::Builder.new do
         use HandleErrors
         use ReadInputPackages
@@ -14,7 +17,10 @@ module PuppetGenerator
       stack.call(task)
     end
 
-    def generate_file_definition(task)
+    def generate_file_definition(options)
+
+      task = Task.new(options, :file)
+
       stack = Middleware::Builder.new do
         use HandleErrors
         use ReadInputFiles

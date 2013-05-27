@@ -14,10 +14,24 @@ module PuppetGenerator
 
     attr_reader :meta, :body
 
-    def initialize
+    def initialize(options={},type=nil)
       @type = :none
       @meta = {}
       @body = {}
+
+      @meta[:source]      = options[:source] 
+      @meta[:destination] = options[:destination]
+      @meta[:module]      = options[:module]
+      @meta[:class]       = options[:class]
+
+      case type.to_sym
+      when :package
+        @type = :package
+      when :file
+        @type = :file
+      else
+        raise Exceptions::InternalError
+      end
     end
 
     define_type :file

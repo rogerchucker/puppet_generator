@@ -12,32 +12,14 @@ class Default < Thor
 
   desc 'package', 'generate package definitions'
   def package
-    task = PuppetGenerator::Task.new
-    task.meta[:source] = options[:source] 
-    task.meta[:destination] = options[:destination]
-    task.meta[:module] = options[:module]
-    task.meta[:class] = options[:class]
-
-    task.is_package_task
-
-    api = PuppetGenerator::Api.new  
-    api.generate_package_definition(task)
+    PuppetGenerator::Api.new.generate_package_definition(options)
   end
 
   #method_option :input_format , type: :string, default: 'plain', desc: 'format of the input data'
   desc 'file', 'generate file definitions'
   def file
-    task = PuppetGenerator::Task.new
-    task.meta[:source] = options[:source] 
-    task.meta[:destination] = options[:destination]
-    task.meta[:module] = options[:module]
-    task.meta[:class] = options[:class]
     #task.meta[:input_format] = options[:input_format]
-
-    task.is_file_task
-
-    api = PuppetGenerator::Api.new  
-    api.generate_file_definition(task)
+    PuppetGenerator::Api.new.generate_file_definition(options)
   end
 end
 
