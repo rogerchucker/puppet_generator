@@ -2,8 +2,8 @@ module PuppetGenerator
   class PuppetUser
     attr_reader :name, :module_name, :class_name
 
-    def initialize(name, module_name, class_name)
-      @name = name.strip
+    def initialize(entry, module_name, class_name)
+      @name = entry.name
       @module_name = module_name
       @class_name = class_name
 
