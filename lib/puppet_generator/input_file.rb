@@ -1,11 +1,9 @@
 module PuppetGenerator
   class InputFile
-    def initialize(filename, generator)
-      @entries = File.open(filename).readlines
-    end
+    attr_reader :entries
 
-    def entries
-      @entries.collect { |e| generator.new( e.chomp.strip ) }
+    def initialize(filename, generator)
+      @entries = File.open(filename).readlines.collect { |e| generator.new( e.chomp.strip ) }
     end
 
   end

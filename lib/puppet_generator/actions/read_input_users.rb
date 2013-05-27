@@ -1,5 +1,5 @@
 module PuppetGenerator
-  class ReadInputPackages
+  class ReadInputUsers
 
     include ReadInputHelper
 

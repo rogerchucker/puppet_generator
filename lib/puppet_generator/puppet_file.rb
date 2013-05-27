@@ -9,6 +9,7 @@ module PuppetGenerator
 
       @owner = entry.owner if entry.respond_to? :owner
       @mode = entry.mode if entry.respond_to? :mode
+
       if entry.respond_to? :type
         @type = entry.type 
       else
