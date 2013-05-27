@@ -5,6 +5,7 @@ module PuppetGenerator
       stack = Middleware::Builder.new do
         use HandleErrors
         use ReadInput
+        use CheckForEmptySource
         use EntryToPackage
         use DetermineTemplates
         use CreateOutput
@@ -17,6 +18,7 @@ module PuppetGenerator
       stack = Middleware::Builder.new do
         use HandleErrors
         use ReadInput
+        use CheckForEmptySource
         use EntryToFile
         use DetermineTemplates
         use CreateOutput

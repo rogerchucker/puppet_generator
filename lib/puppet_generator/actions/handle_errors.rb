@@ -13,9 +13,11 @@ module PuppetGenerator
       begin
         @app.call(task)
       rescue PuppetGenerator::Exceptions::InvalidSource
-        error 1, "You entered an invalid source: it's not a directory or a file or you tell me to use a file/directory which does not exist."
+        error 1, "You entered an invalid source: it's not a directory or a file or you tell me to use a file/directory which does not exist or is empty."
       rescue PuppetGenerator::Exceptions::InvalidOutputChannel
         error 2, "You entered an invalid output channel: file or directory can be used."
+      rescue PuppetGenerator::Exceptions::EmptySource
+        error 3, "Sorry, but I can't fullfill your request. The source you tell me to use does not contain any entries. Giving up."
       end
     end
 

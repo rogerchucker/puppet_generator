@@ -12,5 +12,8 @@ module PuppetGenerator
     #raised if something goes wrong internally
     #should never happend
     class InternalError < Exception; end
+    
+    #raised if source is empty
+    class EmptySource < Exception; end
   end
 end
