@@ -10,7 +10,7 @@ Feature: Generate file definitions
     asdf
     """
     When I successfully run `ppgen file`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
       file {'asdf':
@@ -29,7 +29,7 @@ Feature: Generate file definitions
     When I run `ppgen file --source stdin` interactively
     And I type "asdf"
     And I close the stdin stream
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
       file {'asdf':
@@ -46,7 +46,7 @@ Feature: Generate file definitions
     test123
     """
     When I successfully run `ppgen file`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
       file {'asdf':
@@ -55,7 +55,7 @@ Feature: Generate file definitions
     }
 
     """
-    And the file "out/test123.pp" should contain:
+    And the file "out.d/test123.pp" should contain:
     """
     class mymodule::test123 {
       file {'test123':
@@ -71,7 +71,7 @@ Feature: Generate file definitions
     asdf
     """
     When I successfully run `ppgen file --module string1::string2`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class string1::string2::asdf {
       file {'asdf':
@@ -159,7 +159,7 @@ Feature: Generate file definitions
     path/to/file1
     """
     When I successfully run `ppgen file --destination dir:out`
-    Then the file "out/file1.pp" should contain:
+    Then the file "out.d/file1.pp" should contain:
     """
     class mymodule::file1 {
       file {'path/to/file1':

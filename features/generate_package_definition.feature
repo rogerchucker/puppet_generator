@@ -10,7 +10,7 @@ Feature: Generate package definitions
     asdf
     """
     When I successfully run `ppgen package`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
       package {'asdf':
@@ -29,7 +29,7 @@ Feature: Generate package definitions
     When I run `ppgen package --source stdin` interactively
     And I type "asdf"
     And I close the stdin stream
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
       package {'asdf':
@@ -46,7 +46,7 @@ Feature: Generate package definitions
     test123
     """
     When I successfully run `ppgen package`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
       package {'asdf':
@@ -55,7 +55,7 @@ Feature: Generate package definitions
     }
 
     """
-    And the file "out/test123.pp" should contain:
+    And the file "out.d/test123.pp" should contain:
     """
     class mymodule::test123 {
       package {'test123':
@@ -71,7 +71,7 @@ Feature: Generate package definitions
     asdf
     """
     When I successfully run `ppgen package --module string1::string2`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class string1::string2::asdf {
       package {'asdf':
