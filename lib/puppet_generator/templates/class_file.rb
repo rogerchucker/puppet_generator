@@ -29,7 +29,7 @@ class <%= @files.first.module_name %>::<%= @files.first.class_name %> {
       end
 
       def render
-        [ Definition.new( files.first.class_name, @template.evaluate(packages: files) ) ]
+        [ Definition.new( files.first.class_name, @template.evaluate(files: files) ) ]
       end
 
     end
