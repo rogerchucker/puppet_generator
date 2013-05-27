@@ -15,7 +15,6 @@ module PuppetGenerator
         raise PuppetGenerator::Exceptions::InvalidSource
       end
 
-
       @app.call(task)
     end
 
