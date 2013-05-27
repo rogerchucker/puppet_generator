@@ -5,12 +5,12 @@ require 'thor'
 require 'pry'
 
 class Default < Thor
+  class_option :source , type: :string, default: 'input.txt', desc: 'enter the source which should be used to generate the puppet output' 
+  class_option :destination , type: :string, default: 'dir:out', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"'
+  class_option :module , type: :string, default: 'mymodule', desc: 'the module prefix in puppet class name'
+  class_option :class , type: :string, default: 'myclass', desc: 'the class suffix in puppet class name'
 
   desc 'package', 'generate package definitions'
-  method_option :source , type: :string, default: 'input.txt'
-  method_option :destination , type: :string, default: 'dir:out'
-  method_option :module , type: :string, default: 'mymodule'
-  method_option :class , type: :string, default: 'myclass'
   def package
     task = PuppetGenerator::Task.new
     task.meta[:source] = options[:source] 
