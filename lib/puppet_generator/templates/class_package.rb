@@ -2,11 +2,12 @@ module PuppetGenerator
   module Templates
     class ClassPackage
 
-      attr_reader :packages, :puppet_class
+      attr_reader :packages
 
       def initialize(packages)
         @packages = packages
-        @string = <<-EOF
+        @template = Erubis::Eruby.new(
+        <<-EOF
 class <%= packages.first.module_name %>::<%= packages.first.class_name %> {
 <% packages.each do |p| %>
   package {'<%= p.name %>':
@@ -15,16 +16,11 @@ class <%= packages.first.module_name %>::<%= packages.first.class_name %> {
 <% end %>
 }
         EOF
+        )
       end
 
       def render
-        ERB.new(@string).result(context)
-      end
-
-      private
-
-      def context
-        binding
+        [ Definition.new( packages.first.class_name, @template.evaluate(packages: packages) ) ]
       end
 
     end
