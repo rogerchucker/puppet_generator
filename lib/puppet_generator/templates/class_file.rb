@@ -11,15 +11,15 @@ module PuppetGenerator
 class <%= @files.first.module_name %>::<%= @files.first.class_name %> {
 <% @files.each do |f| %>
   file {'<%= f.path %>':
-    ensure => file,
+    ensure => <%= f.type %>,
     <% if f.source %>
-    source => <%= f.source %>,
+    source => '<%= f.source %>',
     <% end %>
     <% if f.owner %>
-    owner  => <%= f.owner %>,
+    owner  => '<%= f.owner %>',
     <% end %>
     <% if f.mode %>
-    mode   => <%= f.mode %>,
+    mode   => '<%= f.mode %>',
     <% end %>
   }
 <% end %>

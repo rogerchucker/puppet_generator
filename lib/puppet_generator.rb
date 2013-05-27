@@ -18,7 +18,7 @@ require 'puppet_generator/output_stdout'
 
 require 'puppet_generator/puppet_package'
 require 'puppet_generator/puppet_file'
-require 'puppet_generator/fs_file'
+require 'puppet_generator/fs_object'
 require 'puppet_generator/templates/class_package'
 require 'puppet_generator/templates/single_package'
 require 'puppet_generator/templates/class_file'

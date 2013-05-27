@@ -1,20 +1,15 @@
 module PuppetGenerator
   class PuppetFile
-    attr_reader :path, :module_name, :class_name, :owner, :mode, :source
+    attr_reader :path, :module_name, :class_name, :owner, :mode, :source, :type
 
-    def initialize(path, module_name, class_name, opts={})
-      options = {
-        owner: owner, 
-        mode: mode, 
-        source: source, 
-      }.merge opts
-
-      @path = path
+    def initialize(entry, module_name, class_name)
+      @path = entry.to_s
       @module_name = module_name
       @class_name = class_name
-      @owner = options[:owner]
-      @mode = options[:mode]
-      @source = options[:source]
+
+      @owner = entry.owner if entry.respond_to? :owner
+      @mode = entry.mode if entry.respond_to? :mode
+      @type = entry.type if entry.respond_to? :type
     end
 
     def name

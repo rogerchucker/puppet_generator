@@ -1,5 +1,5 @@
 module PuppetGenerator
-  class FsFile
+  class FsObject
     
     attr_reader :path
 

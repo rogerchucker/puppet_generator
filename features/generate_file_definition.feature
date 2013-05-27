@@ -169,19 +169,69 @@ Feature: Generate file definitions
 
     """
 
-  @wip
   Scenario: With file system meta data
     Given a directory named "testdir"
     And an empty file named "testdir/file1"
     And an empty file named "testdir/file2"
     And an empty file named "testdir/file3"
     When I successfully run `ppgen file --source testdir --destination file:out.txt`
-    Then the file "out/file1.pp" should contain:
+    Then the file "out.txt" should contain:
     """
-    class mymodule::file1 {
-      file {'path/to/file1':
-        ensure => file,
-      }
-    }
+    class mymodule::myclass
+    """
+    And the file "out.txt" should contain:
+    """
+      file {'testdir':
+    """
+    And the file "out.txt" should contain:
+    """
+      file {'testdir/file1':
+    """
+    And the file "out.txt" should contain:
+    """
+      file {'testdir/file2':
+    """
+    And the file "out.txt" should contain:
+    """
+      file {'testdir/file3':
+    """
+    And the file "out.txt" should contain:
+    """
+      owner  => 
+    """
+    And the file "out.txt" should contain:
+    """
+      mode   => '100644',
+    """
 
+    @wip
+  Scenario: With file system meta data in separate files
+    Given a directory named "testdir"
+    And an empty file named "testdir/file1"
+    And an empty file named "testdir/file2"
+    And an empty file named "testdir/file3"
+    When I successfully run `ppgen file --source testdir`
+    Then the file "out.d/file1.pp" should contain:
+    """
+      file {'testdir/file1':
+        ensure => file,
+    """
+    Then the file "out.d/testdir.pp" should contain:
+    """
+      file {'testdir':
+        ensure => directory,
+    """
+    Then the file "out.d/file3.pp" should contain:
+    """
+      file {'testdir/file3':
+        ensure => file,
+    """
+    Then the file "out.d/file2.pp" should contain:
+    """
+      file {'testdir/file2':
+        ensure => file,
+    """
+    Then the file "out.d/file2.pp" should contain:
+    """
+      mode   => '100644',
     """

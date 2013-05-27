@@ -10,15 +10,15 @@ module PuppetGenerator
         <<-EOF
 class <%= @file.module_name %>::<%= @file.name %> {
   file {'<%= @file.path %>':
-    ensure => file,
+    ensure => <%= @file.type %>,
     <% if @file.source %>
-    source => <%= @file.source %>,
+    source => '<%= @file.source %>',
     <% end %>
     <% if @file.owner %>
-    owner  => <%= @file.owner %>,
+    owner  => '<%= @file.owner %>',
     <% end %>
     <% if @file.mode %>
-    mode   => <%= @file.mode %>,
+    mode   => '<%= @file.mode %>',
     <% end %>
   }
 }

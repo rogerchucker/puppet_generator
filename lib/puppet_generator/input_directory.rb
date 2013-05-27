@@ -6,7 +6,7 @@ module PuppetGenerator
       @directory = directory
       @entries = []
 
-      Find.find( directory) { |path| entries << FsFile.new( path ) }
+      Find.find( directory) { |path| entries << FsObject.new( path ) }
     end
 
   end
