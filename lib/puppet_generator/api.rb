@@ -33,5 +33,21 @@ module PuppetGenerator
       stack.call(task)
     end
 
+    def generate_user_definition(options)
+
+      task = Task.new(options, :user)
+
+      stack = Middleware::Builder.new do
+        use HandleErrors
+        use ReadInputPackages
+        use CheckForEmptySource
+        use EntryToUser
+        use DetermineTemplates
+        use CreateOutput
+      end
+
+      stack.call(task)
+    end
+
   end
 end

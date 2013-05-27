@@ -8,21 +8,29 @@ require 'ansi'
 require 'etc'
 
 require 'puppet_generator/version'
+require 'puppet_generator/exceptions'
+
 require 'puppet_generator/input_file'
 require 'puppet_generator/input_directory'
 require 'puppet_generator/input_stdin'
-require 'puppet_generator/exceptions'
+
 require 'puppet_generator/output_directory'
 require 'puppet_generator/output_file'
 require 'puppet_generator/output_stdout'
 
 require 'puppet_generator/puppet_package'
 require 'puppet_generator/puppet_file'
-require 'puppet_generator/fs_object'
+require 'puppet_generator/puppet_user'
+
 require 'puppet_generator/templates/class_package'
 require 'puppet_generator/templates/single_package'
 require 'puppet_generator/templates/class_file'
 require 'puppet_generator/templates/single_file'
+
+require 'puppet_generator/creators/user_entry'
+require 'puppet_generator/creators/package_entry'
+require 'puppet_generator/creators/file_entry'
+
 require 'puppet_generator/definition'
 require 'puppet_generator/task'
 require 'puppet_generator/actions/handle_errors'

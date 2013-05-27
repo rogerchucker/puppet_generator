@@ -21,6 +21,11 @@ class Default < Thor
     #task.meta[:input_format] = options[:input_format]
     PuppetGenerator::Api.new.generate_file_definition(options)
   end
+  
+  desc 'user', 'generate user definitions'
+  def user
+    PuppetGenerator::Api.new.generate_user_definition(options)
+  end
 end
 
 Default.start

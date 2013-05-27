@@ -19,16 +19,18 @@ module PuppetGenerator
       @meta = {}
       @body = {}
 
-      @meta[:source]      = options[:source] 
-      @meta[:destination] = options[:destination]
-      @meta[:module]      = options[:module]
-      @meta[:class]       = options[:class]
+      @meta[:source]        = options[:source] 
+      @meta[:destination]   = options[:destination]
+      @meta[:module]        = options[:module]
+      @meta[:class]         = options[:class]
 
       case type.to_sym
       when :package
         @type = :package
       when :file
         @type = :file
+      when :user
+        @type = :user
       else
         raise Exceptions::InternalError
       end
@@ -36,6 +38,7 @@ module PuppetGenerator
 
     define_type :file
     define_type :package
+    define_type :user
 
   end
 end
