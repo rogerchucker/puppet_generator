@@ -10,7 +10,7 @@ module PuppetGenerator
         <<-EOF
 class <%= @files.first.module_name %>::<%= @files.first.class_name %> {
 <% @files.each do |f| %>
-  file {'<%= f.name %>':
+  file {'<%= f.path %>':
     ensure => file,
     <% if f.source %>
     source => <%= f.source %>,

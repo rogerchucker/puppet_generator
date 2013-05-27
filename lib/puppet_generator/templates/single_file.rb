@@ -9,7 +9,7 @@ module PuppetGenerator
         @template = Erubis::Eruby.new( 
         <<-EOF
 class <%= @file.module_name %>::<%= @file.name %> {
-  file {'<%= @file.name %>':
+  file {'<%= @file.path %>':
     ensure => file,
     <% if @file.source %>
     source => <%= @file.source %>,

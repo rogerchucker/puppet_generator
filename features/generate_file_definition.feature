@@ -4,7 +4,6 @@ Feature: Generate file definitions
   I need to write file definitions for puppet
   In order to get those things up and running via puppet
 
-  @wip
   Scenario: Plain Input File
     Given a file named "input.txt" with:
     """
@@ -132,6 +131,39 @@ Feature: Generate file definitions
         ensure => file,
       }
       file {'test123':
+        ensure => file,
+      }
+    }
+
+    """
+
+  Scenario: Real path with output to single file
+    Given a file named "input.txt" with:
+    """
+    path/to/file
+    """
+    When I successfully run `ppgen file --destination file:out.txt`
+    Then the file "out.txt" should contain:
+    """
+    class mymodule::myclass {
+      file {'path/to/file':
+        ensure => file,
+      }
+    }
+
+    """
+
+  @wip
+  Scenario: Real path with output to multiple files
+    Given a file named "input.txt" with:
+    """
+    path/to/file1
+    """
+    When I successfully run `ppgen file --destination dir:out`
+    Then the file "out/file1.pp" should contain:
+    """
+    class mymodule::file1 {
+      file {'path/to/file1':
         ensure => file,
       }
     }

@@ -24,6 +24,7 @@ class Default < Thor
     api.generate_package_definition(task)
   end
 
+  #method_option :input_format , type: :string, default: 'plain', desc: 'format of the input data'
   desc 'file', 'generate file definitions'
   def file
     task = PuppetGenerator::Task.new
@@ -31,6 +32,7 @@ class Default < Thor
     task.meta[:destination] = options[:destination]
     task.meta[:module] = options[:module]
     task.meta[:class] = options[:class]
+    #task.meta[:input_format] = options[:input_format]
 
     task.is_file_task
 
