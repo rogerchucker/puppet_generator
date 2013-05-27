@@ -13,7 +13,6 @@ module PuppetGenerator
         definitions = Templates::SinglePackage.new( task.body[:packages] ).render
         PuppetGenerator::OutputDirectory.new( task.meta[:destination], definitions )
       when 'stdout'
-        #PuppetGenerator::OutputStdOut.new( task.body[:packages], @template_class, @template_package )
         PuppetGenerator::OutputStdOut.new( task.body[:packages] )
       else
         raise PuppetGenerator::Exceptions::InvalidOutputChannel
