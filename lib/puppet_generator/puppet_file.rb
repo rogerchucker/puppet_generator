@@ -9,7 +9,11 @@ module PuppetGenerator
 
       @owner = entry.owner if entry.respond_to? :owner
       @mode = entry.mode if entry.respond_to? :mode
-      @type = entry.type if entry.respond_to? :type
+      if entry.respond_to? :type
+        @type = entry.type 
+      else
+        @type = 'file'
+      end
     end
 
     def name
