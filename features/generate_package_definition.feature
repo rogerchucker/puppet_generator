@@ -87,8 +87,8 @@ Feature: Generate package definitions
     asdf
     test123
     """
-    When I successfully run `ppgen package --output_channel file`
-    Then the file "out" should contain:
+    When I successfully run `ppgen package --destination file:out.txt`
+    Then the file "out.txt" should contain:
     """
     class mymodule::myclass {
       package {'asdf':
@@ -106,7 +106,7 @@ Feature: Generate package definitions
     """
     asdf
     """
-    When I successfully run `ppgen package --output_channel stdout`
+    When I successfully run `ppgen package --destination stdout`
     Then the output should contain:
     """
     class mymodule::asdf {
@@ -123,8 +123,8 @@ Feature: Generate package definitions
     asdf
     test123
     """
-    When I successfully run `ppgen package --output_channel file --template_class single --template_package plain --class test`
-    Then the file "out" should contain:
+    When I successfully run `ppgen package --destination file:out.txt --class test`
+    Then the file "out.txt" should contain:
     """
     class mymodule::test {
       package {'asdf':
