@@ -197,7 +197,7 @@ Feature: Generate file definitions
     """
     And the file "out.txt" should contain:
     """
-      wner  = 
+      owner  =>
     """
     And the file "out.txt" should contain:
     """
