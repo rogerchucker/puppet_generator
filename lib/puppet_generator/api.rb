@@ -6,6 +6,7 @@ module PuppetGenerator
         use HandleErrors
         use ReadInput
         use EntryToPackage
+        use DetermineTemplates
         use CreateOutput
       end
 
@@ -17,6 +18,7 @@ module PuppetGenerator
         use HandleErrors
         use ReadInput
         use EntryToFile
+        use DetermineTemplates
         use CreateOutput
       end
 
