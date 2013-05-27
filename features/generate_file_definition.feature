@@ -153,13 +153,29 @@ Feature: Generate file definitions
 
     """
 
-  @wip
   Scenario: Real path with output to multiple files
     Given a file named "input.txt" with:
     """
     path/to/file1
     """
     When I successfully run `ppgen file --destination dir:out`
+    Then the file "out/file1.pp" should contain:
+    """
+    class mymodule::file1 {
+      file {'path/to/file1':
+        ensure => file,
+      }
+    }
+
+    """
+
+  @wip
+  Scenario: With file system meta data
+    Given a directory named "testdir"
+    And an empty file named "testdir/file1"
+    And an empty file named "testdir/file2"
+    And an empty file named "testdir/file3"
+    When I successfully run `ppgen file --source testdir --destination file:out.txt`
     Then the file "out/file1.pp" should contain:
     """
     class mymodule::file1 {

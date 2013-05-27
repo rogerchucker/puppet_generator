@@ -5,7 +5,7 @@ module PuppetGenerator
     end
 
     def entries
-      @entries.collect { |e| e.chomp }
+      @entries.collect { |e| e.chomp.strip }
     end
 
   end

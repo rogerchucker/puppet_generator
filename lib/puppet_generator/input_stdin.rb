@@ -3,7 +3,7 @@ module PuppetGenerator
     attr_reader :entries
 
     def initialize
-      @entries = $stdin.readlines
+      @entries = $stdin.readlines.collect { |e| e.strip }
     end
 
   end

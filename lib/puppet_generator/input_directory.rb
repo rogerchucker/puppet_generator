@@ -2,9 +2,11 @@ module PuppetGenerator
   class InputDirectory
     attr_reader :entries
 
-    def initialize(directory)
+    def initialize( directory )
+      @directory = directory
       @entries = []
-      Find.find(directory) { |path| @entries << Pathname.new( path ) }
+
+      Find.find( directory) { |path| entries << FsFile.new( path ) }
     end
 
   end

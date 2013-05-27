@@ -9,7 +9,7 @@ module PuppetGenerator
         source: source, 
       }.merge opts
 
-      @path = path.strip
+      @path = path
       @module_name = module_name
       @class_name = class_name
       @owner = options[:owner]
