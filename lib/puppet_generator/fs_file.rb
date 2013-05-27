@@ -19,6 +19,26 @@ module PuppetGenerator
     def to_s
       @path
     end
+
+    def type
+      if file?
+        return 'file'
+      elsif directory?
+        return 'directory'
+      else
+        return 'file'
+      end
+    end
+
+    private
+
+    def file?
+      FileTest.file? @path
+    end
+
+    def directory?
+      FileTest.directory? @path
+    end
     
   end
 end
