@@ -13,11 +13,9 @@ Feature: Generate package definitions
     Then the file "out/asdf.pp" should contain:
     """
     class mymodule::asdf {
-
       package {'asdf':
         ensure => latest,
       }
-
     }
 
     """
@@ -34,11 +32,9 @@ Feature: Generate package definitions
     Then the file "out/asdf.pp" should contain:
     """
     class mymodule::asdf {
-
       package {'asdf':
         ensure => latest,
       }
-
     }
 
     """
@@ -53,22 +49,18 @@ Feature: Generate package definitions
     Then the file "out/asdf.pp" should contain:
     """
     class mymodule::asdf {
-
       package {'asdf':
         ensure => latest,
       }
-
     }
 
     """
     And the file "out/test123.pp" should contain:
     """
     class mymodule::test123 {
-
       package {'test123':
         ensure => latest,
       }
-
     }
 
     """
@@ -82,11 +74,9 @@ Feature: Generate package definitions
     Then the file "out/asdf.pp" should contain:
     """
     class string1::string2::asdf {
-
       package {'asdf':
         ensure => latest,
       }
-
     }
 
     """
@@ -100,20 +90,13 @@ Feature: Generate package definitions
     When I successfully run `ppgen package --output_channel file`
     Then the file "out" should contain:
     """
-    class mymodule::asdf {
-
+    class mymodule::myclass {
       package {'asdf':
         ensure => latest,
       }
-
-    }
-
-    class mymodule::test123 {
-
       package {'test123':
         ensure => latest,
       }
-
     }
 
     """
@@ -127,11 +110,9 @@ Feature: Generate package definitions
     Then the output should contain:
     """
     class mymodule::asdf {
-
       package {'asdf':
         ensure => latest,
       }
-
     }
 
     """
@@ -146,17 +127,12 @@ Feature: Generate package definitions
     Then the file "out" should contain:
     """
     class mymodule::test {
-
       package {'asdf':
         ensure => latest,
       }
-
-    }
-
       package {'test123':
         ensure => latest,
       }
-
     }
 
     """
