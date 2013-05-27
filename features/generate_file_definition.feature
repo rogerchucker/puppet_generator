@@ -14,14 +14,9 @@ Feature: Generate file definitions
     Then the file "out/asdf.pp" should contain:
     """
     class mymodule::asdf {
-
       file {'asdf':
         ensure => file,
-        source => 'puppet:///mymodule/asdf',
-        owner  => 'root',
-        mode   => '0644',
       }
-
     }
 
     """
