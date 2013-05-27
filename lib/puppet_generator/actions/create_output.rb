@@ -11,13 +11,13 @@ module PuppetGenerator
 
       output = case channel
                when 'file'
-                 definitions = Templates::ClassPackage.new( task.body[:packages] ).render
+                 definitions = task.body[:templates][:class].new( task.body[:packages] ).render
                  PuppetGenerator::OutputFile.new( sink , definitions )
                when /directory|dir/
-                 definitions = Templates::SinglePackage.new( task.body[:packages] ).render
+                 definitions = task.body[:templates][:single].new( task.body[:packages] ).render
                  PuppetGenerator::OutputDirectory.new( sink , definitions )
                when 'stdout'
-                 definitions = Templates::SinglePackage.new( task.body[:packages] ).render
+                 definitions = task.body[:templates][:single].new( task.body[:packages] ).render
                  PuppetGenerator::OutputStdOut.new( definitions )
                else
                  raise PuppetGenerator::Exceptions::InvalidOutputChannel
