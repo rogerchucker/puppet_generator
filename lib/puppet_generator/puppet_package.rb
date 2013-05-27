@@ -3,7 +3,7 @@ module PuppetGenerator
     attr_reader :name, :module_name, :class_name
 
     def initialize(name, module_name, class_name)
-      @name = name.strip
+      @name = name
       @module_name = module_name
       @class_name = class_name
     end
