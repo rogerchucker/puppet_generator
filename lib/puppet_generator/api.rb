@@ -11,7 +11,7 @@ module PuppetGenerator
         use DetermineTemplates
         use ReadInputPackages
         use CheckForEmptySource
-        use InputFilter
+        use FilterImportedData
         use EntryToPackage
         use CreateOutput
       end
@@ -29,7 +29,7 @@ module PuppetGenerator
         use DetermineTemplates
         use ReadInputFiles
         use CheckForEmptySource
-        use InputFilter
+        use FilterImportedData
         use EntryToFile
         use CreateOutput
       end
@@ -47,7 +47,7 @@ module PuppetGenerator
         use DetermineTemplates
         use ReadInputPackages
         use CheckForEmptySource
-        use InputFilter
+        use FilterImportedData
         use EntryToUser
         use CreateOutput
       end
