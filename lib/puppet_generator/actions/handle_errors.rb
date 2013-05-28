@@ -10,6 +10,7 @@ module PuppetGenerator
     end
 
     def call(task)
+      task.logger.debug("waiting for errors")
       begin
         @app.call(task)
       rescue PuppetGenerator::Exceptions::InvalidSource

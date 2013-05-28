@@ -5,6 +5,7 @@ module PuppetGenerator
     end
 
     def call(task)
+      task.logger.debug("checking for empty sources")
       raise PuppetGenerator::Exceptions::EmptySource if task.body[:input].entries.empty?
 
       @app.call(task)

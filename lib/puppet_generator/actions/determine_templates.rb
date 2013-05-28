@@ -6,6 +6,7 @@ module PuppetGenerator
 
     def call(task)
       task.body[:templates] = {}
+      task.logger.debug("Now I'm going to determine the templates")
 
       if task.is_file_task?
         task.body[:entry_creator] = Creators::FileEntry

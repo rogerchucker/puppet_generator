@@ -5,6 +5,7 @@ module PuppetGenerator
     end
 
     def call(task)
+      task.logger.debug("convert entries to puppet user objects")
       task.body[:output] = task.body[:input].entries.collect { |e| PuppetUser.new( e, task.meta[:module] , task.meta[:class] ) }
 
       @app.call(task)

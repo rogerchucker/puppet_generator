@@ -8,6 +8,7 @@ module PuppetGenerator
     end
 
     def call(task)
+      task.logger.debug("read input from files / directories")
       if is_directory? task.meta[:source]
         task.body[:input] = PuppetGenerator::InputDirectory.new( task.meta[:source], task.body[:entry_creator] )
       elsif is_stdin? task.meta[:source]
