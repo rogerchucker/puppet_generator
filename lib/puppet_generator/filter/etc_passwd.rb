@@ -6,7 +6,7 @@ module PuppetGenerator
           (username,_,uid,gid,_,homedir,shell) = line.split(/:/)
 
           { 
-            username: username,
+            name: username,
             userid: uid,
             groupid: gid,
             homedir: homedir,

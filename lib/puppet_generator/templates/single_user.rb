@@ -10,7 +10,19 @@ module PuppetGenerator
         <<-EOF
 class <%= @user.module_name %>::<%= @user.name %> {
   user {'<%= @user.name %>':
-    ensure => present,
+    ensure     => present,
+    <% if @user.userid %>
+    uid        => <%= @user.userid %>,
+    <% end %>
+    <% if @user.groupid %>
+    gid        => <%= @user.groupid %>,
+    <% end %>
+    <% if @user.homedir %>
+    homedir    => <%= @user.homedir %>,
+    <% end %>
+    <% if @user.shell %>
+    shell      => <%= @user.shell %>,
+    <% end %>
   }
 }
         EOF

@@ -3,18 +3,13 @@ module PuppetGenerator
     attr_reader :path, :module_name, :class_name, :owner, :mode, :source, :type
 
     def initialize(entry, module_name, class_name)
-      @path = entry.to_s
+      @path = entry[:name]
       @module_name = module_name
       @class_name = class_name
 
-      @owner = entry.owner if entry.respond_to? :owner
-      @mode = entry.mode if entry.respond_to? :mode
-
-      if entry.respond_to? :type
-        @type = entry.type 
-      else
-        @type = 'file'
-      end
+      @owner = entry[:owner]
+      @mode = entry[:mode]
+      @type = entry.fetch( :type, 'file' )
     end
 
     def name
