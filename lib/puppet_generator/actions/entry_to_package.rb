@@ -5,7 +5,8 @@ module PuppetGenerator
     end
 
     def call(task)
-      task.body[:packages] = task.body[:input].entries.collect { |e| Package.new( e, task.meta[:module] )}
+      task.logger.debug(self.class.name){ "convert entries to puppet package objects" }
+      task.body = task.body.collect { |e| PuppetPackage.new( e, task.meta[:module] , task.meta[:class] ) }
 
       @app.call(task)
     end
