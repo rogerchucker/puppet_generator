@@ -2,7 +2,7 @@ module PuppetGenerator
   module Filter
     class EtcPasswd
       def convert(line)
-        (username,-,uid,gid,-,homedir,shell) = line.split(/:/)
+        (username,_,uid,gid,_,homedir,shell) = line.split(/:/)
 
         { 
           username: username,

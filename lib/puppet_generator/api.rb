@@ -9,6 +9,7 @@ module PuppetGenerator
         use HandleErrors
         use DetermineTemplates
         use ReadInputPackages
+        use InputFilter
         use CheckForEmptySource
         use EntryToPackage
         use CreateOutput
@@ -25,6 +26,7 @@ module PuppetGenerator
         use HandleErrors
         use DetermineTemplates
         use ReadInputFiles
+        use InputFilter
         use CheckForEmptySource
         use EntryToFile
         use CreateOutput
@@ -41,6 +43,7 @@ module PuppetGenerator
         use HandleErrors
         use DetermineTemplates
         use ReadInputPackages
+        use InputFilter
         use CheckForEmptySource
         use EntryToUser
         use CreateOutput

@@ -48,6 +48,7 @@ require 'puppet_generator/actions/entry_to_user'
 require 'puppet_generator/actions/entry_to_file'
 require 'puppet_generator/actions/determine_templates'
 require 'puppet_generator/actions/create_output'
+require 'puppet_generator/actions/input_filter'
 require 'puppet_generator/api'
 
 
