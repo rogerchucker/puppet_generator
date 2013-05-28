@@ -11,6 +11,7 @@ module PuppetGenerator
       @groupid = entry[:groupid]
       @shell = entry[:shell]
       @homedir = entry[:homedir]
+      @provider = entry[:provider]
     end
 
   end

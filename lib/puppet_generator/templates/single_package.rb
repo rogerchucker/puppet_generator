@@ -10,7 +10,10 @@ module PuppetGenerator
         <<-EOF
 class <%= @package.module_name %>::<%= @package.name %> {
   package {'<%= @package.name %>':
-    ensure => latest,
+    ensure   => <%= @package.version %>,
+    <% if @package.provider %>
+    provider => <%= @package.provider %>,
+    <% end %>
   }
 }
         EOF
