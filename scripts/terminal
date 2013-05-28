@@ -6,10 +6,10 @@ tmux = TmRb::Multiplexer.new
 #creates an empty window
 tmux.new_session(:session_name => "puppet_generator")
 
-tmux.new_window(:name => 'lib', :command => 'vim -c "NERDTree lib/*.rb"')
-tmux.new_window(:name => 'actions', :command => 'vim -c  "NERDTree lib/actions/*.rb"')
-tmux.new_window(:name => 'templates', :command => 'vim -c  "NERDTree lib/templates/*.rb"')
-tmux.new_window(:name => 'filter', :command => 'vim -c  "NERDTree lib/filter/*.rb"')
-tmux.new_window(:name => 'spec', :command => 'vim -c "NERDTree spec/**/*.rb"')
-tmux.new_window(:name => 'features', :command => 'vim -p features/**/*.{rb,feature}')
+tmux.new_window(:name => 'lib', :command => 'vim -c \"NERDTree lib/puppet_generator/\"')
+tmux.new_window(:name => 'actions', :command => 'vim -c  \"NERDTree lib/puppet_generator/actions/\"')
+tmux.new_window(:name => 'templates', :command => 'vim -c  \"NERDTree lib/puppet_generator/templates/\"')
+tmux.new_window(:name => 'filter', :command => 'vim -c  \"NERDTree lib/puppet_generator/filter\"')
+tmux.new_window(:name => 'spec', :command => 'vim -c \"NERDTree spec\"')
+tmux.new_window(:name => 'features', :command => 'vim -c \"NERDTree features\"')
 tmux.start
