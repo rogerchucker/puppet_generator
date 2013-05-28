@@ -14,7 +14,7 @@ Feature: Generate package definitions
     """
     class mymodule::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -33,7 +33,7 @@ Feature: Generate package definitions
     """
     class mymodule::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -50,7 +50,7 @@ Feature: Generate package definitions
     """
     class mymodule::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -59,7 +59,7 @@ Feature: Generate package definitions
     """
     class mymodule::test123 {
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -75,7 +75,7 @@ Feature: Generate package definitions
     """
     class string1::string2::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -92,10 +92,10 @@ Feature: Generate package definitions
     """
     class mymodule::myclass {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -111,7 +111,7 @@ Feature: Generate package definitions
     """
     class mymodule::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -128,10 +128,10 @@ Feature: Generate package definitions
     """
     class mymodule::test {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 

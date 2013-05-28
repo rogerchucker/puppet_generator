@@ -16,7 +16,6 @@ class <%= @packages.first.module_name %>::<%= @packages.first.class_name %> {
     provider => <%= p.provider %>,
     <% end %>
   }
-  }
 <% end %>
 }
         EOF
