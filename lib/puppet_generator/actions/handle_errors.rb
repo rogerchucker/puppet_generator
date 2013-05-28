@@ -33,7 +33,7 @@ module PuppetGenerator
     end
 
     def postscript
-      "\n\n=================\nPlease read the manual on 'http://github.com/maxmeyer/puppet_generator' for more information on how to use the script."
+      "\n\n=================\nPlease read the manual on \"http://github.com/maxmeyer/puppet_generator\" for more information on how to use the script."
     end
 
     def error(exitcode, message)
