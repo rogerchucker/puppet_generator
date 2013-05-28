@@ -15,5 +15,9 @@ module PuppetGenerator
     
     #raised if source is empty
     class EmptySource < Exception; end
+    
+    #raised if an unknown input filter was
+    #requested by the user
+    class UnknownInputFilter < Exception; end
   end
 end

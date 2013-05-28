@@ -7,7 +7,16 @@ module PuppetGenerator
     def call(task)
       task.logger.debug("filter input")
 
+      begin
+        active_filter = task.meta[:import_filter].fetch( task.meta[:requested_import_filter].to_sym )
+      rescue
+        raise Exceptions::UnknownInputFilter unless active_filter
+      end
+
+      task.body = task.body.entries.collect { |line| active_filter.convert(line) }
+
       @app.call(task)
     end
+
   end
 end
