@@ -22,7 +22,7 @@ module PuppetGenerator
         task.meta[:entry_creator] = Creators::UserEntry
         task.meta[:templates][:class] = Templates::ClassUser
         task.meta[:templates][:single] = Templates::SingleUser
-        task.meta[:import_filter][:passwd] = Filter::EtcPasswd.new
+        task.meta[:import_filter][:passwd] = Filter::Passwd.new
         task.meta[:import_filter][:plain] = Filter::Plain.new
       else
         raise PuppetGenerator::Exceptions::InternalError
