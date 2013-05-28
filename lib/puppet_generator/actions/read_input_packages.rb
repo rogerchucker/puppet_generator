@@ -18,7 +18,7 @@ module PuppetGenerator
         raise PuppetGenerator::Exceptions::InvalidSource
       end
 
-      task.logger.debug("#{self.class.name}: count input lines: #{task.body.size}")
+      task.logger.debug(self.class.name) { "count input lines: #{task.body.size}" }
 
       @app.call(task)
     end
