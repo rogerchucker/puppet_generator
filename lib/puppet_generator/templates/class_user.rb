@@ -12,6 +12,7 @@ class <%= @users.first.module_name %>::<%= @users.first.class_name %> {
 <% @users.each do |u| %>
   user {'<%= u.name %>':
     ensure     => present,
+    managehome => true,
     <% if u.provider %>
     provider   => '<%= u.provider %>',
     <% end %>
@@ -22,7 +23,7 @@ class <%= @users.first.module_name %>::<%= @users.first.class_name %> {
     gid        => '<%= u.groupid %>',
     <% end %>
     <% if u.homedir %>
-    homedir    => '<%= u.homedir %>',
+    home       => '<%= u.homedir %>',
     <% end %>
     <% if u.shell %>
     shell      => '<%= u.shell %>',
