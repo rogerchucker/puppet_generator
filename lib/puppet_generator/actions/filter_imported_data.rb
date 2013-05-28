@@ -1,5 +1,6 @@
 module PuppetGenerator
-  class InputFilter
+  class FilterImportedData
+
     def initialize(app)
       @app = app
     end
