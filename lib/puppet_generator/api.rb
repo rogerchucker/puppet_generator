@@ -55,5 +55,18 @@ module PuppetGenerator
       stack.call(task)
     end
 
+    def generate_module(options)
+
+      task = Task.new(options, :module)
+
+      stack = Middleware::Builder.new do
+        use ConfigureLogging
+        use HandleErrors
+        use CreateModuleDirectories
+      end
+
+      stack.call(task)
+    end
+
   end
 end
