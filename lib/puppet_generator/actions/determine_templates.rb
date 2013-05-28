@@ -13,16 +13,13 @@ module PuppetGenerator
       task.meta[:import_filter][:yaml] = Filter::Yaml.new
 
       if task.is_file_task?
-        task.meta[:entry_creator] = Creators::FileEntry
         task.meta[:templates][:class] = Templates::ClassFile
         task.meta[:templates][:single] = Templates::SingleFile
         task.meta[:import_filter][:filesystem_attributes] = Filter::FilesystemAttributes.new
       elsif task.is_package_task?
-        task.meta[:entry_creator] = Creators::PackageEntry
         task.meta[:templates][:class] = Templates::ClassPackage
         task.meta[:templates][:single] = Templates::SinglePackage
       elsif task.is_user_task?
-        task.meta[:entry_creator] = Creators::UserEntry
         task.meta[:templates][:class] = Templates::ClassUser
         task.meta[:templates][:single] = Templates::SingleUser
         task.meta[:import_filter][:passwd] = Filter::Passwd.new

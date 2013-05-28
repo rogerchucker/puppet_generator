@@ -7,6 +7,7 @@ require 'pathname'
 require 'ansi'
 require 'etc'
 require 'psych'
+require 'fileutils'
 
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'
@@ -53,6 +54,7 @@ require 'puppet_generator/actions/determine_templates'
 require 'puppet_generator/actions/create_output'
 require 'puppet_generator/actions/configure_logging'
 require 'puppet_generator/actions/filter_imported_data'
+require 'puppet_generator/actions/create_module_directories'
 require 'puppet_generator/api'
 
 

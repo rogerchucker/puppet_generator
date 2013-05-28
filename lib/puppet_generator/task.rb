@@ -35,6 +35,8 @@ module PuppetGenerator
         @type = :file
       when :user
         @type = :user
+      when :module
+        @type = :module
       else
         raise Exceptions::InternalError
       end
@@ -43,6 +45,7 @@ module PuppetGenerator
     define_type :file
     define_type :package
     define_type :user
+    define_type :module
 
   end
 end
