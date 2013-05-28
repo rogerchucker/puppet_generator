@@ -21,6 +21,12 @@ module PuppetGenerator
       @body = nil
       @logger = Logger.new($stderr)
 
+      if options[:debug]
+        @logger.level = Logger::DEBUG
+      else
+        @logger.level = Logger::WARN
+      end
+
       @meta[:source]        = options[:source] 
       @meta[:destination]   = options[:destination]
       @meta[:module]        = options[:module]
