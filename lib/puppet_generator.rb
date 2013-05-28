@@ -36,10 +36,6 @@ require 'puppet_generator/filter/passwd'
 require 'puppet_generator/filter/filesystem_attributes'
 require 'puppet_generator/filter/yaml'
 
-require 'puppet_generator/creators/user_entry'
-require 'puppet_generator/creators/package_entry'
-require 'puppet_generator/creators/file_entry'
-
 require 'puppet_generator/definition'
 require 'puppet_generator/task'
 require 'puppet_generator/actions/handle_errors'
