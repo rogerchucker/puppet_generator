@@ -11,7 +11,7 @@ module PuppetGenerator
       begin
         active_filter = task.meta[:import_filter].fetch( task.meta[:requested_import_filter].to_sym )
       rescue
-        raise Exceptions::UnknownInputFilter unless active_filter
+        raise Exceptions::UnknownImportFilter unless active_filter
       end
 
       task.body = active_filter.convert(task.body)

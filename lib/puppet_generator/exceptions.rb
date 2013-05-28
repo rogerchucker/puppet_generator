@@ -18,6 +18,6 @@ module PuppetGenerator
     
     #raised if an unknown input filter was
     #requested by the user
-    class UnknownInputFilter < Exception; end
+    class UnknownImportFilter < Exception; end
   end
 end

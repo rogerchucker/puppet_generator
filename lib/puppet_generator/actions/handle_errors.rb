@@ -12,13 +12,13 @@ module PuppetGenerator
       begin
         @app.call(task)
       rescue PuppetGenerator::Exceptions::InvalidSource
-        error 1, "#{preamble}You entered an invalid source '#{task.meta[:source]}': it's not a directory or a file or you tell me to use a file/directory which does not exist or is empty. #{postscript}"
+        error 1, "#{preamble}You entered an invalid source \"#{task.meta[:source]}\": it's not a directory or a file or you tell me to use a file/directory which does not exist or is empty. #{postscript}"
       rescue PuppetGenerator::Exceptions::InvalidOutputChannel
         error 2, "#{preamble}You entered an invalid output channel: file or directory can be used.#{postscript}"
       rescue PuppetGenerator::Exceptions::EmptySource
-        error 3, "#{preamble}The source '#{task.meta[:source]}' you tell me to use does not contain any entries. Giving up.#{postscript}"
-      rescue PuppetGenerator::Exceptions::UnknownInputFilter
-        error 4, "#{preamble}There's no input filter #{task.meta[:requested_input_filter]}.#{postscript}"
+        error 3, "#{preamble}The source \"#{task.meta[:source]}\" you tell me to use does not contain any entries. Giving up.#{postscript}"
+      rescue PuppetGenerator::Exceptions::UnknownImportFilter
+        error 4, "#{preamble}There's no import filter \"#{task.meta[:requested_import_filter]}\". Available import filters: #{option_to_output(task.meta[:import_filter])}.#{postscript}"
       end
     end
 
@@ -37,5 +37,8 @@ module PuppetGenerator
       exit exitcode
     end
 
+    def option_to_output(option)
+      option.keys.join(", ")
+    end
   end
 end
