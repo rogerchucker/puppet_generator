@@ -6,14 +6,14 @@ module PuppetGenerator
       task = Task.new(options, :package)
 
       stack = Middleware::Builder.new do
-        use ConfigureLogging
-        use HandleErrors
-        use DetermineTemplates
-        use ReadInputPackages
-        use CheckForEmptySource
-        use FilterImportedData
-        use EntryToPackage
-        use CreateOutput
+        use PuppetGenerator::Middleware::ConfigureLogging
+        use PuppetGenerator::Middleware::HandleErrors
+        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::ReadInputPackages
+        use PuppetGenerator::Middleware::CheckForEmptySource
+        use PuppetGenerator::Middleware::FilterImportedData
+        use PuppetGenerator::Middleware::EntryToPackage
+        use PuppetGenerator::Middleware::CreateOutput
       end
 
       stack.call(task)
@@ -24,14 +24,14 @@ module PuppetGenerator
       task = Task.new(options, :file)
 
       stack = Middleware::Builder.new do
-        use ConfigureLogging
-        use HandleErrors
-        use DetermineTemplates
-        use ReadInputFiles
-        use CheckForEmptySource
-        use FilterImportedData
-        use EntryToFile
-        use CreateOutput
+        use PuppetGenerator::Middleware::ConfigureLogging
+        use PuppetGenerator::Middleware::HandleErrors
+        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::ReadInputFiles
+        use PuppetGenerator::Middleware::CheckForEmptySource
+        use PuppetGenerator::Middleware::FilterImportedData
+        use PuppetGenerator::Middleware::EntryToFile
+        use PuppetGenerator::Middleware::CreateOutput
       end
 
       stack.call(task)
@@ -42,14 +42,14 @@ module PuppetGenerator
       task = Task.new(options, :user)
 
       stack = Middleware::Builder.new do
-        use ConfigureLogging
-        use HandleErrors
-        use DetermineTemplates
-        use ReadInputPackages
-        use CheckForEmptySource
-        use FilterImportedData
-        use EntryToUser
-        use CreateOutput
+        use PuppetGenerator::Middleware::ConfigureLogging
+        use PuppetGenerator::Middleware::HandleErrors
+        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::ReadInputPackages
+        use PuppetGenerator::Middleware::CheckForEmptySource
+        use PuppetGenerator::Middleware::FilterImportedData
+        use PuppetGenerator::Middleware::EntryToUser
+        use PuppetGenerator::Middleware::CreateOutput
       end
 
       stack.call(task)
@@ -60,9 +60,9 @@ module PuppetGenerator
       task = Task.new(options, :module)
 
       stack = Middleware::Builder.new do
-        use ConfigureLogging
-        use HandleErrors
-        use CreateModuleDirectories
+        use PuppetGenerator::Middleware::ConfigureLogging
+        use PuppetGenerator::Middleware::HandleErrors
+        use PuppetGenerator::Middleware::CreateModuleDirectories
       end
 
       stack.call(task)
