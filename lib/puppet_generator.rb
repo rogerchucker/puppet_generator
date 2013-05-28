@@ -29,6 +29,9 @@ require 'puppet_generator/templates/single_file'
 require 'puppet_generator/templates/class_user'
 require 'puppet_generator/templates/single_user'
 
+require 'puppet_generator/filter/etc_passwd'
+require 'puppet_generator/filter/plain'
+
 require 'puppet_generator/creators/user_entry'
 require 'puppet_generator/creators/package_entry'
 require 'puppet_generator/creators/file_entry'
