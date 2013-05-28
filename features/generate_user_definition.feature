@@ -14,7 +14,7 @@ Feature: Generate user definitions
     """
     class mymodule::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -33,7 +33,7 @@ Feature: Generate user definitions
     """
     class mymodule::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -50,7 +50,7 @@ Feature: Generate user definitions
     """
     class mymodule::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -59,7 +59,7 @@ Feature: Generate user definitions
     """
     class mymodule::test123 {
       user {'test123':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -75,7 +75,7 @@ Feature: Generate user definitions
     """
     class string1::string2::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -92,10 +92,10 @@ Feature: Generate user definitions
     """
     class mymodule::myclass {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
       user {'test123':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -111,7 +111,7 @@ Feature: Generate user definitions
     """
     class mymodule::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -128,10 +128,10 @@ Feature: Generate user definitions
     """
     class mymodule::test {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
       user {'test123':
-        ensure => present,
+        ensure     => present,
       }
     }
 
