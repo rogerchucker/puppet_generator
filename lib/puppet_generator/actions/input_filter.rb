@@ -5,7 +5,7 @@ module PuppetGenerator
     end
 
     def call(task)
-      task.logger.debug("filter input")
+      task.logger.debug(self.class.name){ "filter the input with filter \"#{task.meta[:requested_import_filter]}\"" }
 
       begin
         active_filter = task.meta[:import_filter].fetch( task.meta[:requested_import_filter].to_sym )

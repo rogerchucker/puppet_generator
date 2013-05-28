@@ -7,7 +7,7 @@ module PuppetGenerator
     def call(task)
       @logger = task.logger
 
-      @logger.debug("waiting for errors")
+      @logger.debug(self.class.name){ "waiting for errors" }
 
       begin
         @app.call(task)

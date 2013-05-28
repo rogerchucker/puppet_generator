@@ -8,8 +8,6 @@ module PuppetGenerator
       task.meta[:templates] = {}
       task.meta[:import_filter]    = {}
 
-      task.logger.debug("determine the templates")
-
       if task.is_file_task?
         task.meta[:entry_creator] = Creators::FileEntry
         task.meta[:templates][:class] = Templates::ClassFile
@@ -30,8 +28,8 @@ module PuppetGenerator
         raise PuppetGenerator::Exceptions::InternalError
       end
 
-      task.logger.debug("available templates: " +  option_to_output( task.meta[:templates] ) )
-      task.logger.debug("available filter: " +  option_to_output( task.meta[:import_filter] ) )
+      task.logger.debug(self.class.name){ "available templates: " +  option_to_output( task.meta[:templates] ) }
+      task.logger.debug(self.class.name){ "available filter: " +  option_to_output( task.meta[:import_filter] ) }
 
       @app.call(task)
     end
