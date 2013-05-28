@@ -9,16 +9,15 @@ class Default < Thor
   class_option :destination , type: :string, default: 'dir:out.d', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"'
   class_option :module , type: :string, default: 'mymodule', desc: 'the module prefix in puppet class name'
   class_option :class , type: :string, default: 'myclass', desc: 'the class suffix in puppet class name'
+  class_option :import_filter , type: :string, default: 'plain', desc: 'make it possible to pipe structured data into command'
 
   desc 'package', 'generate package definitions'
   def package
     PuppetGenerator::Api.new.generate_package_definition(options)
   end
 
-  #method_option :input_format , type: :string, default: 'plain', desc: 'format of the input data'
   desc 'file', 'generate file definitions'
   def file
-    #task.meta[:input_format] = options[:input_format]
     PuppetGenerator::Api.new.generate_file_definition(options)
   end
   
