@@ -12,11 +12,17 @@ module PuppetGenerator
       else
         task.logger.level = Logger::WARN
         task.logger.formatter = proc { |severity, _, _, msg|
-          "%s: %s\n" % [ bold_red(severity), msg.dump ]
+          "%s: %s\n\n" % [ bold_red(severity), msg ]
         }
       end
 
       @app.call(task)
+    end
+
+    private
+
+    def bold_red(msg)
+      ANSI.bold(ANSI.red(msg))
     end
   end
 end

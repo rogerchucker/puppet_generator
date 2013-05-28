@@ -42,6 +42,7 @@ module PuppetGenerator
       task = Task.new(options, :user)
 
       stack = Middleware::Builder.new do
+        use ConfigureLogging
         use HandleErrors
         use DetermineTemplates
         use ReadInputPackages
