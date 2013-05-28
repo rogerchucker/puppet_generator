@@ -14,7 +14,7 @@ Feature: Generate user definitions
     """
     class mymodule::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -33,7 +33,7 @@ Feature: Generate user definitions
     """
     class mymodule::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -50,7 +50,7 @@ Feature: Generate user definitions
     """
     class mymodule::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -59,7 +59,7 @@ Feature: Generate user definitions
     """
     class mymodule::test123 {
       user {'test123':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -75,7 +75,7 @@ Feature: Generate user definitions
     """
     class string1::string2::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -92,10 +92,10 @@ Feature: Generate user definitions
     """
     class mymodule::myclass {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
       user {'test123':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -111,7 +111,7 @@ Feature: Generate user definitions
     """
     class mymodule::asdf {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
     }
 
@@ -128,16 +128,15 @@ Feature: Generate user definitions
     """
     class mymodule::test {
       user {'asdf':
-        ensure => present,
+        ensure     => present,
       }
       user {'test123':
-        ensure => present,
+        ensure     => present,
       }
     }
 
     """
 
-    @wip
   Scenario: Using passwd
     Given a file named "etc_passwd" with:
     """
@@ -149,15 +148,29 @@ Feature: Generate user definitions
     """
     class mymodule::myclass {
       user {'root':
-        ensure  => present,
-        homedir => '/root',
-        shell   => '/bin/bash',
+        ensure     => present,
+        uid        => '0',
+        gid        => '0',
+        homedir    => '/root',
+        shell      => '/bin/bash',
       }
       user {'mail':
-        ensure  => present,
-        homedir => '/var/spool/mail',
-        shell   => '/bin/false',
+        ensure     => present,
+        uid        => '8',
+        gid        => '12',
+        homedir    => '/var/spool/mail',
+        shell      => '/bin/false',
       }
     }
 
     """
+
+  Scenario: Using passwd with error
+    Given a file named "etc_passwd" with:
+    """
+    root:x:0:0:root:/root:/bin/bash
+    mail:
+    """
+    When I run `ppgen user --source etc_passwd --destination file:out.txt --import-filter passwd`
+    Then the exit status should be 6
+    And the stderr should contain "The input is no passwd file valid for this use case"

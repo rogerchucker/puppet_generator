@@ -11,7 +11,10 @@ module PuppetGenerator
 class <%= @packages.first.module_name %>::<%= @packages.first.class_name %> {
 <% @packages.each do |p| %>
   package {'<%= p.name %>':
-    ensure => latest,
+    ensure   => <%= p.version %>,
+    <% if p.provider %>
+    provider => <%= p.provider %>,
+    <% end %>
   }
 <% end %>
 }

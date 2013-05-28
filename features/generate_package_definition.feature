@@ -14,7 +14,7 @@ Feature: Generate package definitions
     """
     class mymodule::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -33,7 +33,7 @@ Feature: Generate package definitions
     """
     class mymodule::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -50,7 +50,7 @@ Feature: Generate package definitions
     """
     class mymodule::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -59,7 +59,7 @@ Feature: Generate package definitions
     """
     class mymodule::test123 {
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -75,7 +75,7 @@ Feature: Generate package definitions
     """
     class string1::string2::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -92,10 +92,10 @@ Feature: Generate package definitions
     """
     class mymodule::myclass {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -111,7 +111,7 @@ Feature: Generate package definitions
     """
     class mymodule::asdf {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
@@ -128,11 +128,59 @@ Feature: Generate package definitions
     """
     class mymodule::test {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
     }
 
     """
+
+  Scenario: Definition from yaml file
+    Given a file named "input.yml" with:
+    """
+    ---
+    ssh-server:
+      version: 1.2.3
+      provider: yum
+    ssh-client:
+      version: latest
+    zsh:
+      version: installed
+    bash: {}
+    """
+    When I successfully run `ppgen package --source input.yml --destination file:out.txt --import-filter yaml`
+    Then the file "out.txt" should contain:
+    """
+    class mymodule::myclass {
+      package {'ssh-server':
+        ensure   => 1.2.3,
+        provider => yum,
+      }
+      package {'ssh-client':
+        ensure   => latest,
+      }
+      package {'zsh':
+        ensure   => installed,
+      }
+      package {'bash':
+        ensure   => installed,
+      }
+    }
+
+    """
+
+  Scenario: Definition from yaml file with error
+    Given a file named "input.yml" with:
+    """
+    ---
+    ssh-server:
+    version: 1.2.3
+    zsh:
+      version: installed
+    bash: {}
+    """
+    When I run `ppgen package --source input.yml --destination file:out.txt --import-filter yaml`
+    Then the exit status should be 5
+    And the stderr should contain "The input is no YAML valid for this use case"

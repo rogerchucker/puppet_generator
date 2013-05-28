@@ -8,30 +8,30 @@ module PuppetGenerator
       task.meta[:templates] = {}
       task.meta[:import_filter]    = {}
 
-      task.logger.debug("determine the templates")
+      #default filter
+      task.meta[:import_filter][:plain] = Filter::Plain.new
+      task.meta[:import_filter][:yaml] = Filter::Yaml.new
 
       if task.is_file_task?
         task.meta[:entry_creator] = Creators::FileEntry
         task.meta[:templates][:class] = Templates::ClassFile
         task.meta[:templates][:single] = Templates::SingleFile
-        task.meta[:import_filter][:plain] = Filter::Plain.new
+        task.meta[:import_filter][:filesystem_attributes] = Filter::FilesystemAttributes.new
       elsif task.is_package_task?
         task.meta[:entry_creator] = Creators::PackageEntry
         task.meta[:templates][:class] = Templates::ClassPackage
         task.meta[:templates][:single] = Templates::SinglePackage
-        task.meta[:import_filter][:plain] = Filter::Plain.new
       elsif task.is_user_task?
         task.meta[:entry_creator] = Creators::UserEntry
         task.meta[:templates][:class] = Templates::ClassUser
         task.meta[:templates][:single] = Templates::SingleUser
-        task.meta[:import_filter][:passwd] = Filter::EtcPasswd.new
-        task.meta[:import_filter][:plain] = Filter::Plain.new
+        task.meta[:import_filter][:passwd] = Filter::Passwd.new
       else
         raise PuppetGenerator::Exceptions::InternalError
       end
 
-      task.logger.debug("available templates: " +  option_to_output( task.meta[:templates] ) )
-      task.logger.debug("available filter: " +  option_to_output( task.meta[:import_filter] ) )
+      task.logger.debug(self.class.name){ "available templates: " +  option_to_output( task.meta[:templates] ) }
+      task.logger.debug(self.class.name){ "available filter: " +  option_to_output( task.meta[:import_filter] ) }
 
       @app.call(task)
     end

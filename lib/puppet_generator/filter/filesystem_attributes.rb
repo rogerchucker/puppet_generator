@@ -1,13 +1,22 @@
 module PuppetGenerator
-  module Creators
-    class FileEntry
+  module Filter
+    class FilesystemAttributes
+      def convert(lines)
+        lines.collect do |line|
 
-      attr_reader :path
+          @path = line
+          @stats = File::Stat.new(line)
 
-      def initialize(path)
-        @path = path
-        @stats = File::Stat.new(path)
+          { 
+            name: line,
+            type: type,
+            owner: owner,
+            mode: mode,
+          }
+        end
       end
+
+      private
 
       def mode
         "%o" % @stats.mode
@@ -15,10 +24,6 @@ module PuppetGenerator
 
       def owner
         Etc.getpwuid(@stats.uid).name
-      end
-
-      def to_s
-        @path
       end
 
       def type
@@ -31,8 +36,6 @@ module PuppetGenerator
         end
       end
 
-      private
-
       def file?
         FileTest.file? @path
       end
@@ -40,7 +43,6 @@ module PuppetGenerator
       def directory?
         FileTest.directory? @path
       end
-
     end
   end
 end

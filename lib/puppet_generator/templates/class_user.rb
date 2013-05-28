@@ -11,7 +11,22 @@ module PuppetGenerator
 class <%= @users.first.module_name %>::<%= @users.first.class_name %> {
 <% @users.each do |u| %>
   user {'<%= u.name %>':
-    ensure => present,
+    ensure     => present,
+    <% if u.provider %>
+    provider   => '<%= u.provider %>',
+    <% end %>
+    <% if u.userid %>
+    uid        => '<%= u.userid %>',
+    <% end %>
+    <% if u.groupid %>
+    gid        => '<%= u.groupid %>',
+    <% end %>
+    <% if u.homedir %>
+    homedir    => '<%= u.homedir %>',
+    <% end %>
+    <% if u.shell %>
+    shell      => '<%= u.shell %>',
+    <% end %>
   }
 <% end %>
 }

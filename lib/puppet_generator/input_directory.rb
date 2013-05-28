@@ -1,12 +1,10 @@
 module PuppetGenerator
   class InputDirectory
-    attr_reader :entries
+    attr_reader :lines
 
-    def initialize( directory , generator)
-      @directory = directory
-      @entries = []
-
-      Find.find( directory) { |path| entries << generator.new( path ) }
+    def initialize( directory )
+      @lines = []
+      Find.find( directory) { |path| @lines << path }
     end
 
   end

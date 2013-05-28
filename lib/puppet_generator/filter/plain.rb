@@ -1,8 +1,8 @@
 module PuppetGenerator
   module Filter
     class Plain
-      def convert(line)
-        line
+      def convert(lines)
+        lines.collect { |line| { name: line.strip } }
       end
     end
   end

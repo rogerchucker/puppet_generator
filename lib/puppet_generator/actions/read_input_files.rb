@@ -8,16 +8,19 @@ module PuppetGenerator
     end
 
     def call(task)
-      task.logger.debug("read input from files / directories")
+      task.logger.debug(self.class.name){ "read input for files / directories" }
+
       if is_directory? task.meta[:source]
-        task.body = PuppetGenerator::InputDirectory.new( task.meta[:source], task.meta[:entry_creator] )
+        task.body = PuppetGenerator::InputDirectory.new( task.meta[:source] ).lines
       elsif is_stdin? task.meta[:source]
-        task.body = PuppetGenerator::InputStdIn.new( task.meta[:entry_creator] )
+        task.body = PuppetGenerator::InputStdIn.new.lines
       elsif is_file? task.meta[:source]
-        task.body = PuppetGenerator::InputFile.new( task.meta[:source] , task.meta[:entry_creator] )
+        task.body = PuppetGenerator::InputFile.new( task.meta[:source] ).lines
       else
         raise PuppetGenerator::Exceptions::InvalidSource
       end
+
+      task.logger.debug(self.class.name) { "count input lines: #{task.body.size}" }
 
       @app.call(task)
     end

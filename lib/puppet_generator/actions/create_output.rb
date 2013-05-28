@@ -9,7 +9,7 @@ module PuppetGenerator
       channel     = destination[0]
       sink        = destination[1]
 
-      task.logger.debug("render output")
+      task.logger.debug(self.class.name){ "render template for channel \"#{channel}\" and sink \"#{sink}\"" }
       output = case channel
                when 'file'
                  definitions = task.meta[:templates][:class].new( task.body ).render
