@@ -12,25 +12,20 @@ module PuppetGenerator
       end
     end
 
-    attr_reader :meta, :logger
-    attr_accessor :body
+    attr_reader :meta
+    attr_accessor :body, :logger
 
     def initialize(options={},type=nil)
       @type = :none
       @meta = {}
       @body = nil
-      @logger = Logger.new($stderr)
-
-      if options[:debug]
-        @logger.level = Logger::DEBUG
-      else
-        @logger.level = Logger::WARN
-      end
+      @logger = nil
 
       @meta[:source]        = options[:source] 
       @meta[:destination]   = options[:destination]
       @meta[:module]        = options[:module]
       @meta[:class]         = options[:class]
+      @meta[:mode]          = options[:debug] ? :debug : :normal
 
       case type.to_sym
       when :package

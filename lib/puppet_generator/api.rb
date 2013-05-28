@@ -6,6 +6,7 @@ module PuppetGenerator
       task = Task.new(options, :package)
 
       stack = Middleware::Builder.new do
+        use ConfigureLogging
         use HandleErrors
         use DetermineTemplates
         use ReadInputPackages
@@ -23,6 +24,7 @@ module PuppetGenerator
       task = Task.new(options, :file)
 
       stack = Middleware::Builder.new do
+        use ConfigureLogging
         use HandleErrors
         use DetermineTemplates
         use ReadInputFiles
