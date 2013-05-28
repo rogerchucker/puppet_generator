@@ -204,7 +204,6 @@ Feature: Generate file definitions
       mode   => '100644',
     """
 
-    @wip
   Scenario: With file system meta data in separate files
     Given a directory named "testdir"
     And an empty file named "testdir/file1"
