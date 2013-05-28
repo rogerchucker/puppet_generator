@@ -136,3 +136,28 @@ Feature: Generate user definitions
     }
 
     """
+
+    @wip
+  Scenario: Using passwd
+    Given a file named "etc_passwd" with:
+    """
+    root:x:0:0:root:/root:/bin/bash
+    mail:x:8:12:mail:/var/spool/mail:/bin/false
+    """
+    When I successfully run `ppgen user --destination file:out.txt --import-filter passwd`
+    Then the file "out.txt" should contain:
+    """
+    class mymodule::myclass {
+      user {'root':
+        ensure  => present,
+        homedir => '/root',
+        shell   => '/bin/bash',
+      }
+      user {'mail':
+        ensure  => present,
+        homedir => '/var/spool/mail',
+        shell   => '/bin/false',
+      }
+    }
+
+    """
