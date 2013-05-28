@@ -19,6 +19,10 @@ module PuppetGenerator
         error 3, "#{preamble}The source \"#{task.meta[:source]}\" you tell me to use does not contain any entries. Giving up.#{postscript}"
       rescue PuppetGenerator::Exceptions::UnknownImportFilter
         error 4, "#{preamble}There's no import filter \"#{task.meta[:requested_import_filter]}\". Available import filters: #{option_to_output(task.meta[:import_filter])}.#{postscript}"
+      rescue PuppetGenerator::Exceptions::InvalidYamlInput
+        error 5, "#{preamble}The input is no YAML valid for this use case.#{postscript}"
+      rescue PuppetGenerator::Exceptions::InvalidPasswdInput
+        error 6, "#{preamble}The input is no passwd file valid for this use case.#{postscript}"
       end
     end
 

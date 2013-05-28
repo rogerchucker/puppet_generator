@@ -10,6 +10,7 @@ module PuppetGenerator
 
       #default filter
       task.meta[:import_filter][:plain] = Filter::Plain.new
+      task.meta[:import_filter][:yaml] = Filter::Yaml.new
 
       if task.is_file_task?
         task.meta[:entry_creator] = Creators::FileEntry

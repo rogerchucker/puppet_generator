@@ -19,5 +19,11 @@ module PuppetGenerator
     #raised if an unknown input filter was
     #requested by the user
     class UnknownImportFilter < Exception; end
+    
+    #raised if an error happened during decoding of yaml
+    class InvalidYamlInput < Exception; end
+    #
+    #raised if an error happened during decoding of passwd
+    class InvalidPasswdInput < Exception; end
   end
 end

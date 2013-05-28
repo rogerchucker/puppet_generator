@@ -137,7 +137,6 @@ Feature: Generate user definitions
 
     """
 
-    @wip
   Scenario: Using passwd
     Given a file named "etc_passwd" with:
     """
