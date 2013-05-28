@@ -13,7 +13,7 @@ module PuppetGenerator
         raise Exceptions::UnknownInputFilter unless active_filter
       end
 
-      task.body = task.body.entries.collect { |line| active_filter.convert(line) }
+      task.body = active_filter.convert(task.body)
 
       @app.call(task)
     end

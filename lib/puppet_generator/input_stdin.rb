@@ -1,9 +1,9 @@
 module PuppetGenerator
   class InputStdIn
-    attr_reader :entries
+    attr_reader :lines
 
-    def initialize( generator )
-      @entries = $stdin.readlines.collect { |e| generator.new(e.strip) }
+    def initialize
+      @lines = $stdin.readlines.collect { |l| l.strip.chomp }
     end
 
   end

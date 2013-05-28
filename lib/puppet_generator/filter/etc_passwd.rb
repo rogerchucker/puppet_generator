@@ -1,17 +1,18 @@
 module PuppetGenerator
   module Filter
     class EtcPasswd
-      def convert(line)
-        binding.pry
-        (username,_,uid,gid,_,homedir,shell) = line.split(/:/)
+      def convert(lines)
+        lines.collect do |line|
+          (username,_,uid,gid,_,homedir,shell) = line.split(/:/)
 
-        { 
-          username: username,
-          userid: uid,
-          groupid: guid,
-          homedir: homedir,
-          shell: shell,
-        }
+          { 
+            username: username,
+            userid: uid,
+            groupid: gid,
+            homedir: homedir,
+            shell: shell,
+          }
+        end
       end
     end
   end

@@ -1,8 +1,8 @@
 module PuppetGenerator
   module Filter
     class Plain
-      def convert(line)
-        line
+      def convert(lines)
+        lines.collect { |line| Hash.new(name: line) }
       end
     end
   end
