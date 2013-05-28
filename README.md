@@ -20,6 +20,20 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## Tipps & Tricks
+
+You may need to use `sshfs` to get the generator running. This way...
+```
+```
+
+Ruby
+Administrators not willing enough
+
+.ssh/config
+```
+ProxyCommand
+```
+
 ## Contributing
 
 1. Fork it
