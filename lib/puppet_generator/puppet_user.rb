@@ -1,6 +1,6 @@
 module PuppetGenerator
   class PuppetUser
-    attr_reader :name, :userid, :homedir, :groupid, :shell, :module_name, :class_name
+    attr_reader :name, :userid, :homedir, :groupid, :shell, :provider, :module_name, :class_name
 
     def initialize(entry, module_name, class_name)
       @name = entry[:name]

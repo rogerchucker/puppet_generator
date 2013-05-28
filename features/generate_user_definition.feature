@@ -149,14 +149,18 @@ Feature: Generate user definitions
     """
     class mymodule::myclass {
       user {'root':
-        ensure  => present,
-        homedir => '/root',
-        shell   => '/bin/bash',
+        ensure     => present,
+        uid        => '0',
+        gid        => '0',
+        homedir    => '/root',
+        shell      => '/bin/bash',
       }
       user {'mail':
-        ensure  => present,
-        homedir => '/var/spool/mail',
-        shell   => '/bin/false',
+        ensure     => present,
+        uid        => '8',
+        gid        => '12',
+        homedir    => '/var/spool/mail',
+        shell      => '/bin/false',
       }
     }
 
