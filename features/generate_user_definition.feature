@@ -164,3 +164,13 @@ Feature: Generate user definitions
     }
 
     """
+
+  Scenario: Using passwd with error
+    Given a file named "etc_passwd" with:
+    """
+    root:x:0:0:root:/root:/bin/bash
+    mail:
+    """
+    When I run `ppgen user --source etc_passwd --destination file:out.txt --import-filter passwd`
+    Then the exit status should be 6
+    And the stderr should contain "The input is no passwd file valid for this use case"
