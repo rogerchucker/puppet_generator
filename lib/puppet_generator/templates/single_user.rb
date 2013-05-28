@@ -11,6 +11,7 @@ module PuppetGenerator
 class <%= @user.module_name %>::<%= @user.name %> {
   user {'<%= @user.name %>':
     ensure     => present,
+    managehome => true,
     <% if @user.provider %>
     provider   => '<%= @user.provider %>',
     <% end %>
@@ -21,7 +22,7 @@ class <%= @user.module_name %>::<%= @user.name %> {
     gid        => '<%= @user.groupid %>',
     <% end %>
     <% if @user.homedir %>
-    homedir    => '<%= @user.homedir %>',
+    home       => '<%= @user.homedir %>',
     <% end %>
     <% if @user.shell %>
     shell      => '<%= @user.shell %>',
