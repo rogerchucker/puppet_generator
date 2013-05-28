@@ -4,6 +4,7 @@ module PuppetGenerator
       def convert(lines)
         lines.collect do |line|
 
+          @path = line
           @stats = File::Stat.new(line)
 
           { 
