@@ -7,6 +7,7 @@ module PuppetGenerator
     def call(task)
       task.logger.debug("filter input")
 
+      @app.call(task)
     end
   end
 end
