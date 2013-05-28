@@ -144,7 +144,7 @@ Feature: Generate user definitions
     root:x:0:0:root:/root:/bin/bash
     mail:x:8:12:mail:/var/spool/mail:/bin/false
     """
-    When I successfully run `ppgen user --destination file:out.txt --import-filter passwd`
+    When I successfully run `ppgen user --source etc_passwd --destination file:out.txt --import-filter passwd`
     Then the file "out.txt" should contain:
     """
     class mymodule::myclass {

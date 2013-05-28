@@ -2,6 +2,7 @@ module PuppetGenerator
   module Filter
     class EtcPasswd
       def convert(line)
+        binding.pry
         (username,_,uid,gid,_,homedir,shell) = line.split(/:/)
 
         { 
