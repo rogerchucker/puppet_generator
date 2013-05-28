@@ -12,12 +12,14 @@ module PuppetGenerator
       end
     end
 
-    attr_reader :meta, :body
+    attr_reader :meta, :logger
+    attr_accessor :body
 
     def initialize(options={},type=nil)
       @type = :none
       @meta = {}
-      @body = {}
+      @body = nil
+      @logger = Logger.new($stderr)
 
       @meta[:source]        = options[:source] 
       @meta[:destination]   = options[:destination]
