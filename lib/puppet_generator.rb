@@ -53,6 +53,7 @@ require 'puppet_generator/middleware/determine_templates'
 require 'puppet_generator/middleware/create_output'
 require 'puppet_generator/middleware/configure_logging'
 require 'puppet_generator/middleware/filter_imported_data'
+require 'puppet_generator/middleware/create_module_directories'
 require 'puppet_generator/middleware/execute_actions'
 require 'puppet_generator/api'
 
