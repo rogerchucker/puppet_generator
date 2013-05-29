@@ -2,27 +2,14 @@ module PuppetGenerator
   module Models
     class ErrorMessage < Base
 
-      include Comparable
-
-      attr_reader :code
       attr_accessor :preambel, :postscript
-
       class << self
         attr_accessor :preambel, :postscript
-
-        def find(val)
-          instances.find { |i| i.code == val }
-        end
       end
 
-
-      def initialize(code, text)
-        @code = code
+      def initialize(name, text)
+        super(name)
         @text = text
-      end
-
-      def <=>(other)
-        code <=> other.code
       end
 
       def text
