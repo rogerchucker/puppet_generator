@@ -4,14 +4,14 @@ module PuppetGenerator
     include Comparable
 
     attr_reader :code
-    attr_accessor :preambel
+    attr_accessor :preambel, :postscript
 
     @known_messages = Set.new
     @preambel = nil
 
     class << self
 
-      attr_accessor :preambel
+      attr_accessor :preambel, :postscript
 
       def register(msg)
         @known_messages << msg
@@ -43,6 +43,7 @@ module PuppetGenerator
       result = []
       result << ( preambel ? preambel : self.class.preambel )
       result << @text
+      result << ( postscript ? postscript : self.class.postscript )
 
       result.join
     end
