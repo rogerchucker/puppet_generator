@@ -21,7 +21,7 @@ module PuppetGenerator
           task.meta[:templates][:class] = Templates::ClassFile
           task.meta[:templates][:single] = Templates::SingleFile
           task.meta[:import_filter][:filesystem_attributes] = Filter::FilesystemAttributes.new
-          task.meta[:actions][:copy_files] = Actions::CopyFiles.new
+          task.meta[:actions][:copy_files_to_module] = Actions::CopyFilesToModuleDirectory.new
         elsif task.is_package_task?
           task.meta[:templates][:class] = Templates::ClassPackage
           task.meta[:templates][:single] = Templates::SinglePackage

@@ -26,7 +26,8 @@ module PuppetGenerator
       @meta[:module]        = options[:module]
       @meta[:class]         = options[:class]
       @meta[:requested_import_filter] = options[:import_filter]
-      @meta[:mode]          = options[:debug] ? :debug : :normal
+      @meta[:requested_action]        = options[:action]
+      @meta[:mode]                    = options[:debug] ? :debug : :normal
 
       case type.to_sym
       when :package
