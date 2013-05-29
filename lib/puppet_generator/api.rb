@@ -5,7 +5,7 @@ module PuppetGenerator
 
       task = Task.new(options, :package)
 
-      stack = Middleware::Builder.new do
+      stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::DetermineTemplates
@@ -23,7 +23,7 @@ module PuppetGenerator
 
       task = Task.new(options, :file)
 
-      stack = Middleware::Builder.new do
+      stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::DetermineTemplates
@@ -41,7 +41,7 @@ module PuppetGenerator
 
       task = Task.new(options, :user)
 
-      stack = Middleware::Builder.new do
+      stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::DetermineTemplates
@@ -59,7 +59,7 @@ module PuppetGenerator
 
       task = Task.new(options, :module)
 
-      stack = Middleware::Builder.new do
+      stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::CreateModuleDirectories
