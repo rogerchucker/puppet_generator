@@ -7,17 +7,14 @@ module PuppetGenerator
       attr_reader :code
       attr_accessor :preambel, :postscript
 
-      @preambel = nil
-
       class << self
-
         attr_accessor :preambel, :postscript
 
-        def find(code)
-          instances.find { |m| m.code == code }
+        def find(val)
+          instances.find { |i| i.code == val }
         end
-
       end
+
 
       def initialize(code, text)
         @code = code

@@ -6,7 +6,6 @@ module PuppetGenerator
         base.instance_variable_set(:@instances, Set.new)
       end
 
-
       class << self
         attr_reader :instances
 
@@ -19,6 +18,7 @@ module PuppetGenerator
         def create( *args )
           register new( *args )
         end
+
       end
     end
   end
