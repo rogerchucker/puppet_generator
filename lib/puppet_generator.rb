@@ -9,6 +9,7 @@ require 'etc'
 require 'psych'
 require 'fileutils'
 require 'hirb'
+#require 'active_support/core_ext/object/blank'
 
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'
