@@ -12,11 +12,10 @@ module PuppetGenerator
         begin
           active_action = task.meta[:actions].fetch( task.meta[:requested_action].to_sym )
         rescue
-          raise Exceptions::Action unless active_action
+          raise Exceptions::UnknownAction unless active_action
         end
 
-        binding.pry
-        task.body = active_action.run( task )
+        active_action.run( task )
 
         @app.call(task)
       end

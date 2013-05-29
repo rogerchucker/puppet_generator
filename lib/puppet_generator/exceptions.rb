@@ -20,6 +20,10 @@ module PuppetGenerator
     #requested by the user
     class UnknownImportFilter < Exception; end
     
+    #raised if an unknown action was
+    #requested by the user
+    class UnknownAction < Exception; end
+    
     #raised if an error happened during decoding of yaml
     class InvalidYamlInput < Exception; end
     
