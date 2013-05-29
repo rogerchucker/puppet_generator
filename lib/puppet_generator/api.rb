@@ -2,13 +2,12 @@ module PuppetGenerator
   class Api
 
     def generate_package_definition(options)
-
       task = Task.new(options, :package)
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
-        use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInputPackages
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
@@ -26,8 +25,8 @@ module PuppetGenerator
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
-        use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInputFiles
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
@@ -40,13 +39,12 @@ module PuppetGenerator
     end
 
     def generate_user_definition(options)
-
       task = Task.new(options, :user)
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
-        use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInputPackages
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
@@ -59,13 +57,26 @@ module PuppetGenerator
     end
 
     def generate_module(options)
-
       task = Task.new(options, :module)
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
+        use PuppetGenerator::Middleware::DetermineTemplates
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::CreateModuleDirectories
+      end
+
+      stack.call(task)
+    end
+
+    def output_error_messages(options)
+      task = Task.new(options, :error_message)
+
+      stack = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::ConfigureLogging
+        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::HandleErrors
+        use PuppetGenerator::Middleware::CreateOutput
       end
 
       stack.call(task)

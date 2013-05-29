@@ -251,3 +251,9 @@ Feature: Generate file definitions
     """
     asdf
     """
+
+  Scenario: Fails if wrong action is chosen
+    Given a directory named "testdir"
+    When I run `ppgen file --source testdir --action unknown_action`
+    Then the exit status should be 7
+    And the stderr should contain "unknown_action"
