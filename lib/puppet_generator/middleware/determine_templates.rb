@@ -7,7 +7,6 @@ module PuppetGenerator
 
       def call(task)
         task.meta[:templates]     = {}
-        task.meta[:actions]       = {}
 
         #default filter
         Models::ImportFilter.create :plain, Filter::Plain.new
@@ -17,16 +16,16 @@ module PuppetGenerator
         Models::Action.create :none, Actions::None.new
 
         if task.is_file_task?
-          task.meta[:templates][:class] = Templates::ClassFile
-          task.meta[:templates][:single] = Templates::SingleFile
+          Models::Template.create :class, Templates::ClassFile
+          Models::Template.create :single, Templates::SingleFile
           Models::ImportFilter.create :filesystem_attributes, Filter::FilesystemAttributes.new
           Models::Action.create :copy_files_to_module, Actions::CopyFilesToModuleDirectory.new
         elsif task.is_package_task?
-          task.meta[:templates][:class] = Templates::ClassPackage
-          task.meta[:templates][:single] = Templates::SinglePackage
+          Models::Template.create :class, Templates::ClassPackage
+          Models::Template.create :single, Templates::SinglePackage
         elsif task.is_user_task?
-          task.meta[:templates][:class] = Templates::ClassUser
-          task.meta[:templates][:single] = Templates::SingleUser
+          Models::Template.create :class, Templates::ClassUser
+          Models::Template.create :single, Templates::SingleUser
           Models::ImportFilter.create :passwd, Filter::Passwd.new
         end
 
@@ -41,7 +40,7 @@ module PuppetGenerator
         Models::ErrorMessage.create 6, "The input is no passwd file valid for this use case."
         Models::ErrorMessage.create 7, "There's no action \"#{task.meta[:requested_action]}\". Available actions: #{Models::Action.all_names_as_string}."
 
-        task.logger.debug(self.class.name){ "available templates: " +  option_to_output( task.meta[:templates] ) }
+        task.logger.debug(self.class.name){ "available templates: " +  Models::Template.all_names_as_string }
         task.logger.debug(self.class.name){ "available filter: " +  Models::ImportFilter.all_names_as_string }
         task.logger.debug(self.class.name){ "available actions: " +  Models::Action.all_names_as_string }
 

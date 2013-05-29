@@ -13,13 +13,13 @@ module PuppetGenerator
         task.logger.debug(self.class.name){ "render template for channel \"#{channel}\" and sink \"#{sink}\"" }
         output = case channel
                  when 'file'
-                   definitions = task.meta[:templates][:class].new( task.body ).render
+                   definitions = Models::Template.find(:class).template.new( task.body ).render
                    PuppetGenerator::OutputFile.new( sink , definitions )
                  when /directory|dir/
-                   definitions = task.meta[:templates][:single].new( task.body ).render
+                   definitions = Models::Template.find(:single).template.new( task.body ).render
                    PuppetGenerator::OutputDirectory.new( sink , definitions )
                  when 'stdout'
-                   definitions = task.meta[:templates][:single].new( task.body ).render
+                   definitions = Models::Template.find(:single).template.new( task.body ).render
                    PuppetGenerator::OutputStdOut.new( definitions )
                  else
                    raise PuppetGenerator::Exceptions::InvalidOutputChannel
