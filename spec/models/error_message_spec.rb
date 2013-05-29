@@ -5,6 +5,7 @@ describe Models::ErrorMessage do
   before(:each) {
     Models::ErrorMessage.preambel = nil
     Models::ErrorMessage.postscript = nil
+    Models::ErrorMessage.delete(:all)
   }
 
   it "supports equality" do
@@ -26,8 +27,12 @@ describe Models::ErrorMessage do
     Models::ErrorMessage.register m1
 
     m_found = Models::ErrorMessage.find(1)
-
-    expect(m1).to eq(m_found)
+    expect(m_found).to eq(m1)
+  end
+  
+  it "returns nil if message can not be found" do
+    m_found = Models::ErrorMessage.find(1)
+    expect(m_found).to eq(nil)
   end
 
   it "is possible to define a preambel for all error messages" do
