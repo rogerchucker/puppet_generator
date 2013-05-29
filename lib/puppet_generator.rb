@@ -8,9 +8,12 @@ require 'ansi'
 require 'etc'
 require 'psych'
 require 'fileutils'
+require 'hirb'
 
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'
+
+require 'puppet_generator/error_message'
 
 require 'puppet_generator/input_file'
 require 'puppet_generator/input_directory'
