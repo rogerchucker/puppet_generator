@@ -29,8 +29,6 @@ module PuppetGenerator
           task.meta[:templates][:class] = Templates::ClassUser
           task.meta[:templates][:single] = Templates::SingleUser
           task.meta[:import_filter][:passwd] = Filter::Passwd.new
-        else
-          raise PuppetGenerator::Exceptions::InternalError
         end
 
         task.logger.debug(self.class.name){ "available templates: " +  option_to_output( task.meta[:templates] ) }

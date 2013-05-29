@@ -15,6 +15,12 @@ module PuppetGenerator
     attr_reader :meta
     attr_accessor :body, :logger
 
+    define_type :file
+    define_type :package
+    define_type :user
+    define_type :module
+    define_type :error_message
+
     def initialize(options={},type=nil)
       @type = :none
       @meta = {}
@@ -29,24 +35,16 @@ module PuppetGenerator
       @meta[:requested_action]        = options[:action]
       @meta[:mode]                    = options[:debug] ? :debug : :normal
 
-      case type.to_sym
-      when :package
-        @type = :package
-      when :file
-        @type = :file
-      when :user
-        @type = :user
-      when :module
-        @type = :module
-      else
-        raise Exceptions::InternalError
-      end
+      set_task_type_to type
     end
 
-    define_type :file
-    define_type :package
-    define_type :user
-    define_type :module
+    private
+
+    def set_task_type_to(type)
+      self.public_send "is_#{type}_task".to_sym
+    rescue
+      raise Exceptions::InternalError
+    end
 
   end
 end
