@@ -36,7 +36,7 @@ require 'puppet_generator/filter/passwd'
 require 'puppet_generator/filter/filesystem_attributes'
 require 'puppet_generator/filter/yaml'
 
-require 'puppet_generator/do/copy_files_to_module'
+require 'puppet_generator/actions/copy_files'
 
 require 'puppet_generator/definition'
 require 'puppet_generator/task'
