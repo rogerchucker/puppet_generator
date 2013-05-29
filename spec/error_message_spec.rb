@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe ErrorMessage do
 
+  before(:each) {
+    ErrorMessage.preambel = nil
+  }
+
   it "supports equality" do
     m1 = ErrorMessage.new(1, 'Text')
     m2 = ErrorMessage.new(1, 'text233')
@@ -35,6 +39,27 @@ describe ErrorMessage do
     m_found = ErrorMessage.find(1)
 
     expect(m1).to eq(m_found)
+  end
+
+  it "is possible to define a preambel for all error messages" do
+    ErrorMessage.preambel = "test\n\n"
+    m1 = ErrorMessage.create(1, 'Text')
+    expect(m1.text).to eq("test\n\nText")
+  end
+
+  it "is possible to define a preambel for a single error messages" do
+    m1 = ErrorMessage.create(1, 'Text')
+    m1.preambel = "test123\n\n"
+
+    expect(m1.text).to eq("test123\n\nText")
+  end
+
+  it "returns only the instance preambel if both are defined" do
+    m1 = ErrorMessage.create(1, 'Text')
+    ErrorMessage.preambel = "from class\n\n"
+    m1.preambel = "from instance\n\n"
+
+    expect(m1.text).to eq("from instance\n\nText")
   end
 
 end
