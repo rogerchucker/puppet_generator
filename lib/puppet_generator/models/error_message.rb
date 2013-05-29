@@ -6,26 +6,25 @@ module PuppetGenerator
     attr_reader :code
     attr_accessor :preambel, :postscript
 
-    @known_messages = Set.new
+    @instances = Set.new
     @preambel = nil
 
     class << self
 
       attr_accessor :preambel, :postscript
 
-      def register(msg)
-        @known_messages << msg
+      def register(instance)
+        @instances << instance
+
+        instance
       end
 
       def create( code, text )
-        message = ErrorMessage.new( code, text)
-        ErrorMessage.register message
-
-        message
+        register new( code, text)
       end
 
       def find(code)
-        @known_messages.find { |m| m.code == code }
+        @instances.find { |m| m.code == code }
       end
 
     end
