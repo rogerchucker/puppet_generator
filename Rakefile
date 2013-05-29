@@ -85,6 +85,7 @@ namespace :test do
   task :travis_specs do
     ENV['TRAVIS_CI'] = 'true'
     sh 'rspec spec'
+    sh 'cucumber -p all'
   end
 end
 
