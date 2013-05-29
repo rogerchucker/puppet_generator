@@ -22,8 +22,11 @@ module PuppetGenerator
     
     #raised if an error happened during decoding of yaml
     class InvalidYamlInput < Exception; end
-    #
+    
     #raised if an error happened during decoding of passwd
     class InvalidPasswdInput < Exception; end
+    
+    #raised if an error happened during copying files
+    class ErrorDuringCopyFiles < Exception; end
   end
 end
