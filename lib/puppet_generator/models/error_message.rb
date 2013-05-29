@@ -1,50 +1,41 @@
 module PuppetGenerator
-  class ErrorMessage
+  module Models
+    class ErrorMessage < Base
 
-    include Comparable
+      include Comparable
 
-    attr_reader :code
-    attr_accessor :preambel, :postscript
-
-    @instances = Set.new
-    @preambel = nil
-
-    class << self
-
+      attr_reader :code
       attr_accessor :preambel, :postscript
 
-      def register(instance)
-        @instances << instance
+      @preambel = nil
 
-        instance
+      class << self
+
+        attr_accessor :preambel, :postscript
+
+        def find(code)
+          instances.find { |m| m.code == code }
+        end
+
       end
 
-      def create( code, text )
-        register new( code, text)
+      def initialize(code, text)
+        @code = code
+        @text = text
       end
 
-      def find(code)
-        @instances.find { |m| m.code == code }
+      def <=>(other)
+        code <=> other.code
       end
 
-    end
+      def text
+        result = []
+        result << ( preambel ? preambel : self.class.preambel )
+        result << @text
+        result << ( postscript ? postscript : self.class.postscript )
 
-    def initialize(code, text)
-      @code = code
-      @text = text
-    end
-
-    def <=>(other)
-      code <=> other.code
-    end
-
-    def text
-      result = []
-      result << ( preambel ? preambel : self.class.preambel )
-      result << @text
-      result << ( postscript ? postscript : self.class.postscript )
-
-      result.join
+        result.join
+      end
     end
   end
 end
