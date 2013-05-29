@@ -234,3 +234,20 @@ Feature: Generate file definitions
     """
       mode   => '100644',
     """
+
+  Scenario: Copy files afterwards
+    Given a directory named "testdir"
+    And a file named "testdir/file1" with:
+    """
+    asdf
+    """
+    And an empty file named "testdir/file2"
+    And an empty file named "testdir/file3"
+    When I successfully run `ppgen module`
+    And I successfully run `ppgen file --source testdir --action copy_files`
+    Then a directory named "mymodule" should exist
+    And a directory named "mymodule/files/testdir" should exist
+    And the file "mymodule/files/testdir/file1" should contain:
+    """
+    asdf
+    """
