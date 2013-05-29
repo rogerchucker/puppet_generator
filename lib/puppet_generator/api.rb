@@ -12,6 +12,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::ReadInputPackages
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
+        use PuppetGenerator::Middleware::ExecuteActions
         use PuppetGenerator::Middleware::EntryToPackage
         use PuppetGenerator::Middleware::CreateOutput
       end
@@ -30,6 +31,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::ReadInputFiles
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
+        use PuppetGenerator::Middleware::ExecuteActions
         use PuppetGenerator::Middleware::EntryToFile
         use PuppetGenerator::Middleware::CreateOutput
       end
@@ -48,6 +50,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::ReadInputPackages
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
+        use PuppetGenerator::Middleware::ExecuteActions
         use PuppetGenerator::Middleware::EntryToUser
         use PuppetGenerator::Middleware::CreateOutput
       end
