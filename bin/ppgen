@@ -13,10 +13,12 @@ class Default < Thor
   @source_option = { type: :string, default: 'input.txt', desc: 'enter the source which should be used to generate the puppet output' }
   @import_filter_option = { type: :string, default: 'plain', desc: 'make it possible to pipe structured data into command' }
   @destination_option = { type: :string, default: 'dir:out.d', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"' }
+  @action_option = { type: :string, default: 'none', desc: 'what action should be run after filtering the input' }
 
   method_option :source , @source_option
   method_option :import_filter , @import_filter_option
   method_option :destination , @destination_option
+  method_option :action , @action_option
   desc 'package', 'generate package definitions'
   def package
     PuppetGenerator::Api.new.generate_package_definition(options)
@@ -25,6 +27,7 @@ class Default < Thor
   method_option :source , @source_option
   method_option :import_filter , @import_filter_option
   method_option :destination , @destination_option
+  method_option :action , @action_option
   desc 'file', 'generate file definitions'
   def file
     PuppetGenerator::Api.new.generate_file_definition(options)
@@ -33,6 +36,7 @@ class Default < Thor
   method_option :source , @source_option
   method_option :import_filter , @import_filter_option
   method_option :destination , @destination_option
+  method_option :action , @action_option
   desc 'user', 'generate user definitions'
   def user
     PuppetGenerator::Api.new.generate_user_definition(options)
