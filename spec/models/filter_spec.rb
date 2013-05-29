@@ -15,4 +15,5 @@ describe Models::Filter do
 
     expect(m1).not_to eq(m2)
   end
+
 end
