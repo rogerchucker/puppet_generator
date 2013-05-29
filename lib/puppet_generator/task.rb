@@ -21,8 +21,8 @@ module PuppetGenerator
     define_type :module
     define_type :error_message
 
-    def initialize(options={},type=nil)
-      @type = :none
+    def initialize(options={},type=:none)
+      @type = type
       @meta = {}
       @body = nil
       @logger = nil
@@ -35,7 +35,7 @@ module PuppetGenerator
       @meta[:requested_action]        = options[:action]
       @meta[:mode]                    = options[:debug] ? :debug : :normal
 
-      set_task_type_to type
+      set_task_type_to @type
     end
 
     private
