@@ -15,7 +15,7 @@ module PuppetGenerator
           raise Exceptions::UnknownAction unless active_action
         end
 
-        active_action.run( task )
+        task.body = active_action.run( task )
 
         @app.call(task)
       end
