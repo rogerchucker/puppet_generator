@@ -14,13 +14,13 @@ module PuppetGenerator
         Models::ImportFilter.create :yaml, Filter::Yaml.new
 
         #default action
-        task.meta[:actions][:none] = Actions::None.new
+        Models::Action.create :none, Actions::None.new
 
         if task.is_file_task?
           task.meta[:templates][:class] = Templates::ClassFile
           task.meta[:templates][:single] = Templates::SingleFile
           Models::ImportFilter.create :filesystem_attributes, Filter::FilesystemAttributes.new
-          task.meta[:actions][:copy_files_to_module] = Actions::CopyFilesToModuleDirectory.new
+          Models::Action.create :copy_files_to_module, Actions::CopyFilesToModuleDirectory.new
         elsif task.is_package_task?
           task.meta[:templates][:class] = Templates::ClassPackage
           task.meta[:templates][:single] = Templates::SinglePackage
@@ -39,11 +39,11 @@ module PuppetGenerator
         Models::ErrorMessage.create 4, "There's no import filter \"#{task.meta[:requested_import_filter]}\". Available import filters: #{Models::ImportFilter.all_names_as_string}."
         Models::ErrorMessage.create 5, "The input is no YAML valid for this use case."
         Models::ErrorMessage.create 6, "The input is no passwd file valid for this use case."
-        Models::ErrorMessage.create 7, "There's no action \"#{task.meta[:requested_action]}\". Available actions: #{option_to_output(task.meta[:actions])}."
+        Models::ErrorMessage.create 7, "There's no action \"#{task.meta[:requested_action]}\". Available actions: #{Models::Action.all_names_as_string}."
 
         task.logger.debug(self.class.name){ "available templates: " +  option_to_output( task.meta[:templates] ) }
-        task.logger.debug(self.class.name){ "available filter: " +  option_to_output( Models::ImportFilter.all_names_as_string ) }
-        task.logger.debug(self.class.name){ "available actions: " +  option_to_output( task.meta[:actions] ) }
+        task.logger.debug(self.class.name){ "available filter: " +  Models::ImportFilter.all_names_as_string }
+        task.logger.debug(self.class.name){ "available actions: " +  Models::Action.all_names_as_string }
 
         @app.call(task)
       end

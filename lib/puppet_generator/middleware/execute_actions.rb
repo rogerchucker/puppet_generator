@@ -10,7 +10,7 @@ module PuppetGenerator
         task.logger.debug(self.class.name){ "filter the input with filter \"#{task.meta[:requested_action]}\"" }
 
         begin
-          active_action = task.meta[:actions].fetch( task.meta[:requested_action].to_sym )
+          active_action = Models::Action.find task.meta[:requested_action]
         rescue
           raise Exceptions::UnknownAction unless active_action
         end
