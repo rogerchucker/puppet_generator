@@ -16,7 +16,7 @@ require 'puppet_generator/exceptions'
 
 require 'puppet_generator/models/base'
 require 'puppet_generator/models/error_message'
-require 'puppet_generator/models/filter'
+require 'puppet_generator/models/import_filter'
 
 require 'puppet_generator/input_file'
 require 'puppet_generator/input_directory'

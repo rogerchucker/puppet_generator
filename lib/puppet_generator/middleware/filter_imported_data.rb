@@ -10,7 +10,7 @@ module PuppetGenerator
         task.logger.debug(self.class.name){ "filter the input with filter \"#{task.meta[:requested_import_filter]}\"" }
 
         begin
-          active_filter = task.meta[:import_filter].fetch( task.meta[:requested_import_filter].to_sym )
+          active_filter = Models::ImportFilter.find task.meta[:requested_import_filter]
         rescue
           raise Exceptions::UnknownImportFilter unless active_filter
         end
