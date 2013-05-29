@@ -36,7 +36,8 @@ require 'puppet_generator/filter/passwd'
 require 'puppet_generator/filter/filesystem_attributes'
 require 'puppet_generator/filter/yaml'
 
-require 'puppet_generator/actions/copy_files'
+require 'puppet_generator/actions/none'
+require 'puppet_generator/actions/copy_files_to_module_directory'
 
 require 'puppet_generator/definition'
 require 'puppet_generator/task'
@@ -52,7 +53,7 @@ require 'puppet_generator/middleware/determine_templates'
 require 'puppet_generator/middleware/create_output'
 require 'puppet_generator/middleware/configure_logging'
 require 'puppet_generator/middleware/filter_imported_data'
-require 'puppet_generator/middleware/create_module_directories'
+require 'puppet_generator/middleware/execute_actions'
 require 'puppet_generator/api'
 
 
