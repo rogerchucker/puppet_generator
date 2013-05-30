@@ -7,15 +7,15 @@ module PuppetGenerator
         attr_accessor :preambel, :postscript
       end
 
-      def initialize(name, &block)
+      def initialize(name, template)
         super(name)
-        @text = block.call
+        @template = template
       end
 
-      def text
+      def text(options={})
         result = []
         result << ( preambel ? preambel : self.class.preambel )
-        result << @text
+        result << Erubis::Eruby.new(@template).evaluate(options)
         result << ( postscript ? postscript : self.class.postscript )
 
         result.join
