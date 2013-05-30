@@ -15,11 +15,8 @@ module PuppetGenerator
     attr_reader :meta
     attr_accessor :body, :logger
 
-    define_type :file
-    define_type :package
-    define_type :user
-    define_type :module
     define_type :error_message
+    define_type :none
 
     def initialize(options={},type=:none)
       @type = type

@@ -28,6 +28,12 @@ require 'puppet_generator/output_directory'
 require 'puppet_generator/output_file'
 require 'puppet_generator/output_stdout'
 
+require 'puppet_generator/setup/default'
+require 'puppet_generator/setup/file'
+require 'puppet_generator/setup/package'
+require 'puppet_generator/setup/user'
+require 'puppet_generator/setup/module'
+
 require 'puppet_generator/puppet_package'
 require 'puppet_generator/puppet_file'
 require 'puppet_generator/puppet_user'

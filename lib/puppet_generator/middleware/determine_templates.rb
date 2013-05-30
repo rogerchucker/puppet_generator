@@ -6,29 +6,6 @@ module PuppetGenerator
       end
 
       def call(task)
-        task.meta[:templates]     = {}
-
-        #default filter
-        Models::ImportFilter.create :plain, Filter::Plain.new
-        Models::ImportFilter.create :yaml, Filter::Yaml.new
-
-        #default action
-        Models::Action.create :none, Actions::None.new
-
-        if task.is_file_task?
-          Models::Template.create :class, Templates::ClassFile
-          Models::Template.create :single, Templates::SingleFile
-          Models::ImportFilter.create :filesystem_attributes, Filter::FilesystemAttributes.new
-          Models::Action.create :copy_files_to_module, Actions::CopyFilesToModuleDirectory.new
-        elsif task.is_package_task?
-          Models::Template.create :class, Templates::ClassPackage
-          Models::Template.create :single, Templates::SinglePackage
-        elsif task.is_user_task?
-          Models::Template.create :class, Templates::ClassUser
-          Models::Template.create :single, Templates::SingleUser
-          Models::ImportFilter.create :passwd, Filter::Passwd.new
-        end
-
         Models::ErrorMessage.preambel = "Sorry, but I can't fullfill your request. "
         Models::ErrorMessage.postscript = "\n\n=================\nPlease read the manual on \"http://github.com/maxmeyer/puppet_generator\" for more information on how to use the script."
 
