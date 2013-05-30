@@ -36,5 +36,9 @@ module PuppetGenerator
     #raised if one tries to delete an instance which
     #does not exist
     class InstanceNotFound < InternalError; end
+    
+    #raised if one tries to use an unknown error
+    #message
+    class UnknownErrorMessage < InternalError; end
   end
 end
