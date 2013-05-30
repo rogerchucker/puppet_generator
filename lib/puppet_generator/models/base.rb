@@ -21,8 +21,12 @@ module PuppetGenerator
           i
         end
 
-        def create( *args )
-          register( new( *args ) )
+        def create( *args, &block )
+          if block_given?
+            register( new( *args, &block ) )
+          else
+            register( new( *args ) )
+          end
         end
 
         def find( val )

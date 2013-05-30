@@ -7,9 +7,9 @@ module PuppetGenerator
         attr_accessor :preambel, :postscript
       end
 
-      def initialize(name, text)
+      def initialize(name, &block)
         super(name)
-        @text = text
+        @text = block.call
       end
 
       def text
