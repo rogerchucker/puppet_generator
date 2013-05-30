@@ -12,7 +12,6 @@ module PuppetGenerator
         Models::Template.create :class, Templates::ClassPackage
         Models::Template.create :single, Templates::SinglePackage
       end
-
     end
   end
 end

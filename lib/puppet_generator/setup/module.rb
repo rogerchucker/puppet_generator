@@ -1,12 +1,10 @@
 module PuppetGenerator
   module Setup
-    class Module < Default
+    class Module < Bare
 
       def initialize(options)
         super
       end
-
-      def setup_environment; end
 
     end
   end

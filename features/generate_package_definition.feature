@@ -184,3 +184,12 @@ Feature: Generate package definitions
     When I run `ppgen package --source input.yml --destination file:out.txt --import-filter yaml`
     Then the exit status should be 5
     And the stderr should contain "The input is no YAML valid for this use case"
+
+  Scenario: Unknown import filter
+    Given a file named "input.txt" with:
+    """
+    asdf
+    """
+    When I run `ppgen file --import-filter asfd`
+    Then the exit status should be 4
+    And the stderr should contain "There's no import filter \"asfd\""

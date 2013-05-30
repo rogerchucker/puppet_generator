@@ -1,20 +1,17 @@
 module PuppetGenerator
   module Setup
-    class Default
+    class Default < Bare
 
       def initialize(options)
-        @task = Task.new(options)
+        super
       end
 
       def setup_environment
-        Models::ImportFilter.create :plain, Filter::Plain.new
-        Models::ImportFilter.create :yaml, Filter::Yaml.new
+        super
 
         Models::Action.create :none, Actions::None.new
-      end
-
-      def create_task
-        @task
+        Models::ImportFilter.create :plain, Filter::Plain.new
+        Models::ImportFilter.create :yaml, Filter::Yaml.new
       end
 
     end

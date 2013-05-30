@@ -21,8 +21,12 @@ module PuppetGenerator
           i
         end
 
-        def create( *args )
-          register( new( *args ) )
+        def create( *args, &block )
+          if block_given?
+            register( new( *args, &block ) )
+          else
+            register( new( *args ) )
+          end
         end
 
         def find( val )
@@ -34,7 +38,7 @@ module PuppetGenerator
             @instances = Set.new
           else
             i = find( val.to_s.to_sym )
-            raise Exceptions::InternalError unless i
+            raise Exceptions::InstanceNotFound unless i
             @instances.delete i
 
             i

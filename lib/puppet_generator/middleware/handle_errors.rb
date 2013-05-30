@@ -14,19 +14,21 @@ module PuppetGenerator
         begin
           @app.call(task)
         rescue PuppetGenerator::Exceptions::InvalidSource
-          exit_with_error 1
+          exit_with_error :invalid_source, source: task.meta[:source]
         rescue PuppetGenerator::Exceptions::InvalidOutputChannel
-          exit_with_error 2
+          exit_with_error :invalid_output_channel
         rescue PuppetGenerator::Exceptions::EmptySource
-          exit_with_error 3
+          exit_with_error :empty_source, source: task.meta[:source]
         rescue PuppetGenerator::Exceptions::UnknownImportFilter
-          exit_with_error 4
+          exit_with_error :unknown_import_filter, requested_import_filter: task.meta[:requested_import_filter], 
+                                                  available_import_filter: Models::ImportFilter.all_names_as_string
         rescue PuppetGenerator::Exceptions::InvalidYamlInput
-          exit_with_error 5
+          exit_with_error :invalid_yaml_input
         rescue PuppetGenerator::Exceptions::InvalidPasswdInput
-          exit_with_error 6
+          exit_with_error :invalid_passwd_input
         rescue PuppetGenerator::Exceptions::UnknownAction
-          exit_with_error 7
+          exit_with_error :unknown_action, requested_action: task.meta[:requested_action], 
+                                           available_actions: Models::Action.all_names_as_string
         end
       end
 
@@ -34,9 +36,12 @@ module PuppetGenerator
 
       attr_reader :task
 
-      def exit_with_error(code)
-        task.logger.fatal Models::ErrorMessage.find(code).text
-        exit code
+      def exit_with_error(name, parameter={})
+        msg = Models::ErrorMessage.find(name)
+        raise Exceptions::UnknownErrorMessage unless msg
+
+        task.logger.fatal msg.text(parameter)
+        exit msg.code
       end
 
       def postscript

@@ -2,20 +2,22 @@ module PuppetGenerator
   module Models
     class ErrorMessage < Base
 
-      attr_accessor :preambel, :postscript
+      attr_accessor :preambel, :postscript, :code
       class << self
         attr_accessor :preambel, :postscript
       end
 
-      def initialize(name, text)
+      def initialize(name, code, template)
         super(name)
-        @text = text
+
+        @code = code
+        @template = template
       end
 
-      def text
+      def text(options={})
         result = []
         result << ( preambel ? preambel : self.class.preambel )
-        result << @text
+        result << Erubis::Eruby.new(@template).evaluate(options)
         result << ( postscript ? postscript : self.class.postscript )
 
         result.join
