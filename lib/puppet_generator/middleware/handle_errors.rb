@@ -38,6 +38,8 @@ module PuppetGenerator
 
       def exit_with_error(name, parameter={})
         msg = Models::ErrorMessage.find(name)
+        raise Exceptions::UnknownErrorMessage unless msg
+
         task.logger.fatal msg.text(parameter)
         exit msg.code
       end
