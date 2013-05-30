@@ -32,5 +32,9 @@ module PuppetGenerator
     
     #raised if an error happened during copying files
     class ErrorDuringCopyFiles < Exception; end
+
+    #raised if one tries to delete an instance which
+    #does not exist
+    class InstanceNotFound < InternalError; end
   end
 end

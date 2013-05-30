@@ -34,7 +34,7 @@ module PuppetGenerator
             @instances = Set.new
           else
             i = find( val.to_s.to_sym )
-            raise Exceptions::InternalError unless i
+            raise Exceptions::InstanceNotFound unless i
             @instances.delete i
 
             i
