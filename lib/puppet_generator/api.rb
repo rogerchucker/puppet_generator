@@ -41,7 +41,8 @@ module PuppetGenerator
     end
 
     def generate_user_definition(options)
-      task = Task.new(options, :user)
+      s = Setup::User.new(options)
+      s.setup_environment
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
@@ -55,7 +56,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::CreateOutput
       end
 
-      stack.call(task)
+      stack.call(s.create_task)
     end
 
     def generate_module(options)

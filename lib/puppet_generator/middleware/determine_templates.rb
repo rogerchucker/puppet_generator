@@ -6,17 +6,6 @@ module PuppetGenerator
       end
 
       def call(task)
-        Models::ImportFilter.create :plain, Filter::Plain.new
-        Models::ImportFilter.create :yaml, Filter::Yaml.new
-
-        Models::Action.create :none, Actions::None.new
-
-        if task.is_user_task?
-          Models::Template.create :class, Templates::ClassUser
-          Models::Template.create :single, Templates::SingleUser
-          Models::ImportFilter.create :passwd, Filter::Passwd.new
-        end
-
         Models::ErrorMessage.preambel = "Sorry, but I can't fullfill your request. "
         Models::ErrorMessage.postscript = "\n\n=================\nPlease read the manual on \"http://github.com/maxmeyer/puppet_generator\" for more information on how to use the script."
 
