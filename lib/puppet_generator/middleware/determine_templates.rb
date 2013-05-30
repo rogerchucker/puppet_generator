@@ -11,10 +11,7 @@ module PuppetGenerator
 
         Models::Action.create :none, Actions::None.new
 
-        if task.is_package_task?
-          Models::Template.create :class, Templates::ClassPackage
-          Models::Template.create :single, Templates::SinglePackage
-        elsif task.is_user_task?
+        if task.is_user_task?
           Models::Template.create :class, Templates::ClassUser
           Models::Template.create :single, Templates::SingleUser
           Models::ImportFilter.create :passwd, Filter::Passwd.new

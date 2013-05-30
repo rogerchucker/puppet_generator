@@ -2,7 +2,8 @@ module PuppetGenerator
   class Api
 
     def generate_package_definition(options)
-      task = Task.new(options, :package)
+      s = Setup::Package.new(options)
+      s.setup_environment
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
@@ -16,14 +17,13 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::CreateOutput
       end
 
-      stack.call(task)
+      stack.call(s.create_task)
     end
 
     def generate_file_definition(options)
 
       s = Setup::File.new(options)
       s.setup_environment
-
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
