@@ -2,13 +2,15 @@ module PuppetGenerator
   module Models
     class ErrorMessage < Base
 
-      attr_accessor :preambel, :postscript
+      attr_accessor :preambel, :postscript, :code
       class << self
         attr_accessor :preambel, :postscript
       end
 
-      def initialize(name, template)
+      def initialize(name, code, template)
         super(name)
+
+        @code = code
         @template = template
       end
 
