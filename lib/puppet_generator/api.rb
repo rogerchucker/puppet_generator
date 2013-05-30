@@ -60,7 +60,8 @@ module PuppetGenerator
     end
 
     def generate_module(options)
-      task = Task.new(options, :module)
+      s = Setup::Module.new(options)
+      s.setup_environment
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
@@ -69,7 +70,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::CreateModuleDirectories
       end
 
-      stack.call(task)
+      stack.call(s.create_task)
     end
 
     def output_error_messages(options)
