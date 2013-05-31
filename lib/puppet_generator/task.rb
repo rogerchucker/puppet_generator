@@ -30,12 +30,22 @@ module PuppetGenerator
       @meta[:class]         = options[:class]
       @meta[:requested_import_filter] = options[:import_filter]
       @meta[:requested_action]        = options[:action]
-      @meta[:mode]                    = options[:debug] ? :debug : :normal
+      @meta[:mode]                    = log_level(options)
 
       set_task_type_to @type
     end
 
     private
+
+    def log_level(options)
+      if options[:silent]
+        return :silent
+      elsif options[:debug]
+        return :debug
+      else
+        return :info
+      end
+    end
 
     def set_task_type_to(type)
       self.public_send "is_#{type}_task".to_sym

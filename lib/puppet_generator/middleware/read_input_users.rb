@@ -9,7 +9,7 @@ module PuppetGenerator
       end
 
       def call(task)
-        task.logger.debug(self.class.name){ "read input for users" }
+        task.logger.info(self.class.name){ "Read data from input \"#{task.meta[:source]}\"." }
 
         if is_stdin? task.meta[:source]
           task.body = PuppetGenerator::InputStdIn.new.lines
@@ -19,7 +19,7 @@ module PuppetGenerator
           raise PuppetGenerator::Exceptions::InvalidSource
         end
 
-        task.logger.debug(self.class.name) { "count input lines: #{task.body.size}" }
+        task.logger.debug(self.class.name) { "Count input lines: #{task.body.size}" }
 
         @app.call(task)
       end

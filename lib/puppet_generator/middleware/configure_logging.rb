@@ -6,21 +6,18 @@ module PuppetGenerator
       end
 
       def call(task)
-        task.logger = Logger.new($stderr)
+        task.logger = PuppetGenerator::Logger.new
 
-        if task.meta[:mode] == :debug
-          task.logger.level = Logger::DEBUG
-          task.logger.formatter = proc { |severity, datetime, progname , msg|
-                                         "%s %s %s: %s\n" % [ datetime, severity, progname, msg ]
-          }
+        case task.meta[:mode]
+        when :debug
+          task.logger.mode = :debug
+        when :silent
+          task.logger.mode = :silent
         else
-          task.logger.level = Logger::WARN
-          task.logger.formatter = proc { |severity, _, _, msg|
-            "%s: %s\n\n" % [ bold_red(severity), msg ]
-          }
+          task.logger.mode = :info
         end
 
-        task.logger.debug(self.class.name){ "configure logging" }
+        task.logger.debug(self.class.name){ "Logging is configured with mode \"#{task.meta[:mode]}\"." }
 
         @app.call(task)
       end
