@@ -1,4 +1,4 @@
 #main PuppetGenerator
 module PuppetGenerator
-VERSION = ''
+VERSION = '03.1'
 end
