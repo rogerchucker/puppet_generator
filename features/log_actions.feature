@@ -1,4 +1,4 @@
-Feature: Debug information
+Feature: Logging
 
   As a software developer
   I need more feedback during development
@@ -59,3 +59,12 @@ Feature: Debug information
     PuppetGenerator::Middleware::CreateOutput: render template for channel "dir" and sink "out.d"
     """
 
+  Scenario: Silent action
+    Given a file named "input.txt" with:
+    """
+    asdf
+    """
+    When I successfully run `ppgen file --silent`
+    Then the output should contain
+    """
+    """
