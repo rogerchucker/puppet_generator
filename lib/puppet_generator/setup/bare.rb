@@ -22,7 +22,6 @@ module PuppetGenerator
         Models::ErrorMessage.create :invalid_passwd_input,   6, "The input is no passwd file valid for this use case."
         Models::ErrorMessage.create :unknown_action,  7, "There's no action \"<%= @requested_action %>\". Available actions: <%= @available_actions %>."
       end
-
     end
   end
 end

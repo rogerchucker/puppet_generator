@@ -64,12 +64,12 @@ require 'puppet_generator/middleware/read_input_packages'
 require 'puppet_generator/middleware/entry_to_package'
 require 'puppet_generator/middleware/entry_to_user'
 require 'puppet_generator/middleware/entry_to_file'
-require 'puppet_generator/middleware/determine_templates'
 require 'puppet_generator/middleware/create_output'
 require 'puppet_generator/middleware/configure_logging'
 require 'puppet_generator/middleware/filter_imported_data'
 require 'puppet_generator/middleware/create_module_directories'
 require 'puppet_generator/middleware/execute_actions'
+require 'puppet_generator/middleware/output_debug_information_for_models'
 require 'puppet_generator/api'
 
 

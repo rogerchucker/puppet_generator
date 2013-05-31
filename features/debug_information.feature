@@ -16,15 +16,15 @@ Feature: Debug information
     """
     Then the stderr should contain:
     """
-    PuppetGenerator::Middleware::DetermineTemplates: available templates: class, single
+    PuppetGenerator::Middleware::OutputDebugInformationForModels: available templates: class, single
     """
     Then the stderr should contain:
     """
-    PuppetGenerator::Middleware::DetermineTemplates: available filter: plain, yaml, filesystem_attributes
+    PuppetGenerator::Middleware::OutputDebugInformationForModels: available filter: plain, yaml, filesystem_attributes
     """
     Then the stderr should contain:
     """
-    PuppetGenerator::Middleware::DetermineTemplates: available actions: none, copy_files_to_module
+    PuppetGenerator::Middleware::OutputDebugInformationForModels: available actions: none, copy_files_to_module
     """
     Then the stderr should contain:
     """

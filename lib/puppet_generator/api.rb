@@ -7,7 +7,7 @@ module PuppetGenerator
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
-        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInputPackages
         use PuppetGenerator::Middleware::CheckForEmptySource
@@ -27,7 +27,7 @@ module PuppetGenerator
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
-        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInputFiles
         use PuppetGenerator::Middleware::CheckForEmptySource
@@ -46,7 +46,7 @@ module PuppetGenerator
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
-        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInputPackages
         use PuppetGenerator::Middleware::CheckForEmptySource
@@ -65,7 +65,7 @@ module PuppetGenerator
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
-        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::CreateModuleDirectories
       end
@@ -78,7 +78,7 @@ module PuppetGenerator
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::ConfigureLogging
-        use PuppetGenerator::Middleware::DetermineTemplates
+        use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::CreateOutput
       end
