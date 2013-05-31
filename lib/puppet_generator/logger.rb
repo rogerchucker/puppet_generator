@@ -5,7 +5,7 @@ end
 module PuppetGenerator
   class Logger
 
-    extend Forwardable
+    extend ::Forwardable
     def_delegators :@logger, :fatal, :warn, :debug, :info, :error, :unknown
 
     attr_reader :mode
@@ -45,12 +45,11 @@ module PuppetGenerator
     end
 
     def info_msg(msg)
-      #ANSI.green(msg)
-      ANSI.black(msg)
+      msg
     end
 
     def debug_msg(msg)
-      ANSI.black(msg)
+      msg
     end
   end
 end

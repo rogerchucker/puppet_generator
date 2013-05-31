@@ -8,7 +8,7 @@ module PuppetGenerator
       def call(t)
         @task = t
 
-        task.logger.debug(self.class.name){ "Waiting for errors to occure. ;-)" }
+        PuppetGenerator.logger.debug(self.class.name){ "Waiting for errors to occure. ;-)" }
 
         begin
           @app.call(task)
@@ -39,7 +39,7 @@ module PuppetGenerator
         msg = Models::ErrorMessage.find(name)
         raise Exceptions::UnknownErrorMessage unless msg
 
-        task.logger.fatal msg.text(parameter)
+        PuppetGenerator.logger.fatal msg.text(parameter)
         exit msg.code
       end
 

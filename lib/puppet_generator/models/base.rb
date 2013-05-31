@@ -4,7 +4,7 @@ module PuppetGenerator
 
       include Comparable
 
-      @instances = Set.new
+      @instances = ::Set.new
 
       attr_reader :name
 

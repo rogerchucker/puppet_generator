@@ -7,7 +7,7 @@ module PuppetGenerator
       end
 
       def call(task)
-        task.logger.info(self.class.name){ "Execute action \"#{task.meta[:requested_action]}\" on output." }
+        PuppetGenerator.logger.debug(self.class.name){ "Execute action \"#{task.meta[:requested_action]}\" on output." }
 
         active_action = Models::Action.find task.meta[:requested_action]
         raise Exceptions::UnknownAction unless active_action

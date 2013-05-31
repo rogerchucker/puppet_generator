@@ -8,7 +8,9 @@ require 'ansi'
 require 'etc'
 require 'psych'
 require 'fileutils'
-require 'hirb'
+#require 'hirb'
+require 'forwardable'
+require 'set'
 #require 'active_support/core_ext/object/blank'
 
 require 'puppet_generator/version'
@@ -75,4 +77,7 @@ require 'puppet_generator/api'
 
 
 module PuppetGenerator
+  def self.logger
+    @logger ||= Logger.new
+  end
 end
