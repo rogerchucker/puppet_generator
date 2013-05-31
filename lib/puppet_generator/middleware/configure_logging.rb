@@ -14,7 +14,7 @@ module PuppetGenerator
         when :silent
           task.logger.mode = :silent
         else
-          task.logger.mode = :default
+          task.logger.mode = :info
         end
 
         task.logger.debug(self.class.name){ "Logging is configured with mode \"#{task.meta[:mode]}\"." }

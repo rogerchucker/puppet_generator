@@ -25,6 +25,11 @@ module PuppetGenerator
         }
       when :silent
         @logger.level = ::Logger::SILENT
+      when :info
+        @logger.level = ::Logger::INFO
+        @logger.formatter = proc { |severity, datetime, _, msg|
+          info_msg( "%s %s: %s\n" % [ datetime, severity, msg ] )
+        }
       else
         @logger.level = ::Logger::INFO
         @logger.formatter = proc { |severity, datetime, _, msg|
@@ -41,11 +46,11 @@ module PuppetGenerator
 
     def info_msg(msg)
       #ANSI.green(msg)
-      ANSI.white(msg)
+      ANSI.black(msg)
     end
 
     def debug_msg(msg)
-      ANSI.white(msg)
+      ANSI.black(msg)
     end
   end
 end
