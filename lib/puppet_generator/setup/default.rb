@@ -9,8 +9,8 @@ module PuppetGenerator
       def setup_environment
         super
 
-        Models::Action.create :none, Actions::None.new
-        Models::ImportFilter.create :plain, Filter::Plain.new
+        Models::Action.create :null, Actions::Null.new
+        Models::ImportFilter.create :null, Filter::Null.new
         Models::ImportFilter.create :yaml, Filter::Yaml.new
       end
 

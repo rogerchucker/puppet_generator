@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Actions
-    class None
+    class Null
       def run(task)
         task.body
       end

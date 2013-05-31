@@ -12,9 +12,9 @@ class Default < Thor
   class_option :silent , type: :boolean, default: false, desc: 'disable logging'
 
   @source_option = { type: :string, default: 'input.txt', desc: 'enter the source which should be used to generate the puppet output' }
-  @import_filter_option = { type: :string, default: 'plain', desc: 'make it possible to pipe structured data into command' }
+  @import_filter_option = { type: :string, default: 'null', desc: 'make it possible to pipe structured data into command' }
   @destination_option = { type: :string, default: 'dir:out.d', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"' }
-  @action_option = { type: :string, default: 'none', desc: 'what action should be run after filtering the input' }
+  @action_option = { type: :string, default: 'null', desc: 'what action should be run after filtering the input' }
 
   method_option :source , @source_option
   method_option :import_filter , @import_filter_option

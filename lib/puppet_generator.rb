@@ -49,12 +49,12 @@ require 'puppet_generator/templates/single_file'
 require 'puppet_generator/templates/class_user'
 require 'puppet_generator/templates/single_user'
 
-require 'puppet_generator/filter/plain'
+require 'puppet_generator/filter/null'
 require 'puppet_generator/filter/passwd'
 require 'puppet_generator/filter/filesystem_attributes'
 require 'puppet_generator/filter/yaml'
 
-require 'puppet_generator/actions/none'
+require 'puppet_generator/actions/null'
 require 'puppet_generator/actions/copy_files_to_module_directory'
 
 require 'puppet_generator/definition'
