@@ -13,7 +13,7 @@ module PuppetGenerator
     end
 
     attr_reader :meta
-    attr_accessor :body, :logger
+    attr_accessor :body
 
     define_type :error_message
     define_type :none
@@ -22,7 +22,6 @@ module PuppetGenerator
       @type = type
       @meta = {}
       @body = nil
-      @logger = nil
 
       @meta[:source]        = options[:source] 
       @meta[:destination]   = options[:destination]

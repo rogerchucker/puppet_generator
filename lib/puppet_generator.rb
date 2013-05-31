@@ -75,4 +75,7 @@ require 'puppet_generator/api'
 
 
 module PuppetGenerator
+  def self.logger
+    @logger ||= Logger.new
+  end
 end

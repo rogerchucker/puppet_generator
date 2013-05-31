@@ -33,7 +33,7 @@ class Default < Thor
   def file
     PuppetGenerator::Api.new.generate_file_definition(options)
   end
-  
+
   method_option :source , @source_option
   method_option :import_filter , @import_filter_option
   method_option :destination , @destination_option
@@ -47,6 +47,7 @@ class Default < Thor
   def module
     PuppetGenerator::Api.new.generate_module(options)
   end
+
 end
 
 Default.start

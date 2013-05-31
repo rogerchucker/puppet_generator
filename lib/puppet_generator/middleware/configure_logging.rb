@@ -6,18 +6,16 @@ module PuppetGenerator
       end
 
       def call(task)
-        task.logger = PuppetGenerator::Logger.new
-
         case task.meta[:mode]
         when :debug
-          task.logger.mode = :debug
+          PuppetGenerator.logger.mode = :debug
         when :silent
-          task.logger.mode = :silent
+          PuppetGenerator.logger.mode = :silent
         else
-          task.logger.mode = :info
+          PuppetGenerator.logger.mode = :info
         end
 
-        task.logger.debug(self.class.name){ "Logging is configured with mode \"#{task.meta[:mode]}\"." }
+        PuppetGenerator.logger.debug(self.class.name){ "Logging is configured with mode \"#{PuppetGenerator.logger.mode}\"." }
 
         @app.call(task)
       end
