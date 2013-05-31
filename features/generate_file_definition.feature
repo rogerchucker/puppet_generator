@@ -234,3 +234,26 @@ Feature: Generate file definitions
     """
       mode   => '100644',
     """
+
+  Scenario: Copy files afterwards
+    Given a directory named "testdir"
+    And a file named "testdir/file1" with:
+    """
+    asdf
+    """
+    And an empty file named "testdir/file2"
+    And an empty file named "testdir/file3"
+    When I successfully run `ppgen module`
+    And I successfully run `ppgen file --source testdir --action copy_files_to_module`
+    Then a directory named "mymodule" should exist
+    And a directory named "mymodule/files/testdir" should exist
+    And the file "mymodule/files/testdir/file1" should contain:
+    """
+    asdf
+    """
+
+  Scenario: Fails if wrong action is chosen
+    Given a directory named "testdir"
+    When I run `ppgen file --source testdir --action unknown_action`
+    Then the exit status should be 7
+    And the stderr should contain "unknown_action"

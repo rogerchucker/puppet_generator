@@ -20,10 +20,25 @@ module PuppetGenerator
     #requested by the user
     class UnknownImportFilter < Exception; end
     
+    #raised if an unknown action was
+    #requested by the user
+    class UnknownAction < Exception; end
+    
     #raised if an error happened during decoding of yaml
     class InvalidYamlInput < Exception; end
-    #
+    
     #raised if an error happened during decoding of passwd
     class InvalidPasswdInput < Exception; end
+    
+    #raised if an error happened during copying files
+    class ErrorDuringCopyFiles < Exception; end
+
+    #raised if one tries to delete an instance which
+    #does not exist
+    class InstanceNotFound < InternalError; end
+    
+    #raised if one tries to use an unknown error
+    #message
+    class UnknownErrorMessage < InternalError; end
   end
 end

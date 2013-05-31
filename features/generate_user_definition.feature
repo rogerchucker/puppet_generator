@@ -15,6 +15,7 @@ Feature: Generate user definitions
     class mymodule::asdf {
       user {'asdf':
         ensure     => present,
+        managehome => true,
       }
     }
 
@@ -34,6 +35,7 @@ Feature: Generate user definitions
     class mymodule::asdf {
       user {'asdf':
         ensure     => present,
+        managehome => true,
       }
     }
 
@@ -51,6 +53,7 @@ Feature: Generate user definitions
     class mymodule::asdf {
       user {'asdf':
         ensure     => present,
+        managehome => true,
       }
     }
 
@@ -60,6 +63,7 @@ Feature: Generate user definitions
     class mymodule::test123 {
       user {'test123':
         ensure     => present,
+        managehome => true,
       }
     }
 
@@ -76,6 +80,7 @@ Feature: Generate user definitions
     class string1::string2::asdf {
       user {'asdf':
         ensure     => present,
+        managehome => true,
       }
     }
 
@@ -93,9 +98,11 @@ Feature: Generate user definitions
     class mymodule::myclass {
       user {'asdf':
         ensure     => present,
+        managehome => true,
       }
       user {'test123':
         ensure     => present,
+        managehome => true,
       }
     }
 
@@ -112,6 +119,7 @@ Feature: Generate user definitions
     class mymodule::asdf {
       user {'asdf':
         ensure     => present,
+        managehome => true,
       }
     }
 
@@ -129,9 +137,11 @@ Feature: Generate user definitions
     class mymodule::test {
       user {'asdf':
         ensure     => present,
+        managehome => true,
       }
       user {'test123':
         ensure     => present,
+        managehome => true,
       }
     }
 
@@ -149,16 +159,18 @@ Feature: Generate user definitions
     class mymodule::myclass {
       user {'root':
         ensure     => present,
+        managehome => true,
         uid        => '0',
         gid        => '0',
-        homedir    => '/root',
+        home       => '/root',
         shell      => '/bin/bash',
       }
       user {'mail':
         ensure     => present,
+        managehome => true,
         uid        => '8',
         gid        => '12',
-        homedir    => '/var/spool/mail',
+        home       => '/var/spool/mail',
         shell      => '/bin/false',
       }
     }

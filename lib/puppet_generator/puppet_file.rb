@@ -10,6 +10,7 @@ module PuppetGenerator
       @owner = entry[:owner]
       @mode = entry[:mode]
       @type = entry.fetch( :type, 'file' )
+      @source = entry[:source]
     end
 
     def name
