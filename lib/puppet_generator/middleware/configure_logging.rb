@@ -7,7 +7,15 @@ module PuppetGenerator
 
       def call(task)
         task.logger = PuppetGenerator::Logger.new
-        task.logger.mode = :debug
+
+        case task.meta[:mode]
+        when :debug
+          task.logger.mode = :debug
+        when :silent
+          task.logger.mode = :silent
+        else
+          task.logger.mode = :default
+        end
 
         task.logger.debug(self.class.name){ "configure logging" }
 

@@ -65,6 +65,6 @@ Feature: Logging
     asdf
     """
     When I successfully run `ppgen file --silent`
-    Then the output should contain
+    Then the output should contain:
     """
     """

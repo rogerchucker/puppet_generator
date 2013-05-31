@@ -1,6 +1,6 @@
-#class ::Logger
-#  SILENT = 9999
-#end
+class ::Logger
+  SILENT = 9999
+end
 
 module PuppetGenerator
   class Logger
@@ -17,11 +17,14 @@ module PuppetGenerator
     def mode=(m)
       @mode = m
 
-      if @mode == :debug
+      case m
+      when :debug
         @logger.level = ::Logger::DEBUG
         @logger.formatter = proc { |severity, datetime, progname , msg|
                                    "%s %s %s: %s\n" % [ datetime, severity, progname, msg ]
         }
+      when :silent
+        @logger.level = ::Logger::SILENT
       else
         @logger.level = ::Logger::WARN
         @logger.formatter = proc { |severity, _, _, msg|

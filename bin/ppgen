@@ -9,6 +9,7 @@ class Default < Thor
   class_option :module , type: :string, default: 'mymodule', desc: 'the module prefix in puppet class name'
   class_option :class , type: :string, default: 'myclass', desc: 'the class suffix in puppet class name'
   class_option :debug , type: :boolean, default: false, desc: 'enable debug logging'
+  class_option :silent , type: :boolean, default: false, desc: 'disable logging'
 
   @source_option = { type: :string, default: 'input.txt', desc: 'enter the source which should be used to generate the puppet output' }
   @import_filter_option = { type: :string, default: 'plain', desc: 'make it possible to pipe structured data into command' }
