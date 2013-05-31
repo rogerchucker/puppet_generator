@@ -40,7 +40,8 @@ module PuppetGenerator
     end
 
     def info_msg(msg)
-      ANSI.green(msg)
+      #ANSI.green(msg)
+      ANSI.white(msg)
     end
 
     def debug_msg(msg)
