@@ -17,7 +17,7 @@ module PuppetGenerator
           task.logger.mode = :default
         end
 
-        task.logger.debug(self.class.name){ "Logging is configured with #{task.meta[:mode]}." }
+        task.logger.debug(self.class.name){ "Logging is configured with mode \"#{task.meta[:mode]}\"." }
 
         @app.call(task)
       end

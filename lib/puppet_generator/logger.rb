@@ -21,22 +21,30 @@ module PuppetGenerator
       when :debug
         @logger.level = ::Logger::DEBUG
         @logger.formatter = proc { |severity, datetime, progname , msg|
-                                   "%s %s %s: %s\n" % [ datetime, severity, progname, msg ]
+          debug_msg("%s %s %s: %s\n" % [ datetime, severity, progname, msg ])
         }
       when :silent
         @logger.level = ::Logger::SILENT
       else
-        @logger.level = ::Logger::WARN
-        @logger.formatter = proc { |severity, _, _, msg|
-          "%s: %s\n\n" % [ bold_red(severity), msg ]
+        @logger.level = ::Logger::INFO
+        @logger.formatter = proc { |severity, datetime, _, msg|
+          info_msg( "%s %s: %s\n" % [ datetime, severity, msg ] )
         }
       end
     end
 
     private
 
-    def bold_red(msg)
-      ANSI.bold(ANSI.red(msg))
+    def error_msg(msg)
+      ANSI.red(msg)
+    end
+
+    def info_msg(msg)
+      ANSI.green(msg)
+    end
+
+    def debug_msg(msg)
+      ANSI.white(msg)
     end
   end
 end

@@ -43,7 +43,7 @@ module PuppetGenerator
       elsif options[:debug]
         return :debug
       else
-        return :default
+        return :info
       end
     end
 

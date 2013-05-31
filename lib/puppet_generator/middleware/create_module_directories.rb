@@ -6,7 +6,7 @@ module PuppetGenerator
       end
 
       def call(task)
-        task.logger.info(self.class.name) { "Create the module directory for module #{module_name} at #{Dir.pwd}." }
+        task.logger.info(self.class.name) { "Create the module directory for module \"#{module_name}\" at \"#{Dir.pwd}\"." }
 
         module_name = task.meta[:module]
         module_dirs = %w[ manifests files ].collect { |d| File.join(module_name, d) }
