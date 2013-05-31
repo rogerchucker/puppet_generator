@@ -13,6 +13,7 @@ require 'hirb'
 
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'
+require 'puppet_generator/logger'
 
 require 'puppet_generator/models/base'
 require 'puppet_generator/models/error_message'

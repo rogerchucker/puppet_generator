@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleware"
   spec.add_dependency "ansi"
   spec.add_dependency "erubis"
+  spec.add_dependency "logging4hackers"
   #spec.add_dependency "activesupport"
 
   spec.add_development_dependency "bundler", "~> 1.3"
