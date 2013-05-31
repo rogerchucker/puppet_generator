@@ -5,7 +5,7 @@ end
 module PuppetGenerator
   class Logger
 
-    extend Forwardable
+    extend ::Forwardable
     def_delegators :@logger, :fatal, :warn, :debug, :info, :error, :unknown
 
     attr_reader :mode
