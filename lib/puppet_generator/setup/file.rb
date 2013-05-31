@@ -1,13 +1,15 @@
 module PuppetGenerator
   module Setup
-    class File < Default
+    class File < Bare
 
       def initialize(options)
         super
       end
 
       def setup_environment
-        super
+        DefaultErrorMessages.use
+        DefaultImportFilter.use
+        DefaultActions.use
 
         Models::Template.create :class, Templates::ClassFile
         Models::Template.create :single, Templates::SingleFile

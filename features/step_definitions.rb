@@ -3,5 +3,5 @@ Then /^I close the stdin stream$/ do
 end
 
 Before do
-  @aruba_timeout_seconds = 5
+  @aruba_timeout_seconds = 6
 end
