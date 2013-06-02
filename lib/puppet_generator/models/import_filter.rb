@@ -32,11 +32,16 @@ module PuppetGenerator
         end
 
         def load_from_filesystem
-          files = Dir.glob(filter)
+          files = Dir.glob( filter )
 
           files.each do |f| 
-            require f
-            create( name(f), f )
+            filter_name = name( f )
+
+            require require_path( filter_name )
+
+            filter_class = create_filter_class( filter_name )
+            check_filter( filter_class )
+            create( filter_name , filter_class.new )
           end
 
         end
@@ -46,11 +51,15 @@ module PuppetGenerator
         end
 
         def require_path(name)
-
+          File.join( PuppetGenerator.gem_load_path, 'filter', name.to_s )
         end
 
-        def filter_class(name)
-          name.camelcase.constantize
+        def check_filter( filter_class )
+          raise Exceptions::InvalidImportFilter , "A valid import filter needs to respond to \"convert\"." unless filter_class.new.respond_to? :convert
+        end
+
+        def create_filter_class(name)
+          "PuppetGenerator::Filter::#{name.to_s.camelcase}".constantize
         rescue
           raise Exceptions::InvalidImportFilter , "The filename needs to be snakecase and needs to be convertible to the filter class name: filename in camelcase."
         end
