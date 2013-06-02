@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Models::Action do
+  before(:each) {
+    Models::Action.clear
+  }
 
   it "returns a string of all active actions" do
     Models::Action.create(:name1, 'Text1')
