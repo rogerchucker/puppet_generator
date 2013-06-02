@@ -44,5 +44,9 @@ module PuppetGenerator
     #raised if one tries to use an unknown error
     #message
     class UnknownErrorMessage < InternalError; end
+
+    #raised if one tries to use a keyword whose use
+    #is restricted
+    class UnauthorizedUseOfKeyword < InternalError; end
   end
 end

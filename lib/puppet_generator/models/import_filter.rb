@@ -47,7 +47,14 @@ module PuppetGenerator
         end
 
         def name(path)
-          File.basename(path, '.rb').to_sym
+          name = File.basename(path, '.rb').to_sym
+          raise Exceptions::UnauthorizedUseOfKeyword if forbidden_keywords.include? name
+
+          name
+        end
+
+        def forbidden_keywords
+          [ :activated ]
         end
 
         def require_path(name)

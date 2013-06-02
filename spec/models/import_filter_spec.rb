@@ -39,6 +39,27 @@ describe Models::ImportFilter do
     }.to raise_error Exceptions::InvalidImportFilter
   end
 
+  it "an import filter uses a forbidden keywords as name" do
+    test_class = Class.new( Models::ImportFilter ) do
+      def self.filter
+        File.join( examples_dir, 'import_filter', 'forbidden_keyword.rb' )
+      end
+
+      def self.require_path(name)
+        File.join( examples_dir, 'import_filter', 'forbidden_keyword' )
+      end
+
+      def self.forbidden_keywords
+        [ :forbidden_keyword ]
+      end
+    end
+
+    expect {
+      test_class.init
+    }.to raise_error Exceptions::UnauthorizedUseOfKeyword
+  end
+
+
   it "raises an error if an import filter is invalid: missing method" do
     test_class = Class.new( Models::ImportFilter ) do
       def self.filter
