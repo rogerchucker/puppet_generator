@@ -82,4 +82,8 @@ module PuppetGenerator
   def self.logger
     @logger ||= Logger.new
   end
+
+  def self.gem_load_path
+    File.basename( __FILE__, '.rb' )
+  end
 end
