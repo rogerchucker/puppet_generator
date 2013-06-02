@@ -85,11 +85,6 @@ module PuppetGenerator
         end
       end
 
-      def initialize(name, path)
-        super(name)
-        @path = path
-      end
-
     end
   end
 end
