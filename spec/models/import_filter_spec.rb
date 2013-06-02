@@ -76,4 +76,23 @@ describe Models::ImportFilter do
     }.to raise_error Exceptions::InvalidImportFilter
   end
 
+  it "is default that all found filters are deactivated" do
+    Models::ImportFilter.init
+    all_filter = Models::ImportFilter.all
+    all_not_activated_filter = Models::ImportFilter.all.find_all {|f| f.activated? == false }
+    expect(all_filter.size).to eq(all_not_activated_filter.size)
+  end
+
+  it "activates a filter by request" do
+    Models::ImportFilter.init
+    Models::ImportFilter.activate(:yaml)
+    all_activated_filter = Models::ImportFilter.all.find_all {|f| f.activated? == true }
+
+    expect(all_filter.size).to eq(all_not_activated_filter.size)
+  end
+
+  it "finds only activated import filter" do
+    #pending
+  end
+
 end

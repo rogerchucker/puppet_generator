@@ -11,6 +11,15 @@ module PuppetGenerator
         super(name)
 
         @filter = filter
+        @activated = false
+      end
+
+      def activate
+        @activated = true
+      end
+
+      def activated?
+        @activated == true
       end
 
       class << self
@@ -21,6 +30,10 @@ module PuppetGenerator
 
         def all_names_as_string(connector=", ")
           all.map(&:name).join(connector)
+        end
+
+        def activate(name)
+          find(name).activate
         end
 
         private
