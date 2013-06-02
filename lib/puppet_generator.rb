@@ -12,6 +12,7 @@ require 'fileutils'
 require 'forwardable'
 require 'set'
 #require 'active_support/core_ext/object/blank'
+require 'active_support/core_ext/string/inflections'
 
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'

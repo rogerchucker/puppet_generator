@@ -20,6 +20,10 @@ module PuppetGenerator
     #requested by the user
     class UnknownImportFilter < Exception; end
     
+    #raised if the code which defines an import filter
+    #is malformed
+    class InvalidImportFilter < InternalError; end
+    
     #raised if an unknown action was
     #requested by the user
     class UnknownAction < Exception; end

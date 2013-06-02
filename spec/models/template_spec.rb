@@ -3,6 +3,10 @@ require 'spec_helper'
 
 describe Models::Template do
 
+  before(:each) {
+    Models::Template.clear
+  }
+
   it "returns a string of all active filters" do
     Models::Template.create(:name1, 'Text1')
     Models::Template.create(:name2, 'Text2')

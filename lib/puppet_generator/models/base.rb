@@ -15,10 +15,10 @@ module PuppetGenerator
       class << self
         #attr_accessor :instances
 
-        def register(i)
-          @instances << i
+        def register(element)
+          @instances << element
 
-          i
+          element
         end
 
         def create( *args, &block )
@@ -34,15 +34,15 @@ module PuppetGenerator
         end
 
         def delete( val )
-          if val == :all
-            @instances = Set.new
-          else
-            i = find( val.to_s.to_sym )
-            raise Exceptions::InstanceNotFound unless i
-            @instances.delete i
+          element = find( val.to_s.to_sym )
+          raise Exceptions::InstanceNotFound unless element
+          @instances.delete element
 
-            i
-          end
+          element
+        end
+
+        def clear
+          @instances = Set.new
         end
 
         def all
