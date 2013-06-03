@@ -20,11 +20,11 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
-    Available filter: null, yaml, filesystem_attributes
+    Available filter: filesystem_attributes, null, yaml
     """
     Then the stderr should contain:
     """
-    Available actions: null, copy_files_to_module
+    Available actions: copy_files_to_module_directory, null
     """
     Then the stderr should contain:
     """
