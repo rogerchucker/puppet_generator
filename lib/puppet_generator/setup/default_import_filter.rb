@@ -2,8 +2,8 @@ module PuppetGenerator
   module Setup
     module DefaultImportFilter
       def self.use
-        Models::ImportFilter.create :null, Filter::Null.new
-        Models::ImportFilter.create :yaml, Filter::Yaml.new
+        Models::ImportFilter.enable :null
+        Models::ImportFilter.enable :yaml
       end
     end
   end
