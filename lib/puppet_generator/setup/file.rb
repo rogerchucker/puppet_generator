@@ -7,14 +7,11 @@ module PuppetGenerator
       end
 
       def setup_environment
-        Models::Template.init
-        Models::ImportFilter.init
-
         DefaultErrorMessages.use
         DefaultImportFilter.use
         DefaultActions.use
 
-        Models::Action.create :copy_files_to_module, Actions::CopyFilesToModuleDirectory.new
+        Models::Action.enable :copy_files_to_module
         Models::Template.find_all(:file).collect { |t| t.enable }
         Models::ImportFilter.enable :filesystem_attributes
       end

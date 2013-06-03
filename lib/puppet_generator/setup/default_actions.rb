@@ -2,7 +2,7 @@ module PuppetGenerator
   module Setup
     module DefaultActions
       def self.use
-        Models::Action.create :null, Actions::Null.new
+        Models::Action.enable :null
       end
     end
   end

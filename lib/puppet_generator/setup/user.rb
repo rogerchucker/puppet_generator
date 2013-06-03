@@ -10,10 +10,8 @@ module PuppetGenerator
         DefaultImportFilter.use
         DefaultActions.use
 
-        Models::Template.create :class, Templates::ClassUser
-        Models::Template.create :single, Templates::SingleUser
-
-        Models::ImportFilter.create :passwd, Filter::Passwd.new
+        Models::ImportFilter.enable :passwd
+        Models::Template.find_all(:user).collect { |t| t.enable }
       end
     end
   end

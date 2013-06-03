@@ -8,12 +8,15 @@ module PuppetGenerator
       end
 
       def setup_environment
+        Models::Template.init
+        Models::ImportFilter.init
+        Models::Actions.init
+
         DefaultErrorMessages.use
         DefaultImportFilter.use
         DefaultActions.use
 
-        Models::Template.create :class, Templates::ClassPackage
-        Models::Template.create :single, Templates::SinglePackage
+        Models::Template.find_all(:package).collect { |t| t.enable }
       end
     end
   end
