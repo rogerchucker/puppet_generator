@@ -12,16 +12,17 @@ module PuppetGenerator
 
         @template_path = template_path
         @handles_one_element_only = handles_one_element_only
+        @enabled = false
       end
 
-      #activate filter
-      def activate
-        @activated = true
+      #enable filter
+      def enable
+        @enabled = false
       end
 
-      #check if filter is activated
-      def activated?(val=true)
-        @activated == val
+      #check if filter is enabled
+      def enabled?(val=true)
+        @enabled == val
       end
 
       #check if template is for one or many
@@ -41,9 +42,9 @@ module PuppetGenerator
           all.map(&:name).join(connector)
         end
 
-        #activates a specific instance
-        def activate(name)
-          find(name: name).activate
+        #enables a specific instance
+        def enable(name)
+          find(name: name).enable
         end
 
         #finds a single instance

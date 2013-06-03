@@ -76,52 +76,52 @@ describe Models::ImportFilter do
     }.to raise_error Exceptions::InvalidImportFilter
   end
 
-  it "is default that all found filters are deactivated" do
+  it "is default that all found filters are deenabled" do
     Models::ImportFilter.init
     all_filter = Models::ImportFilter.all
-    all_not_activated_filter = Models::ImportFilter.find_all(activated: false)
-    expect(all_filter.size).to eq(all_not_activated_filter.size)
+    all_not_enabled_filter = Models::ImportFilter.find_all(enabled: false)
+    expect(all_filter.size).to eq(all_not_enabled_filter.size)
   end
 
-  it "activates a filter by request" do
+  it "enables a filter by request" do
     Models::ImportFilter.init
-    Models::ImportFilter.activate(:yaml)
-    all_activated_filter = Models::ImportFilter.find_all( activated: true )
+    Models::ImportFilter.enable(:yaml)
+    all_enabled_filter = Models::ImportFilter.find_all( enabled: true )
     filter = Models::ImportFilter.find( :yaml )
 
-    expect( all_activated_filter ).to eq( [ filter ] )
+    expect( all_enabled_filter ).to eq( [ filter ] )
   end
 
   it "s find method supports a hash based syntax" do
     Models::ImportFilter.init
-    Models::ImportFilter.activate(:yaml)
+    Models::ImportFilter.enable(:yaml)
 
-    activated_filter = Models::ImportFilter.find(name: :yaml, activated: true)
-    expect(activated_filter.name).to eq(:yaml)
+    enabled_filter = Models::ImportFilter.find(name: :yaml, enabled: true)
+    expect(enabled_filter.name).to eq(:yaml)
   end
 
   it "s find method supports a symbol based syntax as well. The search string is compared against the name method." do
     Models::ImportFilter.init
-    activated_filter = Models::ImportFilter.find(:yaml)
-    expect(activated_filter.name).to eq(:yaml)
+    enabled_filter = Models::ImportFilter.find(:yaml)
+    expect(enabled_filter.name).to eq(:yaml)
 
-    activated_filter = Models::ImportFilter.find_all(:yaml)
-    expect(activated_filter.first.name).to eq(:yaml)
+    enabled_filter = Models::ImportFilter.find_all(:yaml)
+    expect(enabled_filter.first.name).to eq(:yaml)
   end
 
   it "s find method supports a string based syntax as well. The search string is compared against the name method." do
     Models::ImportFilter.init
-    activated_filter = Models::ImportFilter.find('yaml')
-    expect(activated_filter.name).to eq(:yaml)
+    enabled_filter = Models::ImportFilter.find('yaml')
+    expect(enabled_filter.name).to eq(:yaml)
 
-    activated_filter = Models::ImportFilter.find_all('yaml')
-    expect(activated_filter.first.name).to eq(:yaml)
+    enabled_filter = Models::ImportFilter.find_all('yaml')
+    expect(enabled_filter.first.name).to eq(:yaml)
   end
 
   it "raises an error if an unknown search criteria is used" do
     Models::ImportFilter.init
     expect { 
-      activated_filter = Models::ImportFilter.find(unknown: 'yaml')
+      enabled_filter = Models::ImportFilter.find(unknown: 'yaml')
     }.to raise_error Exceptions::InvalidSearchCriteria
   end
 end

@@ -19,17 +19,17 @@ module PuppetGenerator
         super(name)
 
         @filter = filter
-        @activated = false
+        @enabled = false
       end
 
-      #activate filter
-      def activate
-        @activated = true
+      #enable filter
+      def enable
+        @enabled = true
       end
 
-      #check if filter is activated
-      def activated?(val=true)
-        @activated == val
+      #check if filter is enabled
+      def enabled?(val=true)
+        @enabled == val
       end
 
       class << self
@@ -44,9 +44,9 @@ module PuppetGenerator
           all.map(&:name).join(connector)
         end
 
-        #activates a specific instance
-        def activate(name)
-          find(name: name).activate
+        #enables a specific instance
+        def enable(name)
+          find(name: name).enable
         end
 
         #finds a single instance
@@ -99,7 +99,7 @@ module PuppetGenerator
         end
 
         def forbidden_keywords
-          [ :activated ]
+          [ :enabled ]
         end
 
         def require_path(name)
