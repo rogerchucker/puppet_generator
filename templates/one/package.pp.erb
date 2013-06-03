@@ -1,0 +1,8 @@
+class <%= @package.module_name %>::<%= @package.name %> {
+  package {'<%= @package.name %>':
+    ensure   => <%= @package.version %>,
+    <% if @package.provider %>
+    provider => <%= @package.provider %>,
+    <% end %>
+  }
+}

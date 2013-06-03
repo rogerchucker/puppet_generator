@@ -1,0 +1,21 @@
+class <%= @user.module_name %>::<%= @user.name %> {
+  user {'<%= @user.name %>':
+    ensure     => present,
+    managehome => true,
+    <% if @user.provider %>
+    provider   => '<%= @user.provider %>',
+    <% end %>
+    <% if @user.userid %>
+    uid        => '<%= @user.userid %>',
+    <% end %>
+    <% if @user.groupid %>
+    gid        => '<%= @user.groupid %>',
+    <% end %>
+    <% if @user.homedir %>
+    home       => '<%= @user.homedir %>',
+    <% end %>
+    <% if @user.shell %>
+    shell      => '<%= @user.shell %>',
+    <% end %>
+  }
+}
