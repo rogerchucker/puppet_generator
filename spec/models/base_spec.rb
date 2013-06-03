@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Models::Base do
 
   before(:each) {
-    Models::Base.delete(:all)
+    Models::Base.clear
   }
 
   it "is possible to register a message" do
@@ -40,7 +40,7 @@ describe Models::Base do
     Models::Base.create('name2')
     Models::Base.create('name3')
 
-    Models::Base.delete(:all)
+    Models::Base.clear
     expect(Models::Base.all).to eq( [] )
   end
 

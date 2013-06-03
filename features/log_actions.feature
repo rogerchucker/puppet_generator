@@ -16,15 +16,15 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
-    Available templates: class, single
+    Available templates: file, file
     """
     Then the stderr should contain:
     """
-    Available filter: plain, yaml, filesystem_attributes
+    Available filter: filesystem_attributes, null, yaml
     """
     Then the stderr should contain:
     """
-    Available actions: none, copy_files_to_module
+    Available actions: copy_files_to_module_directory, null
     """
     Then the stderr should contain:
     """
@@ -44,11 +44,11 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
-    Filter the input with filter "plain"
+    Filter the input with filter "null"
     """
     Then the stderr should contain:
     """
-    Execute action "none" on output.
+    Execute action "null" on output.
     """
     Then the stderr should contain:
     """

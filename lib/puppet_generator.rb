@@ -12,6 +12,7 @@ require 'fileutils'
 require 'forwardable'
 require 'set'
 #require 'active_support/core_ext/object/blank'
+require 'active_support/core_ext/string/inflections'
 
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'
@@ -32,7 +33,9 @@ require 'puppet_generator/output_file'
 require 'puppet_generator/output_stdout'
 
 require 'puppet_generator/setup/bare'
-require 'puppet_generator/setup/default'
+require 'puppet_generator/setup/default_error_messages'
+require 'puppet_generator/setup/default_actions'
+require 'puppet_generator/setup/default_import_filter'
 require 'puppet_generator/setup/file'
 require 'puppet_generator/setup/package'
 require 'puppet_generator/setup/user'
@@ -41,21 +44,6 @@ require 'puppet_generator/setup/module'
 require 'puppet_generator/puppet_package'
 require 'puppet_generator/puppet_file'
 require 'puppet_generator/puppet_user'
-
-require 'puppet_generator/templates/class_package'
-require 'puppet_generator/templates/single_package'
-require 'puppet_generator/templates/class_file'
-require 'puppet_generator/templates/single_file'
-require 'puppet_generator/templates/class_user'
-require 'puppet_generator/templates/single_user'
-
-require 'puppet_generator/filter/plain'
-require 'puppet_generator/filter/passwd'
-require 'puppet_generator/filter/filesystem_attributes'
-require 'puppet_generator/filter/yaml'
-
-require 'puppet_generator/actions/none'
-require 'puppet_generator/actions/copy_files_to_module_directory'
 
 require 'puppet_generator/definition'
 require 'puppet_generator/task'
@@ -79,5 +67,9 @@ require 'puppet_generator/api'
 module PuppetGenerator
   def self.logger
     @logger ||= Logger.new
+  end
+
+  def self.gem_load_path
+    File.basename( __FILE__, '.rb' )
   end
 end

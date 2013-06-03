@@ -5,6 +5,13 @@ module PuppetGenerator
       attr_accessor :preambel, :postscript, :code
       class << self
         attr_accessor :preambel, :postscript
+
+        def reset
+          self.clear
+
+          self.preambel = nil
+          self.postscript = nil
+        end
       end
 
       def initialize(name, code, template)
@@ -13,6 +20,7 @@ module PuppetGenerator
         @code = code
         @template = template
       end
+
 
       def text(options={})
         result = []

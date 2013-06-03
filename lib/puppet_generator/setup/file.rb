@@ -1,18 +1,19 @@
 module PuppetGenerator
   module Setup
-    class File < Default
+    class File < Bare
 
       def initialize(options)
         super
       end
 
       def setup_environment
-        super
+        DefaultErrorMessages.use
+        DefaultImportFilter.use
+        DefaultActions.use
 
-        Models::Template.create :class, Templates::ClassFile
-        Models::Template.create :single, Templates::SingleFile
-        Models::Action.create :copy_files_to_module, Actions::CopyFilesToModuleDirectory.new
-        Models::ImportFilter.create :filesystem_attributes, Filter::FilesystemAttributes.new
+        Models::Action.enable :copy_files_to_module_directory
+        Models::Template.find_all(:file).collect { |t| t.enable }
+        Models::ImportFilter.enable :filesystem_attributes
       end
     end
   end
