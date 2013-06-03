@@ -86,20 +86,34 @@ describe Models::ImportFilter do
   it "activates a filter by request" do
     Models::ImportFilter.init
     Models::ImportFilter.activate(:yaml)
-    all_activated_filter = Models::ImportFilter.all.find_all {|f| f.activated? == true }
+    all_activated_filter = Models::ImportFilter.find_all(activated: true)
 
     expect(all_filter.size).to eq(all_not_activated_filter.size)
   end
 
-  it "find method supports a hash based syntax" do
+  it "s find method supports a hash based syntax" do
     Models::ImportFilter.init
     Models::ImportFilter.activate(:yaml)
 
     activated_filter = Models::ImportFilter.find(name: :yaml, activated: true)
     expect(activated_filter.name).to eq(:yaml)
-
-    activated_filter = Models::ImportFilter.find(activated: false)
-    expect(activated_filter.size).to eq(4)
   end
 
+  it "s find method supports a symbol based syntax as well. The search string is compared against the name method." do
+    Models::ImportFilter.init
+    activated_filter = Models::ImportFilter.find(:yaml)
+    expect(activated_filter.name).to eq(:yaml)
+
+    activated_filter = Models::ImportFilter.find_all(:yaml)
+    expect(activated_filter.first.name).to eq(:yaml)
+  end
+
+  it "s find method supports a string based syntax as well. The search string is compared against the name method." do
+    Models::ImportFilter.init
+    activated_filter = Models::ImportFilter.find('yaml')
+    expect(activated_filter.name).to eq(:yaml)
+
+    activated_filter = Models::ImportFilter.find_all('yaml')
+    expect(activated_filter.first.name).to eq(:yaml)
+  end
 end
