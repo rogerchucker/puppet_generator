@@ -244,7 +244,7 @@ Feature: Generate file definitions
     And an empty file named "testdir/file2"
     And an empty file named "testdir/file3"
     When I successfully run `ppgen module`
-    And I successfully run `ppgen file --source testdir --action copy_files_to_module`
+    And I successfully run `ppgen file --source testdir --action copy_files_to_module_directory`
     Then a directory named "mymodule" should exist
     And a directory named "mymodule/files/testdir" should exist
     And the file "mymodule/files/testdir/file1" should contain:
