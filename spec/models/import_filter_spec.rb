@@ -86,9 +86,10 @@ describe Models::ImportFilter do
   it "activates a filter by request" do
     Models::ImportFilter.init
     Models::ImportFilter.activate(:yaml)
-    all_activated_filter = Models::ImportFilter.find_all(activated: true)
+    all_activated_filter = Models::ImportFilter.find_all( activated: true )
+    filter = Models::ImportFilter.find( :yaml )
 
-    expect(all_filter.size).to eq(all_not_activated_filter.size)
+    expect( all_activated_filter ).to eq( [ filter ] )
   end
 
   it "s find method supports a hash based syntax" do
