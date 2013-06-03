@@ -15,4 +15,10 @@ describe Models::Action do
     result = Models::Action.all_names_as_string
     expect(result).to eq("name1, name2")
   end
+
+  it "finds all available actions" do
+    Models::Action.init
+    action = Models::Action.find(:null)
+    expect(action.name).to eq(:null)
+  end
 end
