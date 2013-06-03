@@ -62,7 +62,7 @@ module PuppetGenerator
 
         #return all names as string
         def all_names_as_string(connector=", ")
-          find_all(enabled: true).map(&:name).join(connector)
+          find_all(enabled: true).map(&:name).sort.join(connector)
         end
 
         #enables a specific instance
