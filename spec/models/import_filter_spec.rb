@@ -76,7 +76,7 @@ describe Models::ImportFilter do
     }.to raise_error Exceptions::InvalidImportFilter
   end
 
-  it "is default that all found filters are deenabled" do
+  it "is default that all found filters are disabled" do
     Models::ImportFilter.init
     all_filter = Models::ImportFilter.all
     all_not_enabled_filter = Models::ImportFilter.find_all(enabled: false)
