@@ -15,7 +15,7 @@ module PuppetGenerator
         DefaultActions.use
 
         Models::Action.create :copy_files_to_module, Actions::CopyFilesToModuleDirectory.new
-        Models::Template.find_all(:file).collect { |t| t.activate }
+        Models::Template.find_all(:file).collect { |t| t.enable }
         Models::ImportFilter.enable :filesystem_attributes
       end
     end

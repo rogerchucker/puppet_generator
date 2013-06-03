@@ -13,7 +13,7 @@ module PuppetGenerator
 
       #enable filter
       def enable
-        @enabled = false
+        @enabled = true
       end
 
       #check if filter is enabled
@@ -29,7 +29,13 @@ module PuppetGenerator
 
       # render the template based on files
       def render(files)
-        [ Definition.new( @name , template.evaluate( files: files ) ) ]
+
+        if handles_one_element_only?
+          return files.collect { |f| Definition.new( f.name, template.evaluate( file: f ) ) }
+        else
+          return [ Definition.new( files.first.class_name , template.evaluate( files: files ) ) ]
+        end
+
       rescue
         raise Exceptions::InvalidTemplate, "An invalid template \"#{@template_path}\" was used. Please check and correct the syntax and try again."
       end
