@@ -92,7 +92,7 @@ module PuppetGenerator
         private
 
         def filter
-          path = File.expand_path('../../../../templates', __FILE__ )
+          path = File.expand_path('../../../../templates/puppet', __FILE__ )
 
           File.join(path,'**', '*.pp.erb')
         end
