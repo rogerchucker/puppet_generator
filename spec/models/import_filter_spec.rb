@@ -116,4 +116,11 @@ describe Models::ImportFilter do
     activated_filter = Models::ImportFilter.find_all('yaml')
     expect(activated_filter.first.name).to eq(:yaml)
   end
+
+  it "raises an error if an unknown search criteria is used" do
+    Models::ImportFilter.init
+    expect { 
+      activated_filter = Models::ImportFilter.find(unknown: 'yaml')
+    }.to raise_error Exceptions::InvalidSearchCriteria
+  end
 end

@@ -48,6 +48,9 @@ module PuppetGenerator
               i.send( "#{c}?".to_sym , v )
             end
           end
+
+        rescue
+          raise Exceptions::InvalidSearchCriteria
         end
 
         private

@@ -48,5 +48,9 @@ module PuppetGenerator
     #raised if one tries to use a keyword whose use
     #is restricted
     class UnauthorizedUseOfKeyword < InternalError; end
+
+    #raised if one uses invalid search criteria
+    class InvalidSearchCriteria < InternalError; end
+
   end
 end
