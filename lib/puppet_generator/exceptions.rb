@@ -51,6 +51,9 @@ module PuppetGenerator
 
     #raised if one uses invalid search criteria
     class InvalidSearchCriteria < InternalError; end
+    
+    #raised if one uses an invalid template
+    class InvalidTemplate < InternalError; end
 
   end
 end

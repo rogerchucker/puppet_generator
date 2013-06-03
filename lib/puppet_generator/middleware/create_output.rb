@@ -15,7 +15,7 @@ module PuppetGenerator
 
         output = case channel
                  when 'file'
-                   definitions = Models::Template.find(:class).template.new( task.body ).render
+                   definitions = Models::Template.find(:class).render(task.body)
                    PuppetGenerator::OutputFile.new( sink , definitions )
                  when /directory|dir/
                    definitions = Models::Template.find(:single).template.new( task.body ).render

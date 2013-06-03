@@ -2,10 +2,6 @@ module PuppetGenerator
   module Models
     class Template < Base
 
-      #@!attribute [r] :filter
-      #   access to the filter stored in instance
-      attr_reader :template
-
       #create new instance of template model
       def initialize( name , template_path, handles_one_element_only=true )
         super(name)
@@ -30,6 +26,27 @@ module PuppetGenerator
       def handles_one_element_only?(val=true)
         @handles_one_element_only == val
       end
+
+      # render the template based on files
+      def render(files)
+        [ Definition.new( @name , template.evaluate( files: files ) ) ]
+      rescue
+        raise Exceptions::InvalidTemplate, "An invalid template \"#{@template_path}\" was used. Please check and correct the syntax and try again."
+      end
+
+      private
+
+      def template
+        Erubis::Eruby.new( template_content )
+      rescue
+        raise Exceptions::InvalidTemplate, "An invalid template \"#{@template_path}\" was used. Please check and correct the syntax and try again."
+      end
+
+      def template_content
+        File.read( @template_path )
+      end
+
+      public
 
       class << self
         #initialize model
