@@ -1,12 +1,20 @@
 module PuppetGenerator
   module Models
+    # model for import filter
     class ImportFilter < Base
 
       extend Forwardable
+
+      #@!method convert
+      #   converts an object using the convert method of 
+      #   the stored filter
       def_delegator :@filter, :convert, :convert
 
+      #@!attribute [r] :filter
+      #   access to the filter stored in instance
       attr_reader :filter
 
+      #create new instance of filter model
       def initialize( name , filter )
         super(name)
 
@@ -14,32 +22,39 @@ module PuppetGenerator
         @activated = false
       end
 
+      #activate filter
       def activate
         @activated = true
       end
 
+      #check if filter is activated
       def activated?(val=true)
         @activated == val
       end
 
       class << self
 
+        #initialize model
         def init
           load_from_filesystem
         end
 
+        #return all names as string
         def all_names_as_string(connector=", ")
           all.map(&:name).join(connector)
         end
 
+        #activates a specific instance
         def activate(name)
           find(name: name).activate
         end
 
+        #finds a single instance
         def find( criteria={} )
           find_all( criteria ).first
         end
 
+        #finds all instances
         def find_all( criteria={} )
           criteria = { name: criteria.to_sym } if criteria.kind_of? Symbol or criteria.kind_of? String
 
