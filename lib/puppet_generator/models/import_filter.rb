@@ -18,8 +18,8 @@ module PuppetGenerator
         @activated = true
       end
 
-      def activated?
-        @activated == true
+      def activated?(val=true)
+        @activated == val
       end
 
       class << self
@@ -33,7 +33,21 @@ module PuppetGenerator
         end
 
         def activate(name)
-          find(name).activate
+          find(name: name).activate
+        end
+
+        def find( criteria={} )
+          find_all( criteria ).first
+        end
+
+        def find_all( criteria={} )
+          criteria = { name: criteria.to_sym } if criteria.kind_of? Symbol or criteria.kind_of? String
+
+          @instances.find_all do |i| 
+            criteria.all? do |c,v|
+              i.send( "#{c}?".to_sym , v )
+            end
+          end
         end
 
         private

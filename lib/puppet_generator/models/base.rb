@@ -54,6 +54,10 @@ module PuppetGenerator
         @name = name.to_s.to_sym
       end
 
+      def name?(name)
+        @name == name
+      end
+
       def <=>(other)
         name <=> other.name
       end

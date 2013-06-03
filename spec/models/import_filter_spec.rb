@@ -19,7 +19,7 @@ describe Models::ImportFilter do
 
   it "finds all available filter" do
     Models::ImportFilter.init
-    filter = Models::ImportFilter.find(:yaml)
+    filter = Models::ImportFilter.find(name: :yaml)
     expect(filter.name).to eq(:yaml)
   end
 
@@ -91,8 +91,15 @@ describe Models::ImportFilter do
     expect(all_filter.size).to eq(all_not_activated_filter.size)
   end
 
-  it "finds only activated import filter" do
-    #pending
+  it "find method supports a hash based syntax" do
+    Models::ImportFilter.init
+    Models::ImportFilter.activate(:yaml)
+
+    activated_filter = Models::ImportFilter.find(name: :yaml, activated: true)
+    expect(activated_filter.name).to eq(:yaml)
+
+    activated_filter = Models::ImportFilter.find(activated: false)
+    expect(activated_filter.size).to eq(4)
   end
 
 end
