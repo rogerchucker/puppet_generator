@@ -79,7 +79,7 @@ describe Models::ImportFilter do
   it "is default that all found filters are deactivated" do
     Models::ImportFilter.init
     all_filter = Models::ImportFilter.all
-    all_not_activated_filter = Models::ImportFilter.all.find_all {|f| f.activated? == false }
+    all_not_activated_filter = Models::ImportFilter.find_all(activated: false)
     expect(all_filter.size).to eq(all_not_activated_filter.size)
   end
 
