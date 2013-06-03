@@ -7,7 +7,7 @@ module PuppetGenerator
 
         Models::Template.init
         Models::ImportFilter.init
-        Models::Actions.init
+        Models::Action.init
       end
 
       def create_task

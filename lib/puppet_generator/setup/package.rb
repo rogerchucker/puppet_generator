@@ -8,10 +8,6 @@ module PuppetGenerator
       end
 
       def setup_environment
-        Models::Template.init
-        Models::ImportFilter.init
-        Models::Actions.init
-
         DefaultErrorMessages.use
         DefaultImportFilter.use
         DefaultActions.use
