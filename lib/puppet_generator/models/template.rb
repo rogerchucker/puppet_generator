@@ -28,12 +28,12 @@ module PuppetGenerator
       end
 
       # render the template based on files
-      def render(files)
+      def render(items)
 
         if handles_one_element_only?
-          return files.collect { |f| Definition.new( f.name, template.evaluate( file: f ) ) }
+          return items.collect { |item| Definition.new( item.name, template.evaluate( item: item ) ) }
         else
-          return [ Definition.new( files.first.class_name , template.evaluate( files: files ) ) ]
+          return [ Definition.new( items.first.class_name , template.evaluate( items: items ) ) ]
         end
 
       rescue

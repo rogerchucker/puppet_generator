@@ -1,21 +1,21 @@
-class <%= @user.module_name %>::<%= @user.name %> {
-  user {'<%= @user.name %>':
+class <%= @item.module_name %>::<%= @item.name %> {
+  user {'<%= @item.name %>':
     ensure     => present,
     managehome => true,
-    <% if @user.provider %>
-    provider   => '<%= @user.provider %>',
+    <% if @item.provider %>
+    provider   => '<%= @item.provider %>',
     <% end %>
-    <% if @user.userid %>
-    uid        => '<%= @user.userid %>',
+    <% if @item.userid %>
+    uid        => '<%= @item.userid %>',
     <% end %>
-    <% if @user.groupid %>
-    gid        => '<%= @user.groupid %>',
+    <% if @item.groupid %>
+    gid        => '<%= @item.groupid %>',
     <% end %>
-    <% if @user.homedir %>
-    home       => '<%= @user.homedir %>',
+    <% if @item.homedir %>
+    home       => '<%= @item.homedir %>',
     <% end %>
-    <% if @user.shell %>
-    shell      => '<%= @user.shell %>',
+    <% if @item.shell %>
+    shell      => '<%= @item.shell %>',
     <% end %>
   }
 }

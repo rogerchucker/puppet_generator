@@ -1,14 +1,14 @@
-class <%= @file.module_name %>::<%= @file.name %> {
-  file {'<%= @file.path %>':
-    ensure => <%= @file.type %>,
-    <% if @file.source %>
-    source => '<%= @file.source %>',
+class <%= @item.module_name %>::<%= @item.name %> {
+  file {'<%= @item.path %>':
+    ensure => <%= @item.type %>,
+    <% if @item.source %>
+    source => '<%= @item.source %>',
     <% end %>
-    <% if @file.owner %>
-    owner  => '<%= @file.owner %>',
+    <% if @item.owner %>
+    owner  => '<%= @item.owner %>',
     <% end %>
-    <% if @file.mode %>
-    mode   => '<%= @file.mode %>',
+    <% if @item.mode %>
+    mode   => '<%= @item.mode %>',
     <% end %>
   }
 }

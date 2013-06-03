@@ -1,15 +1,15 @@
-class <%= @files.first.module_name %>::<%= @files.first.class_name %> {
-<% @files.each do |f| %>
-  file {'<%= f.path %>':
-    ensure => <%= f.type %>,
-    <% if f.source %>
-    source => '<%= f.source %>',
+class <%= @items.first.module_name %>::<%= @items.first.class_name %> {
+<% @items.each do |item| %>
+  file {'<%= item.path %>':
+    ensure => <%= item.type %>,
+    <% if item.source %>
+    source => '<%= item.source %>',
     <% end %>
-    <% if f.owner %>
-    owner  => '<%= f.owner %>',
+    <% if item.owner %>
+    owner  => '<%= item.owner %>',
     <% end %>
-    <% if f.mode %>
-    mode   => '<%= f.mode %>',
+    <% if item.mode %>
+    mode   => '<%= item.mode %>',
     <% end %>
   }
 <% end %>

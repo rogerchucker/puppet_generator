@@ -1,22 +1,22 @@
-class <%= @users.first.module_name %>::<%= @users.first.class_name %> {
-<% @users.each do |u| %>
-  user {'<%= u.name %>':
+class <%= @items.first.module_name %>::<%= @items.first.class_name %> {
+<% @items.each do |item| %>
+  user {'<%= item.name %>':
     ensure     => present,
     managehome => true,
-    <% if u.provider %>
-    provider   => '<%= u.provider %>',
+    <% if item.provider %>
+    provider   => '<%= item.provider %>',
     <% end %>
-    <% if u.userid %>
-    uid        => '<%= u.userid %>',
+    <% if item.userid %>
+    uid        => '<%= item.userid %>',
     <% end %>
-    <% if u.groupid %>
-    gid        => '<%= u.groupid %>',
+    <% if item.groupid %>
+    gid        => '<%= item.groupid %>',
     <% end %>
-    <% if u.homedir %>
-    home       => '<%= u.homedir %>',
+    <% if item.homedir %>
+    home       => '<%= item.homedir %>',
     <% end %>
-    <% if u.shell %>
-    shell      => '<%= u.shell %>',
+    <% if item.shell %>
+    shell      => '<%= item.shell %>',
     <% end %>
   }
 <% end %>
