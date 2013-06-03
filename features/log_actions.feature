@@ -16,7 +16,7 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
-    Available templates: class, single
+    Available templates: file, file
     """
     Then the stderr should contain:
     """
