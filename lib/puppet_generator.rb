@@ -26,9 +26,9 @@ require 'puppet_generator/models/import_filter'
 require 'puppet_generator/models/action'
 require 'puppet_generator/models/template'
 
-require 'puppet_generator/input_file'
-require 'puppet_generator/input_directory'
-require 'puppet_generator/input_stdin'
+require 'puppet_generator/importers/file'
+require 'puppet_generator/importers/directory'
+require 'puppet_generator/importers/stdin'
 
 require 'puppet_generator/output_directory'
 require 'puppet_generator/output_file'
