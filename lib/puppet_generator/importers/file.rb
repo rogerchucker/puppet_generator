@@ -4,7 +4,7 @@ module PuppetGenerator
       attr_reader :lines
 
       def initialize( filename )
-        @lines = File.open(filename).readlines.collect { |l| l.chomp }
+        @lines = ::File.open(filename).readlines.collect { |l| l.chomp }
       end
 
     end

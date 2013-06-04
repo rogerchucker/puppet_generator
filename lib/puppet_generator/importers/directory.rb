@@ -5,7 +5,7 @@ module PuppetGenerator
 
       def initialize( directory )
         @lines = []
-        Find.find( directory) { |path| @lines << path }
+        ::Find.find( directory) { |path| @lines << path }
       end
 
     end
