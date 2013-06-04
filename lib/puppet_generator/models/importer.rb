@@ -12,6 +12,7 @@ module PuppetGenerator
       #   converts an object using the convert method of 
       #   the stored filter
       def_delegator :@importer, :read, :read
+      def_delegator :@importer, :reads_from?, :reads_from?
 
       #create new instance of filter model
       def initialize( name , importer )

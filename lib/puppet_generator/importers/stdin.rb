@@ -11,6 +11,10 @@ module PuppetGenerator
         @input.readlines.collect { |l| l.strip.chomp }
       end
 
+      def reads_from?(source)
+        source == 'stdin'
+      end
+
     end
   end
 end

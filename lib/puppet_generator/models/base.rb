@@ -101,8 +101,8 @@ module PuppetGenerator
             end
           end
 
-        rescue
-          raise Exceptions::InvalidSearchCriteria
+        rescue Exception => e
+          raise Exceptions::InvalidSearchCriteria, e.message
         end
       end
 

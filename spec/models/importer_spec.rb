@@ -52,5 +52,15 @@ describe Models::Importer do
       test_class.init
     }.to raise_error Exceptions::InvalidImporter
   end
+
+  it "finds an importer for a file" do
+    Models::Importer.init
+
+    expected_result = Models::Importer.find( :file )
+    result = Models::Importer.find( reads_from: File.join(examples_dir, 'importer', 'test_file.txt' ) )
+    expect(result).to eq(expected_result)
+  end
+
+
 end
 

@@ -14,6 +14,10 @@ module PuppetGenerator
         @lines
       end
 
+      def reads_from?(source)
+        FileTest.directory? source
+      end
+
     end
   end
 end
