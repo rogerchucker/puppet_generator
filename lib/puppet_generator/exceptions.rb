@@ -57,6 +57,13 @@ module PuppetGenerator
     #raised if the code which defines an import filter
     #is malformed
     class InvalidImportFilter < InternalError; end
+    
+    #raised if the code which defines an import filter
+    #is malformed
+    class MethodNeedsToBeImplemented < InternalError; end
+    
+    #raised if one tries to use an unimplemented exception
+    class ExceptionNeedsToBeImplemented < InternalError; end
 
   end
 end

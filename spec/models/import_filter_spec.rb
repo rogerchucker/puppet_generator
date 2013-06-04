@@ -27,11 +27,12 @@ describe Models::ImportFilter do
 
   it "raises an error if an import filter is invalid: name error" do
     test_class = Class.new( Models::ImportFilter ) do
-      def class
-        ImportFilter
+
+      def self.model_name
+        "ImportFilters"
       end
 
-      def self.filter
+      def self.path_to_instances
         File.join( examples_dir, 'import_filter', 'invalid_filter_1.rb' )
       end
 
@@ -47,7 +48,11 @@ describe Models::ImportFilter do
 
   it "an import filter uses a forbidden keywords as name" do
     test_class = Class.new( Models::ImportFilter ) do
-      def self.filter
+      def self.model_name
+        "ImportFilters"
+      end
+
+      def self.path_to_instances
         File.join( examples_dir, 'import_filter', 'forbidden_keyword.rb' )
       end
 
@@ -68,7 +73,11 @@ describe Models::ImportFilter do
 
   it "raises an error if an import filter is invalid: missing method" do
     test_class = Class.new( Models::ImportFilter ) do
-      def self.filter
+      def self.model_name
+        "ImportFilters"
+      end
+
+      def self.path_to_instances
         File.join( examples_dir, 'import_filter', 'invalid_filter_2.rb' )
       end
 

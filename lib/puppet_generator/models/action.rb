@@ -4,6 +4,7 @@ module PuppetGenerator
     class Action < Base
 
       include FilesystemBasedModel
+      include ClassBasedModel
 
       extend Forwardable
 
@@ -19,20 +20,8 @@ module PuppetGenerator
         @action = action
       end
 
-      class << self
-        def load_from_filesystem
-          files = Dir.glob( path_to_instances )
-
-          files.each do |f| 
-            action_name = name( f )
-
-            require require_path( action_name )
-
-            action_class = build_class_constant( action_name )
-            check_klass( action_class, :run )
-            create( action_name , action_class.new )
-          end
-        end
+      def self.check_method
+        :run
       end
     end
   end

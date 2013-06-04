@@ -1,5 +1,5 @@
 module PuppetGenerator
-  module Filter
+  module ImportFilters
     class Yaml
       def convert(lines)
         hash_keys_from_str_to_sym(Psych.load(lines.join("\n")))

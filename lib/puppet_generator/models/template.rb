@@ -49,17 +49,21 @@ module PuppetGenerator
 
         private
 
-        def path_to_instances
-          path = File.expand_path('../../../../templates/puppet', __FILE__ )
+        def suffix
+          '.pp.erb'
+        end
 
-          File.join(path,'**', '*.pp.erb')
+        def path_to_instances
+          path = File.expand_path("../../../../#{model_name.downcase.pluralize}/puppet", __FILE__ )
+
+          File.join(path,'**', "*#{ suffix }")
         end
 
         def load_from_filesystem
           files = Dir.glob( path_to_instances )
 
           files.each do |f| 
-            create( name( f , '.pp.erb' ) , f, template_is_for_one_element_only?( f ) )
+            create( name( f ) , f, template_is_for_one_element_only?( f ) )
           end
 
         end
