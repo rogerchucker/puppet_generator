@@ -2,12 +2,8 @@ module PuppetGenerator
   module Importers
     class File
 
-      def initialize( filename='' )
-        @filename = filename
-      end
-
-      def read
-        @lines = ::File.open(@filename).readlines.collect { |l| l.chomp }
+      def read(filename)
+        ::File.open(filename).readlines.collect { |l| l.chomp }
       end
 
       def reads_from?(source)

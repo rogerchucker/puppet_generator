@@ -77,6 +77,13 @@ describe Models::Importer do
     expect(result).to eq(expected_result)
   end
 
+  it "reads from file" do
+    Models::Importer.init
+
+    importer = Models::Importer.find( :file )
+    result = importer.read(File.join(examples_dir, 'importer', 'test_file.txt' ))
+    expect(result).to eq([ 'asdf' ] )
+  end
 
 end
 

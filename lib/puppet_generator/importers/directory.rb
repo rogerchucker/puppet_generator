@@ -3,15 +3,11 @@ module PuppetGenerator
     class Directory
       attr_reader :lines
 
-      def initialize( directory='' )
-        @directory = directory
-        @lines = []
-      end
+      def read( directory )
+        lines = []
+        ::Find.find( directory) { |path| lines << path }
 
-      def read
-        ::Find.find( directory) { |path| @lines << path }
-
-        @lines
+        lines
       end
 
       def reads_from?(source)
