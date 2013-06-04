@@ -27,6 +27,10 @@ describe Models::ImportFilter do
 
   it "raises an error if an import filter is invalid: name error" do
     test_class = Class.new( Models::ImportFilter ) do
+      def class
+        ImportFilter
+      end
+
       def self.filter
         File.join( examples_dir, 'import_filter', 'invalid_filter_1.rb' )
       end
