@@ -10,16 +10,19 @@ module PuppetGenerator
       #   the stored filter
       def_delegator :@filter, :convert, :convert
 
+      private
+
       #@!attribute [r] :filter
       #   access to the filter stored in instance
       attr_reader :filter
+
+      public
 
       #create new instance of filter model
       def initialize( name , filter )
         super(name)
 
         @filter = filter
-        @enabled = false
       end
 
       #enable filter
