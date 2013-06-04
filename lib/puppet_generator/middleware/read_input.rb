@@ -7,17 +7,19 @@ module PuppetGenerator
       end
 
       def call(task)
+        PuppetGenerator.logger.debug(self.class.name){ "Read data from input \"#{task.meta[:source]}\"." }
+        raise Exceptions::FilesystemError unless PuppetGenerator::Models::Importer.valid_source?(task.meta[:source].to_s)
+
         importer = PuppetGenerator::Models::Importer.find( reads_from: task.meta[:source].to_s, enabled: true )
         raise PuppetGenerator::Exceptions::InvalidSource unless importer 
-
-        PuppetGenerator.logger.debug(self.class.name){ "Read data from input \"#{task.meta[:source]}\" using importer \"#{importer.name}\"." }
+        PuppetGenerator.logger.debug(self.class.name){ "Using importer \"#{importer.name}\" to read data." }
 
         task.body = importer.read( task.meta[:source] )
-
         PuppetGenerator.logger.debug(self.class.name) { "Count input lines: #{task.body.size}" }
 
         @app.call(task)
       end
+
     end
   end
 end

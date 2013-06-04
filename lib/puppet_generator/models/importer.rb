@@ -21,8 +21,18 @@ module PuppetGenerator
         @importer = importer
       end
 
-      def self.check_method
-        :read
+      class << self
+
+        def valid_source?(source)
+          return true if find( reads_from: source, enabled: true )
+
+          false
+        end
+
+
+        def check_method
+          :read
+        end
       end
 
     end
