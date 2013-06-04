@@ -3,8 +3,8 @@ module PuppetGenerator
     class Stdin
       attr_reader :lines
 
-      def read( input=$stdin )
-        input.readlines.collect { |l| l.strip.chomp }
+      def read( input )
+        $stdin.readlines.collect { |l| l.strip.chomp }
       end
 
       def reads_from?(source)
