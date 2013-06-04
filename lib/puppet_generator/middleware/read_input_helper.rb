@@ -16,7 +16,6 @@ module PuppetGenerator
         item == 'stdin'
       end
 
-
     end
   end
 end

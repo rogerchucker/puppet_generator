@@ -1,4 +1,3 @@
-
 require 'spec_helper'
 
 describe Models::ImportFilter do
@@ -21,7 +20,7 @@ describe Models::ImportFilter do
 
   it "finds all available filter" do
     Models::ImportFilter.init
-    filter = Models::ImportFilter.find(name: :yaml)
+    filter = Models::ImportFilter.find(:yaml)
     expect(filter.name).to eq(:yaml)
   end
 

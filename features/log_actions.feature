@@ -36,6 +36,10 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
+    Using importer "file" to read data.
+    """
+    Then the stderr should contain:
+    """
     Count input lines: 1
     """
     Then the stderr should contain:

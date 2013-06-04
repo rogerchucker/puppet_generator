@@ -55,8 +55,12 @@ module PuppetGenerator
     class InvalidAction < InternalError; end
     
     #raised if the code which defines an import filter
-    #is malformed
+    #which is malformed
     class InvalidImportFilter < InternalError; end
+    
+    #raised if the code which defines an importer
+    #which is malformed
+    class InvalidImporter < InternalError; end
     
     #raised if the code which defines an import filter
     #is malformed
@@ -64,6 +68,15 @@ module PuppetGenerator
     
     #raised if one tries to use an unimplemented exception
     class ExceptionNeedsToBeImplemented < InternalError; end
+
+    #raised if an file system error occured
+    class FilesystemError < Exception ; end
+
+    #raise if a directory does not exist in filesystem
+    class DirectoryDoesNotExist < FilesystemError; end
+    
+    #raise if a file does not exist in filesystem
+    class FileDoesNotExist < FilesystemError; end
 
   end
 end

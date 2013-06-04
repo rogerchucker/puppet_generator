@@ -9,15 +9,13 @@ module PuppetGenerator
       end
 
       def call(task)
-        PuppetGenerator.logger.debug(self.class.name){ "Read data from input \"#{task.meta[:source]}\"." }
 
-        if is_stdin? task.meta[:source]
-          task.body = PuppetGenerator::InputStdIn.new.lines
-        elsif is_file? task.meta[:source]
-          task.body = PuppetGenerator::InputFile.new( task.meta[:source] ).lines
-        else
-          raise PuppetGenerator::Exceptions::InvalidSource
-        end
+        importer = PuppetGenerator::Models::Importer.find( reads_from: task.meta[:source] )
+        raise PuppetGenerator::Exceptions::InvalidSource unless importer 
+
+        PuppetGenerator.logger.debug(self.class.name){ "Read data from input \"#{task.meta[:source]}\" using importer \"#{importer.class.name}\"." }
+
+        task.body = importer.read( task.meta[:source] )
 
         PuppetGenerator.logger.debug(self.class.name) { "Count input lines: #{task.body.size}" }
 

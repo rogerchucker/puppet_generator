@@ -22,8 +22,8 @@ Feature: Generate package definitions
 
   Scenario: Non Existing Input File
     When I run `ppgen package`
-    Then the exit status should be 1
-    And the stderr should contain "You entered an invalid source"
+    Then the exit status should be 8
+    And the stderr should contain "The file/directory \"input.txt\" does not exist"
 
   Scenario: Input via Stdin
     When I run `ppgen package --source stdin` interactively
@@ -38,6 +38,12 @@ Feature: Generate package definitions
     }
 
     """
+
+  Scenario: Invalid importer
+    Given a directory named "testdir"
+    When I run `ppgen package --source testdir --destination file:out.txt`
+    Then the exit status should be 1
+    And the stderr should contain "You entered an invalid source"
 
   Scenario: Multiple lines in input file
     Given a file named "input.txt" with:

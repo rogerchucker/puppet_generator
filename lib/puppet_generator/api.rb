@@ -14,7 +14,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::ConfigureLogging
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
-        use PuppetGenerator::Middleware::ReadInputPackages
+        use PuppetGenerator::Middleware::ReadInput
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
         use PuppetGenerator::Middleware::ExecuteActions
@@ -43,7 +43,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::ConfigureLogging
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
-        use PuppetGenerator::Middleware::ReadInputFiles
+        use PuppetGenerator::Middleware::ReadInput
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
         use PuppetGenerator::Middleware::ExecuteActions
@@ -70,7 +70,7 @@ module PuppetGenerator
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
-        use PuppetGenerator::Middleware::ReadInputPackages
+        use PuppetGenerator::Middleware::ReadInput
         use PuppetGenerator::Middleware::CheckForEmptySource
         use PuppetGenerator::Middleware::FilterImportedData
         use PuppetGenerator::Middleware::ExecuteActions

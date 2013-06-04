@@ -13,12 +13,6 @@ module PuppetGenerator
       #   the stored filter
       def_delegator :@filter, :convert, :convert
 
-      private
-
-      #@!attribute [r] :filter
-      #   access to the filter stored in instance
-      attr_reader :filter
-
       public
 
       #create new instance of filter model
@@ -29,7 +23,6 @@ module PuppetGenerator
       end
 
       class << self
-
         def check_method
           :convert
         end
