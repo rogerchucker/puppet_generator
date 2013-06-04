@@ -4,6 +4,8 @@ module PuppetGenerator
 
       def read(filename)
         ::File.open(filename).readlines.collect { |l| l.chomp }
+      rescue Exception => e
+        raise Exceptions::FileDoesNotExist, e.message
       end
 
       def reads_from?(source)

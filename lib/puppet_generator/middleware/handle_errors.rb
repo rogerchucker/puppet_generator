@@ -13,7 +13,7 @@ module PuppetGenerator
         begin
           @app.call(task)
         rescue PuppetGenerator::Exceptions::InvalidSource
-          exit_with_error :invalid_source, source: task.meta[:source]
+          exit_with_error :invalid_source, source: task.meta[:source], command: task.meta[:command] 
         rescue PuppetGenerator::Exceptions::InvalidOutputChannel
           exit_with_error :invalid_output_channel
         rescue PuppetGenerator::Exceptions::EmptySource
@@ -28,6 +28,8 @@ module PuppetGenerator
         rescue PuppetGenerator::Exceptions::UnknownAction
           exit_with_error :unknown_action, requested_action: task.meta[:requested_action], 
                                            available_actions: Models::Action.all_names_as_string
+        rescue PuppetGenerator::Exceptions::FilesystemError
+          exit_with_error :filesystem_error, fs_object: task.meta[:source]
         end
       end
 

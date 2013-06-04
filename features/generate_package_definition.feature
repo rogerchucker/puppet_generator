@@ -39,6 +39,10 @@ Feature: Generate package definitions
 
     """
 
+  Scenario: Invalid importer
+    Given a directory named "testdir"
+    When I successfully run `ppgen package --source testdir --destination file:out.txt`
+
   Scenario: Multiple lines in input file
     Given a file named "input.txt" with:
     """

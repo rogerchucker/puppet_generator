@@ -8,6 +8,8 @@ module PuppetGenerator
         ::Find.find( directory) { |path| lines << path }
 
         lines
+      rescue Exception => e
+        raise Exceptions::DirectoryDoesNotExist, e.message
       end
 
       def reads_from?(source)

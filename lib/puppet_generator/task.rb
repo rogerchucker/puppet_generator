@@ -1,24 +1,9 @@
 module PuppetGenerator
   class Task
-    class << self
-      def define_type(type)
-        define_method "is_#{type}_task".to_sym do
-          instance_variable_set(:@type, type.to_sym)
-        end
-
-        define_method "is_#{type}_task?".to_sym do
-          instance_variable_get(:@type) == type.to_sym
-        end
-      end
-    end
-
     attr_reader :meta
     attr_accessor :body
 
-    define_type :error_message
-    define_type :none
-
-    def initialize(options={},type=:none)
+    def initialize(options={},command=:none)
       @type = type
       @meta = {}
       @body = nil
@@ -30,8 +15,7 @@ module PuppetGenerator
       @meta[:requested_import_filter] = options[:import_filter]
       @meta[:requested_action]        = options[:action]
       @meta[:mode]                    = log_level(options)
-
-      set_task_type_to @type
+      @meta[:command]       = options[:command] 
     end
 
     private
@@ -44,12 +28,6 @@ module PuppetGenerator
       else
         return :info
       end
-    end
-
-    def set_task_type_to(type)
-      self.public_send "is_#{type}_task".to_sym
-    rescue
-      raise Exceptions::InternalError
     end
 
   end

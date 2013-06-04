@@ -69,5 +69,14 @@ module PuppetGenerator
     #raised if one tries to use an unimplemented exception
     class ExceptionNeedsToBeImplemented < InternalError; end
 
+    #raised if an file system error occured
+    class FilesystemError < Exception ; end
+
+    #raise if a directory does not exist in filesystem
+    class DirectoryDoesNotExist < FilesystemError; end
+    
+    #raise if a file does not exist in filesystem
+    class FileDoesNotExist < FilesystemError; end
+
   end
 end
