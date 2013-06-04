@@ -59,27 +59,30 @@ module PuppetGenerator
         end
 
         def module_name
-          fqdn = self.to_s.split(/::/)
-          fqdn.pop
+          name = fqcn
+          name.pop
 
-          fqdn.join('::')
+          name.join('::')
         end
 
-        def class_name
-          self.to_s.split(/::/).last
+        def fqcn
+          self.to_s.split(/::/)
+        end
+
+        def model_name
+          fqcn.last
         end
 
         def require_path(name)
-          debugger
-          File.join( PuppetGenerator.gem_load_path, class_name.downcase , name.to_s )
+          File.join( PuppetGenerator.gem_load_path, model_name.downcase.pluralize , name.to_s )
         end
 
         def check_klass( klass , method)
-          raise Exceptions::InvalidAction , "A valid \"#{self.class.name}\"-class needs to respond to \"#{ method }\"." unless klass.new.respond_to? method
+          raise "Exceptions::Invalid#{model_name}".constantize , "A valid \"#{model_name}\"-class needs to respond to \"#{ method }\"." unless klass.new.respond_to? method
         end
 
-        def build_klass_constant(name)
-          "#{module_name}::#{name.to_s.camelcase}".constantize
+        def build_class_constant(name)
+          "PuppetGenerator::#{model_name.pluralize}::#{name.to_s.camelcase}".constantize
         rescue
           raise Exceptions::InvalidAction , "The filename needs to be snakecase and needs to be convertible to the action class name: filename in camelcase."
         end
