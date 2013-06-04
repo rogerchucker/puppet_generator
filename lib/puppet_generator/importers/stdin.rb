@@ -1,10 +1,14 @@
 module PuppetGenerator
   module Importers
-    class StdIn
+    class Stdin
       attr_reader :lines
 
-      def initialize
-        @lines = $stdin.readlines.collect { |l| l.strip.chomp }
+      def initialize( input=$stdin )
+        @input = input
+      end
+
+      def read
+        @input.readlines.collect { |l| l.strip.chomp }
       end
 
     end
