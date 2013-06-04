@@ -55,8 +55,12 @@ module PuppetGenerator
     class InvalidAction < InternalError; end
     
     #raised if the code which defines an import filter
-    #is malformed
+    #which is malformed
     class InvalidImportFilter < InternalError; end
+    
+    #raised if the code which defines an importer
+    #which is malformed
+    class InvalidImporter < InternalError; end
     
     #raised if the code which defines an import filter
     #is malformed
