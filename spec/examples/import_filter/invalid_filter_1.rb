@@ -1,5 +1,5 @@
 module PuppetGenerator
-  module Filter
+  module ImportFilters
     class Invalid_Filter1
       #invalid name includes '_'
       #and must match file name

@@ -1,5 +1,5 @@
 module PuppetGenerator
-  module Filter
+  module ImportFilters
     class Passwd
       def convert(lines)
         lines.collect do |line|

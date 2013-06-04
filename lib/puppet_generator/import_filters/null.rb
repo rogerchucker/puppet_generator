@@ -1,5 +1,5 @@
 module PuppetGenerator
-  module Filter
+  module ImportFilters
     class Null
       def convert(lines)
         lines.collect { |line| { name: line.strip } }
