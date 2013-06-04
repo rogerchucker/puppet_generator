@@ -9,12 +9,13 @@ describe Models::Template do
 
   it "loads all available templates on init" do
     Models::Template.init
-    expect(Models::Template.find( name: :package, handles_one_element_only: true ).name).to eq(:package)
+    result = Models::Template.find( name: :package, handles_one_element_only: true )
+    expect(result.name).to eq(:package)
   end
 
   it "raises an error if a template is invalid" do
     test_class = Class.new( Models::Template ) do
-      def self.filter
+      def self.path_to_instances
         File.join( examples_dir, 'templates', 'invalid_template.pp.erb' )
       end
 

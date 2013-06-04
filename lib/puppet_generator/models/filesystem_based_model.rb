@@ -22,8 +22,8 @@ module PuppetGenerator
           File.join(path,'*.rb')
         end
 
-        def name(path)
-          name = File.basename(path, '.rb').to_sym
+        def name(path, suffix='.rb')
+          name = File.basename(path, suffix ).to_sym
           raise Exceptions::UnauthorizedUseOfKeyword if forbidden_keywords.include? name
 
           name

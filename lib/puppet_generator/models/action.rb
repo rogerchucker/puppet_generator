@@ -17,7 +17,6 @@ module PuppetGenerator
         super(name)
 
         @action = action
-        @enabled = false
       end
 
       class << self
