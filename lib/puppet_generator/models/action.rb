@@ -26,8 +26,8 @@ module PuppetGenerator
 
         private
 
-        def action
-          path = File.expand_path('../../actions', __FILE__ )
+        def path_to_instances
+          path = File.expand_path("../../#{model_name.downcase.pluralize}", __FILE__ )
 
           File.join(path,'*.rb')
         end
@@ -40,7 +40,7 @@ module PuppetGenerator
         end
 
         def load_from_filesystem
-          files = Dir.glob( action )
+          files = Dir.glob( path_to_instances )
 
           files.each do |f| 
             action_name = name( f )
