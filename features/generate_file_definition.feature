@@ -41,8 +41,8 @@ Feature: Generate file definitions
 
   Scenario: empty input source
     When I run `ppgen file --source ''`
-    Then the exit status should be 1
-    And the stderr should contain "You entered an invalid source"
+    Then the exit status should be 8
+    And the stderr should contain "The file/directory \"\" does not exist."
 
   Scenario: Multiple lines in input file
     Given a file named "input.txt" with:

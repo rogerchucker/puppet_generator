@@ -32,7 +32,11 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
-    Read data from input "input.txt" using importer "file".
+    Read data from input "input.txt".
+    """
+    Then the stderr should contain:
+    """
+    Using importer "file" to read data.
     """
     Then the stderr should contain:
     """

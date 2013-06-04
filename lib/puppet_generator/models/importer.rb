@@ -23,6 +23,12 @@ module PuppetGenerator
 
       class << self
 
+        def existing_source?(source)
+          return true if find( reads_from: source )
+
+          false
+        end
+
         def valid_source?(source)
           return true if find( reads_from: source, enabled: true )
 
