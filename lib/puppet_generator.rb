@@ -19,6 +19,7 @@ require 'puppet_generator/exceptions'
 require 'puppet_generator/logger'
 
 require 'puppet_generator/models/base'
+require 'puppet_generator/models/filesystem_based_model'
 require 'puppet_generator/models/error_message'
 require 'puppet_generator/models/import_filter'
 require 'puppet_generator/models/action'
