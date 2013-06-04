@@ -101,7 +101,7 @@ module PuppetGenerator
             end
           end
 
-        rescue Exception => e
+        rescue NameError => e
           raise Exceptions::InvalidSearchCriteria, e.message
         end
       end

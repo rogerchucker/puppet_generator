@@ -9,6 +9,7 @@ module PuppetGenerator
       end
 
       def reads_from?(source)
+        raise Exceptions::FileDoesNotExist unless FileTest.exists? source
         FileTest.file? source
       end
 
