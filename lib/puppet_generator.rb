@@ -36,6 +36,7 @@ require 'puppet_generator/output_file'
 require 'puppet_generator/output_stdout'
 
 require 'puppet_generator/setup/bare'
+require 'puppet_generator/setup/default_importer'
 require 'puppet_generator/setup/default_error_messages'
 require 'puppet_generator/setup/default_actions'
 require 'puppet_generator/setup/default_import_filter'
