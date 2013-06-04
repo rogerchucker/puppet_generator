@@ -69,6 +69,14 @@ describe Models::Importer do
     expect(result).to eq(expected_result)
   end
 
+  it "finds an importer for stdin" do
+    Models::Importer.init
+
+    expected_result = Models::Importer.find( :stdin )
+    result = Models::Importer.find( reads_from: 'stdin' )
+    expect(result).to eq(expected_result)
+  end
+
 
 end
 
