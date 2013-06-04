@@ -3,8 +3,7 @@ module PuppetGenerator
     attr_reader :meta
     attr_accessor :body
 
-    def initialize(options={},command=:none)
-      @type = type
+    def initialize(options={})
       @meta = {}
       @body = nil
 

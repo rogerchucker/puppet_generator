@@ -5,7 +5,7 @@ module PuppetGenerator
 
       def initialize(options)
         super
-        @task = Task.new(options, :module)
+        @task = Task.new(options)
       end
 
       def setup_environment

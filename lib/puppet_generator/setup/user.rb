@@ -3,7 +3,7 @@ module PuppetGenerator
     class User < Bare
       def initialize(options)
         super
-        @task = Task.new(options, :user)
+        @task = Task.new(options)
       end
 
       def setup_environment

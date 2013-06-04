@@ -22,7 +22,8 @@ class Default < Thor
   method_option :action , @action_option
   desc 'package', 'generate package definitions'
   def package
-    PuppetGenerator::Api.new.generate_package_definition(options)
+    opts = HashWithIndifferentAccess.new({ command: :package }).merge options
+    PuppetGenerator::Api.new.generate_package_definition(opts)
   end
 
   method_option :source , @source_option
@@ -31,7 +32,8 @@ class Default < Thor
   method_option :action , @action_option
   desc 'file', 'generate file definitions'
   def file
-    PuppetGenerator::Api.new.generate_file_definition(options)
+    opts = HashWithIndifferentAccess.new({ command: :file }).merge options
+    PuppetGenerator::Api.new.generate_file_definition(opts)
   end
 
   method_option :source , @source_option
@@ -40,12 +42,14 @@ class Default < Thor
   method_option :action , @action_option
   desc 'user', 'generate user definitions'
   def user
-    PuppetGenerator::Api.new.generate_user_definition(options)
+    opts = HashWithIndifferentAccess.new({ command: :user }).merge options
+    PuppetGenerator::Api.new.generate_user_definition(opts)
   end
 
   desc 'module', 'creates all files needed to build a module'
   def module
-    PuppetGenerator::Api.new.generate_module(options)
+    opts = HashWithIndifferentAccess.new({ command: :module }).merge options
+    PuppetGenerator::Api.new.generate_module(opts)
   end
 
 end
