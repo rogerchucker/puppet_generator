@@ -61,6 +61,14 @@ describe Models::Importer do
     expect(result).to eq(expected_result)
   end
 
+  it "finds an importer for a directory" do
+    Models::Importer.init
+
+    expected_result = Models::Importer.find( :directory )
+    result = Models::Importer.find( reads_from: File.join(examples_dir, 'importer', 'test.d' ) )
+    expect(result).to eq(expected_result)
+  end
+
 
 end
 
