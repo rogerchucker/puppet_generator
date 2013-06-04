@@ -8,6 +8,7 @@ module PuppetGenerator
         Models::Template.init
         Models::ImportFilter.init
         Models::Action.init
+        Models::ErrorMessage.init
       end
 
       def create_task
