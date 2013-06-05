@@ -10,38 +10,40 @@ Feature: Generate package definitions
     asdf
     """
     When I successfully run `ppgen package`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
-
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
-
     }
 
     """
 
   Scenario: Non Existing Input File
     When I run `ppgen package`
-    Then the exit status should be 1
-    And the stderr should contain "You entered an invalid source"
+    Then the exit status should be 8
+    And the stderr should contain "The file/directory \"input.txt\" does not exist"
 
   Scenario: Input via Stdin
     When I run `ppgen package --source stdin` interactively
     And I type "asdf"
     And I close the stdin stream
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
-
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
-
     }
 
     """
+
+  Scenario: Invalid importer
+    Given a directory named "testdir"
+    When I run `ppgen package --source testdir --destination file:out.txt`
+    Then the exit status should be 1
+    And the stderr should contain "You entered an invalid source"
 
   Scenario: Multiple lines in input file
     Given a file named "input.txt" with:
@@ -50,25 +52,21 @@ Feature: Generate package definitions
     test123
     """
     When I successfully run `ppgen package`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
-
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
-
     }
 
     """
-    And the file "out/test123.pp" should contain:
+    And the file "out.d/test123.pp" should contain:
     """
     class mymodule::test123 {
-
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
-
     }
 
     """
@@ -79,14 +77,12 @@ Feature: Generate package definitions
     asdf
     """
     When I successfully run `ppgen package --module string1::string2`
-    Then the file "out/asdf.pp" should contain:
+    Then the file "out.d/asdf.pp" should contain:
     """
     class string1::string2::asdf {
-
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
-
     }
 
     """
@@ -97,23 +93,16 @@ Feature: Generate package definitions
     asdf
     test123
     """
-    When I successfully run `ppgen package --output_channel file`
-    Then the file "out" should contain:
+    When I successfully run `ppgen package --destination file:out.txt`
+    Then the file "out.txt" should contain:
     """
-    class mymodule::asdf {
-
+    class mymodule::myclass {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
-
-    }
-
-    class mymodule::test123 {
-
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
-
     }
 
     """
@@ -123,15 +112,13 @@ Feature: Generate package definitions
     """
     asdf
     """
-    When I successfully run `ppgen package --output_channel stdout`
+    When I successfully run `ppgen package --destination stdout`
     Then the output should contain:
     """
-    class mymodule::asdf {
-
+    class mymodule::myclass {
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
-
     }
 
     """
@@ -142,21 +129,73 @@ Feature: Generate package definitions
     asdf
     test123
     """
-    When I successfully run `ppgen package --output_channel file --single_definition --class test`
-    Then the file "out" should contain:
+    When I successfully run `ppgen package --destination file:out.txt --class test`
+    Then the file "out.txt" should contain:
     """
     class mymodule::test {
-
       package {'asdf':
-        ensure => latest,
+        ensure   => installed,
       }
-
-    }
-
       package {'test123':
-        ensure => latest,
+        ensure   => installed,
       }
-
     }
 
     """
+
+  Scenario: Definition from yaml file
+    Given a file named "input.yml" with:
+    """
+    ---
+    ssh-server:
+      version: 1.2.3
+      provider: yum
+    ssh-client:
+      version: latest
+    zsh:
+      version: installed
+    bash: {}
+    """
+    When I successfully run `ppgen package --source input.yml --destination file:out.txt --import-filter yaml`
+    Then the file "out.txt" should contain:
+    """
+    class mymodule::myclass {
+      package {'ssh-server':
+        ensure   => 1.2.3,
+        provider => yum,
+      }
+      package {'ssh-client':
+        ensure   => latest,
+      }
+      package {'zsh':
+        ensure   => installed,
+      }
+      package {'bash':
+        ensure   => installed,
+      }
+    }
+
+    """
+
+  Scenario: Definition from yaml file with error
+    Given a file named "input.yml" with:
+    """
+    ---
+    ssh-server:
+    version: 1.2.3
+    zsh:
+      version: installed
+    bash: {}
+    """
+    When I run `ppgen package --source input.yml --destination file:out.txt --import-filter yaml`
+    Then the exit status should be 5
+    And the stderr should contain "The input is no YAML valid for this use case"
+
+  Scenario: Unknown import filter
+    Given a file named "input.txt" with:
+    """
+    asdf
+    """
+    When I run `ppgen file --import-filter asfd`
+    Then the exit status should be 4
+    And the stderr should contain "There's no import filter \"asfd\""

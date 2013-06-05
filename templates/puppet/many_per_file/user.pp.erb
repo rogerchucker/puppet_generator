@@ -1,0 +1,23 @@
+class <%= @items.first.module_name %>::<%= @items.first.class_name %> {
+<% @items.each do |item| %>
+  user {'<%= item.name %>':
+    ensure     => present,
+    managehome => true,
+    <% if item.provider %>
+    provider   => '<%= item.provider %>',
+    <% end %>
+    <% if item.userid %>
+    uid        => '<%= item.userid %>',
+    <% end %>
+    <% if item.groupid %>
+    gid        => '<%= item.groupid %>',
+    <% end %>
+    <% if item.homedir %>
+    home       => '<%= item.homedir %>',
+    <% end %>
+    <% if item.shell %>
+    shell      => '<%= item.shell %>',
+    <% end %>
+  }
+<% end %>
+}

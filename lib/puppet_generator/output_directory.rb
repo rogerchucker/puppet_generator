@@ -14,7 +14,7 @@ module PuppetGenerator
         filename = File.join( @directory, "#{d.name}.pp" )
 
         File.open(filename, "w") do |f|
-          f.puts d.to_s
+          f.puts d.text
         end
       end
     end

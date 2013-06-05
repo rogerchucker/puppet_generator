@@ -1,0 +1,14 @@
+class <%= @item.module_name %>::<%= @item.name %> {
+  file {'<%= @item.path %>':
+    ensure => <%= @item.type %>,
+    <% if @item.source %>
+    source => '<%= @item.source %>',
+    <% end %>
+    <% if @item.owner %>
+    owner  => '<%= @item.owner %>',
+    <% end %>
+    <% if @item.mode %>
+    mode   => '<%= @item.mode %>',
+    <% end %>
+  }
+}
