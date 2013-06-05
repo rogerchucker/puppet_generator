@@ -112,9 +112,9 @@ Feature: Generate file definitions
     asdf
     """
     When I successfully run `ppgen file --destination stdout`
-    Then the output should contain:
+    Then the stdout should contain:
     """
-    class mymodule::asdf {
+    class mymodule::myclass {
       file {'asdf':
         ensure => file,
       }
@@ -262,3 +262,38 @@ Feature: Generate file definitions
     When I run `ppgen file --source testdir --action unknown_action`
     Then the exit status should be 7
     And the stderr should contain "unknown_action"
+
+  Scenario: Use a tag to choose the correct template
+    Given a file named "input.txt" with:
+    """
+    asdf1
+    asdf2
+    """
+    When I successfully run `ppgen file --template-tagged-with many_per_file --destination file:output.txt`
+    Then the file "output.txt" should contain:
+    """
+    class mymodule::myclass {
+      file {'asdf1':
+        ensure => file,
+      }
+      file {'asdf2':
+        ensure => file,
+      }
+    }
+
+    """
+
+  Scenario: Error if chosen a wrong combination
+    Given a file named "input.txt" with:
+    """
+    asdf1
+    asdf2
+    """
+    When I run `ppgen file --template-tagged-with many_per_file`
+    Then the exit status should be 9
+    Then the stderr should contain:
+    """
+    I was not able to find a suitable template for the given command "file", for the given tags "many_per_file" and for the given destination "dir:out.d"
+    """
+
+

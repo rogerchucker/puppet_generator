@@ -30,7 +30,6 @@ module PuppetGenerator
     end
 
     def generate_file_definition(options)
-
       s = Setup::File.new(options)
       s.setup_environment
       task = s.create_task

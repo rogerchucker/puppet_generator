@@ -29,7 +29,7 @@ describe Models::Importer do
     Setup::DefaultImporter.use
 
     filters = Models::Importer.find_all(enabled: true)
-    expect(filters.size).to eq(3)
+    expect(filters.size).to eq(2)
   end
 
   it "raises an error if an importer is invalid: missing method \"read\"" do

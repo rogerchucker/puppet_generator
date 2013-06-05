@@ -15,11 +15,13 @@ class Default < Thor
   @import_filter_option = { type: :string, default: 'null', desc: 'make it possible to pipe structured data into command' }
   @destination_option = { type: :string, default: 'dir:out.d', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"' }
   @action_option = { type: :string, default: 'null', desc: 'what action should be run after filtering the input' }
+  @template_tagged_with_option = { type: :string, desc: 'use a template which is tagged with "<tag>(:<tag>)+"' }
 
   method_option :source , @source_option
   method_option :import_filter , @import_filter_option
   method_option :destination , @destination_option
   method_option :action , @action_option
+  method_option :template_tagged_with, @template_tagged_with_option
   desc 'package', 'generate package definitions'
   def package
     opts = HashWithIndifferentAccess.new({ command: :package }).merge options
@@ -30,6 +32,7 @@ class Default < Thor
   method_option :import_filter , @import_filter_option
   method_option :destination , @destination_option
   method_option :action , @action_option
+  method_option :template_tagged_with, @template_tagged_with_option
   desc 'file', 'generate file definitions'
   def file
     opts = HashWithIndifferentAccess.new({ command: :file }).merge options
@@ -40,6 +43,7 @@ class Default < Thor
   method_option :import_filter , @import_filter_option
   method_option :destination , @destination_option
   method_option :action , @action_option
+  method_option :template_tagged_with, @template_tagged_with_option
   desc 'user', 'generate user definitions'
   def user
     opts = HashWithIndifferentAccess.new({ command: :user }).merge options

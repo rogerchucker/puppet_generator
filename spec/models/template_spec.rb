@@ -9,7 +9,10 @@ describe Models::Template do
 
   it "loads all available templates on init" do
     Models::Template.init
-    result = Models::Template.find( name: :package, handles_one_element_only: true )
+    result = Models::Template.find( name: :package, is_suitable_for: :directory )
+    expect(result.name).to eq(:package)
+
+    result = Models::Template.find( name: :package, is_suitable_for: :file )
     expect(result.name).to eq(:package)
   end
 
