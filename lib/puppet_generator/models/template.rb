@@ -22,9 +22,9 @@ module PuppetGenerator
       def render(items)
 
         if @suitable_outputs.include? :file or @suitable_outputs.include? :stdout
-          return items.collect { |item| Definition.new( item.name, template.evaluate( item: item ) ) }
-        else
           return [ Definition.new( items.first.class_name , template.evaluate( items: items ) ) ]
+        else
+          return items.collect { |item| Definition.new( item.name, template.evaluate( item: item ) ) }
         end
 
       rescue
@@ -69,11 +69,16 @@ module PuppetGenerator
         end
 
         def suitable_outputs_for_path(path)
-          if path =~ %r[/one/]
-            return [ :file, :stdout ]
-          else
-            return [ :directory, :dir ]
-          end
+          return case path 
+                 when %r[#{model_name.downcase.pluralize}/puppet/file]
+                   [ :file ]
+                 when %r[#{model_name.downcase.pluralize}/puppet/directory]
+                   [ :directory, :dir ]
+                 when %r[#{model_name.downcase.pluralize}/puppet/stdout]
+                   [ :stdout ]
+                 else
+                   [ :file ]
+                 end
         end
       end
     end

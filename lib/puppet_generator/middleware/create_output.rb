@@ -13,7 +13,6 @@ module PuppetGenerator
         PuppetGenerator.logger.info(self.class.name){ "Puppet definitions will be output to \"#{task.meta[:destination]}\"."  }
         PuppetGenerator.logger.debug(self.class.name){ "Render template for channel \"#{channel}\" and sink \"#{sink}\"." }
 
-        debugger
         definitions = Models::Template.find(name: task.meta[:command], is_suitable_for: channel.to_sym ).render(task.body)
         raise Exceptions::InvalidTemplate unless definitions
 
