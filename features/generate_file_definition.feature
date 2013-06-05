@@ -114,7 +114,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen file --destination stdout`
     Then the stdout should contain:
     """
-    class mymodule::asdf {
+    class mymodule::myclass {
       file {'asdf':
         ensure => file,
       }
@@ -276,7 +276,6 @@ Feature: Generate file definitions
       file {'asdf1':
         ensure => file,
       }
-
       file {'asdf2':
         ensure => file,
       }
@@ -290,8 +289,9 @@ Feature: Generate file definitions
     asdf1
     asdf2
     """
-    When I successfully run `ppgen file --template-tagged-with many_per_file`
-    Then the output should contain:
+    When I run `ppgen file --template-tagged-with many_per_file`
+    Then the exit status should be 9
+    Then the stderr should contain:
     """
     I was not able to find a suitable template for the given command "file", for the given tags "many_per_file" and for the given destination "dir:out.d"
     """
