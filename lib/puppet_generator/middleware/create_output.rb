@@ -34,6 +34,7 @@ module PuppetGenerator
 
         exporter = Models::Exporter.find(writes_to: task.meta[:destination])
         raise Exceptions::InvalidExporter unless exporter
+        PuppetGenerator.logger.debug(self.class.name){ "Chosen exporter: #{exporter.name}." }
 
         exporter.write(sink, definitions)
 
