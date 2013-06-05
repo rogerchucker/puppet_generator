@@ -30,6 +30,8 @@ module PuppetGenerator
                                            available_actions: Models::Action.all_names_as_string
         rescue PuppetGenerator::Exceptions::FilesystemError
           exit_with_error :filesystem_error, fs_object: task.meta[:source]
+        rescue PuppetGenerator::Exceptions::WrongTemplateChosen
+          exit_with_error :wrong_template_chosen, command: task.meta[:command], tags: task.meta[:template_tagged_with].to_a.join(", "), destination: task.meta[:destination] 
         rescue PuppetGenerator::Exceptions::InternalError => e
           exit_with_error :internal_error, exception_message: e.message
         end

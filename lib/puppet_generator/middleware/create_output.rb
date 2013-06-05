@@ -27,7 +27,7 @@ module PuppetGenerator
         end
 
         template = Models::Template.find(name: task.meta[:command], is_suitable_for: channel.to_sym, is_tagged_with: task.meta[:template_tagged_with] )
-        raise Exceptions::InvalidTemplate unless template
+        raise Exceptions::WrongTemplateChosen unless template
 
         definitions = template.render(task.body)
 

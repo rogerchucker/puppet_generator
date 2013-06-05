@@ -269,7 +269,7 @@ Feature: Generate file definitions
     asdf1
     asdf2
     """
-    When I successfully run `ppgen file --template-tagged-with many_per_file`
+    When I successfully run `ppgen file --template-tagged-with many_per_file --destination file:output.txt`
     Then the file "output.txt" should contain:
     """
     class mymodule::myclass {
@@ -283,3 +283,17 @@ Feature: Generate file definitions
     }
 
     """
+
+  Scenario: Error if chosen a wrong combination
+    Given a file named "input.txt" with:
+    """
+    asdf1
+    asdf2
+    """
+    When I successfully run `ppgen file --template-tagged-with many_per_file`
+    Then the output should contain:
+    """
+    I was not able to find a suitable template for the given command "file", for the given tags "many_per_file" and for the given destination "dir:out.d"
+    """"
+
+
