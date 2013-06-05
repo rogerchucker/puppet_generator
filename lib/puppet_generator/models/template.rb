@@ -5,23 +5,23 @@ module PuppetGenerator
       include FilesystemBasedModel
 
       #create new instance of template model
-      def initialize( name , template_path, handles_one_element_only=true )
+      def initialize( name , template_path, suitable_outputs=[] )
         super(name)
 
         @template_path = template_path
-        @handles_one_element_only = handles_one_element_only
+        @suitable_outputs = suitable_outputs
       end
 
-      #check if template is for one or many
-      #elements
-      def handles_one_element_only?(val=true)
-        @handles_one_element_only == val
+      #check if a template is suitable for 
+      #a given output
+      def is_suitable_for?(output)
+        @suitable_outputs.include? output
       end
 
       # render the template based on files
       def render(items)
 
-        if handles_one_element_only?
+        if @suitable_outputs.include? :file or @suitable_outputs.include? :stdout
           return items.collect { |item| Definition.new( item.name, template.evaluate( item: item ) ) }
         else
           return [ Definition.new( items.first.class_name , template.evaluate( items: items ) ) ]
@@ -63,16 +63,16 @@ module PuppetGenerator
           files = Dir.glob( path_to_instances )
 
           files.each do |f| 
-            create( name( f ) , f, template_is_for_one_element_only?( f ) )
+            create( name( f ) , f, suitable_outputs_for_path( f ) )
           end
 
         end
 
-        def template_is_for_one_element_only?(path)
+        def suitable_outputs_for_path(path)
           if path =~ %r[/one/]
-            return true
+            return [ :file, :stdout ]
           else
-            return false
+            return [ :directory, :dir ]
           end
         end
       end
