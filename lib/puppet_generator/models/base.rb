@@ -93,10 +93,14 @@ module PuppetGenerator
 
         #finds all instances
         def find_all( criteria={} )
+          PuppetGenerator::Models.logger.debug(self.class) { "Criteria for search: #{ criteria }" }
           criteria = { name: criteria.to_sym } if criteria.kind_of? Symbol or criteria.kind_of? String
 
+          PuppetGenerator::Models.logger.debug(self.class) { "Instances to be searched for: #{ @instances.map { |i| "#{i.name} (#{i.class})" }.join(", ") }" }
           @instances.find_all do |i| 
             criteria.all? do |c,v|
+
+              PuppetGenerator::Models.logger.debug(self.class) { "Check method for search: #{ c }" }
               i.send( "#{c}?".to_sym , v )
             end
           end

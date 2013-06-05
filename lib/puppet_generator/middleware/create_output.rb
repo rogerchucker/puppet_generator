@@ -13,20 +13,13 @@ module PuppetGenerator
         PuppetGenerator.logger.info(self.class.name){ "Puppet definitions will be output to \"#{task.meta[:destination]}\"."  }
         PuppetGenerator.logger.debug(self.class.name){ "Render template for channel \"#{channel}\" and sink \"#{sink}\"." }
 
-        output = case channel
-                 when 'file'
-                   definitions = Models::Template.find(enabled: true, handles_one_element_only: false).render(task.body)
-                   PuppetGenerator::OutputFile.new( sink , definitions )
-                 when /directory|dir/
-                   definitions = Models::Template.find(enabled: true, handles_one_element_only: true).render(task.body)
-                   PuppetGenerator::OutputDirectory.new( sink , definitions )
-                 when 'stdout'
-                   definitions = Models::Template.find(enabled: true, handles_one_element_only: true).render(task.body)
-                   PuppetGenerator::OutputStdOut.new( definitions )
-                 else
-                   raise PuppetGenerator::Exceptions::InvalidOutputChannel
-                 end
-        output.write
+        definitions = Models::Template.find(enabled: true, handles_one_element_only: false).render(task.body)
+        raise Exceptions::InvalidTemplate unless definitions
+
+        exporter = Models::Exporter.find(writes_to: task.meta[:destination])
+        raise Exceptions::InvalidExporter unless exporter
+
+        exporter.write(sink, definitions)
 
         @app.call(task)
       end

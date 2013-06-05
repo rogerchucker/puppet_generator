@@ -62,6 +62,10 @@ module PuppetGenerator
     #which is malformed
     class InvalidImporter < InternalError; end
     
+    #raised if the code which defines an exporter
+    #which is malformed
+    class InvalidExporter < InternalError; end
+    
     #raised if the code which defines an import filter
     #is malformed
     class MethodNeedsToBeImplemented < InternalError; end
