@@ -5,11 +5,12 @@ module PuppetGenerator
       include FilesystemBasedModel
 
       #create new instance of template model
-      def initialize( name , template_path, suitable_outputs=[] )
+      def initialize( name , template_path, suitable_outputs=[], tags=[] )
         super(name)
 
         @template_path = template_path
         @suitable_outputs = suitable_outputs
+        @tags = tags
       end
 
       #check if a template is suitable for 
@@ -18,17 +19,28 @@ module PuppetGenerator
         @suitable_outputs.include? output
       end
 
+      #check if a template is tagged 
+      def is_tagged_with?(asked_tags)
+        if asked_tags
+          return asked_tags.all? { |t| @tags.include? t }
+        else
+          return true
+        end
+      end
+
       # render the template based on files
       def render(items)
 
-        if @suitable_outputs.include? :file or @suitable_outputs.include? :stdout
+        if @tags.include? :many_per_file
           return [ Definition.new( items.first.class_name , template.evaluate( items: items ) ) ]
-        else
+        elsif @tags.include? :one_per_file
           return items.collect { |item| Definition.new( item.name, template.evaluate( item: item ) ) }
+        else
+          raise
         end
 
-      rescue
-        raise Exceptions::InvalidTemplate, "An invalid template \"#{@template_path}\" was used. Please check and correct the syntax and try again."
+      rescue Exception => e
+        raise Exceptions::InvalidTemplate, "An invalid template \"#{@template_path}\" was used. Please check and correct the syntax and try again. The original error message was: #{e.message}."
       end
 
       private
@@ -63,21 +75,28 @@ module PuppetGenerator
           files = Dir.glob( path_to_instances )
 
           files.each do |f| 
-            create( name( f ) , f, suitable_outputs_for_path( f ) )
+            create( name( f ) , f, suitable_outputs_for_path( f ), create_tags( f ) )
           end
 
         end
 
+        def create_tags(path)
+          return case path 
+                 when %r[one_per_file]
+                   [ :one_per_file ]
+                 when %r[many_per_file]
+                   [ :many_per_file ]
+                 end
+        end
+
         def suitable_outputs_for_path(path)
           return case path 
-                 when %r[#{model_name.downcase.pluralize}/puppet/file]
-                   [ :file ]
-                 when %r[#{model_name.downcase.pluralize}/puppet/directory]
-                   [ :directory, :dir ]
-                 when %r[#{model_name.downcase.pluralize}/puppet/stdout]
-                   [ :stdout ]
+                 when %r[one_per_file]
+                   [ :directory, :dir, :stdout , :file ]
+                 when %r[many_per_file]
+                   [ :file , :stdout ]
                  else
-                   [ :file ]
+                   [ :file , :stdout ]
                  end
         end
       end

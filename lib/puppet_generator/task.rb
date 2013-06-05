@@ -15,6 +15,7 @@ module PuppetGenerator
       @meta[:requested_action]        = options[:action]
       @meta[:mode]                    = log_level(options)
       @meta[:command]       = options[:command] 
+      @meta[:template_tagged_with]       = options[:template_tagged_with].split(/:/).map(&:to_sym) if options[:template_tagged_with]
     end
 
     private

@@ -262,3 +262,24 @@ Feature: Generate file definitions
     When I run `ppgen file --source testdir --action unknown_action`
     Then the exit status should be 7
     And the stderr should contain "unknown_action"
+
+  Scenario: Use a tag to choose the correct template
+    Given a file named "input.txt" with:
+    """
+    asdf1
+    asdf2
+    """
+    When I successfully run `ppgen file --template-tagged-with many_per_file`
+    Then the file "output.txt" should contain:
+    """
+    class mymodule::myclass {
+      file {'asdf1':
+        ensure => file,
+      }
+
+      file {'asdf2':
+        ensure => file,
+      }
+    }
+
+    """
