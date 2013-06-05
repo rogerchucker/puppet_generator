@@ -294,6 +294,6 @@ Feature: Generate file definitions
     Then the output should contain:
     """
     I was not able to find a suitable template for the given command "file", for the given tags "many_per_file" and for the given destination "dir:out.d"
-    """"
+    """
 
 
