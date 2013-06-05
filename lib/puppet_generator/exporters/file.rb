@@ -4,8 +4,7 @@ module PuppetGenerator
 
       def write(filename, definitions)
         ::File.open(filename, "w") do |f|
-          f.puts content
-            definitions.first.text
+          f.puts definitions.first.text
         end
       end
 
