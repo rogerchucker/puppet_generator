@@ -116,7 +116,7 @@ Feature: Generate user definitions
     When I successfully run `ppgen user --destination stdout`
     Then the stdout should contain:
     """
-    class mymodule::asdf {
+    class mymodule::myclass {
       user {'asdf':
         ensure     => present,
         managehome => true,

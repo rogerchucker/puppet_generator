@@ -115,7 +115,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen package --destination stdout`
     Then the output should contain:
     """
-    class mymodule::asdf {
+    class mymodule::myclass {
       package {'asdf':
         ensure   => installed,
       }
