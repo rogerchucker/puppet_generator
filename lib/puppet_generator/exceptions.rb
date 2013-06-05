@@ -25,6 +25,10 @@ module PuppetGenerator
     #raised if an unknown input filter was
     #requested by the user
     class UnknownImportFilter < UserError; end
+   
+    #raised if an unknown export filter was
+    #requested by the user
+    class UnknownExportFilter < UserError; end
     
     #raised if an unknown action was
     #requested by the user
@@ -63,6 +67,10 @@ module PuppetGenerator
     #raised if the code which defines an import filter
     #which is malformed
     class InvalidImportFilter < InternalError; end
+    
+    #raised if the code which defines an import filter
+    #which is malformed
+    class InvalidExportFilter < InternalError; end
     
     #raised if the code which defines an importer
     #which is malformed
