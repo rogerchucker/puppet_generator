@@ -9,6 +9,7 @@ module PuppetGenerator
         Models::ErrorMessage.enable :invalid_yaml_input
         Models::ErrorMessage.enable :invalid_passwd_input
         Models::ErrorMessage.enable :unknown_action
+        Models::ErrorMessage.enable :internal_error
       end
     end
   end

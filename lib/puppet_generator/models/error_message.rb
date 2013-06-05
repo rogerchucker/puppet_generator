@@ -25,6 +25,10 @@ module PuppetGenerator
           Models::ErrorMessage.create :invalid_passwd_input,   6, "The input is no passwd file valid for this use case."
           Models::ErrorMessage.create :unknown_action,         7, "There's no action \"<%= @requested_action %>\". Available actions: <%= @available_actions %>."
           Models::ErrorMessage.create :filesystem_error,       8, "The file/directory \"<%= @fs_object %>\" does not exist."
+
+          m = Models::ErrorMessage.create :internal_error,         99, "Sorry, an internal error occured. This should not happen. Please send a bug report to the author and add the following output to that report:\n\n<%= @exception_message %>"
+          m.postscript = "\n\n=================\nPlease go to \"http://github.com/maxmeyer/puppet_generator\" to open the bug report. Thank you very much."
+
         end
       end
 
