@@ -13,6 +13,11 @@ module PuppetGenerator
         @tags = tags
       end
 
+      #output path to template
+      def path
+        @template_path
+      end
+
       #check if a template is suitable for 
       #a given output
       def is_suitable_for?(output)

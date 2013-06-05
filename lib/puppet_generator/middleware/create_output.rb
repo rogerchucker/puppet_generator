@@ -28,6 +28,7 @@ module PuppetGenerator
 
         template = Models::Template.find(name: task.meta[:command], is_suitable_for: channel.to_sym, is_tagged_with: task.meta[:template_tagged_with] )
         raise Exceptions::WrongTemplateChosen unless template
+        PuppetGenerator.logger.debug(self.class.name){ "Chosen template: #{template.name} (#{template.path})." }
 
         definitions = template.render(task.body)
 
