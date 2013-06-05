@@ -114,7 +114,7 @@ Feature: Generate user definitions
     asdf
     """
     When I successfully run `ppgen user --destination stdout`
-    Then the output should contain:
+    Then the stdout should contain:
     """
     class mymodule::asdf {
       user {'asdf':

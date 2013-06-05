@@ -112,7 +112,7 @@ Feature: Generate file definitions
     asdf
     """
     When I successfully run `ppgen file --destination stdout`
-    Then the output should contain:
+    Then the stdout should contain:
     """
     class mymodule::asdf {
       file {'asdf':
