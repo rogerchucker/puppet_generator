@@ -8,39 +8,23 @@ describe Models::ExportFilter do
     expect(filter.name).to eq(:null)
   end
 
-  it "raises an error if an export filter is invalid: name error" do
+  it "raises an error if an export filter is invalid: missing method \"convert\"" do
     test_class = Class.new( Models::ExportFilter ) do
 
+      def self.library_name
+        "PuppetGenerator"
+      end
+
       def self.model_name
-        "ExportFilters"
+        "Exporters"
       end
 
       def self.path_to_instances
-        File.join( examples_dir, 'export_filter', 'invalid_filter_1.rb' )
+        File.join( examples_dir, 'export_filter', 'missing_method.rb' )
       end
 
       def self.require_path(name)
-        File.join( examples_dir, 'export_filter', 'invalid_filter_1' )
-      end
-    end
-
-    expect {
-      test_class.init
-    }.to raise_error Exceptions::InvalidExportFilter
-  end
-
-  it "raises an error if an export filter is invalid: missing method" do
-    test_class = Class.new( Models::ExportFilter ) do
-      def self.model_name
-        "ExportFilters"
-      end
-
-      def self.path_to_instances
-        File.join( examples_dir, 'export_filter', 'invalid_filter_2.rb' )
-      end
-
-      def self.require_path(name)
-        File.join( examples_dir, 'export_filter', 'invalid_filter_2' )
+        File.join( examples_dir, 'export_filter', 'missing_method' )
       end
     end
 

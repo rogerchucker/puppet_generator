@@ -14,6 +14,7 @@ require 'set'
 #require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/hash/indifferent_access'
+require 'fedux_org/stdlib/models'
 
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'

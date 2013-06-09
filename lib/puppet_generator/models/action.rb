@@ -1,10 +1,10 @@
 module PuppetGenerator
   module Models
     # model for import action
-    class Action < Base
+    class Action < FeduxOrg::Stdlib::Models::BaseModel
 
-      include FilesystemBasedModel
-      include ClassBasedModel
+      include FeduxOrg::Stdlib::Models::FilesystemBasedModel
+      include FeduxOrg::Stdlib::Models::ClassBasedModel
 
       extend Forwardable
 

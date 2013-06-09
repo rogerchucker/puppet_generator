@@ -1,8 +1,8 @@
 module PuppetGenerator
   module Models
-    class Template < Base
+    class Template < FeduxOrg::Stdlib::Models::BaseModel
 
-      include FilesystemBasedModel
+      include FeduxOrg::Stdlib::Models::FilesystemBasedModel
 
       #create new instance of template model
       def initialize( name , template_path, suitable_outputs=[], tags=[] )

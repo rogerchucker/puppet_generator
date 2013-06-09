@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'fedux_org-stdlib', branch: 'master'
+
 gemspec 
 
 group :test do

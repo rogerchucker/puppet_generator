@@ -1,10 +1,10 @@
 module PuppetGenerator
   module Models
     # model for import filter
-    class Importer < Base
+    class Importer < FeduxOrg::Stdlib::Models::BaseModel
 
-      include FilesystemBasedModel
-      include ClassBasedModel
+      include FeduxOrg::Stdlib::Models::FilesystemBasedModel
+      include FeduxOrg::Stdlib::Models::ClassBasedModel
 
       extend Forwardable
 
@@ -23,6 +23,10 @@ module PuppetGenerator
 
       class << self
 
+        def path
+          __FILE__
+        end
+
         def existing_source?(source)
           return true if find( reads_from: source )
 
@@ -34,7 +38,6 @@ module PuppetGenerator
 
           false
         end
-
 
         def check_method
           :read

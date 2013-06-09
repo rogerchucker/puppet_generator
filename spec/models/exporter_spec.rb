@@ -5,19 +5,6 @@ describe Models::Exporter do
     Models::Exporter.clear
   end
 
-  it "returns a string of all active exporter" do
-    Models::Exporter.create(:name1, 'Text1')
-    Models::Exporter.create(:name2, 'Text2')
-    Models::Exporter.enable :name1
-    Models::Exporter.enable :name2
-
-    result = Models::Exporter.all_names_as_string(", ")
-    expect(result).to eq("name1, name2")
-
-    result = Models::Exporter.all_names_as_string
-    expect(result).to eq("name1, name2")
-  end
-
   it "finds all available exporters" do
     Models::Exporter.init
     filter = Models::Exporter.find(:file)
@@ -34,6 +21,10 @@ describe Models::Exporter do
 
   it "raises an error if an exporter is invalid: missing method \"write\"" do
     test_class = Class.new( Models::Exporter ) do
+
+      def self.library_name
+        "PuppetGenerator"
+      end
 
       def self.model_name
         "Exporters"

@@ -16,18 +16,28 @@ describe Models::Template do
     expect(result.name).to eq(:package)
   end
 
-  it "raises an error if a template is invalid" do
+  it "raises an error if a template is invalid: missing method \"render\"" do
     test_class = Class.new( Models::Template ) do
-      def self.path_to_instances
-        File.join( examples_dir, 'templates', 'invalid_template.pp.erb' )
+
+      def self.library_name
+        "PuppetGenerator"
       end
 
+      def self.model_name
+        "Template"
+      end
+
+      def self.path_to_instances
+        File.join( examples_dir, 'template', 'missing_method.rb' )
+      end
+
+      def self.require_path(name)
+        File.join( examples_dir, 'template', 'missing_method' )
+      end
     end
 
-    test_class.init
-
     expect {
-      test_class.find(:invalid_template).render('')
+      test_class.init
     }.to raise_error Exceptions::InvalidTemplate
   end
 

@@ -1,10 +1,10 @@
 module PuppetGenerator
   module Models
     # model for import filter
-    class ImportFilter < Base
+    class ImportFilter < FeduxOrg::Stdlib::Models::BaseModel
 
-      include FilesystemBasedModel
-      include ClassBasedModel
+      include FeduxOrg::Stdlib::Models::FilesystemBasedModel
+      include FeduxOrg::Stdlib::Models::ClassBasedModel
 
       extend Forwardable
 
@@ -29,6 +29,10 @@ module PuppetGenerator
 
         def forbidden_keywords
           [ :enabled ]
+        end
+
+        def path
+          __FILE__
         end
 
       end
