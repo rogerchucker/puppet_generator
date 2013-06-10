@@ -9,7 +9,7 @@ Feature: Generate file definitions
     """
     asdf
     """
-    When I successfully run `ppgen file`
+    When I successfully run `ppgen create file`
     Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
@@ -21,12 +21,12 @@ Feature: Generate file definitions
     """
 
   Scenario: Non Existing Input File
-    When I run `ppgen file`
+    When I run `ppgen create file`
     Then the exit status should be 8
     And the stderr should contain "The file/directory \"input.txt\" does not exist"
 
   Scenario: Input via Stdin
-    When I run `ppgen file --source stdin` interactively
+    When I run `ppgen create file --source stdin` interactively
     And I type "asdf"
     And I close the stdin stream
     Then the file "out.d/asdf.pp" should contain:
@@ -40,7 +40,7 @@ Feature: Generate file definitions
     """
 
   Scenario: empty input source
-    When I run `ppgen file --source ''`
+    When I run `ppgen create file --source ''`
     Then the exit status should be 8
     And the stderr should contain "The file/directory \"\" does not exist."
 
@@ -50,7 +50,7 @@ Feature: Generate file definitions
     asdf
     test123
     """
-    When I successfully run `ppgen file`
+    When I successfully run `ppgen create file`
     Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
@@ -75,7 +75,7 @@ Feature: Generate file definitions
     """
     asdf
     """
-    When I successfully run `ppgen file --module string1::string2`
+    When I successfully run `ppgen create file --module string1::string2`
     Then the file "out.d/asdf.pp" should contain:
     """
     class string1::string2::asdf {
@@ -92,7 +92,7 @@ Feature: Generate file definitions
     asdf
     test123
     """
-    When I successfully run `ppgen file --destination file:out.txt`
+    When I successfully run `ppgen create file --destination file:out.txt`
     Then the file "out.txt" should contain:
     """
     class mymodule::myclass {
@@ -111,7 +111,7 @@ Feature: Generate file definitions
     """
     asdf
     """
-    When I successfully run `ppgen file --destination stdout`
+    When I successfully run `ppgen create file --destination stdout`
     Then the stdout should contain:
     """
     class mymodule::myclass {
@@ -128,7 +128,7 @@ Feature: Generate file definitions
     asdf
     test123
     """
-    When I successfully run `ppgen file --destination file:out.txt --class test`
+    When I successfully run `ppgen create file --destination file:out.txt --class test`
     Then the file "out.txt" should contain:
     """
     class mymodule::test {
@@ -147,7 +147,7 @@ Feature: Generate file definitions
     """
     path/to/file
     """
-    When I successfully run `ppgen file --destination file:out.txt`
+    When I successfully run `ppgen create file --destination file:out.txt`
     Then the file "out.txt" should contain:
     """
     class mymodule::myclass {
@@ -163,7 +163,7 @@ Feature: Generate file definitions
     """
     path/to/file1
     """
-    When I successfully run `ppgen file --destination dir:out.d`
+    When I successfully run `ppgen create file --destination dir:out.d`
     Then the file "out.d/file1.pp" should contain:
     """
     class mymodule::file1 {
@@ -179,7 +179,7 @@ Feature: Generate file definitions
     And an empty file named "testdir/file1"
     And an empty file named "testdir/file2"
     And an empty file named "testdir/file3"
-    When I successfully run `ppgen file --source testdir --destination file:out.txt --import-filter filesystem_attributes`
+    When I successfully run `ppgen create file --source testdir --destination file:out.txt --import-filter filesystem_attributes`
     Then the file "out.txt" should contain:
     """
     class mymodule::myclass
@@ -214,7 +214,7 @@ Feature: Generate file definitions
     And an empty file named "testdir/file1"
     And an empty file named "testdir/file2"
     And an empty file named "testdir/file3"
-    When I successfully run `ppgen file --source testdir --import-filter filesystem_attributes`
+    When I successfully run `ppgen create file --source testdir --import-filter filesystem_attributes`
     Then the file "out.d/file1.pp" should contain:
     """
       file {'testdir/file1':
@@ -248,8 +248,8 @@ Feature: Generate file definitions
     """
     And an empty file named "testdir/file2"
     And an empty file named "testdir/file3"
-    When I successfully run `ppgen module`
-    And I successfully run `ppgen file --source testdir --action copy_files_to_module_directory`
+    When I successfully run `ppgen create module`
+    And I successfully run `ppgen create file --source testdir --action copy_files_to_module_directory`
     Then a directory named "mymodule" should exist
     And a directory named "mymodule/files/testdir" should exist
     And the file "mymodule/files/testdir/file1" should contain:
@@ -259,7 +259,7 @@ Feature: Generate file definitions
 
   Scenario: Fails if wrong action is chosen
     Given a directory named "testdir"
-    When I run `ppgen file --source testdir --action unknown_action`
+    When I run `ppgen create file --source testdir --action unknown_action`
     Then the exit status should be 7
     And the stderr should contain "unknown_action"
 
@@ -269,7 +269,7 @@ Feature: Generate file definitions
     asdf1
     asdf2
     """
-    When I successfully run `ppgen file --template-tagged-with many_per_file --destination file:output.txt`
+    When I successfully run `ppgen create file --template-tagged-with many_per_file --destination file:output.txt`
     Then the file "output.txt" should contain:
     """
     class mymodule::myclass {
@@ -289,7 +289,7 @@ Feature: Generate file definitions
     asdf1
     asdf2
     """
-    When I run `ppgen file --template-tagged-with many_per_file`
+    When I run `ppgen create file --template-tagged-with many_per_file`
     Then the exit status should be 9
     Then the stderr should contain:
     """
@@ -303,7 +303,7 @@ Feature: Generate file definitions
     asdf2
     """
     And an empty file named "asdf1"
-    When I successfully run `ppgen file --export-filter null`
+    When I successfully run `ppgen create file --export-filter null`
     Then the file "out.d/asdf1.pp" should contain:
     """
     class mymodule::asdf1 {
@@ -321,7 +321,7 @@ Feature: Generate file definitions
     asdf2
     """
     And an empty file named "asdf1"
-    When I successfully run `ppgen file --export-filter filesystem_attributes`
+    When I successfully run `ppgen create file --export-filter filesystem_attributes`
     Then the file "out.d/asdf1.pp" should contain:
     """
     class mymodule::asdf1 {
