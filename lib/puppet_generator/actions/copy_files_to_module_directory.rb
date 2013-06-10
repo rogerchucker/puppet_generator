@@ -16,7 +16,7 @@ module PuppetGenerator
       private
 
       def make_source(module_name, src)
-        "puppet:///modules/#{module_name}/#{src}"
+        "puppet:///modules/#{module_name}/#{ src.sub( %r[^/], '' ) }"
       end
     end
   end
