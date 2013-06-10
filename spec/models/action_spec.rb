@@ -22,11 +22,11 @@ describe Models::Action do
       end
 
       def self.path_to_instances
-        File.join( examples_dir, 'action', 'missing_method.rb' )
+        File.join( examples_dir, 'actions', 'missing_method.rb' )
       end
 
       def self.require_path(name)
-        File.join( examples_dir, 'action', 'missing_method' )
+        File.join( examples_dir, 'actions', 'missing_method' )
       end
     end
 
