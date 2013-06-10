@@ -1,0 +1,4 @@
+set autoeval
+set history save
+set history size 9999
+set listsize 30
