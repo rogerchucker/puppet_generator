@@ -79,6 +79,8 @@ module PuppetGenerator
         def load_from_filesystem
           files = Dir.glob( path_to_instances )
 
+          raise FeduxOrg::Stdlib::Models::Exceptions::NoImplementationsForModelFound, "You might need to store files at \"#{File.dirname(path_to_instances)}\" to make the library work." if files.blank?
+
           files.each do |f| 
             create( name( f ) , f, suitable_outputs_for_path( f ), create_tags( f ) )
           end
