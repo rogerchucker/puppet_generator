@@ -20,8 +20,16 @@ module PuppetGenerator
         @action = action
       end
 
-      def self.check_method
-        :run
+      class << self
+        private
+
+        def check_method
+          :run
+        end
+
+        def path
+          __FILE__
+        end
       end
     end
   end

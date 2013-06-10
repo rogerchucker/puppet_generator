@@ -104,6 +104,10 @@ module PuppetGenerator
                    [ :file , :stdout ]
                  end
         end
+
+        def path
+          __FILE__
+        end
       end
     end
   end

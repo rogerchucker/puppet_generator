@@ -35,9 +35,14 @@ module PuppetGenerator
           false
         end
 
+        private
 
         def check_method
           :write
+        end
+
+        def path
+          __FILE__
         end
       end
 

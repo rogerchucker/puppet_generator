@@ -23,12 +23,18 @@ module PuppetGenerator
       end
 
       class << self
+        private
+
         def check_method
           :convert
         end
 
         def forbidden_keywords
           [ :enabled ]
+        end
+
+        def path
+          __FILE__
         end
 
       end

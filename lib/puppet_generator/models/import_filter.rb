@@ -23,6 +23,8 @@ module PuppetGenerator
       end
 
       class << self
+        private
+
         def check_method
           :convert
         end

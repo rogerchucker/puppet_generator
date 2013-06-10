@@ -23,10 +23,6 @@ module PuppetGenerator
 
       class << self
 
-        def path
-          __FILE__
-        end
-
         def existing_source?(source)
           return true if find( reads_from: source )
 
@@ -39,9 +35,16 @@ module PuppetGenerator
           false
         end
 
+        private
+
         def check_method
           :read
         end
+
+        def path
+          __FILE__
+        end
+
       end
 
     end
