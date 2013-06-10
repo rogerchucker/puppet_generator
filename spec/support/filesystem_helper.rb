@@ -1,5 +1,5 @@
 def examples_dir
-  File.expand_path( '../examples', __FILE__ )
+  File.expand_path( '../../examples', __FILE__ )
 end
 
 require 'fedux_org/stdlib/filesystem'
