@@ -16,7 +16,7 @@ class Default < Thor
   @destination_option = { type: :string, default: 'dir:out.d', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"' }
   @action_option = { type: :string, default: 'null', desc: 'what action should be run after filtering the input' }
   @template_tagged_with_option = { type: :string, desc: 'use a template which is tagged with "<tag>(:<tag>)+"' }
-  @export_filter_option = { type: :array, default: [], desc: 'modify the data before exporting it (to add some more value to it): <filter>( <filter>)*' }
+  @export_filter_option = { type: :array, default: [ :null ], desc: 'modify the data before exporting it (to add some more value to it): <filter>( <filter>)*' }
 
   method_option :source , @source_option
   method_option :import_filter , @import_filter_option

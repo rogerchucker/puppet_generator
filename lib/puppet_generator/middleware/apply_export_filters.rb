@@ -20,10 +20,8 @@ module PuppetGenerator
       private
 
       def apply_filters(filters, data, &block)
-        all_filters = filters.to_s.split(/, */)
-        debugger
 
-        all_filters.inject(data) do |data,filter|
+        filters.inject(data) do |data,filter|
           active_filter = Models::ExportFilter.find filter
           raise Exceptions::UnknownExportFilter unless active_filter
 
