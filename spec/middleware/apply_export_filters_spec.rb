@@ -12,7 +12,7 @@ describe PuppetGenerator::Middleware::ApplyExportFilters do
 
     task = double( 'task' )
     task.stub( :body ).and_return( [ { name: test_file } ])
-    task.stub( :meta ).and_return( { requested_export_filter: :filesystem_attributes } )
+    task.stub( :meta ).and_return( { requested_export_filter: [ :filesystem_attributes ] } )
     task.should_receive( :body= ).with( [ {:name => test_file, :type => "file", :owner => user, :mode => "100644"} ] )
 
     app = double('app')
