@@ -25,7 +25,7 @@ module PuppetGenerator
           active_action = Models::Action.find action
           raise Exceptions::UnknownAction unless active_action
 
-          data = active_action.run( module_name, data )
+          data = active_action.run( task , data )
         end
       end
 
