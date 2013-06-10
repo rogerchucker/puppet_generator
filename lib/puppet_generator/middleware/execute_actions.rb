@@ -22,7 +22,7 @@ module PuppetGenerator
         data = task.body
 
         actions.inject(data) do |data,action|
-          active_filter = Models::Action.find action
+          active_action = Models::Action.find action
           raise Exceptions::UnknownAction unless active_action
 
           data = active_action.run( module_name, data )
