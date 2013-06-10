@@ -16,7 +16,7 @@ describe Models::ExportFilter do
       end
 
       def self.model_name
-        "Exporters"
+        "ExportFilter"
       end
 
       def self.path_to_instances

@@ -18,7 +18,7 @@ describe Models::Action do
       end
 
       def self.model_name
-        "Exporters"
+        "Action"
       end
 
       def self.path_to_instances

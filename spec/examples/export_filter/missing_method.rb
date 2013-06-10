@@ -1,5 +1,5 @@
 module PuppetGenerator
-  module ExportFilter
+  module ExportFilters
     class MissingMethod
       #required method is missing
     end

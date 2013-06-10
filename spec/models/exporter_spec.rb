@@ -27,7 +27,7 @@ describe Models::Exporter do
       end
 
       def self.model_name
-        "Exporters"
+        "Exporter"
       end
 
       def self.path_to_instances
