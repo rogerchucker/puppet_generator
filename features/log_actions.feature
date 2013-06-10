@@ -9,7 +9,7 @@ Feature: Logging
     """
     asdf
     """
-    When I successfully run `ppgen file --debug`
+    When I successfully run `ppgen create file --debug`
     Then the stderr should contain:
     """
     Logging is configured with mode "debug".
@@ -72,7 +72,7 @@ Feature: Logging
     """
     asdf
     """
-    When I successfully run `ppgen file --silent`
+    When I successfully run `ppgen create file --silent`
     Then the output should contain:
     """
     """
@@ -82,7 +82,7 @@ Feature: Logging
     """
     asdf
     """
-    When I successfully run `ppgen file`
+    When I successfully run `ppgen create file`
     Then the output should contain:
     """
     """
