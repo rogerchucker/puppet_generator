@@ -76,6 +76,10 @@ module PuppetGenerator
           File.join(path,'**', "*#{ suffix }")
         end
 
+        def suffix
+          '.pp.erb'
+        end
+
         def load_from_filesystem
           files = Dir.glob( path_to_instances )
 
