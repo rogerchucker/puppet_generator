@@ -13,7 +13,7 @@ class Create < Thor
   @source_option = { type: :string, default: 'input.txt', desc: 'enter the source which should be used to generate the puppet output' }
   @import_filter_option = { type: :string, default: 'null', desc: 'make it possible to pipe structured data into command' }
   @destination_option = { type: :string, default: 'dir:out.d', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"' }
-  @action_option = { type: :string, default: 'null', desc: 'what action should be run after filtering the input' }
+  @action_option = { type: :array, default: [ :null ], desc: 'what action should be run after filtering the input: <action>( <action>)*' }
   @template_tagged_with_option = { type: :string, desc: 'use a template which is tagged with "<tag>(:<tag>)+"' }
   @export_filter_option = { type: :array, default: [ :null ], desc: 'modify the data before exporting it (to add some more value to it): <filter>( <filter>)*' }
 

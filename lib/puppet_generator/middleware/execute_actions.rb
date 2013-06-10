@@ -7,14 +7,26 @@ module PuppetGenerator
       end
 
       def call(task)
-        PuppetGenerator.logger.debug(self.class.name){ "Execute action \"#{task.meta[:requested_action]}\" on output." }
+        PuppetGenerator.logger.debug(self.class.name){ "Execute action \"#{task.meta[:requested_actions].join(", ")}\" on output." }
 
-        active_action = Models::Action.find task.meta[:requested_action]
-        raise Exceptions::UnknownAction unless active_action
-
-        task.body = active_action.run( task )
+        task.body = execute_actions( task.meta[:requested_actions] , task )
 
         @app.call(task)
+      end
+
+      private
+
+      def execute_actions(actions, task)
+
+        module_name = task.meta[:module]
+        data = task.body
+
+        actions.inject(data) do |data,action|
+          active_action = Models::Action.find action
+          raise Exceptions::UnknownAction unless active_action
+
+          data = active_action.run( module_name, data )
+        end
       end
 
     end
