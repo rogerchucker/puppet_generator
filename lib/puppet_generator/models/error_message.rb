@@ -48,6 +48,12 @@ module PuppetGenerator
 
         result.join
       end
+
+      private
+
+      def self.path
+        __FILE__
+      end
     end
   end
 end

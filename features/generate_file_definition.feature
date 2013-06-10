@@ -296,4 +296,57 @@ Feature: Generate file definitions
     I was not able to find a suitable template for the given command "file", for the given tags "many_per_file" and for the given destination "dir:out.d"
     """
 
+  Scenario: Export filter null
+    Given a file named "input.txt" with:
+    """
+    asdf1
+    asdf2
+    """
+    And an empty file named "asdf1"
+    When I successfully run `ppgen file --export-filter null`
+    Then the file "out.d/asdf1.pp" should contain:
+    """
+    class mymodule::asdf1 {
+      file {'asdf1':
+        ensure => file,
+      }
+    }
 
+    """
+
+  Scenario: Export filter filesystem attributes
+    Given a file named "input.txt" with:
+    """
+    asdf1
+    asdf2
+    """
+    And an empty file named "asdf1"
+    When I successfully run `ppgen file --export-filter filesystem_attributes`
+    Then the file "out.d/asdf1.pp" should contain:
+    """
+    class mymodule::asdf1 {
+    """
+    And the file "out.d/asdf1.pp" should contain:
+    """
+      file {'asdf1':
+    """
+    And the file "out.d/asdf1.pp" should contain:
+    """
+        ensure => file,
+    """
+    And the file "out.d/asdf1.pp" should contain:
+    """
+        owner  => 
+    """
+    And the file "out.d/asdf1.pp" should contain:
+    """
+        mode   => '100644',
+    """
+    And the file "out.d/asdf1.pp" should contain:
+    """
+      }
+    """
+    And the file "out.d/asdf1.pp" should contain:
+    """
+    }
+    """

@@ -12,6 +12,7 @@ module PuppetGenerator
       @meta[:module]        = options[:module]
       @meta[:class]         = options[:class]
       @meta[:requested_import_filter] = options[:import_filter]
+      @meta[:requested_export_filter] = options[:export_filter]
       @meta[:requested_action]        = options[:action]
       @meta[:mode]                    = log_level(options)
       @meta[:command]       = options[:command] 

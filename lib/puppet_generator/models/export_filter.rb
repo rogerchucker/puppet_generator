@@ -1,7 +1,7 @@
 module PuppetGenerator
   module Models
     # model for import filter
-    class Exporter < FeduxOrg::Stdlib::Models::BaseModel
+    class ExportFilter < FeduxOrg::Stdlib::Models::BaseModel
 
       include FeduxOrg::Stdlib::Models::FilesystemBasedModel
       include FeduxOrg::Stdlib::Models::ClassBasedModel
@@ -11,39 +11,32 @@ module PuppetGenerator
       #@!method convert
       #   converts an object using the convert method of 
       #   the stored filter
-      def_delegator :@exporter, :write, :write
-      def_delegator :@exporter, :writes_to?, :writes_to?
+      def_delegator :@filter, :convert, :convert
+
+      public
 
       #create new instance of filter model
-      def initialize( name , exporter )
+      def initialize( name , filter )
         super(name)
 
-        @exporter = exporter
+        @filter = filter
       end
 
       class << self
-
-        def existing_destination?(destination)
-          return true if File.exists? destination
-
-          false
-        end
-
-        def valid_destination?(destination)
-          return true if find( writes_to: destination, enabled: true )
-
-          false
-        end
-
         private
 
         def check_method
-          :write
+          :convert
+        end
+
+        def forbidden_keywords
+          [ :enabled ]
         end
 
         def path
           __FILE__
         end
+
       end
 
     end

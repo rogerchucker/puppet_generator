@@ -20,7 +20,11 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
-    Available filter: filesystem_attributes, null, yaml
+    Available import filter: null, yaml
+    """
+    Then the stderr should contain:
+    """
+    Available export filter: filesystem_attributes, null
     """
     Then the stderr should contain:
     """

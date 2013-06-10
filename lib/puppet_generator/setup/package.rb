@@ -13,6 +13,7 @@ module PuppetGenerator
         DefaultImportFilter.use
         DefaultActions.use
         DefaultImporter.use
+        DefaultExportFilter.use
 
         Models::Template.find_all(:package).collect { |t| t.enable }
       end

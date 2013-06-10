@@ -13,6 +13,7 @@ module PuppetGenerator
         Models::ErrorMessage.init
         Models::Importer.init
         Models::Exporter.init
+        Models::ExportFilter.init
       end
 
       def create_task

@@ -1,5 +1,5 @@
 class ::Logger
-  SILENT = 9999
+  SILENT = 9999 unless defined? SILENT
 end
 
 module PuppetGenerator
