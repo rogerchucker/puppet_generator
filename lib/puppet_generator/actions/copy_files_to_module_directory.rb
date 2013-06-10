@@ -5,6 +5,7 @@ module PuppetGenerator
         src = data.collect { |e| e[:name] }
         dst = File.join( module_name , 'files')
 
+        FileUtils.mkdir_p dst
         FileUtils.cp_r src , dst
 
         data.collect { |e| e[:source] = make_source( module_name , e[:name]) ; e }
