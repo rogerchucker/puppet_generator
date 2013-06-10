@@ -1,8 +1,8 @@
 module PuppetGenerator
   module Actions
     class Null
-      def run(task)
-        task.body
+      def run(module_name, data)
+        data
       end
     end
   end
