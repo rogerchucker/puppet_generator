@@ -7,7 +7,7 @@ module PuppetGenerator
       end
 
       def call(task)
-        PuppetGenerator.logger.debug(self.class.name){ "Execute action \"#{task.meta[:requested_actions]}\" on output." }
+        PuppetGenerator.logger.debug(self.class.name){ "Execute action \"#{task.meta[:requested_actions].join(", ")}\" on output." }
 
         task.body = execute_actions( task.meta[:requested_actions] , task )
 
@@ -16,7 +16,7 @@ module PuppetGenerator
 
       private
 
-      def execute_actions(actions, task, &block)
+      def execute_actions(actions, task)
 
         module_name = task.meta[:module]
         data = task.body
