@@ -1,2 +1,2 @@
-default: -t @wip:3
-all: -t ~@wip
+default: -t @wip:3 PUPPET_GENERATOR_ENV=test
+all: -t ~@wip PUPPET_GENERATOR_ENV=test
