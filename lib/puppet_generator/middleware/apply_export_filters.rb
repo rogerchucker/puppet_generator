@@ -21,6 +21,7 @@ module PuppetGenerator
 
       def apply_filters(filters, data, &block)
         all_filters = filters.to_s.split(/, */)
+        debugger
 
         all_filters.inject(data) do |data,filter|
           active_filter = Models::ExportFilter.find filter
