@@ -340,7 +340,7 @@ Feature: Generate file definitions
     """
     And the file "out.d/asdf1.pp" should contain:
     """
-        mode  => '100644',
+        mode   => '100644',
     """
     And the file "out.d/asdf1.pp" should contain:
     """
