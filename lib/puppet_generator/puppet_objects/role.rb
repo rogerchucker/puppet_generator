@@ -1,11 +1,12 @@
 module PuppetGenerator
   module PuppetObjects
     class Role
-      attr_reader :name, :module_name, :includes
+      attr_reader :name, :module_name, :class_name, :includes
 
       def initialize(entry, module_name, class_name)
         @name = entry[:name] 
         @module_name = module_name
+        @class_name = class_name
 
         @includes = entry[:includes] || []
       end

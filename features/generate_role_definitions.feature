@@ -16,3 +16,20 @@ Feature: Generate role definitions
     }
 
     """
+
+  Scenario: Yaml Input File
+    Given a file named "input.yml" with:
+    """
+    yaml_test:
+      - one
+      - two
+    """
+    When I successfully run `ppgen create role --source input.yml --destination file:output.txt`
+    Then the file "output.txt" should contain:
+    """
+    class mymodule::yaml_test {
+      include one
+      include two
+    }
+
+    """
