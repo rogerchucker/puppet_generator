@@ -14,6 +14,7 @@ module PuppetGenerator
         Models::Importer.init
         Models::Exporter.init
         Models::ExportFilter.init
+        Models::EntryConverter.init
       end
 
       def create_task
