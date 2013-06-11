@@ -7,6 +7,7 @@ module PuppetGenerator
       task = s.create_task
 
       pre = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::EnableDebuggingLibraries
         use PuppetGenerator::Middleware::ConfigureLogging
       end
 
@@ -35,6 +36,7 @@ module PuppetGenerator
       task = s.create_task
 
       pre = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::EnableDebuggingLibraries
         use PuppetGenerator::Middleware::ConfigureLogging
       end
 
@@ -63,6 +65,7 @@ module PuppetGenerator
       task = s.create_task
 
       pre = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::EnableDebuggingLibraries
         use PuppetGenerator::Middleware::ConfigureLogging
       end
 
@@ -91,6 +94,7 @@ module PuppetGenerator
       task = s.create_task
 
       pre = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::EnableDebuggingLibraries
         use PuppetGenerator::Middleware::ConfigureLogging
       end
 
@@ -111,6 +115,7 @@ module PuppetGenerator
       task = Task.new(options, :error_message)
 
       pre = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::EnableDebuggingLibraries
         use PuppetGenerator::Middleware::ConfigureLogging
       end
 
@@ -133,6 +138,7 @@ module PuppetGenerator
       task = s.create_task
 
       pre = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::EnableDebuggingLibraries
         use PuppetGenerator::Middleware::ConfigureLogging
       end
 

@@ -25,5 +25,12 @@ module PuppetGenerator
     rescue
       self.logger.warn(self) { "Please note, this code is just for coverage testing. You need to install the \"simplecov\"-gem to make it work" }
     end
+
+    def enable_debugging_libraries
+      require 'pry' 
+      require 'debugger'
+    rescue
+      self.logger.warn(self) { "Please note, this code is just for debugging the library. You need to install the \"ruby-debug19\"- and \"pry\"-gem to make it work" }
+    end
   end
 end
