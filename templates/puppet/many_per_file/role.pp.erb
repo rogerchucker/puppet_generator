@@ -1,7 +1,7 @@
 <% @items.each do |item| %>
 class <%= item.module_name %>::<%= item.class_name %> {
 <% item.includes.each do |i| %>
-  include <%= i.name %>
+  include <%= i %>
 <% end %>
 }
 <% end %>

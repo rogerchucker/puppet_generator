@@ -6,7 +6,7 @@ module PuppetGenerator
       def initialize(entry, module_name, class_name)
         @name = entry[:name] 
         @module_name = module_name
-        @class_name = class_name
+        @class_name = entry[:name]
 
         @includes = entry[:includes] || []
       end
