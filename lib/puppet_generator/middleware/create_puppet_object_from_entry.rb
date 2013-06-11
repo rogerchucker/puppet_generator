@@ -7,12 +7,15 @@ module PuppetGenerator
       end
 
       def call(task)
-        c = Models::EntryConverter.find( task.meta[ :command ] )
+        converter = Models::EntryConverter.find( task.meta[ :command ] )
+
+        raise Exceptions::InvalidEntryConverter, "I was not able to find an entry converter for command \"#{ task.meta[ :command ] }\". Available converters are: #{ Models::EntryConverter.all_names_as_string }" unless converter
 
         PuppetGenerator.logger.debug(self.class.name){ "Convert entries for command \"#{ task.meta[:command] }\"" }
-        PuppetGenerator.logger.debug(self.class.name){ "Convert entries to puppet objects using converter \"#{ c.name }.\"" }
+        PuppetGenerator.logger.debug(self.class.name){ "Convert entries to puppet objects using converter \"#{ converter.name }.\"" }
 
-        task.body = c.convert( task.body, task.meta[:module] , task.meta[:class] )
+
+        task.body = converter.convert( task.body, task.meta[:module] , task.meta[:class] )
 
         @app.call(task)
       end
