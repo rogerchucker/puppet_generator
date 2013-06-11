@@ -1,5 +1,5 @@
-class <%= @item.module_name %>::<%= @item.class_name %> {
+class <% if @item.module_name %><%= @item.module_name %>::<% end %><%= @item.class_name %> {
 <% @item.includes.each do |i| %>
-  include <%= i %>
+  include #<% if @item.module_name %><%= @item.module_name %>::<% end %>#<%= @item.class_name %>''::<%= i %>
 <% end %>
 }

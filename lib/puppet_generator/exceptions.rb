@@ -17,7 +17,7 @@ module PuppetGenerator
     
     #raised if something goes wrong internally
     #should never happend
-    class InternalError < UserError; end
+    class InternalError < Exception; end
     
     #raised if source is empty
     class EmptySource < UserError; end
@@ -42,7 +42,7 @@ module PuppetGenerator
     
     #raised if an error happened during copying files
     class ErrorDuringCopyFiles < UserError; end
-
+    
     #raised if one tries to delete an instance which
     #does not exist
     class InstanceNotFound < InternalError; end

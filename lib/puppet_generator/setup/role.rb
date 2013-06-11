@@ -15,6 +15,7 @@ module PuppetGenerator
 
         Models::Template.find_all(:role).collect { |t| t.enable }
         Models::Importer.enable :directory
+        Models::ExportFilter.enable :build_role_includes_for_directory
       end
 
       def create_task

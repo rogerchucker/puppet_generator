@@ -11,6 +11,8 @@ module PuppetGenerator
 
         task.body = apply_filters(task.meta[:requested_export_filter], task.body)
 
+        PuppetGenerator.logger.debug(self.class.name) { "Count output lines: #{task.body.size}" }
+
         @app.call(task)
       end
 
