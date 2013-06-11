@@ -5,7 +5,7 @@ Feature: Generate file definitions
   In order to get those things up and running via puppet
 
   Background: Process environment
-    Given the following process environment:
+    Given I set the environment variables to:
       | variable             | value |
       | PUPPET_GENERATOR_ENV | test  |
 
