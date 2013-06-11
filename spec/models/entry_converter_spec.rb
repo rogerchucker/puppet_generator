@@ -56,28 +56,4 @@ describe Models::EntryConverter do
     expect(result.name).to eq(:role)
   end
 
-#  it "finds an importer for a directory" do
-#    Models::Importer.init
-#
-#    expected_result = Models::Importer.find( :directory )
-#    result = Models::Importer.find( reads_from: File.join(examples_dir, 'importer', 'test.d' ) )
-#    expect(result).to eq(expected_result)
-#  end
-#
-#  it "finds an importer for stdin" do
-#    Models::Importer.init
-#
-#    expected_result = Models::Importer.find( :stdin )
-#    result = Models::Importer.find( reads_from: 'stdin' )
-#    expect(result).to eq(expected_result)
-#  end
-#
-#  it "reads from file" do
-#    Models::Importer.init
-#
-#    importer = Models::Importer.find( :file )
-#    result = importer.read(File.join(examples_dir, 'importer', 'test_file.txt' ))
-#    expect(result).to eq([ 'asdf' ] )
-#  end
-#
 end
