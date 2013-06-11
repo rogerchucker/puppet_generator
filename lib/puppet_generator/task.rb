@@ -1,5 +1,8 @@
 module PuppetGenerator
   class Task
+
+    include PuppetHelper
+
     attr_reader :meta
     attr_accessor :body
 
@@ -9,8 +12,8 @@ module PuppetGenerator
 
       @meta[:source]        = options[:source] 
       @meta[:destination]   = options[:destination]
-      @meta[:module]        = options[:module]
-      @meta[:class]         = options[:class]
+      @meta[:module]        = puppet_module_name( options[:module] )
+      @meta[:class]         = puppet_class_name( options[:class] )
       @meta[:requested_import_filter] = options[:import_filter]
       @meta[:requested_export_filter] = options[:export_filter]
       @meta[:requested_actions]        = options[:action]
