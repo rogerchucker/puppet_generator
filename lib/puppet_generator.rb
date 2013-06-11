@@ -47,9 +47,9 @@ require 'puppet_generator/setup/user'
 require 'puppet_generator/setup/module'
 require 'puppet_generator/setup/role'
 
-require 'puppet_generator/puppet_package'
-require 'puppet_generator/puppet_file'
-require 'puppet_generator/puppet_user'
+require 'puppet_generator/puppet_objects/package'
+require 'puppet_generator/puppet_objects/file'
+require 'puppet_generator/puppet_objects/user'
 
 require 'puppet_generator/definition'
 require 'puppet_generator/task'
