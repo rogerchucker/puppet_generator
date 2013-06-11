@@ -13,7 +13,6 @@ Feature: Generate role definitions
     Then the file "out.d/asdf.pp" should contain:
     """
     class mymodule::asdf {
-      include TBD
     }
 
     """

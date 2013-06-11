@@ -50,6 +50,7 @@ require 'puppet_generator/setup/role'
 require 'puppet_generator/puppet_objects/package'
 require 'puppet_generator/puppet_objects/file'
 require 'puppet_generator/puppet_objects/user'
+require 'puppet_generator/puppet_objects/role'
 
 require 'puppet_generator/definition'
 require 'puppet_generator/task'
@@ -66,6 +67,5 @@ require 'puppet_generator/middleware/create_module_directories'
 require 'puppet_generator/middleware/execute_actions'
 require 'puppet_generator/middleware/output_debug_information_for_models'
 require 'puppet_generator/api'
-
 
 module PuppetGenerator; end
