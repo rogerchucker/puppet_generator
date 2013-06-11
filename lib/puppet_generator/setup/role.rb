@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setup
-    class File < Bare
+    class Role < Bare
 
       def initialize(options)
         super
@@ -13,15 +13,13 @@ module PuppetGenerator
         DefaultImporter.use
         DefaultExportFilter.use
 
-        Models::Action.enable :copy_files_to_module_directory
-        Models::Template.find_all(:file).collect { |t| t.enable }
-        Models::ExportFilter.enable :filesystem_attributes
+        Models::Template.find_all(:role).collect { |t| t.enable }
         Models::Importer.enable :directory
       end
 
       def create_task
         Task.new(
-          HashWithIndifferentAccess.new( { command: :file } ).merge @options
+          HashWithIndifferentAccess.new( { command: :role } ).merge @options
         )
       end
     end

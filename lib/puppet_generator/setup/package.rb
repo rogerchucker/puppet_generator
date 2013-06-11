@@ -5,7 +5,6 @@ module PuppetGenerator
 
       def initialize(options)
         super
-        @task = Task.new(options)
       end
 
       def setup_environment
@@ -16,6 +15,12 @@ module PuppetGenerator
         DefaultExportFilter.use
 
         Models::Template.find_all(:package).collect { |t| t.enable }
+      end
+
+      def create_task
+        Task.new(
+          HashWithIndifferentAccess.new( { command: :package } ).merge @options
+        )
       end
     end
   end

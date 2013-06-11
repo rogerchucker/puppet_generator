@@ -15,7 +15,12 @@ module PuppetGenerator
 
         Models::ImportFilter.enable :passwd
         Models::Template.find_all(:user).collect { |t| t.enable }
+      end
 
+      def create_task
+        Task.new(
+          HashWithIndifferentAccess.new( { command: :user } ).merge @options
+        )
       end
     end
   end
