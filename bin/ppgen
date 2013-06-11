@@ -4,10 +4,11 @@ if ENV['PUPPET_GENERATOR_ENV'] and ENV['PUPPET_GENERATOR_ENV'].downcase.to_sym =
   begin
     require 'simplecov' 
 
-    SimpleCov.start
+    SimpleCov.root File.expand_path( '../../', __FILE__ )
     SimpleCov.command_name 'cucumber'
+    SimpleCov.start
   rescue
-    puts "Please not, this code is just for coverage testing."
+    puts "Please note, this code is just for coverage testing."
   end
 end
 
