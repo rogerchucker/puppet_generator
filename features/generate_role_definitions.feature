@@ -32,13 +32,28 @@ Feature: Generate role definitions
     When I successfully run `ppgen create role --source input.yml --destination file:output.txt --import-filter yaml`
     Then the file "output.txt" should contain:
     """
-    class mymodule::yaml_test {
+    class mymodule::yamltest {
       include one
       include two
     }
-    class mymodule::yaml_test2 {
+    class mymodule::yamltest2 {
       include one
       include two
+    }
+
+    """
+
+  Scenario: Scan module
+    Given a directory named "test"
+    And a directory named "test/dir1"
+    And an empty file named "test/dir1/file1.pp"
+    And an empty file named "test/dir1/file2.pp"
+    When I successfully run `ppgen create role --source test --destination dir:./ --export-filter build_role_includes_for_directory`
+    Then the file "test.pp"" should contain:
+    """
+    class mymodule::Dir1 {
+      include mymodule::Dir1::File1
+      include mymodule::Dir1::File2
     }
 
     """
