@@ -83,9 +83,8 @@ class Default < Thor
     true
   end
 
-  desc "create <type>", "Create puppet dsl for <type"
+  desc "create <type>", "Create puppet dsl for <type>"
   subcommand :create, Create
 end
-
 
 Default.start
