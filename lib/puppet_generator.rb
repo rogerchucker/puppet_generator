@@ -32,6 +32,7 @@ require 'puppet_generator/models/import_filter'
 require 'puppet_generator/models/action'
 require 'puppet_generator/models/template'
 require 'puppet_generator/models/logger'
+require 'puppet_generator/models/entry_converter'
 
 require 'puppet_generator/setup/bare'
 require 'puppet_generator/setup/default_importer'
