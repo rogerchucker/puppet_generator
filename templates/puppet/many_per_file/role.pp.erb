@@ -1,7 +1,7 @@
 <% @items.each do |item| %>
-class <% if item.module_name %><%= item.module_name %>::<% end %><%= item.class_name %> {
+class <%= item.name %> {
 <% item.includes.each do |i| %>
-  include <% if item.module_name %><%= item.module_name %>::<% end %><%= item.class_name %>::<%= i %>
+  include <%= item.name %>::<%= i %>
 <% end %>
 }
 <% end %>

@@ -6,7 +6,7 @@ module PuppetGenerator
         ::Dir.mkdir directory unless ::Dir.exists? directory
 
         definitions.each do |d| 
-          filename = ::File.join( directory, "#{d.name}.pp" )
+          filename = ::File.join( directory, "#{d.file_name}" )
 
           ::File.open(filename, "w") do |f|
             f.puts d.text

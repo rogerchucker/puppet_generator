@@ -32,13 +32,13 @@ Feature: Generate role definitions
     When I successfully run `ppgen create role --source input.yml --destination file:output.txt --import-filter yaml`
     Then the file "output.txt" should contain:
     """
-    class mymodule::yamltest {
-      include one
-      include two
+    class mymodule::yaml_test {
+      include mymodule::yaml_test::one
+      include mymodule::yaml_test::two
     }
-    class mymodule::yamltest2 {
-      include one
-      include two
+    class mymodule::yaml_test2 {
+      include mymodule::yaml_test2::one
+      include mymodule::yaml_test2::two
     }
 
     """

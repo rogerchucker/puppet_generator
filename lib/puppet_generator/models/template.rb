@@ -37,9 +37,9 @@ module PuppetGenerator
       def render(items)
 
         if @tags.include? :many_per_file
-          return [ Definition.new( items.first.class_name , template.evaluate( items: items ) ) ]
+          return [ Definition.new( nil , template.evaluate( items: items ) ) ]
         elsif @tags.include? :one_per_file
-          return items.collect { |item| Definition.new( item.name, template.evaluate( item: item ) ) }
+          return items.collect { |item| Definition.new( item.suggested_file_name, template.evaluate( item: item ) ) }
         else
           raise
         end

@@ -1,6 +1,9 @@
 module PuppetGenerator
   module PuppetObjects
     class File
+
+      include PuppetHelper
+
       attr_reader :path, :module_name, :class_name, :owner, :mode, :source, :type
 
       def initialize(entry, module_name, class_name)
@@ -16,6 +19,10 @@ module PuppetGenerator
 
       def name
         ::File.basename(path)
+      end
+
+      def suggested_file_name
+        puppet_manifest_path( name )
       end
     end
   end
