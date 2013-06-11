@@ -1,6 +1,11 @@
 # PuppetGenerator
 
-TODO: Write a gem description
+Reduces the amount of time for writing puppet manifests.
+
+## Description
+
+Writing manifests for puppet can be very time consuming and quite boring.
+
 
 ## Installation
 
