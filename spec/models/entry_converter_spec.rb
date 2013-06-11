@@ -49,6 +49,13 @@ describe Models::EntryConverter do
     expect(result.name).to eq(:file)
   end
 
+  it "finds an entry converter for a role entry" do
+    Models::EntryConverter.init
+
+    result = Models::EntryConverter.find( :role )
+    expect(result.name).to eq(:role)
+  end
+
 #  it "finds an importer for a directory" do
 #    Models::Importer.init
 #
