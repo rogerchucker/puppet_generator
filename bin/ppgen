@@ -2,8 +2,14 @@
 
 require 'puppet_generator/main'
 
-if ENV['PUPPET_GENERATOR_ENV'] and ENV['PUPPET_GENERATOR_ENV'].downcase.to_sym == :test
-  PuppetGenerator.enable_coverage_report
+if ENV['PUPPET_GENERATOR_ENV'] 
+  case ENV['PUPPET_GENERATOR_ENV'].downcase.to_sym
+  when :test
+    PuppetGenerator.enable_coverage_report
+    PuppetGenerator.enable_debugging_libraries
+  when :development
+    PuppetGenerator.enable_debugging_libraries
+  end
 end
 
 require 'puppet_generator'
