@@ -11,7 +11,6 @@ module PuppetGenerator
       end
 
       stack = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::ConfigureLogging
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInput
@@ -40,7 +39,6 @@ module PuppetGenerator
       end
 
       stack = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::ConfigureLogging
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInput
@@ -128,6 +126,35 @@ module PuppetGenerator
         stack.call(task)
       end
     end
+
+    def generate_role_definition(options)
+      s = Setup::Role.new(options)
+      s.setup_environment
+      task = s.create_task
+
+      pre = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::ConfigureLogging
+      end
+
+      stack = ::Middleware::Builder.new do
+        use PuppetGenerator::Middleware::OutputDebugInformationForModels
+        use PuppetGenerator::Middleware::HandleErrors
+        use PuppetGenerator::Middleware::ReadInput
+        use PuppetGenerator::Middleware::CheckForEmptySource
+        use PuppetGenerator::Middleware::FilterImportedData
+        use PuppetGenerator::Middleware::ApplyExportFilters
+        use PuppetGenerator::Middleware::ExecuteActions
+        use PuppetGenerator::Middleware::EntryToRole
+        use PuppetGenerator::Middleware::CreateOutput
+      end
+
+      pre.call(task)
+
+      run_with_messages startup_message: "Generating puppet definitions for type \"role\"." do
+        stack.call(task)
+      end
+    end
+
 
     private
 
