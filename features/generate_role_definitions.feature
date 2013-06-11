@@ -49,7 +49,7 @@ Feature: Generate role definitions
     And an empty file named "test/dir1/file1.pp"
     And an empty file named "test/dir1/file2.pp"
     When I successfully run `ppgen create role --source test --destination dir:./ --export-filter build_role_includes_for_directory`
-    Then the file "test.pp"" should contain:
+    Then the file "test.pp" should contain:
     """
     class mymodule::Dir1 {
       include mymodule::Dir1::File1
