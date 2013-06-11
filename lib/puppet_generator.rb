@@ -44,6 +44,7 @@ require 'puppet_generator/setup/file'
 require 'puppet_generator/setup/package'
 require 'puppet_generator/setup/user'
 require 'puppet_generator/setup/module'
+require 'puppet_generator/setup/role'
 
 require 'puppet_generator/puppet_package'
 require 'puppet_generator/puppet_file'
