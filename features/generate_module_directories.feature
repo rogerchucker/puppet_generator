@@ -6,12 +6,12 @@ Feature: Generate module directories definitions
 
   Scenario: predefined module name
     When I successfully run `ppgen create module`
-    Then a directory named "mymodule" should exist
-    And a directory named "mymodule/manifests" should exist
-    And a directory named "mymodule/manifests" should exist
-    And the file "mymodule/init.pp" should contain:
+    Then a directory named "Mymodule" should exist
+    And a directory named "Mymodule/manifests" should exist
+    And a directory named "Mymodule/manifests" should exist
+    And the file "Mymodule/init.pp" should contain:
     """
-    class mymodule {
+    class Mymodule {
 
     }
 
