@@ -5,11 +5,11 @@ module PuppetGenerator
     end
 
     def library_name
-      self
+      self.to_s
     end
 
     def gem_load_path
-      library_name.downcase.underscore
+      library_name.underscore
     end
 
     def root_directory
