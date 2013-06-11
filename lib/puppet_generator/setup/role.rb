@@ -4,7 +4,6 @@ module PuppetGenerator
 
       def initialize(options)
         super
-        @task = Task.new(options)
       end
 
       def setup_environment
@@ -16,6 +15,12 @@ module PuppetGenerator
 
         Models::Template.find_all(:role).collect { |t| t.enable }
         Models::Importer.enable :directory
+      end
+
+      def create_task
+        Task.new(
+          HashWithIndifferentAccess.new( { command: :role } ).merge @options
+        )
       end
     end
   end

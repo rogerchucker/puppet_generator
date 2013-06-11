@@ -35,8 +35,7 @@ class Create < Thor
   method_option :export_filter, @export_filter_option
   desc 'package', 'generate package definitions'
   def package
-    opts = HashWithIndifferentAccess.new({ command: :package }).merge options
-    PuppetGenerator::Api.new.generate_package_definition(opts)
+    PuppetGenerator::Api.new.generate_package_definition(options)
   end
 
   method_option :source , @source_option
@@ -47,8 +46,7 @@ class Create < Thor
   method_option :export_filter, @export_filter_option
   desc 'file', 'generate file definitions'
   def file
-    opts = HashWithIndifferentAccess.new({ command: :file }).merge options
-    PuppetGenerator::Api.new.generate_file_definition(opts)
+    PuppetGenerator::Api.new.generate_file_definition(options)
   end
 
   method_option :source , @source_option
@@ -59,14 +57,12 @@ class Create < Thor
   method_option :export_filter, @export_filter_option
   desc 'user', 'generate user definitions'
   def user
-    opts = HashWithIndifferentAccess.new({ command: :user }).merge options
-    PuppetGenerator::Api.new.generate_user_definition(opts)
+    PuppetGenerator::Api.new.generate_user_definition(options)
   end
 
   desc 'module', 'creates all files needed to build a module'
   def module
-    opts = HashWithIndifferentAccess.new({ command: :module }).merge options
-    PuppetGenerator::Api.new.generate_module(opts)
+    PuppetGenerator::Api.new.generate_module(options)
   end
 
   method_option :source , @source_option
@@ -77,8 +73,7 @@ class Create < Thor
   method_option :export_filter, @export_filter_option
   desc 'role', 'generate role definitions'
   def role
-    opts = HashWithIndifferentAccess.new({ command: :role }).merge options
-    PuppetGenerator::Api.new.generate_role_definition(opts)
+    PuppetGenerator::Api.new.generate_role_definition(options)
   end
 
 end

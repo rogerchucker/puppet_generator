@@ -5,11 +5,16 @@ module PuppetGenerator
 
       def initialize(options)
         super
-        @task = Task.new(options)
       end
 
       def setup_environment
         DefaultErrorMessages.use
+      end
+
+      def create_task
+        Task.new(
+          HashWithIndifferentAccess.new( { command: :module } ).merge @options
+        )
       end
 
     end

@@ -4,7 +4,6 @@ module PuppetGenerator
 
       def initialize(options)
         super
-        @task = Task.new(options)
       end
 
       def setup_environment
@@ -18,6 +17,12 @@ module PuppetGenerator
         Models::Template.find_all(:file).collect { |t| t.enable }
         Models::ExportFilter.enable :filesystem_attributes
         Models::Importer.enable :directory
+      end
+
+      def create_task
+        Task.new(
+          HashWithIndifferentAccess.new( { command: :file } ).merge @options
+        )
       end
     end
   end

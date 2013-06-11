@@ -3,7 +3,7 @@ module PuppetGenerator
     class Bare
 
       def initialize(options)
-        @task = Task.new(options)
+        @options = options
 
         PuppetGenerator::Models.logger = PuppetGenerator.logger
 
@@ -17,7 +17,7 @@ module PuppetGenerator
       end
 
       def create_task
-        @task
+        Task.new(@options)
       end
     end
   end
