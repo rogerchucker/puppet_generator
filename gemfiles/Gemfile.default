@@ -8,9 +8,10 @@ group :test do
   gem 'rake'
   gem 'rspec'
   gem 'simplecov'
-  gem 'aruba'
+  gem 'aruba', git: 'https://github.com/dg-vrnetze/aruba.git', branch: 'feature/support_for_environment'
   gem 'fuubar'
   gem 'ffaker'
+  gem 'cucumber'
 end
 
 group :documentation do

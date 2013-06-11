@@ -4,6 +4,11 @@ Feature: Generate file definitions
   I need to write file definitions for puppet
   In order to get those things up and running via puppet
 
+  Background: Process environment
+    Given the following process environment:
+      | variable             | value |
+      | PUPPET_GENERATOR_ENV | test  |
+
   Scenario: Plain Input File
     Given a file named "input.txt" with:
     """

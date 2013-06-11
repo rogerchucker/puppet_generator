@@ -6,6 +6,8 @@ group :test do
   gem 'rake'
   gem 'rspec'
   gem 'fuubar'
+  gem 'aruba', git: 'https://github.com/dg-vrnetze/aruba.git', branch: 'feature/support_for_environment'
+  gem 'cucumber'
 end
 
 group :documentation do
