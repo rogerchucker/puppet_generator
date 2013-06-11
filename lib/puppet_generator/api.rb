@@ -18,7 +18,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::FilterImportedData
         use PuppetGenerator::Middleware::ApplyExportFilters
         use PuppetGenerator::Middleware::ExecuteActions
-        use PuppetGenerator::Middleware::EntryToPackage
+        use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
         use PuppetGenerator::Middleware::CreateOutput
       end
 
@@ -46,7 +46,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::FilterImportedData
         use PuppetGenerator::Middleware::ApplyExportFilters
         use PuppetGenerator::Middleware::ExecuteActions
-        use PuppetGenerator::Middleware::EntryToFile
+        use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
         use PuppetGenerator::Middleware::CreateOutput
       end
 
@@ -74,7 +74,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::FilterImportedData
         use PuppetGenerator::Middleware::ApplyExportFilters
         use PuppetGenerator::Middleware::ExecuteActions
-        use PuppetGenerator::Middleware::EntryToUser
+        use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
         use PuppetGenerator::Middleware::CreateOutput
       end
 
@@ -144,7 +144,7 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::FilterImportedData
         use PuppetGenerator::Middleware::ApplyExportFilters
         use PuppetGenerator::Middleware::ExecuteActions
-        use PuppetGenerator::Middleware::EntryToRole
+        use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
         use PuppetGenerator::Middleware::CreateOutput
       end
 
