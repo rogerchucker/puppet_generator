@@ -7,6 +7,8 @@ module PuppetGenerator
 
       def call(task)
         PuppetGenerator.enable_debugging_libraries if task.meta[:debug]
+
+        @app.call(task)
       end
     end
   end
