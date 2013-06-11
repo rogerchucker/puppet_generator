@@ -60,7 +60,7 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
-    Convert entries to puppet file objects.
+    Convert entries for command "file"
     """
     Then the stderr should contain:
     """

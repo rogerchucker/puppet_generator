@@ -1,14 +1,14 @@
 module PuppetGenerator
   module Actions
     class CopyFilesToModuleDirectory
-      def run( module_name , data )
+      def run( task , data )
         src = data.collect { |e| e[:name] }
-        dst = File.join( module_name , 'files')
+        dst = File.join( task.meta[:module] , 'files')
 
         FileUtils.mkdir_p dst
         FileUtils.cp_r src , dst
 
-        data.collect { |e| e[:source] = make_source( module_name , e[:name]) ; e }
+        data.collect { |e| e[:source] = make_source( task.meta[:module] , e[:name]) ; e }
       rescue
         raise Exceptions::ErrorDuringCopyFiles
       end

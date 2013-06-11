@@ -14,9 +14,10 @@ module PuppetGenerator
       @meta[:requested_import_filter] = options[:import_filter]
       @meta[:requested_export_filter] = options[:export_filter]
       @meta[:requested_actions]        = options[:action]
-      @meta[:mode]                    = log_level(options)
+      @meta[:logging_mode]             = log_level(options)
       @meta[:command]       = options[:command] 
       @meta[:template_tagged_with]       = options[:template_tagged_with].split(/:/).map(&:to_sym) if options[:template_tagged_with]
+      @meta[:debug]         = true if options[:debug]
     end
 
     private

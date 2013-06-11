@@ -6,7 +6,7 @@ module PuppetGenerator
       end
 
       def call(task)
-        case task.meta[:mode]
+        case task.meta[:logging_mode]
         when :debug
           PuppetGenerator.logger.mode = :debug
         when :silent

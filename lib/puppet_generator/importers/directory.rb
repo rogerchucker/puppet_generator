@@ -5,7 +5,7 @@ module PuppetGenerator
 
       def read( directory )
         lines = []
-        ::Find.find( directory) { |path| lines << path }
+        ::Find.find( directory ) { |path| lines << path }
 
         lines
       rescue Exception => e

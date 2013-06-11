@@ -1,0 +1,5 @@
+class <%= @item.module_name %>::<%= @item.class_name %> {
+<% @item.includes.each do |i| %>
+  include <%= i %>
+<% end %>
+}
