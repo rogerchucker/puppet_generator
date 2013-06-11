@@ -21,13 +21,22 @@ Feature: Generate role definitions
     Given a file named "input.yml" with:
     """
     yaml_test:
-      - one
-      - two
+      includes:
+        - one
+        - two
+    yaml_test2:
+      includes:
+        - one
+        - two
     """
-    When I successfully run `ppgen create role --source input.yml --destination file:output.txt`
+    When I successfully run `ppgen create role --source input.yml --destination file:output.txt --import-filter yaml`
     Then the file "output.txt" should contain:
     """
     class mymodule::yaml_test {
+      include one
+      include two
+    }
+    class mymodule::yaml_test2 {
       include one
       include two
     }
