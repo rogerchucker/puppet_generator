@@ -69,6 +69,18 @@ class Create < Thor
     PuppetGenerator::Api.new.generate_module(opts)
   end
 
+  method_option :source , @source_option
+  method_option :import_filter , @import_filter_option
+  method_option :destination , @destination_option
+  method_option :action , @action_option
+  method_option :template_tagged_with, @template_tagged_with_option
+  method_option :export_filter, @export_filter_option
+  desc 'role', 'generate role definitions'
+  def role
+    opts = HashWithIndifferentAccess.new({ command: :role }).merge options
+    PuppetGenerator::Api.new.generate_role_definition(opts)
+  end
+
 end
 
 class Default < Thor
