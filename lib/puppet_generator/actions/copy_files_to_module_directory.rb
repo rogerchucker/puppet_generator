@@ -3,7 +3,6 @@ module PuppetGenerator
     class CopyFilesToModuleDirectory
       def run( task , data )
         src = data.collect { |e| e[:name] }
-        binding.pry
         dst = File.join( task.meta[:module] , 'files')
 
         FileUtils.mkdir_p dst
