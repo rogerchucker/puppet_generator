@@ -17,7 +17,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file`
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       file {'asdf':
         ensure => file,
       }
@@ -36,7 +36,7 @@ Feature: Generate file definitions
     And I close the stdin stream
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       file {'asdf':
         ensure => file,
       }
@@ -58,7 +58,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file`
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       file {'asdf':
         ensure => file,
       }
@@ -67,7 +67,7 @@ Feature: Generate file definitions
     """
     And the file "out.d/test123.pp" should contain:
     """
-    class Mymodule::test123 {
+    class mymodule::test123 {
       file {'test123':
         ensure => file,
       }
@@ -100,7 +100,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --destination file:out.txt`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       file {'asdf':
         ensure => file,
       }
@@ -119,7 +119,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --destination stdout`
     Then the stdout should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       file {'asdf':
         ensure => file,
       }
@@ -136,7 +136,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --destination file:out.txt --class test`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::test {
+    class mymodule::test {
       file {'asdf':
         ensure => file,
       }
@@ -155,7 +155,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --destination file:out.txt`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       file {'path/to/file':
         ensure => file,
       }
@@ -171,7 +171,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --destination dir:out.d`
     Then the file "out.d/file1.pp" should contain:
     """
-    class Mymodule::file1 {
+    class mymodule::file1 {
       file {'path/to/file1':
         ensure => file,
       }
@@ -187,7 +187,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --source testdir --destination file:out.txt --import-filter filesystem_attributes`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::Myclass
+    class mymodule::myclass
     """
     And the file "out.txt" should contain:
     """
@@ -255,9 +255,9 @@ Feature: Generate file definitions
     And an empty file named "testdir/file3"
     When I successfully run `ppgen create module`
     And I successfully run `ppgen create file --source testdir --action copy_files_to_module_directory`
-    Then a directory named "Mymodule" should exist
-    And a directory named "Mymodule/files/testdir" should exist
-    And the file "Mymodule/files/testdir/file1" should contain:
+    Then a directory named "mymodule" should exist
+    And a directory named "mymodule/files/testdir" should exist
+    And the file "mymodule/files/testdir/file1" should contain:
     """
     asdf
     """
@@ -277,7 +277,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --template-tagged-with many_per_file --destination file:output.txt`
     Then the file "output.txt" should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       file {'asdf1':
         ensure => file,
       }
@@ -311,7 +311,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --export-filter null`
     Then the file "out.d/asdf1.pp" should contain:
     """
-    class Mymodule::asdf1 {
+    class mymodule::asdf1 {
       file {'asdf1':
         ensure => file,
       }
@@ -329,7 +329,7 @@ Feature: Generate file definitions
     When I successfully run `ppgen create file --export-filter filesystem_attributes`
     Then the file "out.d/asdf1.pp" should contain:
     """
-    class Mymodule::asdf1 {
+    class mymodule::asdf1 {
     """
     And the file "out.d/asdf1.pp" should contain:
     """

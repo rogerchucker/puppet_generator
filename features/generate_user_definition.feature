@@ -12,7 +12,7 @@ Feature: Generate user definitions
     When I successfully run `ppgen create user`
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       user {'asdf':
         ensure     => present,
         managehome => true,
@@ -32,7 +32,7 @@ Feature: Generate user definitions
     And I close the stdin stream
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       user {'asdf':
         ensure     => present,
         managehome => true,
@@ -50,7 +50,7 @@ Feature: Generate user definitions
     When I successfully run `ppgen create user`
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       user {'asdf':
         ensure     => present,
         managehome => true,
@@ -60,7 +60,7 @@ Feature: Generate user definitions
     """
     And the file "out.d/test123.pp" should contain:
     """
-    class Mymodule::test123 {
+    class mymodule::test123 {
       user {'test123':
         ensure     => present,
         managehome => true,
@@ -95,7 +95,7 @@ Feature: Generate user definitions
     When I successfully run `ppgen create user --destination file:out.txt`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       user {'asdf':
         ensure     => present,
         managehome => true,
@@ -116,7 +116,7 @@ Feature: Generate user definitions
     When I successfully run `ppgen create user --destination stdout`
     Then the stdout should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       user {'asdf':
         ensure     => present,
         managehome => true,
@@ -134,7 +134,7 @@ Feature: Generate user definitions
     When I successfully run `ppgen create user --destination file:out.txt --class test`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::test {
+    class mymodule::test {
       user {'asdf':
         ensure     => present,
         managehome => true,
@@ -156,7 +156,7 @@ Feature: Generate user definitions
     When I successfully run `ppgen create user --source etc_passwd --destination file:out.txt --import-filter passwd`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       user {'root':
         ensure     => present,
         managehome => true,

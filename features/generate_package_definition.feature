@@ -12,7 +12,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen create package`
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       package {'asdf':
         ensure   => installed,
       }
@@ -31,7 +31,7 @@ Feature: Generate package definitions
     And I close the stdin stream
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       package {'asdf':
         ensure   => installed,
       }
@@ -54,7 +54,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen create package`
     Then the file "out.d/asdf.pp" should contain:
     """
-    class Mymodule::asdf {
+    class mymodule::asdf {
       package {'asdf':
         ensure   => installed,
       }
@@ -63,7 +63,7 @@ Feature: Generate package definitions
     """
     And the file "out.d/test123.pp" should contain:
     """
-    class Mymodule::test123 {
+    class mymodule::test123 {
       package {'test123':
         ensure   => installed,
       }
@@ -96,7 +96,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen create package --destination file:out.txt`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       package {'asdf':
         ensure   => installed,
       }
@@ -115,7 +115,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen create package --destination stdout`
     Then the output should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       package {'asdf':
         ensure   => installed,
       }
@@ -132,7 +132,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen create package --destination file:out.txt --class test`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::test {
+    class mymodule::test {
       package {'asdf':
         ensure   => installed,
       }
@@ -159,7 +159,7 @@ Feature: Generate package definitions
     When I successfully run `ppgen create package --source input.yml --destination file:out.txt --import-filter yaml`
     Then the file "out.txt" should contain:
     """
-    class Mymodule::Myclass {
+    class mymodule::myclass {
       package {'ssh-server':
         ensure   => 1.2.3,
         provider => yum,
