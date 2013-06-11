@@ -1,14 +1,9 @@
 #!/usr/bin/env ruby
 
-if ENV['PUPPET_GENERATOR_ENV'] and ENV['PUPPET_GENERATOR_ENV'].downcase.to_sym == :test
-  begin
-    require 'simplecov' 
+require 'puppet_generator/main'
 
-    SimpleCov.start
-    SimpleCov.command_name 'cucumber'
-  rescue
-    puts "Please not, this code is just for coverage testing."
-  end
+if ENV['PUPPET_GENERATOR_ENV'] and ENV['PUPPET_GENERATOR_ENV'].downcase.to_sym == :test
+  PuppetGenerator.enable_coverage_report
 end
 
 require 'puppet_generator'

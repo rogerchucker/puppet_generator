@@ -16,6 +16,7 @@ require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'fedux_org/stdlib/models'
 
+require 'puppet_generator/main'
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'
 require 'puppet_generator/logger'
@@ -66,12 +67,4 @@ require 'puppet_generator/middleware/output_debug_information_for_models'
 require 'puppet_generator/api'
 
 
-module PuppetGenerator
-  def self.logger
-    @logger ||= Logger.new
-  end
-
-  def self.gem_load_path
-    File.basename( __FILE__, '.rb' )
-  end
-end
+module PuppetGenerator; end
