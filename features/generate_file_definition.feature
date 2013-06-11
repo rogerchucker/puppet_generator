@@ -184,7 +184,7 @@ Feature: Generate file definitions
     And an empty file named "testdir/file1"
     And an empty file named "testdir/file2"
     And an empty file named "testdir/file3"
-    When I successfully run `ppgen create file --source testdir --destination file:out.txt --import-filter filesystem_attributes`
+    When I successfully run `ppgen create file --source testdir --destination file:out.txt --export-filter filesystem_attributes`
     Then the file "out.txt" should contain:
     """
     class mymodule::myclass
@@ -219,7 +219,7 @@ Feature: Generate file definitions
     And an empty file named "testdir/file1"
     And an empty file named "testdir/file2"
     And an empty file named "testdir/file3"
-    When I successfully run `ppgen create file --source testdir --import-filter filesystem_attributes`
+    When I successfully run `ppgen create file --source testdir --export-filter filesystem_attributes`
     Then the file "out.d/file1.pp" should contain:
     """
       file {'testdir/file1':
