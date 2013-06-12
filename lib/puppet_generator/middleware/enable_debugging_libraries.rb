@@ -6,7 +6,7 @@ module PuppetGenerator
       end
 
       def call(task)
-        PuppetGenerator.enable_debugging_libraries if task.meta[:debug]
+        PuppetGenerator.enable_debugging_libraries if task.meta[:debug] and not ENV['TRAVIS_CI'] == 'true'
 
         @app.call(task)
       end
