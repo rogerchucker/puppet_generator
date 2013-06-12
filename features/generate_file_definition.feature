@@ -320,12 +320,12 @@ Feature: Generate file definitions
     """
 
   Scenario: Export filter filesystem attributes
-    Given a file named "input.txt" with mode "0644" and with:
+    Given a file named "input.txt" with:
     """
     asdf1
     asdf2
     """
-    And an empty file named "asdf1"
+    And an empty file named "asdf1" with mode "0644"
     When I successfully run `ppgen create file --export-filter filesystem_attributes`
     Then the file "out.d/asdf1.pp" should contain:
     """
