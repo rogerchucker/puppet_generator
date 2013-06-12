@@ -181,9 +181,9 @@ Feature: Generate file definitions
 
   Scenario: With file system meta data
     Given a directory named "testdir"
-    And an empty file named "testdir/file1"
-    And an empty file named "testdir/file2"
-    And an empty file named "testdir/file3"
+    And an empty file named "testdir/file1" with mode "0644"
+    And an empty file named "testdir/file2" with mode "0644"
+    And an empty file named "testdir/file3" with mode "0644"
     When I successfully run `ppgen create file --source testdir --destination file:out.txt --export-filter filesystem_attributes`
     Then the file "out.txt" should contain:
     """
@@ -216,9 +216,9 @@ Feature: Generate file definitions
 
   Scenario: With file system meta data in separate files
     Given a directory named "testdir"
-    And an empty file named "testdir/file1"
-    And an empty file named "testdir/file2"
-    And an empty file named "testdir/file3"
+    And an empty file named "testdir/file1" with mode "0644"
+    And an empty file named "testdir/file2" with mode "0644"
+    And an empty file named "testdir/file3" with mode "0644"
     When I successfully run `ppgen create file --source testdir --export-filter filesystem_attributes`
     Then the file "out.d/file1.pp" should contain:
     """
@@ -320,7 +320,7 @@ Feature: Generate file definitions
     """
 
   Scenario: Export filter filesystem attributes
-    Given a file named "input.txt" with:
+    Given a file named "input.txt" with mode "0644" and with:
     """
     asdf1
     asdf2
