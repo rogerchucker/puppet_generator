@@ -8,7 +8,7 @@ group :test do
   gem 'rake'
   gem 'rspec'
   gem 'simplecov'
-  gem 'aruba', git: 'https://github.com/dg-vrnetze/aruba.git', branch: 'feature/support_for_environment'
+  gem 'aruba', git: 'https://github.com/dg-vrnetze/aruba.git', branch: 'puppet_generator'
   gem 'fuubar'
   gem 'ffaker'
   gem 'cucumber'
