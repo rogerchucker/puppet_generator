@@ -18,8 +18,8 @@ Feature: Use tasks to make usage easier
     Then the file "test/dir1.pp" should contain:
     """
     class mymodule::dir1 {
-      include mymodule::dir1::file2
       include mymodule::dir1::file1
+      include mymodule::dir1::file2
     }
 
     """
