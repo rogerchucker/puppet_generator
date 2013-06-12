@@ -4,6 +4,11 @@ Feature: Generate module directories definitions
   I need to create a module for puppet
   In order to get those things up and running via puppet
 
+  Background: Process environment
+    Given I set the environment variables to:
+      | variable             | value |
+      | PUPPET_GENERATOR_ENV | test  |
+
   Scenario: predefined module name
     When I successfully run `ppgen create module`
     Then a directory named "mymodule" should exist

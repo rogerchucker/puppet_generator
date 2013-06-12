@@ -15,11 +15,18 @@ require 'set'
 require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'fedux_org/stdlib/models'
+require 'thor'
 
 require 'puppet_generator/main'
 require 'puppet_generator/version'
 require 'puppet_generator/exceptions'
+
 require 'puppet_generator/logger'
+require 'puppet_generator/ui/commandline_parser_helper'
+require 'puppet_generator/ui/create'
+require 'puppet_generator/ui/tasks'
+require 'puppet_generator/ui/runner'
+
 require 'puppet_generator/puppet_helper'
 
 require 'puppet_generator/models/base'

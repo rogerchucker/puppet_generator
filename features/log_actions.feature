@@ -4,6 +4,11 @@ Feature: Logging
   I need more feedback during development
   In order to get those things up and running
 
+  Background: Process environment
+    Given I set the environment variables to:
+      | variable             | value |
+      | PUPPET_GENERATOR_ENV | test  |
+
   Scenario: Plain Input File with verbose information
     Given a file named "input.txt" with:
     """

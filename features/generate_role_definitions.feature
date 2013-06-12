@@ -4,6 +4,11 @@ Feature: Generate role definitions
   I need to write role definitions for puppet
   In order to get those things up and running via puppet
 
+  Background: Process environment
+    Given I set the environment variables to:
+      | variable             | value |
+      | PUPPET_GENERATOR_ENV | test  |
+
   Scenario: Plain Input File
     Given a file named "input.txt" with:
     """
@@ -49,11 +54,11 @@ Feature: Generate role definitions
     And an empty file named "test/dir1/file1.pp"
     And an empty file named "test/dir1/file2.pp"
     When I successfully run `ppgen create role --source test --destination dir:./ --export-filter build_role_includes_for_directory`
-    Then the file "test.pp" should contain:
+    Then the file "test/dir1.pp" should contain:
     """
-    class mymodule::Dir1 {
-      include mymodule::Dir1::File1
-      include mymodule::Dir1::File2
+    class mymodule::dir1 {
+      include mymodule::dir1::file2
+      include mymodule::dir1::file1
     }
 
     """
