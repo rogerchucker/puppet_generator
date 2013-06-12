@@ -1,0 +1,7 @@
+<% @items.each do |item| %>
+class <%= item.name %> {
+<% item.includes.each do |i| %>
+  include <%= item.name %>::<%= i %>
+<% end %>
+}
+<% end %>

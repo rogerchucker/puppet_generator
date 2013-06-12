@@ -4,27 +4,36 @@ Feature: Logging
   I need more feedback during development
   In order to get those things up and running
 
+  Background: Process environment
+    Given I set the environment variables to:
+      | variable             | value |
+      | PUPPET_GENERATOR_ENV | test  |
+
   Scenario: Plain Input File with verbose information
     Given a file named "input.txt" with:
     """
     asdf
     """
-    When I successfully run `ppgen file --debug`
+    When I successfully run `ppgen create file --debug`
     Then the stderr should contain:
     """
     Logging is configured with mode "debug".
     """
     Then the stderr should contain:
     """
-    Available templates: class, single
+    Available templates: file, file
     """
     Then the stderr should contain:
     """
-    Available filter: plain, yaml, filesystem_attributes
+    Available import filter: null, yaml
     """
     Then the stderr should contain:
     """
-    Available actions: none, copy_files_to_module
+    Available export filter: filesystem_attributes, null
+    """
+    Then the stderr should contain:
+    """
+    Available actions: copy_files_to_module_directory, null
     """
     Then the stderr should contain:
     """
@@ -36,6 +45,10 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
+    Using importer "file" to read data.
+    """
+    Then the stderr should contain:
+    """
     Count input lines: 1
     """
     Then the stderr should contain:
@@ -44,15 +57,15 @@ Feature: Logging
     """
     Then the stderr should contain:
     """
-    Filter the input with filter "plain"
+    Filter the input with filter "null"
     """
     Then the stderr should contain:
     """
-    Execute action "none" on output.
+    Execute action "null" on output.
     """
     Then the stderr should contain:
     """
-    Convert entries to puppet file objects.
+    Convert entries for command "file"
     """
     Then the stderr should contain:
     """
@@ -64,7 +77,7 @@ Feature: Logging
     """
     asdf
     """
-    When I successfully run `ppgen file --silent`
+    When I successfully run `ppgen create file --silent`
     Then the output should contain:
     """
     """
@@ -74,7 +87,7 @@ Feature: Logging
     """
     asdf
     """
-    When I successfully run `ppgen file`
+    When I successfully run `ppgen create file`
     Then the output should contain:
     """
     """

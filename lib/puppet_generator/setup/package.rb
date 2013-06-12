@@ -1,16 +1,26 @@
 module PuppetGenerator
   module Setup
-    class Package < Default
+    class Package < Bare
+
 
       def initialize(options)
         super
       end
 
       def setup_environment
-        super
+        DefaultErrorMessages.use
+        DefaultImportFilter.use
+        DefaultActions.use
+        DefaultImporter.use
+        DefaultExportFilter.use
 
-        Models::Template.create :class, Templates::ClassPackage
-        Models::Template.create :single, Templates::SinglePackage
+        Models::Template.find_all(:package).collect { |t| t.enable }
+      end
+
+      def create_task
+        Task.new(
+          HashWithIndifferentAccess.new( { command: :package } ).merge @options
+        )
       end
     end
   end

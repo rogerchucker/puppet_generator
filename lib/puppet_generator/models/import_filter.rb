@@ -1,20 +1,42 @@
 module PuppetGenerator
   module Models
-    class ImportFilter < Base
+    # model for import filter
+    class ImportFilter < FeduxOrg::Stdlib::Models::BaseModel
+
+      include FeduxOrg::Stdlib::Models::FilesystemBasedModel
+      include FeduxOrg::Stdlib::Models::ClassBasedModel
 
       extend Forwardable
+
+      #@!method convert
+      #   converts an object using the convert method of 
+      #   the stored filter
       def_delegator :@filter, :convert, :convert
 
-      attr_reader :filter
+      public
 
+      #create new instance of filter model
       def initialize( name , filter )
         super(name)
 
         @filter = filter
       end
 
-      def self.all_names_as_string(connector=", ")
-        all.map(&:name).join(connector)
+      class << self
+        private
+
+        def check_method
+          :convert
+        end
+
+        def forbidden_keywords
+          [ :enabled ]
+        end
+
+        def path
+          __FILE__
+        end
+
       end
 
     end

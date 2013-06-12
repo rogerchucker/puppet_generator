@@ -1,15 +1,37 @@
 require 'spec_helper'
 
 describe Models::Action do
+  before(:each) {
+    Models::Action.clear
+  }
 
-  it "returns a string of all active actions" do
-    Models::Action.create(:name1, 'Text1')
-    Models::Action.create(:name2, 'Text2')
+  it "finds all available actions" do
+    Models::Action.init
+    expect(Models::Action.all.size).to eq(2)
+  end
 
-    result = Models::Action.all_names_as_string(", ")
-    expect(result).to eq("name1, name2")
+  it "raises an error if an action is invalid: missing method \"run\"" do
+    test_class = Class.new( Models::Action ) do
 
-    result = Models::Action.all_names_as_string
-    expect(result).to eq("name1, name2")
+      def self.library_name
+        "PuppetGenerator"
+      end
+
+      def self.model_name
+        "Action"
+      end
+
+      def self.path_to_instances
+        File.join( examples_dir, 'actions', 'missing_method.rb' )
+      end
+
+      def self.require_path(name)
+        File.join( examples_dir, 'actions', 'missing_method' )
+      end
+    end
+
+    expect {
+      test_class.init
+    }.to raise_error Exceptions::InvalidAction
   end
 end

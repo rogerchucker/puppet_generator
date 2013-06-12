@@ -1,22 +1,36 @@
 module PuppetGenerator
   module Models
-    class Action < Base
+    # model for import action
+    class Action < FeduxOrg::Stdlib::Models::BaseModel
+
+      include FeduxOrg::Stdlib::Models::FilesystemBasedModel
+      include FeduxOrg::Stdlib::Models::ClassBasedModel
 
       extend Forwardable
+
+      #@!method convert
+      #   converts an object using the convert method of 
+      #   the stored action
       def_delegator :@action, :run, :run
 
-      attr_reader :action
-
+      #create new instance of action model
       def initialize( name , action )
         super(name)
 
         @action = action
       end
 
-      def self.all_names_as_string(connector=", ")
-        all.map(&:name).join(connector)
-      end
+      class << self
+        private
 
+        def check_method
+          :run
+        end
+
+        def path
+          __FILE__
+        end
+      end
     end
   end
 end

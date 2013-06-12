@@ -1,6 +1,14 @@
 # PuppetGenerator
 
-TODO: Write a gem description
+[![Build Status](https://travis-ci.org/maxmeyer/puppet_generator.png?branch=master)](https://travis-ci.org/maxmeyer/puppet_generator)
+[![Code Climate](https://codeclimate.com/github/maxmeyer/puppet_generator.png)](https://codeclimate.com/github/maxmeyer/puppet_generator)
+
+Reduces the amount of time for writing puppet manifests.
+
+## Description
+
+Writing manifests for puppet can be very time consuming and quite boring.
+
 
 ## Installation
 
