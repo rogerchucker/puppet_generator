@@ -1,17 +1,15 @@
 module PuppetGenerator
   class Api
 
-    def generate_package_definition(options)
-      s = Setup::Package.new(options)
-      s.setup_environment
-      task = s.create_task
-
-      pre = ::Middleware::Builder.new do
+    def pre_stack
+      ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::EnableDebuggingLibraries
         use PuppetGenerator::Middleware::ConfigureLogging
       end
+    end
 
-      stack = ::Middleware::Builder.new do
+    def default_creator_stack
+      ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::ReadInput
@@ -22,11 +20,18 @@ module PuppetGenerator
         use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
         use PuppetGenerator::Middleware::CreateOutput
       end
+    end
 
-      pre.call(task)
+    def generate_package_definition(options)
+      s = Setup::Package.new(options)
+      s.setup_environment
+      task = s.create_task
+
+
+      pre_stack.call(task)
 
       run_with_messages startup_message: "Generating puppet definitions for type \"package\"." do
-        stack.call(task)
+        default_creator_stack.call(task)
       end
     end
 
@@ -35,27 +40,10 @@ module PuppetGenerator
       s.setup_environment
       task = s.create_task
 
-      pre = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::EnableDebuggingLibraries
-        use PuppetGenerator::Middleware::ConfigureLogging
-      end
-
-      stack = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::OutputDebugInformationForModels
-        use PuppetGenerator::Middleware::HandleErrors
-        use PuppetGenerator::Middleware::ReadInput
-        use PuppetGenerator::Middleware::CheckForEmptySource
-        use PuppetGenerator::Middleware::FilterImportedData
-        use PuppetGenerator::Middleware::ApplyExportFilters
-        use PuppetGenerator::Middleware::ExecuteActions
-        use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
-        use PuppetGenerator::Middleware::CreateOutput
-      end
-
-      pre.call(task)
+      pre_stack.call(task)
 
       run_with_messages startup_message: "Generating puppet definitions for type \"file\"." do
-        stack.call(task)
+        default_creator_stack.call(task)
       end
     end
 
@@ -64,27 +52,10 @@ module PuppetGenerator
       s.setup_environment
       task = s.create_task
 
-      pre = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::EnableDebuggingLibraries
-        use PuppetGenerator::Middleware::ConfigureLogging
-      end
-
-      stack = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::OutputDebugInformationForModels
-        use PuppetGenerator::Middleware::HandleErrors
-        use PuppetGenerator::Middleware::ReadInput
-        use PuppetGenerator::Middleware::CheckForEmptySource
-        use PuppetGenerator::Middleware::FilterImportedData
-        use PuppetGenerator::Middleware::ApplyExportFilters
-        use PuppetGenerator::Middleware::ExecuteActions
-        use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
-        use PuppetGenerator::Middleware::CreateOutput
-      end
-
-      pre.call(task)
+      pre_stack.call(task)
 
       run_with_messages startup_message: "Generating puppet definitions for type \"user\"." do
-        stack.call(task)
+        default_creator_stack.call(task)
       end
     end
 
@@ -93,18 +64,13 @@ module PuppetGenerator
       s.setup_environment
       task = s.create_task
 
-      pre = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::EnableDebuggingLibraries
-        use PuppetGenerator::Middleware::ConfigureLogging
-      end
-
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::CreateModuleDirectories
       end
 
-      pre.call(task)
+      pre_stack.call(task)
 
       run_with_messages startup_message: "Generating files and directories to build a module." do
         stack.call(task)
@@ -137,27 +103,10 @@ module PuppetGenerator
       s.setup_environment
       task = s.create_task
 
-      pre = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::EnableDebuggingLibraries
-        use PuppetGenerator::Middleware::ConfigureLogging
-      end
-
-      stack = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::OutputDebugInformationForModels
-        use PuppetGenerator::Middleware::HandleErrors
-        use PuppetGenerator::Middleware::ReadInput
-        use PuppetGenerator::Middleware::CheckForEmptySource
-        use PuppetGenerator::Middleware::FilterImportedData
-        use PuppetGenerator::Middleware::ApplyExportFilters
-        use PuppetGenerator::Middleware::ExecuteActions
-        use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
-        use PuppetGenerator::Middleware::CreateOutput
-      end
-
-      pre.call(task)
+      pre_stack.call(task)
 
       run_with_messages startup_message: "Generating puppet definitions for type \"role\"." do
-        stack.call(task)
+        default_creator_stack.call(task)
       end
     end
 
