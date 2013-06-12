@@ -1,3 +1,1 @@
-#!/usr/bin/env rake
-
-require 'fedux_org/stdlib/rake/library'
+rakefiles/default.rake
