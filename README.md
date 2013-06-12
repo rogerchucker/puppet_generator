@@ -1,5 +1,7 @@
 # PuppetGenerator
 
+[![Build Status](https://travis-ci.org/maxmeyer/puppet_generator.png?branch=master)](https://travis-ci.org/maxmeyer/puppet_generator)
+
 Reduces the amount of time for writing puppet manifests.
 
 ## Description
