@@ -10,7 +10,6 @@ module PuppetGenerator
       class_option :debug, Ui::CommandlineParserHelper.runner_options[:debug]
       class_option :silent, Ui::CommandlineParserHelper.runner_options[:silent]
 
-      debugger
       desc "create <type>", "Create puppet dsl. Available types: #{Ui::CommandlineParserHelper.pretty_subcommands(Create.tasks)}"
       subcommand :create, Create
 
