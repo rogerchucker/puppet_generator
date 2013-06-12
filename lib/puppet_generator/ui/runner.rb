@@ -1,15 +1,21 @@
-#!/usr/bin/env ruby
-
 module PuppetGenerator
-  class Runner < Thor
-    def self.exit_on_failure?
-      true
+  module Ui
+    class Runner < Thor
+      def self.exit_on_failure?
+        true
+      end
+
+      class_option :module, Ui::CommandlineParserHelper.runner_options[:module]
+      class_option :class, Ui::CommandlineParserHelper.runner_options[:class]
+      class_option :debug, Ui::CommandlineParserHelper.runner_options[:debug]
+      class_option :silent, Ui::CommandlineParserHelper.runner_options[:silent]
+
+      debugger
+      desc "create <type>", "Create puppet dsl. Available types: #{Ui::CommandlineParserHelper.pretty_subcommands(Create.tasks)}"
+      subcommand :create, Create
+
+      desc "tasks <task>", "Run command with predefined options. Available tasks: #{Ui::CommandlineParserHelper.pretty_subcommands(Tasks.tasks)}"
+      subcommand :tasks, Tasks
     end
-
-    desc "create <type>", "Create puppet dsl for <type>"
-    subcommand :create, Create
-
-    desc "tasks <task>", "Run command with predefined options"
-    subcommand :tasks, Tasks
   end
 end

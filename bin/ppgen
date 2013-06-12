@@ -13,4 +13,4 @@ if ENV['PUPPET_GENERATOR_ENV']
 end
 
 require 'puppet_generator'
-PuppetGenerator::Runner.start
+PuppetGenerator::Ui::Runner.start
