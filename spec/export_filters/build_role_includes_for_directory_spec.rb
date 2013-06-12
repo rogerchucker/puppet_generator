@@ -28,8 +28,8 @@ describe ExportFilters::BuildRoleIncludesForDirectory do
       filter = ExportFilters::BuildRoleIncludesForDirectory.new
       expect(filter.convert(objects)).to eq(
         [
-          {:name=>"test", :includes=>["file2", "file1", "file3"]},
-          {:name=>"test/dir1", :includes=>["file2", "file1", "file3"]}
+          {:name=>"test", :includes=>["file1", "file2", "file3"]},
+          {:name=>"test/dir1", :includes=>["file1", "file2", "file3"]}
         ]
       )
     end
