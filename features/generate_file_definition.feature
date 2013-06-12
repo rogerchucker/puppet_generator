@@ -307,7 +307,7 @@ Feature: Generate file definitions
     asdf1
     asdf2
     """
-    And an empty file named "asdf1"
+    And an empty file named "asdf1" with mode "644"
     When I successfully run `ppgen create file --export-filter null`
     Then the file "out.d/asdf1.pp" should contain:
     """
