@@ -1,6 +1,8 @@
 module PuppetGenerator
   class Api
 
+    private
+
     def pre_stack
       ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::EnableDebuggingLibraries
@@ -22,47 +24,42 @@ module PuppetGenerator
       end
     end
 
-    def generate_package_definition(options)
-      s = Setup::Package.new(options)
-      s.setup_environment
-      task = s.create_task
-
-
+    def _generate_definition(options, setup_klass, startup_message)
+      task = _setup options, setup_klass
       pre_stack.call(task)
 
-      run_with_messages startup_message: "Generating puppet definitions for type \"package\"." do
+      run_with_messages startup_message: startup_message do
         default_creator_stack.call(task)
       end
+    end
+
+    def _setup(options, klass)
+      s = klass.new(options)
+      s.setup_environment
+
+      s.create_task
+    end
+
+    public
+
+    def generate_package_definition(options)
+      _generate_definition options, Setup::Package, "Generating puppet definitions for type \"package\"." 
     end
 
     def generate_file_definition(options)
-      s = Setup::File.new(options)
-      s.setup_environment
-      task = s.create_task
-
-      pre_stack.call(task)
-
-      run_with_messages startup_message: "Generating puppet definitions for type \"file\"." do
-        default_creator_stack.call(task)
-      end
+      _generate_definition options, Setup::File, "Generating puppet definitions for type \"file\"." 
     end
 
     def generate_user_definition(options)
-      s = Setup::User.new(options)
-      s.setup_environment
-      task = s.create_task
+      _generate_definition options, Setup::User, "Generating puppet definitions for type \"user\"." 
+    end
 
-      pre_stack.call(task)
-
-      run_with_messages startup_message: "Generating puppet definitions for type \"user\"." do
-        default_creator_stack.call(task)
-      end
+    def generate_role_definition(options)
+      _generate_definition options, Setup::Role, "Generating puppet definitions for type \"role\"." 
     end
 
     def generate_module(options)
-      s = Setup::Module.new(options)
-      s.setup_environment
-      task = s.create_task
+      task = _setup options, Setup::Module
 
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
@@ -80,33 +77,16 @@ module PuppetGenerator
     def output_error_messages(options)
       task = Task.new(options, :error_message)
 
-      pre = ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::EnableDebuggingLibraries
-        use PuppetGenerator::Middleware::ConfigureLogging
-      end
-
       stack = ::Middleware::Builder.new do
         use PuppetGenerator::Middleware::OutputDebugInformationForModels
         use PuppetGenerator::Middleware::HandleErrors
         use PuppetGenerator::Middleware::CreateOutput
       end
 
-      pre.call(task)
+      pre_stack.call(task)
 
       run_with_messages do
         stack.call(task)
-      end
-    end
-
-    def generate_role_definition(options)
-      s = Setup::Role.new(options)
-      s.setup_environment
-      task = s.create_task
-
-      pre_stack.call(task)
-
-      run_with_messages startup_message: "Generating puppet definitions for type \"role\"." do
-        default_creator_stack.call(task)
       end
     end
 
