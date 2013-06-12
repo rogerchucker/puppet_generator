@@ -2,7 +2,7 @@
 
 require 'puppet_generator/main'
 
-if ENV['PUPPET_GENERATOR_ENV'] 
+if ENV['PUPPET_GENERATOR_ENV'] and not ENV['TRAVIS_CI'] == 'true'
   case ENV['PUPPET_GENERATOR_ENV'].downcase.to_sym
   when :test
     PuppetGenerator.enable_coverage_report
