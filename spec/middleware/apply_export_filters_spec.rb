@@ -8,6 +8,8 @@ describe PuppetGenerator::Middleware::ApplyExportFilters do
   
   it "run filter" do
     test_file = File.join( examples_dir, 'apply_export_filters', 'file.txt' )
+    FileUtils.chmod(0644, test_file )
+
     user = ENV['USER']
 
     task = double( 'task' )
@@ -24,6 +26,8 @@ describe PuppetGenerator::Middleware::ApplyExportFilters do
 
   it "run multiple filters" do
     test_file = File.join( examples_dir, 'apply_export_filters', 'file.txt' )
+    FileUtils.chmod(0644, test_file )
+
     user = ENV['USER']
 
     task = double( 'task' )
