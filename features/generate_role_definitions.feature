@@ -4,6 +4,11 @@ Feature: Generate role definitions
   I need to write role definitions for puppet
   In order to get those things up and running via puppet
 
+  Background: Process environment
+    Given I set the environment variables to:
+      | variable             | value |
+      | PUPPET_GENERATOR_ENV | test  |
+
   Scenario: Plain Input File
     Given a file named "input.txt" with:
     """

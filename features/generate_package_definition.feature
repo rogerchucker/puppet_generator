@@ -4,6 +4,11 @@ Feature: Generate package definitions
   I need to write packages definitions for puppet
   In order to get those things up and running via puppet
 
+  Background: Process environment
+    Given I set the environment variables to:
+      | variable             | value |
+      | PUPPET_GENERATOR_ENV | test  |
+
   Scenario: Existing Input File
     Given a file named "input.txt" with:
     """
