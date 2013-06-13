@@ -16,6 +16,7 @@ module PuppetGenerator
         raise PuppetGenerator::Exceptions::InvalidSource unless importer 
         PuppetGenerator.logger.debug(self.class.name){ "Using importer \"#{importer.name}\" to read data." }
 
+        PuppetGenerator.logger.info(self.class.name){ "Reading input from \"#{importer.name}\"." }
         task.body = importer.read( task.meta[:source] )
         PuppetGenerator.logger.debug(self.class.name) { "Count input lines: #{task.body.size}" }
 
