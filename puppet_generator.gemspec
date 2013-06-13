@@ -22,13 +22,13 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "middleware"
-  spec.add_dependency "ansi"
-  spec.add_dependency "erubis"
+  spec.add_dependency "middleware", "~> 0.1.0"
+  spec.add_dependency "ansi", "~> 1.4.3"
+  spec.add_dependency "erubis", "~> 2.7.0"
   #spec.add_dependency "logging4hackers"
-  spec.add_dependency "activesupport"
+  spec.add_dependency "activesupport", "~>3.2.13"
   spec.add_dependency "fedux_org-stdlib"
-  spec.add_dependency "thor", ">= 0.18.0"
+  spec.add_dependency "thor", "~> 0.18.0"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
