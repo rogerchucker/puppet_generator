@@ -8,7 +8,7 @@ Writing [Puppet](https://www.puppetlabs.com)-manifests made easy...
 ## Description
 
 Writing manifests for puppet can be very time consuming and quite boring. The
-PuppetGeneratore reduces the amount of time for writing puppet manifests alot
+`puppet_generator` reduces the amount of time for writing puppet manifests a lot
 by generating a basic structure for:
 
 * User resources
@@ -18,13 +18,13 @@ by generating a basic structure for:
 
 This project can help you if you:
 
-* have alot manifests to write
+* have a lot manifests to write
 * simple manifests to write
 * need a skeleton to start with
 
 This project __cannot__ help you if you:
 
-* have few very complex manifests to write
+* have few but (very) complex manifests to write
 * have no fun in using new tools ;-)
 
 ## Installation
@@ -265,9 +265,9 @@ horray:
 ```
 
 
-## Tasks
+## Use cases
 
-### Create a user manifests from plain text file and writing it to a file
+### Create user manifests from plain text file and writing it to a file
 
 Input: `file.txt`
 
@@ -297,7 +297,7 @@ class mymodule::myclass {
 }
 ```
 
-### Create a user manifests from yaml writing it to stdout
+### Create user manifests from a yaml file writing it to stdout
 
 Input: `file.yml`
 
@@ -388,6 +388,34 @@ name
     |-- apps.pp        <--- NEW
     `-- init.pp
 
+```
+
+### Create package manifests from plain text file and writing it to stdout
+
+Input: `file.txt`
+
+```
+package1
+package2
+```
+
+Command:
+
+```
+ppgen create package --source file.txt --destination stdout
+```
+
+Output: `output.txt`
+
+```
+class mymodule::myclass {
+  package {'package1':
+    ensure   => installed,
+  }
+  package {'package2':
+    ensure   => installed,
+  }
+}
 ```
 
 ## Tipps & Tricks
