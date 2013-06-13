@@ -13,6 +13,9 @@ module PuppetGenerator
       desc "create <type>", "Create puppet dsl. Available types: #{Ui::CommandlineParserHelper.pretty_subcommands(Create.tasks)}"
       subcommand :create, Create
 
+      desc "list <resource>", "List instances for a given resource. Available resources are: #{Ui::CommandlineParserHelper.pretty_subcommands(List.tasks)}"
+      subcommand :list, List
+
       desc "tasks <task>", "Run command with predefined options. Available tasks: #{Ui::CommandlineParserHelper.pretty_subcommands(Tasks.tasks)}"
       subcommand :tasks, Tasks
     end
