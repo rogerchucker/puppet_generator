@@ -17,7 +17,7 @@ module PuppetGenerator
     
     #raised if something goes wrong internally
     #should never happend
-    class InternalError < UserError; end
+    class InternalError < Exception; end
     
     #raised if source is empty
     class EmptySource < UserError; end
@@ -25,6 +25,10 @@ module PuppetGenerator
     #raised if an unknown input filter was
     #requested by the user
     class UnknownImportFilter < UserError; end
+   
+    #raised if an unknown export filter was
+    #requested by the user
+    class UnknownExportFilter < UserError; end
     
     #raised if an unknown action was
     #requested by the user
@@ -38,7 +42,7 @@ module PuppetGenerator
     
     #raised if an error happened during copying files
     class ErrorDuringCopyFiles < UserError; end
-
+    
     #raised if one tries to delete an instance which
     #does not exist
     class InstanceNotFound < InternalError; end
@@ -64,6 +68,10 @@ module PuppetGenerator
     #which is malformed
     class InvalidImportFilter < InternalError; end
     
+    #raised if the code which defines an import filter
+    #which is malformed
+    class InvalidExportFilter < InternalError; end
+    
     #raised if the code which defines an importer
     #which is malformed
     class InvalidImporter < InternalError; end
@@ -71,6 +79,10 @@ module PuppetGenerator
     #raised if the code which defines an exporter
     #which is malformed
     class InvalidExporter < InternalError; end
+    
+    #raised if the code which defines an entry converter
+    #which is malformed
+    class InvalidEntryConverter < InternalError; end
     
     #raised if the code which defines an import filter
     #is malformed

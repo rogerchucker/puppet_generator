@@ -1,8 +1,8 @@
 module PuppetGenerator
   module Models
-    class Template < Base
+    class Template < FeduxOrg::Stdlib::Models::BaseModel
 
-      include FilesystemBasedModel
+      include FeduxOrg::Stdlib::Models::FilesystemBasedModel
 
       #create new instance of template model
       def initialize( name , template_path, suitable_outputs=[], tags=[] )
@@ -37,9 +37,9 @@ module PuppetGenerator
       def render(items)
 
         if @tags.include? :many_per_file
-          return [ Definition.new( items.first.class_name , template.evaluate( items: items ) ) ]
+          return [ Definition.new( nil , template.evaluate( items: items ) ) ]
         elsif @tags.include? :one_per_file
-          return items.collect { |item| Definition.new( item.name, template.evaluate( item: item ) ) }
+          return items.collect { |item| Definition.new( item.suggested_file_name, template.evaluate( item: item ) ) }
         else
           raise
         end
@@ -76,8 +76,14 @@ module PuppetGenerator
           File.join(path,'**', "*#{ suffix }")
         end
 
+        def suffix
+          '.pp.erb'
+        end
+
         def load_from_filesystem
           files = Dir.glob( path_to_instances )
+
+          raise FeduxOrg::Stdlib::Models::Exceptions::NoImplementationsForModelFound, "You might need to store files at \"#{File.dirname(path_to_instances)}\" to make the library work." if files.blank?
 
           files.each do |f| 
             create( name( f ) , f, suitable_outputs_for_path( f ), create_tags( f ) )
@@ -103,6 +109,10 @@ module PuppetGenerator
                  else
                    [ :file , :stdout ]
                  end
+        end
+
+        def path
+          __FILE__
         end
       end
     end

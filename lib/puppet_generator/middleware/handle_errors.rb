@@ -26,7 +26,7 @@ module PuppetGenerator
         rescue PuppetGenerator::Exceptions::InvalidPasswdInput
           exit_with_error :invalid_passwd_input
         rescue PuppetGenerator::Exceptions::UnknownAction
-          exit_with_error :unknown_action, requested_action: task.meta[:requested_action], 
+          exit_with_error :unknown_action, requested_actions: task.meta[:requested_actions], 
                                            available_actions: Models::Action.all_names_as_string
         rescue PuppetGenerator::Exceptions::FilesystemError
           exit_with_error :filesystem_error, fs_object: task.meta[:source]
@@ -34,6 +34,8 @@ module PuppetGenerator
           exit_with_error :wrong_template_chosen, command: task.meta[:command], tags: task.meta[:template_tagged_with].to_a.join(", "), destination: task.meta[:destination] 
         rescue PuppetGenerator::Exceptions::InternalError => e
           exit_with_error :internal_error, exception_message: e.message
+        rescue Interrupt
+          exit_with_error :interrupt
         end
       end
 

@@ -1,9 +1,9 @@
 module PuppetGenerator
   class Definition
-    attr_reader :name, :text
+    attr_reader :file_name, :text
 
-    def initialize( name, text )
-      @name = name
+    def initialize( file_name, text )
+      @file_name = file_name
       @text = text
     end
   end

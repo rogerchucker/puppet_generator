@@ -12,9 +12,9 @@ Gem::Specification.new do |spec|
   spec.description   = <<-DESC
   If you need to build more than one puppet manifests it is quite boring to 
   redo the same steps every time. This gem helps you to generate puppet manifests
-  for packages and files/directories.
+  for packages, files/directories etc.
   DESC
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/maxmeyer/puppet_generator"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -27,6 +27,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "erubis"
   #spec.add_dependency "logging4hackers"
   spec.add_dependency "activesupport"
+  spec.add_dependency "fedux_org-stdlib"
+  spec.add_dependency "thor"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"

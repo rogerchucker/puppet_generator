@@ -23,9 +23,10 @@ module PuppetGenerator
           Models::ErrorMessage.create :unknown_import_filter,  4, "There's no import filter \"<%= @requested_import_filter %>\". Available import filters: <%= @available_import_filter %>."
           Models::ErrorMessage.create :invalid_yaml_input,     5, "The input is no YAML valid for this use case."
           Models::ErrorMessage.create :invalid_passwd_input,   6, "The input is no passwd file valid for this use case."
-          Models::ErrorMessage.create :unknown_action,         7, "There's no action \"<%= @requested_action %>\". Available actions: <%= @available_actions %>."
+          Models::ErrorMessage.create :unknown_action,         7, "There's no action \"<%= @requested_actions %>\". Available actions: <%= @available_actions %>."
           Models::ErrorMessage.create :filesystem_error,       8, "The file/directory \"<%= @fs_object %>\" does not exist."
           Models::ErrorMessage.create :wrong_template_chosen,  9, "I was not able to find a suitable template for the given command \"<%= @command %>\", for the given tags \"<%= @tags %>\" and for the given destination \"<%= @destination %>\"."
+          Models::ErrorMessage.create :interrupt,  98, "You pressed \"CTRL-C\". Exiting."
 
           m = Models::ErrorMessage.create :internal_error,         99, "Sorry, an internal error occured. This should not happen. Please send a bug report to the author and add the following output to that report:\n\n<%= @exception_message %>"
           m.postscript = "\n\n=================\nPlease go to \"http://github.com/maxmeyer/puppet_generator\" to open the bug report. Thank you very much."
@@ -47,6 +48,12 @@ module PuppetGenerator
         result << ( postscript ? postscript : self.class.postscript )
 
         result.join
+      end
+
+      private
+
+      def self.path
+        __FILE__
       end
     end
   end

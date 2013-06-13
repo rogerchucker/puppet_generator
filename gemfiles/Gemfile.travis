@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gemspec path: '../'
 
@@ -6,6 +6,8 @@ group :test do
   gem 'rake'
   gem 'rspec'
   gem 'fuubar'
+  gem 'aruba', git: 'https://github.com/maxmeyer/aruba.git', branch: 'puppet_generator'
+  gem 'cucumber'
 end
 
 group :documentation do

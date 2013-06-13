@@ -1,5 +1,8 @@
 module PuppetGenerator
   class Task
+
+    include PuppetHelper
+
     attr_reader :meta
     attr_accessor :body
 
@@ -9,13 +12,15 @@ module PuppetGenerator
 
       @meta[:source]        = options[:source] 
       @meta[:destination]   = options[:destination]
-      @meta[:module]        = options[:module]
-      @meta[:class]         = options[:class]
+      @meta[:module]        = puppet_module_name( options[:module] )
+      @meta[:class]         = puppet_class_name( options[:class] )
       @meta[:requested_import_filter] = options[:import_filter]
-      @meta[:requested_action]        = options[:action]
-      @meta[:mode]                    = log_level(options)
+      @meta[:requested_export_filter] = options[:export_filter]
+      @meta[:requested_actions]        = options[:action]
+      @meta[:logging_mode]             = log_level(options)
       @meta[:command]       = options[:command] 
       @meta[:template_tagged_with]       = options[:template_tagged_with].split(/:/).map(&:to_sym) if options[:template_tagged_with]
+      @meta[:debug]         = true if options[:debug]
     end
 
     private

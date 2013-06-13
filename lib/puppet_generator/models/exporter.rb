@@ -1,10 +1,10 @@
 module PuppetGenerator
   module Models
     # model for import filter
-    class Exporter < Base
+    class Exporter < FeduxOrg::Stdlib::Models::BaseModel
 
-      include FilesystemBasedModel
-      include ClassBasedModel
+      include FeduxOrg::Stdlib::Models::FilesystemBasedModel
+      include FeduxOrg::Stdlib::Models::ClassBasedModel
 
       extend Forwardable
 
@@ -35,9 +35,14 @@ module PuppetGenerator
           false
         end
 
+        private
 
         def check_method
           :write
+        end
+
+        def path
+          __FILE__
         end
       end
 

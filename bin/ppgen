@@ -1,61 +1,16 @@
 #!/usr/bin/env ruby
 
-require 'puppet_generator'
-require 'thor'
-require 'pry'
+require 'puppet_generator/main'
 
-class Default < Thor
-
-  class_option :module , type: :string, default: 'mymodule', desc: 'the module prefix in puppet class name'
-  class_option :class , type: :string, default: 'myclass', desc: 'the class suffix in puppet class name'
-  class_option :debug , type: :boolean, default: false, desc: 'enable debug logging'
-  class_option :silent , type: :boolean, default: false, desc: 'disable logging'
-
-  @source_option = { type: :string, default: 'input.txt', desc: 'enter the source which should be used to generate the puppet output' }
-  @import_filter_option = { type: :string, default: 'null', desc: 'make it possible to pipe structured data into command' }
-  @destination_option = { type: :string, default: 'dir:out.d', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"' }
-  @action_option = { type: :string, default: 'null', desc: 'what action should be run after filtering the input' }
-  @template_tagged_with_option = { type: :string, desc: 'use a template which is tagged with "<tag>(:<tag>)+"' }
-
-  method_option :source , @source_option
-  method_option :import_filter , @import_filter_option
-  method_option :destination , @destination_option
-  method_option :action , @action_option
-  method_option :template_tagged_with, @template_tagged_with_option
-  desc 'package', 'generate package definitions'
-  def package
-    opts = HashWithIndifferentAccess.new({ command: :package }).merge options
-    PuppetGenerator::Api.new.generate_package_definition(opts)
+if ENV['PUPPET_GENERATOR_ENV'] and not ENV['TRAVIS_CI'] == 'true'
+  case ENV['PUPPET_GENERATOR_ENV'].downcase.to_sym
+  when :test
+    PuppetGenerator.enable_coverage_report
+    PuppetGenerator.enable_debugging_libraries
+  when :development
+    PuppetGenerator.enable_debugging_libraries
   end
-
-  method_option :source , @source_option
-  method_option :import_filter , @import_filter_option
-  method_option :destination , @destination_option
-  method_option :action , @action_option
-  method_option :template_tagged_with, @template_tagged_with_option
-  desc 'file', 'generate file definitions'
-  def file
-    opts = HashWithIndifferentAccess.new({ command: :file }).merge options
-    PuppetGenerator::Api.new.generate_file_definition(opts)
-  end
-
-  method_option :source , @source_option
-  method_option :import_filter , @import_filter_option
-  method_option :destination , @destination_option
-  method_option :action , @action_option
-  method_option :template_tagged_with, @template_tagged_with_option
-  desc 'user', 'generate user definitions'
-  def user
-    opts = HashWithIndifferentAccess.new({ command: :user }).merge options
-    PuppetGenerator::Api.new.generate_user_definition(opts)
-  end
-
-  desc 'module', 'creates all files needed to build a module'
-  def module
-    opts = HashWithIndifferentAccess.new({ command: :module }).merge options
-    PuppetGenerator::Api.new.generate_module(opts)
-  end
-
 end
 
-Default.start
+require 'puppet_generator'
+PuppetGenerator::Ui::Runner.start
