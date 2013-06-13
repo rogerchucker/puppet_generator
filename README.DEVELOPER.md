@@ -1,3 +1,6 @@
+# PuppetGenerator Developer Documentation
+
+[![Build Status for development branch](https://travis-ci.org/maxmeyer/puppet_generator.png?branch=development)](https://travis-ci.org/maxmeyer/puppet_generator)
 
 ## Contributing
 
