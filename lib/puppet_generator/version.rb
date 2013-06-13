@@ -1,4 +1,4 @@
 #main PuppetGenerator
 module PuppetGenerator
-  VERSION = ''
+  VERSION = '0.5.4'
 end
