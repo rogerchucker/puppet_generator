@@ -11,8 +11,8 @@ module PuppetGenerator
         hash.inject([]) do |result,(name,attributes)|
           result << attributes.inject( { name: name} ) { |result, (k,v)| result[k.to_sym] = v; result }
         end
-      rescue
-        raise Exceptions::InvalidYamlInput
+      rescue Exception => e
+        raise Exceptions::InvalidYamlInput, e.message
       end
 
     end
