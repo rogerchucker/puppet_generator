@@ -319,7 +319,7 @@ ppgen create user --source file.yml --destination file:output.txt --import-filte
 Output: `output.txt`
 
 ```
-class mymodule::myclass {                                                                                                                                     
+class mymodule::myclass {
   user {'user1':
     ensure     => present,
     managehome => true,
@@ -437,6 +437,7 @@ the workstation to the target server. This works by using the first connection
 as proxy connection via the ssh proxy command (see below).
 
 ```
+                                   ssh
 linux/unit work station ------------------------- target server
          (1)                  (jump server)            (3)
 ```
@@ -472,5 +473,5 @@ Please see the [developer-documentation](README.DEVELOPER.md) for more details.
 
 ## Contributers
 
-* Dennis Günnewig (VR Netze GmbH)
+* Dennis Günnewig (VR Netze GmbH, https://www.vrnetze.de)
 
