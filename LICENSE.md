@@ -1,4 +1,4 @@
-Copyright (c) 2013 Max Meyer
+Copyright (c) 2013 Max Meyer and Contributors
 
 MIT License
 
