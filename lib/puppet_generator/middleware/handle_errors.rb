@@ -34,6 +34,8 @@ module PuppetGenerator
           exit_with_error :wrong_template_chosen, command: task.meta[:command], tags: task.meta[:template_tagged_with].to_a.join(", "), destination: task.meta[:destination] 
         rescue PuppetGenerator::Exceptions::InternalError => e
           exit_with_error :internal_error, exception_message: e.message
+        rescue Exceptions::ErrorDuringCopyFiles => e
+          exit_with_error :copy_error, exception_message: e.message
         rescue Interrupt
           exit_with_error :interrupt
         end

@@ -26,8 +26,9 @@ module PuppetGenerator
           Models::ErrorMessage.create :unknown_action,         7, "There's no action \"<%= @requested_actions %>\". Available actions: <%= @available_actions %>."
           Models::ErrorMessage.create :filesystem_error,       8, "The file/directory \"<%= @fs_object %>\" does not exist."
           Models::ErrorMessage.create :wrong_template_chosen,  9, "I was not able to find a suitable template for the given command \"<%= @command %>\", for the given tags \"<%= @tags %>\" and for the given destination \"<%= @destination %>\"."
-          Models::ErrorMessage.create :interrupt,  98, "You pressed \"CTRL-C\". Exiting."
+          Models::ErrorMessage.create :copy_error,  10, "An error occured while copying the files to the module directory. The original error message was:\n\n<%= @exception_message %>"
 
+          Models::ErrorMessage.create :interrupt,  98, "You pressed \"CTRL-C\". Exiting."
           m = Models::ErrorMessage.create :internal_error,         99, "Sorry, an internal error occured. This should not happen. Please send a bug report to the author and add the following output to that report:\n\n<%= @exception_message %>"
           m.postscript = "\n\n=================\nPlease go to \"http://github.com/maxmeyer/puppet_generator\" to open the bug report. Thank you very much."
 

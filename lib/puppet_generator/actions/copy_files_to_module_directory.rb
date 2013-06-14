@@ -9,8 +9,8 @@ module PuppetGenerator
         FileUtils.cp_r src , dst
 
         data.collect { |e| e[:source] = make_source( task.meta[:module] , e[:name]) ; e }
-      rescue
-        raise Exceptions::ErrorDuringCopyFiles
+      rescue Exception => e
+        raise Exceptions::ErrorDuringCopyFiles, e.message
       end
 
       private

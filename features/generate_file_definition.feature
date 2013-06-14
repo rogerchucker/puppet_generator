@@ -262,6 +262,15 @@ Feature: Generate file definitions
     asdf
     """
 
+  Scenario: Copy files afterwards and handle errors
+    And a file named "testfile1" with:
+    """
+    asdf
+    """
+    And I run `ppgen create file --source testfile1 --action copy_files_to_module_directory`
+    Then the exit status should be 10
+    And the stderr should contain "No such file or directory"
+
   Scenario: Fails if wrong action is chosen
     Given a directory named "testdir"
     When I run `ppgen create file --source testdir --action unknown_action`
