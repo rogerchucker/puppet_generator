@@ -62,3 +62,18 @@ Feature: Generate role definitions
     }
 
     """
+
+  Scenario: Scan module with different output directory
+    Given a directory named "test"
+    And a directory named "test/dir1"
+    And an empty file named "test/dir1/file1.pp"
+    And an empty file named "test/dir1/file2.pp"
+    When I successfully run `ppgen create role --source test --destination dir:out.d --export-filter build_role_includes_for_directory`
+    Then the file "out.d/test/dir1.pp" should contain:
+    """
+    class mymodule::dir1 {
+      include mymodule::dir1::file1
+      include mymodule::dir1::file2
+    }
+
+    """

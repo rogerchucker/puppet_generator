@@ -1,1 +1,1 @@
-* Hint to readme in help output
+* Module should be used in task
