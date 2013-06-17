@@ -3,10 +3,12 @@ module PuppetGenerator
     class Directory
 
       def write(directory, definitions=[])
-        ::Dir.mkdir directory unless ::Dir.exists? directory
 
         definitions.each do |d| 
           filename = ::File.join( directory, "#{d.file_name}" )
+          dir = ::File.dirname filename
+
+          ::Dir.mkdir dir unless ::Dir.exists? dir
 
           ::File.open(filename, "w") do |f|
             f.puts d.text
