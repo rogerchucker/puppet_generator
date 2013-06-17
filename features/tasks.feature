@@ -23,3 +23,18 @@ Feature: Use tasks to make usage easier
     }
 
     """
+
+  Scenario: Should respect module and class variable
+    Given a directory named "test"
+    And a directory named "test/dir1"
+    And an empty file named "test/dir1/file1.pp"
+    And an empty file named "test/dir1/file2.pp"
+    When I successfully run `ppgen tasks create_roles_in_directory --source test --destination dir:./ --module newmodulename`
+    Then the file "test/dir1.pp" should contain:
+    """
+    class newmodulename::dir1 {
+      include newmodulename::dir1::file1
+      include newmodulename::dir1::file2
+    }
+
+    """
