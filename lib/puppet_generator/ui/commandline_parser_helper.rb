@@ -13,8 +13,9 @@ module PuppetGenerator
       @subcommand_options[:import_filter] =        { type: :string, default: 'null', desc: 'make it possible to pipe structured data into command' }
       @subcommand_options[:destination] =          { type: :string, default: 'dir:out.d', desc: 'where should the information be stored. Valid input is "file|dir:<dest>" or "stdout"' }
       @subcommand_options[:action] =               { type: :array, default: [ :null ], desc: 'what action should be run after filtering the input: <action>( <action>)*' }
-      @subcommand_options[:template_tagged_with] = { type: :string, desc: 'use a template which is tagged with "<tag>(:<tag>)+"' }
+      @subcommand_options[:template_tagged_with] = { type: :string, desc: 'use a template which is tagged with "<tag>( <tag>)*"' }
       @subcommand_options[:export_filter] =        { type: :array, default: [ :null ], desc: 'modify the data before exporting it (to add some more value to it): <filter>( <filter>)*' }
+      @subcommand_options[:list_filter] =               { type: :array, default: [ :all ], desc: 'filter the list with "<filter>( <filter>)*"' }
 
       class << self
         attr_reader :runner_options

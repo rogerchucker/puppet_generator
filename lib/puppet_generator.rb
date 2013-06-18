@@ -24,6 +24,7 @@ require 'puppet_generator/exceptions'
 require 'puppet_generator/logger'
 require 'puppet_generator/ui/commandline_parser_helper'
 require 'puppet_generator/ui/create'
+require 'puppet_generator/ui/list'
 require 'puppet_generator/ui/tasks'
 require 'puppet_generator/ui/runner'
 
