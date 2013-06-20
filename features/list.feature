@@ -35,3 +35,49 @@ Feature: List things
     """
     actions
     """
+
+  Scenario: List available actions
+    When I successfully run `ppgen list actions`
+    Then the stdout should contain:
+    """
+    ┌────────────────────────────────┐
+    │ name                           │
+    ├────────────────────────────────┤
+    │ null                           │
+    │ copy_files_to_module_directory │
+    └────────────────────────────────┘
+    """
+
+  Scenario: List available actions for the user ressource
+    When I successfully run `ppgen list actions --filter user`
+    Then the stdout should contain:
+    """
+    ┌──────┐
+    │ name │
+    ├──────┤
+    │ null │
+    └──────┘
+    """
+
+  Scenario: List available actions for the package ressource
+    When I successfully run `ppgen list actions --filter package`
+    Then the stdout should contain:
+    """
+    ┌──────┐
+    │ name │
+    ├──────┤
+    │ null │
+    └──────┘
+    """
+
+  Scenario: List available actions for the file ressource
+    When I successfully run `ppgen list actions --filter file`
+    Then the stdout should contain:
+    """
+    ┌────────────────────────────────┐
+    │ name                           │
+    ├────────────────────────────────┤
+    │ null                           │
+    │ copy_files_to_module_directory │
+    └────────────────────────────────┘
+    """

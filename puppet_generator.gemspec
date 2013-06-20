@@ -25,6 +25,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleware", "~> 0.1.0"
   spec.add_dependency "ansi", "~> 1.4.3"
   spec.add_dependency "erubis", "~> 2.7.0"
+  spec.add_dependency "hirb-unicode", "~> 0.0.5"
+  #spec.add_dependency "hirb", "~> 0.7.1"
   #spec.add_dependency "logging4hackers"
   spec.add_dependency "activesupport", "~>3.2.13"
   spec.add_dependency "fedux_org-stdlib"
