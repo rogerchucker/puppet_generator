@@ -9,10 +9,9 @@ module PuppetGenerator
         PuppetGenerator::Api::ListActions.new(options).list(options[:filter].map(&:to_sym))
       end
 
-      desc "exporters", "List available exporters for given filter"
-      method_option :filter, Ui::CommandlineParserHelper.subcommand_options[:list_filter]
+      desc "exporters", "List available exporters"
       def exporters
-        PuppetGenerator::Api::ListExporters.new(options).list(options[:filter].map(&:to_sym))
+        PuppetGenerator::Api::ListExporters.new(options).list
       end
     end
   end
