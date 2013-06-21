@@ -1,20 +1,20 @@
 module PuppetGenerator
-  class Api
-    class Create < Base
+  module Api
+    class CreateDefinition < Base
 
-      def package_definition
+      def package
         generate_definition Setup::Package, "Generating puppet definitions for type \"package\"." 
       end
 
-      def file_definition
+      def file
         generate_definition Setup::File, "Generating puppet definitions for type \"file\"." 
       end
 
-      def user_definition
+      def user
         generate_definition Setup::User, "Generating puppet definitions for type \"user\"." 
       end
 
-      def role_definition
+      def role
         generate_definition Setup::Role, "Generating puppet definitions for type \"role\"." 
       end
 

@@ -1,7 +1,7 @@
 module PuppetGenerator
   module Ui
     class Tasks < Thor
-      extend Thor::Helper
+      extend ThorHelper
 
       no_tasks {
         def commandline_options(options, *names)

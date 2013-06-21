@@ -1,6 +1,6 @@
 module PuppetGenerator
-  class Api
-    class List < Base
+  module Api
+    class ListActions < Base
 
       include Hirb::Console
 

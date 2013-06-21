@@ -1,5 +1,5 @@
 module PuppetGenerator
-  class Api
+  module Api
     class Base
 
       def initialize(options)

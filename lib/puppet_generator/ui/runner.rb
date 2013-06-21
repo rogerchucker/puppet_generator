@@ -1,7 +1,7 @@
 module PuppetGenerator
   module Ui
     class Runner < Thor
-      extend Thor::Helper
+      extend ThorHelper
 
       class_option :module, Ui::CommandlineParserHelper.runner_options[:module]
       class_option :class, Ui::CommandlineParserHelper.runner_options[:class]
