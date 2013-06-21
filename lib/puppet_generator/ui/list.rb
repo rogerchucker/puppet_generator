@@ -13,6 +13,12 @@ module PuppetGenerator
       def exporters
         PuppetGenerator::Api::ListExporters.new(options).list
       end
+
+      desc "importers", "List available importers for given filter"
+      method_option :filter, Ui::CommandlineParserHelper.subcommand_options[:list_filter]
+      def importers
+        PuppetGenerator::Api::ListImporters.new(options).list(options[:filter].map(&:to_sym))
+      end
     end
   end
 end
