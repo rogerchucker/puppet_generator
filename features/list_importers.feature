@@ -29,48 +29,52 @@ Feature: List importers
     └───────────┘
     """
 
-  #Scenario: List available actions for the user resource
-  #  When I successfully run `ppgen list actions --filter user`
-  #  Then the stdout should contain:
-  #  """
-  #  ┌──────┐
-  #  │ name │
-  #  ├──────┤
-  #  │ null │
-  #  └──────┘
-  #  """
+  Scenario: List available importers for the user resource
+    When I successfully run `ppgen list importers --filter user`
+    Then the stdout should contain:
+    """
+    ┌───────┐
+    │ name  │
+    ├───────┤
+    │ file  │
+    │ stdin │
+    └───────┘
+    """
 
-  #Scenario: List available actions for the package resource
-  #  When I successfully run `ppgen list actions --filter package`
-  #  Then the stdout should contain:
-  #  """
-  #  ┌──────┐
-  #  │ name │
-  #  ├──────┤
-  #  │ null │
-  #  └──────┘
-  #  """
+  Scenario: List available importers for the package resource
+    When I successfully run `ppgen list importers --filter package`
+    Then the stdout should contain:
+    """
+    ┌───────┐
+    │ name  │
+    ├───────┤
+    │ file  │
+    │ stdin │
+    └───────┘
+    """
 
-  #Scenario: List available actions for the file resource
-  #  When I successfully run `ppgen list actions --filter file`
-  #  Then the stdout should contain:
-  #  """
-  #  ┌────────────────────────────────┐
-  #  │ name                           │
-  #  ├────────────────────────────────┤
-  #  │ null                           │
-  #  │ copy_files_to_module_directory │
-  #  └────────────────────────────────┘
-  #  """
+  Scenario: List available importers for the file resource
+    When I successfully run `ppgen list importers --filter file`
+    Then the stdout should contain:
+    """
+    ┌───────────┐
+    │ name      │
+    ├───────────┤
+    │ file      │
+    │ directory │
+    │ stdin     │
+    └───────────┘
+    """
 
-  #Scenario: List available actions for multiple resource types 
-  #  When I successfully run `ppgen list actions --filter package user file`
-  #  Then the stdout should contain:
-  #  """
-  #  ┌────────────────────────────────┐
-  #  │ name                           │
-  #  ├────────────────────────────────┤
-  #  │ null                           │
-  #  │ copy_files_to_module_directory │
-  #  └────────────────────────────────┘
-  #  """
+  Scenario: List available importers for multiple resource types 
+    When I successfully run `ppgen list importers --filter package user file`
+    Then the stdout should contain:
+    """
+    ┌───────────┐
+    │ name      │
+    ├───────────┤
+    │ file      │
+    │ directory │
+    │ stdin     │
+    └───────────┘
+    """
