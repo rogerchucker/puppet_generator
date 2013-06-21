@@ -4,7 +4,7 @@ module PuppetGenerator
 
       include Hirb::Console
 
-      def actions(filter)
+      def list(filter)
         list_actions_package if filter.include? :package
         list_actions_user if filter.include? :user
         list_actions_file if filter.include? :file

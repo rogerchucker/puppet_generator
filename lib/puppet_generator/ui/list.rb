@@ -6,7 +6,13 @@ module PuppetGenerator
       desc "actions", "List available actions for given filter"
       method_option :filter, Ui::CommandlineParserHelper.subcommand_options[:list_filter]
       def actions
-        PuppetGenerator::Api::ListActions.new(options).actions(options[:filter].map(&:to_sym))
+        PuppetGenerator::Api::ListActions.new(options).list(options[:filter].map(&:to_sym))
+      end
+
+      desc "exporters", "List available exporters for given filter"
+      method_option :filter, Ui::CommandlineParserHelper.subcommand_options[:list_filter]
+      def exporters
+        PuppetGenerator::Api::ListExporters.new(options).list(options[:filter].map(&:to_sym))
       end
     end
   end
