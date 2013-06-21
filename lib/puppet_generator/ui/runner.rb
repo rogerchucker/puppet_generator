@@ -1,9 +1,7 @@
 module PuppetGenerator
   module Ui
     class Runner < Thor
-      def self.exit_on_failure?
-        true
-      end
+      extend Thor::Helper
 
       class_option :module, Ui::CommandlineParserHelper.runner_options[:module]
       class_option :class, Ui::CommandlineParserHelper.runner_options[:class]

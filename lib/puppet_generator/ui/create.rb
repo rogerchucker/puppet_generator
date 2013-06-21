@@ -1,9 +1,7 @@
 module PuppetGenerator
   module Ui
     class Create < Thor
-      def self.exit_on_failure?
-        true
-      end
+      extend Thor::Helper
 
       method_option :source,               Ui::CommandlineParserHelper.subcommand_options[:source]
       method_option :import_filter,        Ui::CommandlineParserHelper.subcommand_options[:import_filter]
