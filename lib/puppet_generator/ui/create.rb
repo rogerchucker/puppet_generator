@@ -13,7 +13,7 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'package', 'generate package definitions'
       def package
-        PuppetGenerator::Api.new.generate_package_definition(options)
+        PuppetGenerator::Api::Create.new(options).package_definition
       end
 
       method_option :source,               Ui::CommandlineParserHelper.subcommand_options[:source]
@@ -24,7 +24,7 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'file', 'generate file definitions'
       def file
-        PuppetGenerator::Api.new.generate_file_definition(options)
+        PuppetGenerator::Api::Create.new(options).file_definition
       end
 
       method_option :source,               Ui::CommandlineParserHelper.subcommand_options[:source]
@@ -35,7 +35,7 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'user', 'generate user definitions'
       def user
-        PuppetGenerator::Api.new.generate_user_definition(options)
+        PuppetGenerator::Api::Create.new(options).user_definition
       end
 
       desc 'module', 'creates all files needed to build a module'
@@ -51,7 +51,7 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'role', 'generate role definitions'
       def role
-        PuppetGenerator::Api.new.generate_role_definition(options)
+        PuppetGenerator::Api::Create.new(options).role_definition
       end
 
     end

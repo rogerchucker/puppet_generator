@@ -77,5 +77,6 @@ require 'puppet_generator/middleware/create_module_directories'
 require 'puppet_generator/middleware/execute_actions'
 require 'puppet_generator/middleware/output_debug_information_for_models'
 require 'puppet_generator/api'
+require 'puppet_generator/api/create'
 
 module PuppetGenerator; end

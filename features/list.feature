@@ -9,7 +9,7 @@ Feature: List things
       | variable             | value |
       | PUPPET_GENERATOR_ENV | test  |
 
-  Scenario: List available ressources
+  Scenario: List available resources
     When I successfully run `ppgen help list`
     #Then the stdout should contain:
     #"""
@@ -48,7 +48,7 @@ Feature: List things
     └────────────────────────────────┘
     """
 
-  Scenario: List available actions for the user ressource
+  Scenario: List available actions for the user resource
     When I successfully run `ppgen list actions --filter user`
     Then the stdout should contain:
     """
@@ -59,7 +59,7 @@ Feature: List things
     └──────┘
     """
 
-  Scenario: List available actions for the package ressource
+  Scenario: List available actions for the package resource
     When I successfully run `ppgen list actions --filter package`
     Then the stdout should contain:
     """
@@ -70,8 +70,20 @@ Feature: List things
     └──────┘
     """
 
-  Scenario: List available actions for the file ressource
+  Scenario: List available actions for the file resource
     When I successfully run `ppgen list actions --filter file`
+    Then the stdout should contain:
+    """
+    ┌────────────────────────────────┐
+    │ name                           │
+    ├────────────────────────────────┤
+    │ null                           │
+    │ copy_files_to_module_directory │
+    └────────────────────────────────┘
+    """
+
+  Scenario: List available actions for multiple resource types 
+    When I successfully run `ppgen list actions --filter package user file`
     Then the stdout should contain:
     """
     ┌────────────────────────────────┐
