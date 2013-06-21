@@ -1,75 +1,52 @@
 module PuppetGenerator
   class Api
-    class List
+    class List < Base
 
-    include Hirb::Console
+      include Hirb::Console
 
-    def list_actions(filter, options)
-      _list_actions_package(options) if filter.include? :package
-      _list_actions_user(options) if filter.include? :user
-      _list_actions_file(options) if filter.include? :file
-      _list_actions_all(options) if filter.include? :all
+      def actions(filter)
+        list_actions_package if filter.include? :package
+        list_actions_user if filter.include? :user
+        list_actions_file if filter.include? :file
+        list_actions_all if filter.include? :all
 
-      table Models::Action.find_all(enabled: true), style: :unicode, fields: [ :name ]
-    end
-
-    private
-    def setup(options, klass)
-      s = klass.new(options)
-      s.setup_environment
-
-      s.create_task
-    end
-
-
-    def generate_list(options, setup_klass, startup_message)
-      task = setup options, setup_klass
-      pre_stack.call(task)
-
-      run_with_messages startup_message: startup_message do
-        default_list_stack.call(task)
+        table Models::Action.find_all(enabled: true), style: :unicode, fields: [ :name ]
       end
-    end
 
-    def _list_actions_all(options)
-      generate_list options, Setup::AllActions, "Generating list of all available actions." 
-    end
+      private
 
-    def _list_actions_user(options)
-      generate_list options, Setup::User, "Generating list of actions for type \"user\"." 
-    end
+      def generate_list(setup_klass, startup_message)
+        task = setup setup_klass
+        pre_stack.call(task)
 
-    def _list_actions_package(options)
-      generate_list options, Setup::Package, "Generating list of actions for type \"package\"." 
-    end
-
-    def _list_actions_file(options)
-      generate_list options, Setup::File, "Generating list of actions for type \"file\"." 
-    end
-
-    def pre_stack
-      ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::EnableDebuggingLibraries
-        use PuppetGenerator::Middleware::ConfigureLogging
+        run_with_messages startup_message: startup_message do
+          default_stack.call(task)
+        end
       end
-    end
 
-    def default_list_stack
-      ::Middleware::Builder.new do
-        use PuppetGenerator::Middleware::OutputDebugInformationForModels
-        use PuppetGenerator::Middleware::HandleErrors
+      def list_actions_all
+        generate_list Setup::AllActions, "Generating list of all available actions." 
       end
-    end
 
-    def run_with_messages(opts, &block)
-      options = {
-        startup_message: "Operation successfully started.",
-        teardown_message: "Operation successfully ended." 
-      }.merge opts
+      def list_actions_user
+        generate_list Setup::User, "Generating list of actions for type \"user\"." 
+      end
 
-      PuppetGenerator.logger.info(self.class.name) { options[:startup_message] }
-      block.call
-      PuppetGenerator.logger.info(self.class.name) { options[:teardown_message] }
+      def list_actions_package
+        generate_list Setup::Package, "Generating list of actions for type \"package\"." 
+      end
+
+      def list_actions_file
+        generate_list Setup::File, "Generating list of actions for type \"file\"." 
+      end
+
+      def default_stack
+        ::Middleware::Builder.new do
+          use PuppetGenerator::Middleware::OutputDebugInformationForModels
+          use PuppetGenerator::Middleware::HandleErrors
+        end
+      end
+
     end
   end
 end

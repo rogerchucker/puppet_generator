@@ -8,7 +8,7 @@ module PuppetGenerator
       desc "actions", "List available actions for given filter"
       method_option :filter, Ui::CommandlineParserHelper.subcommand_options[:list_filter]
       def actions
-        PuppetGenerator::Api.new.list_actions(options[:filter].map(&:to_sym), options)
+        PuppetGenerator::Api::List.new(options).actions(options[:filter].map(&:to_sym))
       end
     end
   end
