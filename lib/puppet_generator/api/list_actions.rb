@@ -10,7 +10,7 @@ module PuppetGenerator
         list_actions_file if filter.include? :file
         list_actions_all if filter.include? :all
 
-        table Models::Action.find_all(enabled: true), style: :unicode, fields: [ :name ]
+        table Models::Action.find_all(enabled: true).sort, style: :unicode, fields: [ :name ]
       end
 
       private
