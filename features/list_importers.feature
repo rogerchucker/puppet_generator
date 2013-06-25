@@ -23,8 +23,8 @@ Feature: List importers
     ┌───────────┐
     │ name      │
     ├───────────┤
-    │ file      │
     │ directory │
+    │ file      │
     │ stdin     │
     └───────────┘
     """
@@ -60,8 +60,8 @@ Feature: List importers
     ┌───────────┐
     │ name      │
     ├───────────┤
-    │ file      │
     │ directory │
+    │ file      │
     │ stdin     │
     └───────────┘
     """
@@ -73,8 +73,8 @@ Feature: List importers
     ┌───────────┐
     │ name      │
     ├───────────┤
-    │ file      │
     │ directory │
+    │ file      │
     │ stdin     │
     └───────────┘
     """

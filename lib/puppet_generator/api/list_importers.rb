@@ -10,7 +10,7 @@ module PuppetGenerator
         list_importers_file if filter.include? :file
         list_importers_all if filter.include? :all
 
-        table Models::Importer.find_all(enabled: true), style: :unicode, fields: [ :name ]
+        table Models::Importer.find_all(enabled: true).sort, style: :unicode, fields: [ :name ]
       end
 
       private
@@ -44,6 +44,8 @@ module PuppetGenerator
         ::Middleware::Builder.new do
           use PuppetGenerator::Middleware::OutputDebugInformationForModels
           use PuppetGenerator::Middleware::HandleErrors
+#          use PuppetGenerator::Middleware::CreateList
+#          use PuppetGenerator::Middleware::CreateOutput
         end
       end
 

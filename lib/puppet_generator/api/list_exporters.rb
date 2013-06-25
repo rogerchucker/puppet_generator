@@ -24,6 +24,8 @@ module PuppetGenerator
         ::Middleware::Builder.new do
           use PuppetGenerator::Middleware::OutputDebugInformationForModels
           use PuppetGenerator::Middleware::HandleErrors
+#          use PuppetGenerator::Middleware::CreateList
+#          use PuppetGenerator::Middleware::CreateOutput
         end
       end
 
