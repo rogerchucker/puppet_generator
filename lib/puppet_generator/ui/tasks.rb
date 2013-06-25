@@ -1,9 +1,7 @@
 module PuppetGenerator
   module Ui
     class Tasks < Thor
-      def self.exit_on_failure?
-        true
-      end
+      extend ThorHelper
 
       no_tasks {
         def commandline_options(options, *names)
