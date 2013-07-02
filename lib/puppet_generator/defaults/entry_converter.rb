@@ -1,6 +1,6 @@
 module PuppetGenerator
-  module Setup
-    module EntryConverters
+  module Defaults
+    module EntryConverter
       def self.use
       end
     end

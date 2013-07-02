@@ -1,6 +1,6 @@
 module PuppetGenerator
-  module Setup
-    module DefaultExporter
+  module Default
+    module Exporter
       def self.use
         Models::Exporter.enable :file
         Models::Exporter.enable :stdout

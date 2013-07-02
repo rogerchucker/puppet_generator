@@ -1,6 +1,6 @@
 module PuppetGenerator
-  module Setup
-    module DefaultImporter
+  module Defaults
+    module Importer
       def self.use
         Models::Importer.enable :file
         Models::Importer.enable :stdin

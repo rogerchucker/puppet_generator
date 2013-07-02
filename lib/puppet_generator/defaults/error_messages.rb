@@ -1,6 +1,6 @@
 module PuppetGenerator
-  module Setup
-    module DefaultErrorMessages
+  module Defaults
+    module ErrorMessage
       def self.use
         Models::ErrorMessage.all.each { |m| m.enable }
       end
