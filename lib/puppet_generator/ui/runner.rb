@@ -3,6 +3,8 @@ module PuppetGenerator
     class Runner < Thor
       extend ThorHelper
 
+      map "--version" => "version"
+
       class_option :module, Ui::CommandlineParserHelper.runner_options[:module]
       class_option :class, Ui::CommandlineParserHelper.runner_options[:class]
       class_option :debug, Ui::CommandlineParserHelper.runner_options[:debug]
@@ -16,6 +18,14 @@ module PuppetGenerator
 
       desc "tasks <task>", "Run command with predefined options. Available tasks: #{Ui::CommandlineParserHelper.pretty_subcommands(Tasks.tasks)}"
       subcommand :tasks, Tasks
+
+      method_option :command, Ui::CommandlineParserHelper.runner_options[:silent]
+      desc "version", "show version of library", hide: true
+      def version
+        PuppetGenerator::Api::ShowVersion.new(
+          options.merge( { 'command' => [ :show, :version ] } ) 
+        ).show
+      end
     end
   end
 end

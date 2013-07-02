@@ -10,18 +10,31 @@ module PuppetGenerator
 
       attr_reader :options
 
+      def class_name
+        self.class.name.underscore
+      end
+
+      def description
+        raise Exceptions::MethodNeedsToBeImplemented, "You need to implement a \"description\"-method to make the api subclass work."
+      end
+
+      def generate_data
+        task = pre_stack.call(
+          Task.new( options )
+        )
+
+        run_with_messages startup_message: description do
+          default_stack.call(task)
+        end
+      end
+      alias_method :run, :generate_data
+
       def pre_stack
         ::Middleware::Builder.new do
+          use PuppetGenerator::Middleware::SetupEnvironment
           use PuppetGenerator::Middleware::EnableDebuggingLibraries
           use PuppetGenerator::Middleware::ConfigureLogging
         end
-      end
-
-      def setup(klass)
-        s = klass.new(options)
-        s.setup_environment
-
-        s.create_task
       end
 
       def run_with_messages(opts, &block)

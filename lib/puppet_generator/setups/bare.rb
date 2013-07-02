@@ -29,6 +29,23 @@ module PuppetGenerator
         Models::Template.find_all(item).each { |t| t.enable }
       end
 
+      def enable_import_filter(item)
+        Models::ImportFilter.enable(item)
+      end
+
+      def enable_importer(item)
+        Models::Importer.enable(item)
+      end
+
+      def enable_export_filter(item)
+        Models::ExportFilter.enable(item)
+      end
+
+      def enable_exporter(item)
+        Models::Exporter.enable(item)
+      end
+
+
     end
   end
 end

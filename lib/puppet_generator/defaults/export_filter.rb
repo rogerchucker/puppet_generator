@@ -1,7 +1,7 @@
 module PuppetGenerator
   module Defaults
-    module ExportFilter
-      def self.use
+    class ExportFilter
+      def use
         Models::ExportFilter.enable :null
       end
     end

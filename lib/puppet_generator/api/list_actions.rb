@@ -15,29 +15,20 @@ module PuppetGenerator
 
       private
 
-      def generate_list(setup_klass, startup_message)
-        task = setup setup_klass
-        pre_stack.call(task)
-
-        run_with_messages startup_message: startup_message do
-          default_stack.call(task)
-        end
-      end
-
       def list_actions_all
-        generate_list Setup::AllActions, "Generating list of all available actions." 
+        generate_data Setup::AllActions, "Generating list of all available actions." 
       end
 
       def list_actions_user
-        generate_list Setup::User, "Generating list of actions for type \"user\"." 
+        generate_data Setup::User, "Generating list of actions for type \"user\"." 
       end
 
       def list_actions_package
-        generate_list Setup::Package, "Generating list of actions for type \"package\"." 
+        generate_data Setup::Package, "Generating list of actions for type \"package\"." 
       end
 
       def list_actions_file
-        generate_list Setup::File, "Generating list of actions for type \"file\"." 
+        generate_data Setup::File, "Generating list of actions for type \"file\"." 
       end
 
       def default_stack

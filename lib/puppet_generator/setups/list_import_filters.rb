@@ -1,21 +1,16 @@
 module PuppetGenerator
-  module Setup
-    class AllImportFilters < Bare
-      def initialize(options)
-        super
-        @task = Task.new(options)
+  module Setups
+    class ListImportFilters < Bare
+
+      def description
+        "List all available import filers"
       end
 
-      def setup_environment
-        DefaultErrorMessages.use
-        Models::ImportFilter.all.each { |t| t.enable }
+      def environment
+        use_defaults_for :error_message
+        enable_all_of :importer
       end
 
-      def create_task
-        Task.new(
-          HashWithIndifferentAccess.new( { command: :list_actions } ).merge @options
-        )
-      end
     end
   end
 end

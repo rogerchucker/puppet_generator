@@ -1,20 +1,13 @@
 module PuppetGenerator
-  module Setup
-    class Module < Bare
+  module Setups
+    class CreateModule < Bare
 
-
-      def initialize(options)
-        super
+      def description
+        "Create module"
       end
 
-      def setup_environment
-        DefaultErrorMessages.use
-      end
-
-      def create_task
-        Task.new(
-          HashWithIndifferentAccess.new( { command: :module } ).merge @options
-        )
+      def environment
+        use_defaults_for :error_message
       end
 
     end

@@ -1,12 +1,8 @@
 module PuppetGenerator
-  module Setup
-    class File < Bare
+  module Setups
+    class CreateFile < Bare
 
-      def initialize(options)
-        super
-      end
-
-      def setup_environment
+      def environment
         DefaultErrorMessages.use
         DefaultImportFilter.use
         DefaultActions.use
@@ -19,10 +15,8 @@ module PuppetGenerator
         Models::Importer.enable :directory
       end
 
-      def create_task
-        Task.new(
-          HashWithIndifferentAccess.new( { command: :file } ).merge @options
-        )
+      def task(options)
+        Task.new( options )
       end
     end
   end

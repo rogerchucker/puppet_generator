@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe Setup::Role do
   before(:each) do
     Models::ImportFilter.clear

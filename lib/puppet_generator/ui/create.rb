@@ -11,6 +11,7 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'package', 'generate package definitions'
       def package
+        binding.pry
         PuppetGenerator::Api::CreateDefinition.new(options).package
       end
 

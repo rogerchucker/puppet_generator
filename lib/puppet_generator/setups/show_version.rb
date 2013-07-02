@@ -1,17 +1,17 @@
 module PuppetGenerator
   module Setups
-    class CreatePackage < Bare
+    class ShowVersion < Bare
+      
       def description
-        "Create package"
+        "Setup up to show version" 
       end
 
       def environment
         use_defaults_for :error_message, :import_filter, :action, :importer, :export_filter
-        enable_all_of :action
-
-        enable_template_for :create_package
+        enable_template_for :show_version
       end
 
     end
   end
 end
+

@@ -1,27 +1,19 @@
 module PuppetGenerator
-  module Setup
-    class User < Bare
-      def initialize(options)
-        super
-        @task = Task.new(options)
+  module Setups
+    class CreateUser < Bare
+
+      def description
+        "Create user"
       end
 
-      def setup_environment
-        DefaultErrorMessages.use
-        DefaultImportFilter.use
-        DefaultActions.use
-        DefaultImporter.use
-        DefaultExportFilter.use
+      def environment
+        use_defaults_for :error_message, :import_filter, :action, :importer, :export_filter
+        enable_all_of :action
 
-        Models::ImportFilter.enable :passwd
-        Models::Template.find_all(:user).collect { |t| t.enable }
+        enable_import_filter :passwd
+        enable_template_for :create_user
       end
 
-      def create_task
-        Task.new(
-          HashWithIndifferentAccess.new( { command: :user } ).merge @options
-        )
-      end
     end
   end
 end

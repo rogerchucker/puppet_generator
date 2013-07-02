@@ -1,28 +1,21 @@
 module PuppetGenerator
   module Setup
-    class Role < Bare
+    class CreateRole < Bare
 
-      def initialize(options)
-        super
+      def description
+        "Create role"
       end
 
-      def setup_environment
-        DefaultErrorMessages.use
-        DefaultImportFilter.use
-        DefaultActions.use
-        DefaultImporter.use
-        DefaultExportFilter.use
+      def environment
+        use_defaults_for :error_message, :import_filter, :action, :importer, :export_filter
+        enable_all_of :action
 
-        Models::Template.find_all(:role).collect { |t| t.enable }
-        Models::Importer.enable :directory
-        Models::ExportFilter.enable :build_role_includes_for_directory
+        enable_import_filter :passwd
+        enable_importer :directory
+        enable_template_for :create_role
+        enable_export_filter :build_role_includes_for_directory
       end
 
-      def create_task
-        Task.new(
-          HashWithIndifferentAccess.new( { command: :role } ).merge @options
-        )
-      end
     end
   end
 end

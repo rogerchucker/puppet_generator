@@ -43,6 +43,9 @@ module PuppetGenerator
     #raised if an error happened during copying files
     class ErrorDuringCopyFiles < UserError; end
     
+    #raised if an unknown module was used
+    class UnknownModel < InternalError; end
+    
     #raised if one tries to delete an instance which
     #does not exist
     class InstanceNotFound < InternalError; end
@@ -79,6 +82,14 @@ module PuppetGenerator
     #raised if the code which defines an exporter
     #which is malformed
     class InvalidExporter < InternalError; end
+    
+    #raised if the code which defines a setup
+    #which is malformed
+    class InvalidSetup < InternalError; end
+    
+    #raised if the code which defines a default
+    #which is malformed
+    class InvalidDefault < InternalError; end
     
     #raised if the code which defines an entry converter
     #which is malformed

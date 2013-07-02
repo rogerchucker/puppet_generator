@@ -1,7 +1,7 @@
 module PuppetGenerator
   module Defaults
-    module ImportFilter
-      def self.use
+    class ImportFilter
+      def use
         Models::ImportFilter.enable :null
         Models::ImportFilter.enable :yaml
       end
