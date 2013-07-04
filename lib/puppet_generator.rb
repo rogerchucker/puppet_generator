@@ -30,6 +30,7 @@ require 'puppet_generator/ui/tasks'
 require 'puppet_generator/ui/runner'
 
 require 'puppet_generator/puppet_helper'
+require 'puppet_generator/setups/base'
 
 require 'puppet_generator/models/base'
 require 'puppet_generator/models/filesystem_based_model'
@@ -46,7 +47,6 @@ require 'puppet_generator/models/entry_converter'
 require 'puppet_generator/models/default'
 require 'puppet_generator/models/setup'
 
-require 'puppet_generator/setups/base'
 
 require 'puppet_generator/puppet_objects/package'
 require 'puppet_generator/puppet_objects/file'

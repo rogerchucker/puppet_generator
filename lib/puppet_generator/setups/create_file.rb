@@ -2,21 +2,17 @@ module PuppetGenerator
   module Setups
     class CreateFile < Base
 
-      def environment
-        DefaultErrorMessages.use
-        DefaultImportFilter.use
-        DefaultActions.use
-        DefaultImporter.use
-        DefaultExportFilter.use
-
-        Models::Action.enable :copy_files_to_module_directory
-        Models::Template.find_all(:file).collect { |t| t.enable }
-        Models::ExportFilter.enable :filesystem_attributes
-        Models::Importer.enable :directory
+      def description
+        'Create files and directories'
       end
 
-      def task(options)
-        Task.new( options )
+      def environment
+        use_defaults_for :error_message, :import_filter, :action, :importer, :export_filter
+
+        enable_template_for :create_file
+        enable_action :copy_files_to_module_directory
+        enable_importer :directory
+        enable_export_filter :filesystem_attributes
       end
     end
   end

@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setups
-    class ShowVersion < Bare
+    class ShowVersion < Base
       
       def description
         "Setup up to show version" 

@@ -1,10 +1,6 @@
 module PuppetGenerator
-  module Setup
-    class Bare
-
-      def initialize(options)
-        @options = options
-      end
+  module Setups
+    class Base
 
       private
 
@@ -27,6 +23,10 @@ module PuppetGenerator
 
       def enable_template_for(item)
         Models::Template.find_all(item).each { |t| t.enable }
+      end
+
+      def enable_action(item)
+        Models::Action.enable(item)
       end
 
       def enable_import_filter(item)
