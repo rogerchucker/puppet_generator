@@ -20,6 +20,7 @@ module PuppetGenerator
 
       def set_it_up(options)
         Models::Default.init
+        debugger
         Models::Setup.init
 
         Models::Setup.all.each { |s| s.enable }

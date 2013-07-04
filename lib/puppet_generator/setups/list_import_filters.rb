@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setups
-    class ListImportFilters < Bare
+    class ListImportFilters < Base
 
       def description
         "List all available import filers"

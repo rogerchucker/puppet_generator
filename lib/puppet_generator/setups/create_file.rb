@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setups
-    class CreateFile < Bare
+    class CreateFile < Base
 
       def environment
         DefaultErrorMessages.use

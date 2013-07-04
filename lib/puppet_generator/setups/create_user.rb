@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setups
-    class CreateUser < Bare
+    class CreateUser < Base
 
       def description
         "Create user"

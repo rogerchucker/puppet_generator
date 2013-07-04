@@ -20,13 +20,29 @@ module PuppetGenerator
       def enable_all_of(*items)
         items.flatten.each do |i| 
           "Models::#{i.camelcase}".constantize.all.each { |t| t.enable }
-        rescue Exception => e
-          raise Exceptions::UnknownModel, "I'm not able to enable all instances of \"Models::#{i.camelcase}\". Maybe the model is missing or another error happend: #{e.message}"
         end
+      rescue Exception => e
+        raise Exceptions::UnknownModel, "I'm not able to enable all instances of \"Models::#{i.camelcase}\". Maybe the model is missing or another error happend: #{e.message}"
       end
 
       def enable_template_for(item)
         Models::Template.find_all(item).each { |t| t.enable }
+      end
+
+      def enable_import_filter(item)
+        Models::ImportFilter.enable(item)
+      end
+
+      def enable_importer(item)
+        Models::Importer.enable(item)
+      end
+
+      def enable_export_filter(item)
+        Models::ExportFilter.enable(item)
+      end
+
+      def enable_exporter(item)
+        Models::Exporter.enable(item)
       end
 
     end

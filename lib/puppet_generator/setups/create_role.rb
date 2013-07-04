@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setup
-    class CreateRole < Bare
+    class CreateRole < Base
 
       def description
         "Create role"

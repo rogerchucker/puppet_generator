@@ -34,6 +34,10 @@ module PuppetGenerator
         def ignore
           'base.rb'
         end
+
+        def suffix
+          '.rb'
+        end
       end
     end
   end

@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setups
-    class CreateModule < Bare
+    class CreateModule < Base
 
       def description
         "Create module"

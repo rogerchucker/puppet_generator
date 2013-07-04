@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setups
-    class ListActions < Bare
+    class ListActions < Base
 
       def description
         "List all available actions"

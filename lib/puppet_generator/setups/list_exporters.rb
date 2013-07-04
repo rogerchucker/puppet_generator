@@ -1,6 +1,6 @@
 module PuppetGenerator
   module Setups
-    class ListExporters < Bare
+    class ListExporters < Base
 
       def description
         "List all available exporters"
