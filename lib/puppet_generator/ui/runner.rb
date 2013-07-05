@@ -19,11 +19,10 @@ module PuppetGenerator
       desc "tasks <task>", "Run command with predefined options. Available tasks: #{Ui::CommandlineParserHelper.pretty_subcommands(Tasks.tasks)}"
       subcommand :tasks, Tasks
 
-      method_option :command, Ui::CommandlineParserHelper.runner_options[:silent]
       desc "version", "show version of library", hide: true
       def version
         PuppetGenerator::Api::ShowVersion.new(
-          options.merge( { 'command' => [ :show, :version ] } ) 
+          options.merge( { 'command_chain' => [ :show, :version ] } ) 
         ).show
       end
     end

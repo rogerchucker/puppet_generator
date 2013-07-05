@@ -19,11 +19,13 @@ module PuppetGenerator
       end
 
       def generate_data
-        task = pre_stack.call(
-          Task.new( options )
-        )
+        debugger
+        task = Task.new( options )
+        pre_stack.call(task)
 
-        run_with_messages startup_message: description do
+        active_setup = Models::Setup.find( task.meta[:command_chain].join("_") )
+
+        run_with_messages startup_message: active_setup.description do
           default_stack.call(task)
         end
       end

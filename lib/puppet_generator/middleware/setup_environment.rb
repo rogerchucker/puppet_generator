@@ -5,27 +5,23 @@ module PuppetGenerator
         @app = app
       end
 
-      def call(options)
-        task = set_it_up(options)
-
+      def call(task)
         init_logger
         init_models
+        set_it_up(task)
 
         @app.call(task)
-
-        task
       end
 
       private
 
-      def set_it_up(options)
+      def set_it_up(task)
         Models::Default.init
-        debugger
         Models::Setup.init
 
         Models::Setup.all.each { |s| s.enable }
 
-        active_setup = Models::Setup.find( options.meta[:command].join("_") )
+        active_setup = Models::Setup.find( task.meta[:command_chain].join("_") )
         raise Exceptions::UnknownSetup unless active_setup
 
         active_setup.environment 
