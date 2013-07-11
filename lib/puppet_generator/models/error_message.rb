@@ -25,7 +25,7 @@ module PuppetGenerator
           Models::ErrorMessage.create :invalid_passwd_input,   6, "The input is no passwd file valid for this use case."
           Models::ErrorMessage.create :unknown_action,         7, "There's no action \"<%= @requested_actions %>\". Available actions: <%= @available_actions %>."
           Models::ErrorMessage.create :filesystem_error,       8, "The file/directory \"<%= @fs_object %>\" does not exist."
-          Models::ErrorMessage.create :wrong_template_chosen,  9, "I was not able to find a suitable template for the given command \"<%= @command %>\", for the given tags \"<%= @tags %>\" and for the given destination \"<%= @destination %>\"."
+          Models::ErrorMessage.create :wrong_template_chosen,  9, "I was not able to find a suitable template for the given command \"<%= @command %>\", for the given type of view \"<%= @type_of_view %>\" and for the given destination \"<%= @destination %>\"."
           Models::ErrorMessage.create :copy_error,  10, "An error occured while copying the files to the module directory. The original error message was:\n\n<%= @exception_message %>"
 
           Models::ErrorMessage.create :interrupt,  98, "You pressed \"CTRL-C\". Exiting."

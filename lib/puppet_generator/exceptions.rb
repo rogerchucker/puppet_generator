@@ -4,7 +4,7 @@ module PuppetGenerator
     class UserError < Exception; end
     
     #raise if a file does not exist in filesystem
-    class WrongTemplateChosen < UserError; end
+    class WrongViewChosen < UserError; end
 
     #raised if source is not a directory, file etc.
     class InvalidSource < UserError; end
@@ -63,6 +63,9 @@ module PuppetGenerator
     
     #raised if one uses an invalid template
     class InvalidTemplate < InternalError; end
+    
+    #raised if one uses an invalid view
+    class InvalidView < InternalError; end
     
     #raised if one uses an invalid action
     class InvalidAction < InternalError; end
