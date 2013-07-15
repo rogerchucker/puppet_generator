@@ -9,14 +9,14 @@ module PuppetGenerator
         @task = task
 
         PuppetGenerator.logger.info(self.class.name){ "Puppet definitions will be output to \"#{task.meta[:destination]}\"."  }
-        PuppetGenerator.logger.debug(self.class.name){ "Render template for channel \"#{channel}\" and sink \"#{sink}\"." }
+        PuppetGenerator.logger.debug(self.class.name){ "Render view for channel \"#{channel}\" and sink \"#{sink}\"." }
 
-        task.meta[:template_tagged_with] = determine_tags unless task.meta[:template_tagged_with]
+        task.meta[:type_of_view] = default_type_of_view_for(channel) unless task.meta[:type_of_view]
 
-        template = find_suitable_template( task.meta[:command], channel.to_sym, task.meta[:template_tagged_with] )
+        view = find_suitable_view( task.meta[:command_chain].last, task.meta[:command_chain].first, channel.to_sym, task.meta[:type_of_view] )
         exporter = find_suitable_exporter( task.meta[:destination] )
 
-        definitions = template.render(task.body)
+        definitions = view.render(task.body)
         exporter.write(sink, definitions)
 
         @app.call(task)
@@ -24,12 +24,12 @@ module PuppetGenerator
 
       private
 
-      def find_suitable_template(name,channel,tags)
-        template = Models::Template.find(name: name, is_suitable_for: channel.to_sym, is_tagged_with: tags )
-        raise Exceptions::WrongTemplateChosen unless template
-        PuppetGenerator.logger.debug(self.class.name){ "Chosen template: #{template.name} (#{template.path})." }
+      def find_suitable_view(resource,verb,channel,type_of_view)
+        view = Models::View.find(resource: resource, verb: verb, supports_enum_as_input:  wants_enum_as_input?( type_of_view ) )
+        raise Exceptions::WrongViewChosen unless view
+        PuppetGenerator.logger.debug(self.class.name){ "Chosen view: #{view.name} (#{view.path})." }
 
-        template
+        view
       end
 
       def find_suitable_exporter(destination)
@@ -52,16 +52,27 @@ module PuppetGenerator
         destination[1]
       end
 
-      def determine_tags
-        case channel
-        when /file/
-          [ :many_per_file ]
-        when /^(?:dir|directory)/
-          [ :one_per_file ]
-        when /stdout/
-          [ :many_per_file ]
+      def wants_enum_as_input?( type_of_view )
+        case type_of_view
+        when :many
+          true
+        when :one
+          false
         else
-          [ :many_per_file ]
+          true
+        end
+      end
+
+      def default_type_of_view_for(output)
+        case output
+        when /file/
+          :many
+        when /^(?:dir|directory)/
+          :one
+        when /stdout/
+          :many
+        else
+          :many
         end
       end
 

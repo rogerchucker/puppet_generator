@@ -32,6 +32,7 @@ module PuppetGenerator
       end
       
       def init_models
+        Models::View.init
         Models::Template.init
         Models::ImportFilter.init
         Models::Action.init

@@ -19,7 +19,6 @@ module PuppetGenerator
       end
 
       def generate_data
-        debugger
         task = Task.new( options )
         pre_stack.call(task)
 

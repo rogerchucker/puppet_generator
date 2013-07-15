@@ -12,7 +12,8 @@ module PuppetGenerator
         ::Middleware::Builder.new do
           use PuppetGenerator::Middleware::OutputDebugInformationForModels
           use PuppetGenerator::Middleware::HandleErrors
-          use PuppetGenerator::Middleware::GenerateItems
+          use PuppetGenerator::Middleware::GenerateVersion
+          use PuppetGenerator::Middleware::CreateOutputObjectFromEntry
           use PuppetGenerator::Middleware::CreateOutput
         end
       end
