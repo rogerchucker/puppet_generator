@@ -9,7 +9,7 @@ module PuppetGenerator
       def call(task)
         PuppetGenerator.logger.debug(self.class.name){ "Execute action \"#{task.meta[:requested_actions].join(", ")}\" on output." }
 
-        task.body = execute_actions( task.meta[:requested_actions] , task )
+        execute_actions( task.meta[:requested_actions] , task )
 
         @app.call(task)
       end
