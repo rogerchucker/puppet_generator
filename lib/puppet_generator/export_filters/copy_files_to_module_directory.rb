@@ -1,8 +1,8 @@
 module PuppetGenerator
-  module Actions
+  module ExportFilters
     class CopyFilesToModuleDirectory
-      def run( task , data )
-        src = data.collect { |e| e[:name] }
+      def convert( objects, task )
+        src = objects.collect { |e| e[:name] }
         dst = File.join( task.meta[:module] , 'files')
 
         FileUtils.mkdir_p dst
