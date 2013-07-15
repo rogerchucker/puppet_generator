@@ -25,24 +25,24 @@ module PuppetGenerator
         Models::Template.find_all(item).each { |t| t.enable }
       end
 
-      def enable_action(item)
-        Models::Action.enable(item)
+      def enable_action(*items)
+        items.flatten.each { |i| Models::Actions.enable(i) }
       end
 
-      def enable_import_filter(item)
-        Models::ImportFilter.enable(item)
+      def enable_import_filter(*items)
+        items.flatten.each { |i| Models::ImportFilter.enable(i) }
       end
 
-      def enable_importer(item)
-        Models::Importer.enable(item)
+      def enable_importer(*items)
+        items.flatten.each { |i| Models::Importer.enable(i) }
       end
 
-      def enable_export_filter(item)
-        Models::ExportFilter.enable(item)
+      def enable_export_filter(*items)
+        items.flatten.each { |i| Models::ExportFilter.enable(i) }
       end
 
-      def enable_exporter(item)
-        Models::Exporter.enable(item)
+      def enable_exporter(*items)
+        items.flatten.each { |i| Models::Exporter.enable(i) }
       end
 
     end
