@@ -11,8 +11,9 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'package', 'generate package definitions'
       def package
-        binding.pry
-        PuppetGenerator::Api::CreateDefinition.new(options).package
+        PuppetGenerator::Api::CreateDefinition.new(
+          options.merge( { 'command_chain' => [ :create, :package ] } ) 
+        ).run
       end
 
       method_option :source,               Ui::CommandlineParserHelper.subcommand_options[:source]
@@ -23,7 +24,9 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'file', 'generate file definitions'
       def file
-        PuppetGenerator::Api::CreateDefinition.new(options).file
+        PuppetGenerator::Api::CreateDefinition.new(
+          options.merge( { 'command_chain' => [ :create, :file ] } ) 
+        ).run
       end
 
       method_option :source,               Ui::CommandlineParserHelper.subcommand_options[:source]
@@ -34,12 +37,16 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'user', 'generate user definitions'
       def user
-        PuppetGenerator::Api::CreateDefinition.new(options).user
+        PuppetGenerator::Api::CreateDefinition.new(
+          options.merge( { 'command_chain' => [ :create, :user ] } ) 
+        ).run
       end
 
       desc 'module', 'creates all files needed to build a module'
       def module
-        PuppetGenerator::Api::CreateModule.new(options).module
+        PuppetGenerator::Api::CreateModule.new(
+          options.merge( { 'command_chain' => [ :create, :module ] } ) 
+        ).run
       end
 
       method_option :source,               Ui::CommandlineParserHelper.subcommand_options[:source]
@@ -50,7 +57,9 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'role', 'generate role definitions'
       def role
-        PuppetGenerator::Api::CreateDefinition.new(options).role
+        PuppetGenerator::Api::CreateDefinition.new(
+          options.merge( { 'command_chain' => [ :create, :role ] } ) 
+        ).run
       end
 
     end

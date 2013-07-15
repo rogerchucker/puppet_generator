@@ -6,6 +6,17 @@ module PuppetGenerator
         @options = options
       end
 
+      def run
+        task = Task.new( options )
+        pre_stack.call(task)
+
+        active_setup = Models::Setup.find( task.meta[:command_chain].join("_") )
+
+        run_with_messages startup_message: active_setup.description do
+          default_stack.call(task)
+        end
+      end
+
       private
 
       attr_reader :options
@@ -17,18 +28,6 @@ module PuppetGenerator
       def description
         raise Exceptions::MethodNeedsToBeImplemented, "You need to implement a \"description\"-method to make the api subclass work."
       end
-
-      def generate_data
-        task = Task.new( options )
-        pre_stack.call(task)
-
-        active_setup = Models::Setup.find( task.meta[:command_chain].join("_") )
-
-        run_with_messages startup_message: active_setup.description do
-          default_stack.call(task)
-        end
-      end
-      alias_method :run, :generate_data
 
       def pre_stack
         ::Middleware::Builder.new do

@@ -24,7 +24,7 @@ module PuppetGenerator
       def version
         PuppetGenerator::Api::ShowVersion.new(
           options.merge( { 'command_chain' => [ :show, :version ] } ) 
-        ).show
+        ).run
       end
     end
   end

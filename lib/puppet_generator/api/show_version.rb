@@ -2,10 +2,6 @@ module PuppetGenerator
   module Api
     class ShowVersion < Base
 
-      def show
-        run
-      end
-
       private
 
       def default_stack

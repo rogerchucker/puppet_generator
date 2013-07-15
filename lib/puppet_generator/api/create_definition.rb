@@ -2,22 +2,6 @@ module PuppetGenerator
   module Api
     class CreateDefinition < Base
 
-      def package
-        generate_data Setup::Package, "Generating puppet definitions for type \"package\"." 
-      end
-
-      def file
-        generate_data Setup::File, "Generating puppet definitions for type \"file\"." 
-      end
-
-      def user
-        generate_data Setup::User, "Generating puppet definitions for type \"user\"." 
-      end
-
-      def role
-        generate_data Setup::Role, "Generating puppet definitions for type \"role\"." 
-      end
-
       private
 
       def default_stack
