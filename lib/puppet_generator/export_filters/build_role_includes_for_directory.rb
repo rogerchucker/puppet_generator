@@ -4,7 +4,7 @@ module PuppetGenerator
 
       include PuppetHelper
 
-      def convert(objects)
+      def convert(objects, task)
 
         objects.collect do |o|
           path = o[:name]

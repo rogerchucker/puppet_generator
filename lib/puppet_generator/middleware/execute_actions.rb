@@ -19,13 +19,13 @@ module PuppetGenerator
       def execute_actions(actions, task)
 
         module_name = task.meta[:module]
-        data = task.body
+        objects = task.body
 
-        actions.inject(data) do |data,action|
+        actions.inject(objects) do |objects,action|
           active_action = Models::Action.find action
           raise Exceptions::UnknownAction unless active_action
 
-          data = active_action.run( task , data )
+          active_action.run( objects, task )
         end
       end
 
