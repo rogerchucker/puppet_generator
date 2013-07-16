@@ -9,7 +9,7 @@ module PuppetGenerator
       def call(task)
         PuppetGenerator.logger.debug(self.class.name){ "Filter the output with filter \"#{task.meta[:requested_export_filter].join(", ")}\"" }
 
-        task.body = apply_filters(task.meta[:requested_export_filter], task.body)
+        task.body = apply_filters(task.meta[:requested_export_filter], task.body, task.meta)
 
         PuppetGenerator.logger.debug(self.class.name) { "Count output lines: #{task.body.size}" }
 

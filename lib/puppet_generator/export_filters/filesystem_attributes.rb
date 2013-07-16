@@ -1,7 +1,7 @@
 module PuppetGenerator
   module ExportFilters
     class FilesystemAttributes
-      def convert(objects, task)
+      def convert(objects, meta)
 
         objects.collect do |o|
           path = o[:name]
