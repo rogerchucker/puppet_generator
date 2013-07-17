@@ -13,7 +13,7 @@ module PuppetGenerator
           use PuppetGenerator::Middleware::FilterImportedData
           use PuppetGenerator::Middleware::ApplyExportFilters
           use PuppetGenerator::Middleware::ExecuteActions
-          use PuppetGenerator::Middleware::CreatePuppetObjectFromEntry
+          use PuppetGenerator::Middleware::CreateOutputObjectFromEntry
           use PuppetGenerator::Middleware::CreateOutput
         end
       end

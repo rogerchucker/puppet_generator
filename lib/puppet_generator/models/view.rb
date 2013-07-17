@@ -6,8 +6,7 @@ module PuppetGenerator
 
       #create new instance of view model
       def initialize( view_path )
-        super( View.send(:name, view_path ) )
-
+        @name = determine_name( view_path )
         @view_path = view_path
         @verb = determine_verb( view_path )
         @resource = determine_resource( view_path )
@@ -54,6 +53,14 @@ module PuppetGenerator
 
       def determine_resource(view_path)
         File.basename( File.dirname( view_path ) ).to_sym
+      end
+
+      def determine_name(view_path)
+        name = []
+        name.push( determine_verb(view_path) )
+        name.push( determine_resource(view_path) )
+
+        name.join('_')
       end
 
       def determine_suitable_outputs(view_path)

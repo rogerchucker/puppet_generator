@@ -12,7 +12,9 @@ module PuppetGenerator
       desc 'package', 'generate package definitions'
       def package
         PuppetGenerator::Api::CreateDefinition.new(
-          options.merge( { 'command_chain' => [ :create, :package ] } ) 
+          options.merge( { 
+                          'command_chain' => [ :create, :package ] ,
+          } ) 
         ).run
       end
 
@@ -24,9 +26,10 @@ module PuppetGenerator
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'file', 'generate file definitions'
       def file
-        PuppetGenerator::Api::CreateDefinition.new(
-          options.merge( { 'command_chain' => [ :create, :file ] } ) 
-        ).run
+        options['command_chain']  = [ :create, :file ]
+        options['export_filter'] += [ :puppet_meta_information ]
+
+        PuppetGenerator::Api::CreateDefinition.new(options).run
       end
 
       method_option :source,               Ui::CommandlineParserHelper.subcommand_options[:source]

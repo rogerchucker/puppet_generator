@@ -8,8 +8,8 @@ module PuppetGenerator
 
       def initialize(entry)
         @path = entry[:name]
-        @module_name = entry[:module_name]
-        @class_name = entry[:class_name]
+        @module_name = entry[:module]
+        @class_name = entry[:class]
 
         @owner = entry[:owner]
         @mode = entry[:mode]

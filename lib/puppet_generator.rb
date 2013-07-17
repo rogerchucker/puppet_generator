@@ -55,6 +55,7 @@ require 'puppet_generator/puppet_objects/user'
 require 'puppet_generator/puppet_objects/role'
 
 require 'puppet_generator/output_objects/version'
+require 'puppet_generator/output_objects/file'
 
 require 'puppet_generator/definition'
 require 'puppet_generator/task'

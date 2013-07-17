@@ -18,13 +18,13 @@ module PuppetGenerator
 
       private
 
-      def apply_filters(filters, data, &block)
+      def apply_filters(filters, objects, meta, &block)
 
-        filters.inject(data) do |data,filter|
+        filters.inject(objects) do |objects,filter|
           active_filter = Models::ExportFilter.find filter
           raise Exceptions::UnknownExportFilter unless active_filter
 
-          data = active_filter.convert(data)
+          data = active_filter.convert(objects, meta)
         end
       end
 

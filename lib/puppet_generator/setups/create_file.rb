@@ -11,7 +11,7 @@ module PuppetGenerator
 
         enable_template_for :create_file
         enable_importer :directory
-        enable_export_filter :filesystem_attributes, :copy_files_to_module_directory
+        enable_export_filter :filesystem_attributes, :copy_files_to_module_directory, :puppet_meta_information
       end
     end
   end
