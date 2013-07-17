@@ -21,10 +21,6 @@ module PuppetGenerator
         raise Exceptions::UnknownModel, "I'm not able to enable all instances of \"Models::#{i.camelcase}\". Maybe the model is missing or another error happend: #{e.message}"
       end
 
-      def enable_template_for(item)
-        Models::Template.find_all(item).each { |t| t.enable }
-      end
-
       def enable_action(*items)
         items.flatten.each { |i| Models::Actions.enable(i) }
       end
