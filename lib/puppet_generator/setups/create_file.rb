@@ -7,9 +7,10 @@ module PuppetGenerator
       end
 
       def environment
+        super
+
         use_defaults_for :error_message, :import_filter, :action, :importer, :export_filter
 
-        enable_template_for :create_file
         enable_importer :directory
         enable_export_filter :filesystem_attributes, :copy_files_to_module_directory, :puppet_meta_information
       end

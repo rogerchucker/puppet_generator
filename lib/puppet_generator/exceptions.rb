@@ -21,6 +21,10 @@ module PuppetGenerator
     
     #raised if source is empty
     class EmptySource < UserError; end
+
+    #raised if an unknown action was
+    #use in the code
+    class UnknownSetup < InternalError; end
     
     #raised if an unknown input filter was
     #requested by the user

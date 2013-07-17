@@ -7,7 +7,7 @@ module PuppetGenerator
       def use_defaults_for(*items)
         items.flatten.each do |i| 
           active_default = Models::Default.find(i)
-          raise Exceptions::UnknownSetup unless active_default
+          raise Exceptions::UnknownSetup, "I'm not enable to find default model for \"#{i}\"" unless active_default
 
           active_default.use
         end
@@ -39,6 +39,18 @@ module PuppetGenerator
 
       def enable_exporter(*items)
         items.flatten.each { |i| Models::Exporter.enable(i) }
+      end
+
+      def environment
+        Models::View.init
+        Models::Template.init
+        Models::ImportFilter.init
+        Models::Action.init
+        Models::ErrorMessage.init
+        Models::Importer.init
+        Models::Exporter.init
+        Models::ExportFilter.init
+        Models::EntryConverter.init
       end
 
     end
