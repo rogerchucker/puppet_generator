@@ -1,7 +1,7 @@
 module PuppetGenerator
   module Actions
     class Null
-      def run( objects , task )
+      def run( objects , meta )
         objects
       end
     end
