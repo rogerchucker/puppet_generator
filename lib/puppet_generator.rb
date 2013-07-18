@@ -48,14 +48,11 @@ require 'puppet_generator/models/entry_converter'
 require 'puppet_generator/models/default'
 require 'puppet_generator/models/setup'
 
-
-require 'puppet_generator/puppet_objects/package'
-require 'puppet_generator/puppet_objects/file'
-require 'puppet_generator/puppet_objects/user'
-require 'puppet_generator/puppet_objects/role'
-
 require 'puppet_generator/output_objects/version'
 require 'puppet_generator/output_objects/file'
+require 'puppet_generator/output_objects/package'
+require 'puppet_generator/output_objects/user'
+require 'puppet_generator/output_objects/role'
 
 require 'puppet_generator/definition'
 require 'puppet_generator/task'

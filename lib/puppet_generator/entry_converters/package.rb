@@ -1,8 +1,8 @@
 module PuppetGenerator
   module EntryConverters
     class Package
-      def convert(entries, module_name, class_name)
-        entries.collect { |e| PuppetObjects::Package.new( e, module_name , class_name ) }
+      def convert(entries)
+        entries.collect { |e| OutputObjects::Package.new( e ) }
       end
     end
   end

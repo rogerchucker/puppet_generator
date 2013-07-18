@@ -1,8 +1,8 @@
 module PuppetGenerator
   module EntryConverters
     class Role
-      def convert(entries, module_name, class_name)
-        entries.collect { |e| PuppetObjects::Role.new( e, module_name , class_name ) }
+      def convert(entries)
+        entries.collect { |e| OutputObjects::Role.new( e ) }
       end
     end
   end

@@ -1,8 +1,8 @@
 module PuppetGenerator
   module EntryConverters
     class User
-      def convert(entries, module_name, class_name)
-        entries.collect { |e| PuppetObjects::User.new( e, module_name , class_name ) }
+      def convert(entries)
+        entries.collect { |e| OutputObjects::User.new( e ) }
       end
     end
   end

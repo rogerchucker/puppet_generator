@@ -1,15 +1,15 @@
 module PuppetGenerator
-  module PuppetObjects
+  module OutputObjects
     class Package
 
       include PuppetHelper
 
       attr_reader :name, :provider, :version, :module_name, :class_name
 
-      def initialize(entry, module_name, class_name)
+      def initialize(entry)
         @name = entry[:name]
-        @module_name = module_name
-        @class_name = class_name
+        @module_name = entry[:module]
+        @class_name = entry[:class]
 
         @version = entry.fetch( :version, 'installed' )
         @provider = entry[:provider]
