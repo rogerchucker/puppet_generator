@@ -33,8 +33,6 @@ require 'puppet_generator/puppet_helper'
 require 'puppet_generator/setups/base'
 
 require 'puppet_generator/models/base'
-require 'puppet_generator/models/filesystem_based_model'
-require 'puppet_generator/models/class_based_model'
 require 'puppet_generator/models/error_message'
 require 'puppet_generator/models/importer'
 require 'puppet_generator/models/exporter'
