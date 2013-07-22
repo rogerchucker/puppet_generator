@@ -47,8 +47,11 @@ module PuppetGenerator
     #raised if an error happened during copying files
     class ErrorDuringCopyFiles < UserError; end
     
-    #raised if an unknown module was used
+    #raised if an unknown model was used
     class UnknownModel < InternalError; end
+
+    #raised if no model instances are available
+    class MissingModelInstances < InternalError; end
     
     #raised if one tries to delete an instance which
     #does not exist

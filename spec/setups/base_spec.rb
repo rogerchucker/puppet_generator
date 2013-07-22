@@ -51,6 +51,38 @@ describe Setups::Base do
       klass.new.environment
       expect( Models::EntryConverter.find_all( enabled: true ).size ).to be > 0
     end
+
+    it "raises an error if no valid model can be found" do
+      klass = Class.new(Setups::Base) do
+        def environment
+          enable_all_of :unknown
+        end
+      end
+      expect {
+        klass.new.environment
+      }.to raise_error PuppetGenerator::Exceptions::UnknownModel
+    end
+
+    it "raises an error if no valid model instances can be found" do
+      class ::PuppetGenerator::Models::DysFunctionalModel
+        def self.path_to_instances
+          ''
+        end
+
+        def self.suffix
+          ''
+        end
+      end
+      
+      klass = Class.new(Setups::Base) do
+        def environment
+          enable_all_of :dys_functional_model
+        end
+      end
+      expect {
+        klass.new.environment
+      }.to raise_error PuppetGenerator::Exceptions::MissingModelInstances
+    end
   end
 
   context "#enable_action" do

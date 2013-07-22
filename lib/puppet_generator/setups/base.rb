@@ -15,10 +15,15 @@ module PuppetGenerator
 
       def enable_all_of(*items)
         items.flatten.each do |i| 
-          "PuppetGenerator::Models::#{i.to_s.camelcase}".constantize.all.each { |t| t.enable }
+          begin
+            "PuppetGenerator::Models::#{i.to_s.camelcase}".constantize.all.each { |t| t.enable }
+          rescue NoMethodError
+            raise Exceptions::MissingModelInstances, "I'm not able to enable all instances of \"Models::#{i.to_s.camelcase}\". There are no instances available."
+          #order is important -> name error is parent of no_method_error
+          rescue NameError
+            raise Exceptions::UnknownModel, "I'm not able to enable all instances of \"Models::#{i.to_s.camelcase}\". The given model does not exist."
+          end
         end
-      rescue Exception => e
-        raise Exceptions::UnknownModel, "I'm not able to enable all instances of \"Models::#{i.camelcase}\". Maybe the model is missing or another error happend: #{e.message}"
       end
 
       def enable_action(*items)
