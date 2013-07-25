@@ -13,7 +13,8 @@ describe Models::Exporter do
 
   it "finds all default exporters" do
     Models::Exporter.init
-    Setup::DefaultExporter.use
+    Models::Default.init
+    Models::Default.find(:exporter).use
 
     filters = Models::Exporter.find_all(enabled: true)
     expect(filters.size).to eq(3)
