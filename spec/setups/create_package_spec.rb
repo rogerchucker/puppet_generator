@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-require 'puppet_generator/setups/create_file'
+require 'puppet_generator/setups/create_package'
 
-describe Setups::CreateFile do
+describe Setups::CreatePackage do
 
-  let(:setup) { Setups::CreateFile.new }
+  let(:setup) { Setups::CreatePackage.new }
 
   before(:each) {
     Models::Default.clear
@@ -19,6 +19,7 @@ describe Setups::CreateFile do
     Models::ImportFilter.clear
     Models::Template.clear
     Models::View.clear
+
   }
 
   context "#description" do
@@ -50,17 +51,15 @@ describe Setups::CreateFile do
 
       expect( name_of_model_instances(:action)).to eq([:null])
             
-      expect( name_of_model_instances(:importer)).to eq([:directory,
-                                                         :file,
+      expect( name_of_model_instances(:importer)).to eq([ :file,
                                                          :stdin])
 
-      expect( name_of_model_instances(:export_filter)).to eq([:copy_files_to_module_directory,
-                                                              :filesystem_attributes,
-                                                              :null,
-                                                              :puppet_meta_information])
+      expect( name_of_model_instances(:export_filter)).to eq([
+        :null,
+        :puppet_meta_information
+      ])
 
       expect( name_of_model_instances(:exporter)).to eq([])
     end
   end
-  
 end

@@ -12,7 +12,6 @@ module PuppetGenerator
 
         enable_import_filter :passwd
         enable_importer :directory
-        enable_template_for :create_role
         enable_export_filter :build_role_includes_for_directory
       end
 

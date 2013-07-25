@@ -7,8 +7,6 @@ module PuppetGenerator
       end
 
       def environment
-        super
-
         use_defaults_for :error_message, :import_filter, :action, :importer, :export_filter
 
         enable_importer :directory

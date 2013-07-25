@@ -1,14 +1,14 @@
 module PuppetGenerator
   module Setups
-    class ListImportFilters < Base
+    class ListExportFilters < Base
 
       def description
-        "List all available import filters"
+        "List all available export filters"
       end
 
       def environment
         use_defaults_for :error_message
-        enable_all_of :import_filter
+        enable_all_of :export_filter
       end
 
     end

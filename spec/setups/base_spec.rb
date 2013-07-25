@@ -3,7 +3,18 @@ require 'spec_helper'
 describe Setups::Base do
 
   before(:each) {
+    Models::Default.clear
     Models::Default.init
+
+    Models::Action.clear
+    Models::EntryConverter.clear
+    Models::ErrorMessage.clear
+    Models::Exporter.clear
+    Models::ExportFilter.clear
+    Models::Importer.clear
+    Models::ImportFilter.clear
+    Models::Template.clear
+    Models::View.clear
   }
 
   context "#enable_defaults_for" do

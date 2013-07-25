@@ -11,7 +11,7 @@ module PuppetGenerator
         enable_all_of :action
 
         enable_import_filter :passwd
-        enable_template_for :create_user
+        enable_export_filter :puppet_meta_information
       end
 
     end

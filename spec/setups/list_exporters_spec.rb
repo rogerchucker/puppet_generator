@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-require 'puppet_generator/setups/create_file'
+require 'puppet_generator/setups/list_exporters'
 
-describe Setups::CreateFile do
+describe Setups::ListExporters do
 
-  let(:setup) { Setups::CreateFile.new }
+  let(:setup) { Setups::ListExporters.new }
 
   before(:each) {
     Models::Default.clear
@@ -46,20 +46,15 @@ describe Setups::CreateFile do
         :wrong_template_chosen,
       ])
 
-      expect( name_of_model_instances(:import_filter)).to eq([:null, :yaml])
+      expect( name_of_model_instances(:import_filter)).to eq([])
 
-      expect( name_of_model_instances(:action)).to eq([:null])
+      expect( name_of_model_instances(:action)).to eq([])
             
-      expect( name_of_model_instances(:importer)).to eq([:directory,
-                                                         :file,
-                                                         :stdin])
+      expect( name_of_model_instances(:importer)).to eq([])
 
-      expect( name_of_model_instances(:export_filter)).to eq([:copy_files_to_module_directory,
-                                                              :filesystem_attributes,
-                                                              :null,
-                                                              :puppet_meta_information])
+      expect( name_of_model_instances(:export_filter)).to eq([])
 
-      expect( name_of_model_instances(:exporter)).to eq([])
+      expect( name_of_model_instances(:exporter)).to eq([:directory, :file, :stdout])
     end
   end
   
