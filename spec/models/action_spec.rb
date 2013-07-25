@@ -7,7 +7,7 @@ describe Models::Action do
 
   it "finds all available actions" do
     Models::Action.init
-    expect(Models::Action.all.size).to eq(2)
+    expect(Models::Action.all.size).to eq(1)
   end
 
   it "raises an error if an action is invalid: missing method \"run\"" do

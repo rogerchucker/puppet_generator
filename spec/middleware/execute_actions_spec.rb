@@ -12,8 +12,7 @@ describe PuppetGenerator::Middleware::ExecuteActions do
 
     task = double( 'task' )
     task.stub( :body ).and_return( [ { name: test_file } ])
-    task.stub( :meta ).and_return( { requested_actions: [ :copy_files_to_module_directory ], module: 'test' } )
-    task.should_receive( :body= ).with( [ { :name => File.expand_path('../../examples/execute_actions/file.txt', __FILE__ ), :source => "puppet:///modules/test#{File.expand_path('../../examples/execute_actions/file.txt', __FILE__ )}" } ] )
+    task.stub( :meta ).and_return( { requested_actions: [ :null ], module: 'test' } )
 
     app = double('app')
     app.stub(:call)

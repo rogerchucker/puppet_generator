@@ -24,9 +24,13 @@ describe ExportFilters::BuildRoleIncludesForDirectory do
       },
     ]
 
+    meta = {
+      module: 'asdf',
+    }
+
     switch_to_working_directory do
       filter = ExportFilters::BuildRoleIncludesForDirectory.new
-      expect(filter.convert(objects)).to eq(
+      expect(filter.convert(objects, meta )).to eq(
         [ 
           {:name=>"test", :includes=>["dir1", "file1", "file2", "file3", "files"]}, 
           {:name=>"test/dir1", :includes=>["file1", "file2", "file3"]}
