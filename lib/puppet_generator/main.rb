@@ -20,7 +20,7 @@ module PuppetGenerator
       require 'simplecov' 
 
       SimpleCov.start
-      SimpleCov.command_name 'cucumber'
+      SimpleCov.command_name( "cucumber_#{Random.srand}" )
       SimpleCov.root PuppetGenerator.root_directory
     rescue
       self.logger.warn(self) { "Please note, this code is just for coverage testing. You need to install the \"simplecov\"-gem to make it work" }
