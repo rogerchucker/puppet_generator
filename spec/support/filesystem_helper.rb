@@ -9,4 +9,9 @@ def root_directory
   File.expand_path( '../../../', __FILE__ )
 end
 
-create_working_directory
+RSpec.configure do |c|
+  c.before(:each) do 
+    delete_working_directory
+    create_working_directory  
+  end
+end
