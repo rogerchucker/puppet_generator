@@ -1,14 +1,14 @@
 module PuppetGenerator
   module ExportFilters
     class CopyFilesToModuleDirectory
-      def convert( objects, task )
+      def convert( objects, meta )
         src = objects.collect { |e| e[:name] }
-        dst = File.join( task.meta[:module] , 'files')
+        dst = File.join( objects.first[:module] , 'files')
 
         FileUtils.mkdir_p dst
         FileUtils.cp_r src , dst
 
-        data.collect { |e| e[:source] = make_source( task.meta[:module] , e[:name]) ; e }
+        objects.collect { |e| e[:source] = make_source( e[:module] , e[:name]) ; e }
       rescue Exception => e
         raise Exceptions::ErrorDuringCopyFiles, e.message
       end
