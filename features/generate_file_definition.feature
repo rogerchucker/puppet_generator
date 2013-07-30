@@ -7,7 +7,7 @@ Feature: Generate file definitions
   Background: Process environment
     Given I set the environment variables to:
       | variable             | value |
-      | PUPPET_GENERATOR_ENV | test  |
+      #      | PUPPET_GENERATOR_ENV | test  |
 
   Scenario: Plain Input File
     Given a file named "input.txt" with:
