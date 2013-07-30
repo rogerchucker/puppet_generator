@@ -254,7 +254,7 @@ Feature: Generate file definitions
     And an empty file named "testdir/file2"
     And an empty file named "testdir/file3"
     When I successfully run `ppgen create module`
-    And I successfully run `ppgen create file --source testdir --action copy_files_to_module_directory`
+    And I successfully run `ppgen create file --source testdir --export_filter copy_files_to_module_directory`
     Then a directory named "mymodule" should exist
     And a directory named "mymodule/files/testdir" should exist
     And the file "mymodule/files/testdir/file1" should contain:
@@ -267,7 +267,7 @@ Feature: Generate file definitions
     """
     asdf
     """
-    And I run `ppgen create file --source testfile1 --action copy_files_to_module_directory`
+    And I run `ppgen create file --source testfile1 --export_filter copy_files_to_module_directory`
     Then the exit status should be 10
     And the stderr should contain "No such file or directory"
 
