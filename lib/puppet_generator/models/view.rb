@@ -6,6 +6,7 @@ module PuppetGenerator
 
       #create new instance of view model
       def initialize( view_path )
+        @supported_input_identifier = determine_supported_input_identifier( view_path )
         @name = determine_name( view_path )
         @view_path = view_path
         @verb = determine_verb( view_path )
@@ -20,14 +21,9 @@ module PuppetGenerator
         @resource == other.to_sym
       end
 
-      #output path to view
-      def path
-        @view_path
-      end
-
       #check if a view is tagged 
       def supports_enum_as_input?(expected_result = true)
-        ( %r[\+many\+] === @view_path ) == expected_result
+        ( :many == @supported_input_identifier ) == expected_result
       end
 
       public
@@ -59,26 +55,17 @@ module PuppetGenerator
         name = []
         name.push( determine_verb(view_path) )
         name.push( determine_resource(view_path) )
+        name.push( determine_supported_input_identifier(view_path) )
 
-        name.join('_')
+        name.join('_').to_sym
       end
 
-      def determine_suitable_outputs(view_path)
-        case view_path 
-        when %r[\+one\+]
-          [ :directory, :dir, :stdout , :file ]
-        when %r[\+many\+]
-          [ :file , :stdout ]
-        else
-          [ :file , :stdout ]
-        end
+      def determine_supported_input_identifier(view_path)
+        File.basename( view_path, '.erb' ).match(/\+([^+]+)\+/) { $1 }.to_sym
       end
-
 
       def view
         Erubis::Eruby.new( view_content )
-      rescue
-        raise Exceptions::InvalidTemplate, "An invalid view \"#{@view_path}\" was used. Please check and correct the syntax and try again."
       end
 
       def view_content
@@ -96,9 +83,9 @@ module PuppetGenerator
         end
 
         def path_to_instances
-          path = File.expand_path("../../../../app/views", __FILE__ )
+          prefix = File.expand_path("../../../../app/views", path )
 
-          File.join(path,'**', "*#{ suffix }")
+          File.join(prefix,'**', "*#{ suffix }")
         end
 
         def load_from_filesystem
