@@ -1,0 +1,153 @@
+GIT
+  remote: https://github.com/maxmeyer/aruba.git
+  revision: 33c9951955629993de34e3b69da4e47c4d81bb1d
+  branch: puppet_generator
+  specs:
+    aruba (0.5.3)
+      childprocess (>= 0.3.6)
+      cucumber (>= 1.1.1)
+      rspec-expectations (>= 2.7.0)
+
+PATH
+  remote: .
+  specs:
+    puppet_generator (0.5.7)
+      activesupport (~> 3.2.13)
+      ansi (~> 1.4.3)
+      erubis (~> 2.7.0)
+      fedux_org-stdlib (~> 0.0.21)
+      hirb-unicode (~> 0.0.5)
+      middleware (~> 0.1.0)
+      thor (~> 0.18.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (3.2.14)
+      i18n (~> 0.6, >= 0.6.4)
+      multi_json (~> 1.0)
+    ansi (1.4.3)
+    arrayfields (4.9.0)
+    awesome_print (1.1.0)
+    bond (0.4.3)
+    builder (3.2.2)
+    childprocess (0.3.9)
+      ffi (~> 1.0, >= 1.0.11)
+    chronic (0.9.1)
+    churn (0.0.29)
+      chronic (>= 0.2.3)
+      hirb
+      json_pure
+      main
+      ruby_parser (~> 3.0)
+      sexp_processor (~> 4.1)
+    coderay (1.0.9)
+    columnize (0.3.6)
+    cucumber (1.3.2)
+      builder (>= 2.1.2)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 2.12.0)
+      multi_json (~> 1.3)
+    debugger (1.6.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.1)
+    debugger-completion (1.0.0)
+      bond (>= 0.4.2)
+      debugger (~> 1.1)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.2)
+    diff-lcs (1.2.4)
+    erubis (2.7.0)
+    fattr (2.2.1)
+    fedux_org-stdlib (0.0.22)
+      activesupport
+    ffaker (1.16.1)
+    ffi (1.9.0)
+    fuubar (1.1.1)
+      rspec (~> 2.0)
+      rspec-instafail (~> 0.2.0)
+      ruby-progressbar (~> 1.0)
+    gherkin (2.12.0)
+      multi_json (~> 1.3)
+    github-markup (0.7.5)
+    hashr (0.0.22)
+    hirb (0.7.1)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
+    i18n (0.6.4)
+    json_pure (1.8.0)
+    main (5.2.0)
+      arrayfields (>= 4.7.4)
+      chronic (>= 0.6.2)
+      fattr (>= 2.2.0)
+      map (>= 5.1.0)
+    map (6.5.1)
+    method_source (0.8.1)
+    middleware (0.1.0)
+    multi_json (1.7.7)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
+    pry-doc (0.4.6)
+      pry (>= 0.9)
+      yard (>= 0.8)
+    rake (10.0.4)
+    redcarpet (2.3.0)
+    rspec (2.13.0)
+      rspec-core (~> 2.13.0)
+      rspec-expectations (~> 2.13.0)
+      rspec-mocks (~> 2.13.0)
+    rspec-core (2.13.1)
+    rspec-expectations (2.13.0)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-instafail (0.2.4)
+    rspec-mocks (2.13.1)
+    ruby-progressbar (1.1.0)
+    ruby_parser (3.1.3)
+      sexp_processor (~> 4.1)
+    sexp_processor (4.2.1)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
+    slop (3.4.5)
+    thor (0.18.1)
+    tmrb (1.2.7)
+      thor
+    travis-lint (1.7.0)
+      hashr (~> 0.0.22)
+    unicode-display_width (0.1.1)
+    yard (0.8.6.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  aruba!
+  awesome_print
+  bundler (~> 1.3)
+  churn
+  cucumber
+  debugger
+  debugger-completion
+  fedux_org-stdlib
+  ffaker
+  fuubar
+  github-markup
+  pry
+  pry-debugger
+  pry-doc
+  puppet_generator!
+  rake
+  redcarpet
+  rspec
+  simplecov
+  tmrb
+  travis-lint
+  yard

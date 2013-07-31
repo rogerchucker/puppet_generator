@@ -96,7 +96,7 @@ module PuppetGenerator
           files.each { |f| create( f ) }
         end
 
-        def path
+        def model_path
           __FILE__
         end
       end

@@ -27,7 +27,7 @@ module PuppetGenerator
           [ :description, :environment ]
         end
 
-        def path
+        def model_path
           __FILE__
         end
 

@@ -33,7 +33,7 @@ module PuppetGenerator
           [ :enabled ]
         end
 
-        def path
+        def model_path
           __FILE__
         end
 

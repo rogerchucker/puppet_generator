@@ -26,7 +26,7 @@ module PuppetGenerator
           :use
         end
 
-        def path
+        def model_path
           __FILE__
         end
       end

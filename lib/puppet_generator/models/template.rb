@@ -14,7 +14,7 @@ module PuppetGenerator
       end
 
       #output path to template
-      def path
+      def model_path
         @template_path
       end
 
@@ -111,7 +111,7 @@ module PuppetGenerator
                  end
         end
 
-        def path
+        def model_path
           __FILE__
         end
       end
