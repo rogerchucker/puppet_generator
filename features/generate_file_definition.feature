@@ -263,10 +263,11 @@ Feature: Generate file definitions
     """
 
   Scenario: Copy files afterwards and handle errors
-    And a file named "testfile1" with:
+    Given a file named "testfile1" with:
     """
     asdf
     """
+    When I successfully run `ppgen create module`
     And I run `ppgen create file --source testfile1 --export_filter copy_files_to_module_directory`
     Then the exit status should be 10
     And the stderr should contain "No such file or directory"
@@ -283,7 +284,7 @@ Feature: Generate file definitions
     asdf1
     asdf2
     """
-    When I successfully run `ppgen create file --template-tagged-with many_per_file --destination file:output.txt`
+    When I successfully run `ppgen create file --view create_file_many --destination file:output.txt`
     Then the file "output.txt" should contain:
     """
     class mymodule::myclass {
@@ -303,7 +304,7 @@ Feature: Generate file definitions
     asdf1
     asdf2
     """
-    When I run `ppgen create file --template-tagged-with many_per_file`
+    When I run `ppgen create file`
     Then the exit status should be 9
     Then the stderr should contain:
     """

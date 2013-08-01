@@ -13,6 +13,10 @@ module PuppetGenerator
         @resource = determine_resource( view_path )
       end
 
+      def path
+        @view_path
+      end
+
       def verb?(other)
         @verb == other.to_sym
       end
@@ -83,7 +87,7 @@ module PuppetGenerator
         end
 
         def path_to_instances
-          prefix = File.expand_path("../../../../app/views", path )
+          prefix = File.expand_path("../../../../app/views", model_path )
 
           File.join(prefix,'**', "*#{ suffix }")
         end

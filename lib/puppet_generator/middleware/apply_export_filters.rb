@@ -24,7 +24,7 @@ module PuppetGenerator
           active_filter = Models::ExportFilter.find filter
           raise Exceptions::UnknownExportFilter unless active_filter
 
-          data = active_filter.convert(objects, meta)
+          objects = active_filter.convert(objects, meta)
         end
       end
 

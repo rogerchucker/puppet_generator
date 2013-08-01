@@ -22,12 +22,12 @@ module PuppetGenerator
       method_option :import_filter,        Ui::CommandlineParserHelper.subcommand_options[:import_filter]
       method_option :destination,          Ui::CommandlineParserHelper.subcommand_options[:destination]
       method_option :action,               Ui::CommandlineParserHelper.subcommand_options[:action]
-      method_option :template_tagged_with, Ui::CommandlineParserHelper.subcommand_options[:template_tagged_with]
+      method_option :view,                 Ui::CommandlineParserHelper.subcommand_options[:view]
       method_option :export_filter,        Ui::CommandlineParserHelper.subcommand_options[:export_filter]
       desc 'file', 'generate file definitions'
       def file
         options['command_chain']  = [ :create, :file ]
-        options['export_filter'] += [ :puppet_meta_information ]
+        options['export_filter'].unshift :puppet_meta_information
 
         PuppetGenerator::Api::CreateDefinition.new(options).run
       end

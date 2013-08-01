@@ -13,7 +13,7 @@ module PuppetGenerator
 
         task.meta[:type_of_view] = default_type_of_view_for(channel) unless task.meta[:type_of_view]
 
-        view = find_suitable_view( task.meta[:command_chain].last, task.meta[:command_chain].first, channel.to_sym, task.meta[:type_of_view] )
+        view = find_suitable_view( task.meta[:command_chain].last, task.meta[:command_chain].first, channel.to_sym, task.meta[:type_of_view], task.meta[:view] )
         exporter = find_suitable_exporter( task.meta[:destination] )
 
         definitions = view.render(task.body)
@@ -24,9 +24,17 @@ module PuppetGenerator
 
       private
 
-      def find_suitable_view(resource,verb,channel,type_of_view)
-        PuppetGenerator.logger.debug(self.class.name){ "The following search criterias were used to find a suitable view: resource -> #{resource}, verb -> #{verb}, supports_enum_as_input ->  #{wants_enum_as_input?( type_of_view )} (many puppet resources per file: true, one puppet resources per file: false)" } 
-        view = Models::View.find(resource: resource, verb: verb, supports_enum_as_input:  wants_enum_as_input?( type_of_view ) )
+      def find_suitable_view(resource, verb,channel, type_of_view, view)
+        if view
+          message = "The following search criterias were used to find a suitable view: name -> #{view}"
+          criteria = { name: view }
+        else
+          message =  "The following search criterias were used to find a suitable view: resource -> #{resource}, verb -> #{verb}, supports_enum_as_input ->  #{wants_enum_as_input?( type_of_view )} (many puppet resources per file: true, one puppet resources per file: false)"
+          criteria =  { resource: resource, verb: verb, supports_enum_as_input:  wants_enum_as_input?( type_of_view ) }
+        end
+
+        view = Models::View.find( criteria )
+        PuppetGenerator.logger.debug(self.class.name){ message} 
         raise Exceptions::WrongViewChosen unless view
         PuppetGenerator.logger.debug(self.class.name){ "Chosen view: #{view.name} (#{view.path})." }
 

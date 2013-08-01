@@ -20,7 +20,7 @@ module PuppetGenerator
       @meta[:logging_mode]             = log_level(options)
       @meta[:command_chain]       = options[:command_chain] 
       @meta[:debug]         = true if options[:debug]
-      @meta[:type_of_view] = options[:type_of_view]
+      @meta[:view] = options[:view].to_sym
     end
 
     private

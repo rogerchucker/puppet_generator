@@ -27,7 +27,7 @@ module PuppetGenerator
           :run
         end
 
-t         def model_path
+        def model_path
           __FILE__
         end
       end
